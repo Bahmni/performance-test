@@ -50,7 +50,10 @@ object PatientCreateAndStartVisitFlow {
               status.is(200)
             ).resources(
             getPatientProfileAfterRegistration("${patient_uuid}"),
-            startVisitRequest("${patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID).check(status.is(201))
+
+            startVisitRequest("${patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID).check(
+              status.is(201)
+            )
         )
       )
     }

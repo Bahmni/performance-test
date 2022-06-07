@@ -1,0 +1,1627 @@
+{
+  "locationUuid": "{$locationUuid}",
+  "patientUuid": "{$patientUuid}",
+  "encounterUuid": null,
+  "visitUuid": null,
+  "providers": [
+    {
+      "uuid": "{$providerUuid}"
+    }
+  ],
+  "encounterDateTime": null,
+  "extensions": {
+    "mdrtbSpecimen": []
+  },
+  "context": {},
+  "visitType": "OPD",
+  "bahmniDiagnoses": [],
+  "orders": [],
+  "drugOrders": [],
+  "disposition": null,
+  "observations": [
+    {
+      "concept": {
+        "uuid": "c36a7537-3f10-11e4-adec-0800271c1b75",
+        "name": "Vitals",
+        "dataType": "N/A"
+      },
+      "units": null,
+      "label": "Vitals",
+      "possibleAnswers": [],
+      "groupMembers": [
+        {
+          "concept": {
+            "uuid": "c36af094-3f10-11e4-adec-0800271c1b75",
+            "name": "Pulse Data",
+            "dataType": "N/A"
+          },
+          "units": null,
+          "label": "Pulse",
+          "possibleAnswers": [],
+          "groupMembers": [
+            {
+              "concept": {
+                "uuid": "c36bc411-3f10-11e4-adec-0800271c1b75",
+                "name": "Pulse",
+                "dataType": "Numeric"
+              },
+              "units": "/min",
+              "label": "Pulse",
+              "possibleAnswers": [],
+              "groupMembers": [],
+              "comment": null,
+              "isObservation": true,
+              "conceptUIConfig": [],
+              "uniqueId": "observation_13",
+              "erroneousValue": false,
+              "value": 74,
+              "autocompleteValue": 74,
+              "__prevValue": 7,
+              "_value": 74,
+              "voided": false,
+              "observationDateTime": null
+            },
+            {
+              "concept": {
+                "uuid": "c36c7c98-3f10-11e4-adec-0800271c1b75",
+                "name": "Pulse Abnormal",
+                "dataType": "Boolean"
+              },
+              "units": null,
+              "label": "Pulse Abnormal",
+              "possibleAnswers": [],
+              "groupMembers": [],
+              "comment": null,
+              "isObservation": true,
+              "conceptUIConfig": {},
+              "uniqueId": "observation_14",
+              "erroneousValue": false,
+              "value": true,
+              "isBoolean": true,
+              "voided": false
+            }
+          ],
+          "comment": null,
+          "conceptUIConfig": {},
+          "value": 74,
+          "primaryObs": {
+            "concept": {
+              "uuid": "c36bc411-3f10-11e4-adec-0800271c1b75",
+              "name": "Pulse",
+              "shortName": "Pulse",
+              "description": null,
+              "set": false,
+              "dataType": "Numeric",
+              "hiAbsolute": null,
+              "lowAbsolute": null,
+              "hiNormal": 72,
+              "handler": null,
+              "allowDecimal": true,
+              "lowNormal": 72,
+              "conceptClass": "Misc",
+              "answers": [],
+              "units": "/min",
+              "displayString": "Pulse",
+              "names": [
+                {
+                  "display": "Pulse",
+                  "uuid": "c36bcba8-3f10-11e4-adec-0800271c1b75",
+                  "name": "Pulse",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36bc411-3f10-11e4-adec-0800271c1b75/name/c36bcba8-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36bc411-3f10-11e4-adec-0800271c1b75/name/c36bcba8-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                {
+                  "display": "Pulse",
+                  "uuid": "c36bc8ad-3f10-11e4-adec-0800271c1b75",
+                  "name": "Pulse",
+                  "locale": "en",
+                  "localePreferred": false,
+                  "conceptNameType": "SHORT",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36bc411-3f10-11e4-adec-0800271c1b75/name/c36bc8ad-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36bc411-3f10-11e4-adec-0800271c1b75/name/c36bc8ad-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                }
+              ]
+            },
+            "units": "/min",
+            "label": "Pulse",
+            "possibleAnswers": [],
+            "groupMembers": [],
+            "comment": null,
+            "isObservation": true,
+            "conceptUIConfig": [],
+            "uniqueId": "observation_13",
+            "erroneousValue": false,
+            "value": 74,
+            "autocompleteValue": 74,
+            "__prevValue": 7,
+            "_value": 74,
+            "voided": false,
+            "observationDateTime": null
+          },
+          "isObservationNode": true,
+          "uniqueId": "observation_15",
+          "abnormalObs": {
+            "concept": {
+              "uuid": "c36c7c98-3f10-11e4-adec-0800271c1b75",
+              "name": "Pulse Abnormal",
+              "shortName": "Pulse Abnormal",
+              "description": null,
+              "set": false,
+              "dataType": "Boolean",
+              "hiAbsolute": null,
+              "lowAbsolute": null,
+              "hiNormal": null,
+              "handler": null,
+              "allowDecimal": null,
+              "lowNormal": null,
+              "conceptClass": "Abnormal",
+              "answers": [],
+              "units": null,
+              "displayString": "Pulse Abnormal",
+              "names": [
+                {
+                  "display": "Pulse Abnormal",
+                  "uuid": "c36c8007-3f10-11e4-adec-0800271c1b75",
+                  "name": "Pulse Abnormal",
+                  "locale": "en",
+                  "localePreferred": false,
+                  "conceptNameType": "SHORT",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36c7c98-3f10-11e4-adec-0800271c1b75/name/c36c8007-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36c7c98-3f10-11e4-adec-0800271c1b75/name/c36c8007-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                {
+                  "display": "Pulse Abnormal",
+                  "uuid": "c36c82d6-3f10-11e4-adec-0800271c1b75",
+                  "name": "Pulse Abnormal",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36c7c98-3f10-11e4-adec-0800271c1b75/name/c36c82d6-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36c7c98-3f10-11e4-adec-0800271c1b75/name/c36c82d6-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                }
+              ]
+            },
+            "units": null,
+            "label": "Pulse Abnormal",
+            "possibleAnswers": [],
+            "groupMembers": [],
+            "comment": null,
+            "isObservation": true,
+            "conceptUIConfig": {},
+            "uniqueId": "observation_14",
+            "erroneousValue": false,
+            "value": true,
+            "isBoolean": true
+          },
+          "showComment": false,
+          "disabled": false,
+          "voided": false
+        },
+        {
+          "concept": {
+            "uuid": "c37fc55f-3f10-11e4-adec-0800271c1b75",
+            "name": "SPO2 Data",
+            "dataType": "N/A"
+          },
+          "units": null,
+          "label": "SPO2",
+          "possibleAnswers": [],
+          "groupMembers": [
+            {
+              "concept": {
+                "uuid": "c3838414-3f10-11e4-adec-0800271c1b75",
+                "name": "SPO2",
+                "dataType": "Numeric"
+              },
+              "units": "%",
+              "label": "SPO2",
+              "possibleAnswers": [],
+              "groupMembers": [],
+              "comment": null,
+              "isObservation": true,
+              "conceptUIConfig": [],
+              "uniqueId": "observation_16",
+              "erroneousValue": false,
+              "value": 94,
+              "autocompleteValue": 94,
+              "__prevValue": 9,
+              "_value": 94,
+              "voided": false,
+              "observationDateTime": null
+            },
+            {
+              "concept": {
+                "uuid": "c384402b-3f10-11e4-adec-0800271c1b75",
+                "name": "SPO2 Abnormal",
+                "dataType": "Boolean"
+              },
+              "units": null,
+              "label": "Temperature Abnormal",
+              "possibleAnswers": [],
+              "groupMembers": [],
+              "comment": null,
+              "isObservation": true,
+              "conceptUIConfig": {},
+              "uniqueId": "observation_17",
+              "erroneousValue": false,
+              "value": true,
+              "isBoolean": true,
+              "voided": false
+            }
+          ],
+          "comment": null,
+          "conceptUIConfig": {},
+          "value": 94,
+          "primaryObs": {
+            "concept": {
+              "uuid": "c3838414-3f10-11e4-adec-0800271c1b75",
+              "name": "SPO2",
+              "shortName": "SPO2",
+              "description": null,
+              "set": false,
+              "dataType": "Numeric",
+              "hiAbsolute": null,
+              "lowAbsolute": null,
+              "hiNormal": null,
+              "handler": null,
+              "allowDecimal": true,
+              "lowNormal": 97,
+              "conceptClass": "Misc",
+              "answers": [],
+              "units": "%",
+              "displayString": "SPO2",
+              "names": [
+                {
+                  "display": "SPO2",
+                  "uuid": "c38387e7-3f10-11e4-adec-0800271c1b75",
+                  "name": "SPO2",
+                  "locale": "en",
+                  "localePreferred": false,
+                  "conceptNameType": "SHORT",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c3838414-3f10-11e4-adec-0800271c1b75/name/c38387e7-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c3838414-3f10-11e4-adec-0800271c1b75/name/c38387e7-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                {
+                  "display": "SPO2",
+                  "uuid": "c3838b02-3f10-11e4-adec-0800271c1b75",
+                  "name": "SPO2",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c3838414-3f10-11e4-adec-0800271c1b75/name/c3838b02-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c3838414-3f10-11e4-adec-0800271c1b75/name/c3838b02-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                }
+              ]
+            },
+            "units": "%",
+            "label": "SPO2",
+            "possibleAnswers": [],
+            "groupMembers": [],
+            "comment": null,
+            "isObservation": true,
+            "conceptUIConfig": [],
+            "uniqueId": "observation_16",
+            "erroneousValue": false,
+            "value": 94,
+            "autocompleteValue": 94,
+            "__prevValue": 9,
+            "_value": 94,
+            "voided": false,
+            "observationDateTime": null
+          },
+          "isObservationNode": true,
+          "uniqueId": "observation_18",
+          "abnormalObs": {
+            "concept": {
+              "uuid": "c384402b-3f10-11e4-adec-0800271c1b75",
+              "name": "SPO2 Abnormal",
+              "shortName": "Temperature Abnormal",
+              "description": null,
+              "set": false,
+              "dataType": "Boolean",
+              "hiAbsolute": null,
+              "lowAbsolute": null,
+              "hiNormal": null,
+              "handler": null,
+              "allowDecimal": null,
+              "lowNormal": null,
+              "conceptClass": "Abnormal",
+              "answers": [],
+              "units": null,
+              "displayString": "Temperature Abnormal",
+              "names": [
+                {
+                  "display": "Temperature Abnormal",
+                  "uuid": "c38443f7-3f10-11e4-adec-0800271c1b75",
+                  "name": "Temperature Abnormal",
+                  "locale": "en",
+                  "localePreferred": false,
+                  "conceptNameType": "SHORT",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c384402b-3f10-11e4-adec-0800271c1b75/name/c38443f7-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c384402b-3f10-11e4-adec-0800271c1b75/name/c38443f7-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                {
+                  "display": "SPO2 Abnormal",
+                  "uuid": "c384471a-3f10-11e4-adec-0800271c1b75",
+                  "name": "SPO2 Abnormal",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c384402b-3f10-11e4-adec-0800271c1b75/name/c384471a-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c384402b-3f10-11e4-adec-0800271c1b75/name/c384471a-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                }
+              ]
+            },
+            "units": null,
+            "label": "Temperature Abnormal",
+            "possibleAnswers": [],
+            "groupMembers": [],
+            "comment": null,
+            "isObservation": true,
+            "conceptUIConfig": {},
+            "uniqueId": "observation_17",
+            "erroneousValue": false,
+            "value": true,
+            "isBoolean": true
+          },
+          "showComment": false,
+          "disabled": false,
+          "voided": false
+        },
+        {
+          "concept": {
+            "uuid": "c37d3f27-3f10-11e4-adec-0800271c1b75",
+            "name": "RR Data",
+            "dataType": "N/A"
+          },
+          "units": null,
+          "label": "RR",
+          "possibleAnswers": [],
+          "groupMembers": [
+            {
+              "concept": {
+                "uuid": "c37f16d3-3f10-11e4-adec-0800271c1b75",
+                "name": "RR Abnormal",
+                "dataType": "Boolean"
+              },
+              "units": null,
+              "label": "Temperature Abnormal",
+              "possibleAnswers": [],
+              "groupMembers": [],
+              "comment": null,
+              "isObservation": true,
+              "conceptUIConfig": {},
+              "uniqueId": "observation_19",
+              "erroneousValue": false,
+              "value": false,
+              "isBoolean": true,
+              "voided": false
+            },
+            {
+              "concept": {
+                "uuid": "c37e0f37-3f10-11e4-adec-0800271c1b75",
+                "name": "RR",
+                "dataType": "Numeric"
+              },
+              "units": "/min",
+              "label": "RR",
+              "possibleAnswers": [],
+              "groupMembers": [],
+              "comment": null,
+              "isObservation": true,
+              "conceptUIConfig": [],
+              "uniqueId": "observation_20",
+              "erroneousValue": false,
+              "value": 18,
+              "autocompleteValue": 18,
+              "__prevValue": 1,
+              "_value": 18,
+              "voided": false,
+              "observationDateTime": null
+            }
+          ],
+          "comment": null,
+          "conceptUIConfig": {},
+          "value": 18,
+          "primaryObs": {
+            "concept": {
+              "uuid": "c37e0f37-3f10-11e4-adec-0800271c1b75",
+              "name": "RR",
+              "shortName": "RR",
+              "description": null,
+              "set": false,
+              "dataType": "Numeric",
+              "hiAbsolute": null,
+              "lowAbsolute": null,
+              "hiNormal": 20,
+              "handler": null,
+              "allowDecimal": true,
+              "lowNormal": 16,
+              "conceptClass": "Misc",
+              "answers": [],
+              "units": "/min",
+              "displayString": "RR",
+              "names": [
+                {
+                  "display": "RR",
+                  "uuid": "c37e176b-3f10-11e4-adec-0800271c1b75",
+                  "name": "RR",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37e0f37-3f10-11e4-adec-0800271c1b75/name/c37e176b-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37e0f37-3f10-11e4-adec-0800271c1b75/name/c37e176b-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                {
+                  "display": "RR",
+                  "uuid": "c37e134e-3f10-11e4-adec-0800271c1b75",
+                  "name": "RR",
+                  "locale": "en",
+                  "localePreferred": false,
+                  "conceptNameType": "SHORT",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37e0f37-3f10-11e4-adec-0800271c1b75/name/c37e134e-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37e0f37-3f10-11e4-adec-0800271c1b75/name/c37e134e-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                }
+              ]
+            },
+            "units": "/min",
+            "label": "RR",
+            "possibleAnswers": [],
+            "groupMembers": [],
+            "comment": null,
+            "isObservation": true,
+            "conceptUIConfig": [],
+            "uniqueId": "observation_20",
+            "erroneousValue": false,
+            "value": 18,
+            "autocompleteValue": 18,
+            "__prevValue": 1,
+            "_value": 18,
+            "voided": false,
+            "observationDateTime": null
+          },
+          "isObservationNode": true,
+          "uniqueId": "observation_21",
+          "abnormalObs": {
+            "concept": {
+              "uuid": "c37f16d3-3f10-11e4-adec-0800271c1b75",
+              "name": "RR Abnormal",
+              "shortName": "Temperature Abnormal",
+              "description": null,
+              "set": false,
+              "dataType": "Boolean",
+              "hiAbsolute": null,
+              "lowAbsolute": null,
+              "hiNormal": null,
+              "handler": null,
+              "allowDecimal": null,
+              "lowNormal": null,
+              "conceptClass": "Abnormal",
+              "answers": [],
+              "units": null,
+              "displayString": "Temperature Abnormal",
+              "names": [
+                {
+                  "display": "Temperature Abnormal",
+                  "uuid": "c37f1bb8-3f10-11e4-adec-0800271c1b75",
+                  "name": "Temperature Abnormal",
+                  "locale": "en",
+                  "localePreferred": false,
+                  "conceptNameType": "SHORT",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37f16d3-3f10-11e4-adec-0800271c1b75/name/c37f1bb8-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37f16d3-3f10-11e4-adec-0800271c1b75/name/c37f1bb8-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                {
+                  "display": "RR Abnormal",
+                  "uuid": "c37f1ef0-3f10-11e4-adec-0800271c1b75",
+                  "name": "RR Abnormal",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37f16d3-3f10-11e4-adec-0800271c1b75/name/c37f1ef0-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37f16d3-3f10-11e4-adec-0800271c1b75/name/c37f1ef0-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                }
+              ]
+            },
+            "units": null,
+            "label": "Temperature Abnormal",
+            "possibleAnswers": [],
+            "groupMembers": [],
+            "comment": null,
+            "isObservation": true,
+            "conceptUIConfig": {},
+            "uniqueId": "observation_19",
+            "erroneousValue": false,
+            "value": false,
+            "isBoolean": true
+          },
+          "showComment": false,
+          "disabled": false,
+          "voided": false
+        },
+        {
+          "concept": {
+            "uuid": "c37afa71-3f10-11e4-adec-0800271c1b75",
+            "name": "Temperature Data",
+            "dataType": "N/A"
+          },
+          "units": null,
+          "label": "Temperature",
+          "possibleAnswers": [],
+          "groupMembers": [
+            {
+              "concept": {
+                "uuid": "c37c942d-3f10-11e4-adec-0800271c1b75",
+                "name": "Temperature Abnormal",
+                "dataType": "Boolean"
+              },
+              "units": null,
+              "label": "Temperature Abnormal",
+              "possibleAnswers": [],
+              "groupMembers": [],
+              "comment": null,
+              "isObservation": true,
+              "conceptUIConfig": {},
+              "uniqueId": "observation_22",
+              "erroneousValue": false,
+              "value": true,
+              "isBoolean": true,
+              "voided": false
+            },
+            {
+              "concept": {
+                "uuid": "c37bd733-3f10-11e4-adec-0800271c1b75",
+                "name": "Temperature",
+                "dataType": "Numeric"
+              },
+              "units": "F",
+              "label": "Temperature",
+              "possibleAnswers": [],
+              "groupMembers": [],
+              "comment": null,
+              "isObservation": true,
+              "conceptUIConfig": [],
+              "uniqueId": "observation_23",
+              "erroneousValue": false,
+              "value": 102,
+              "autocompleteValue": 102,
+              "__prevValue": 10,
+              "_value": 102,
+              "voided": false,
+              "observationDateTime": null
+            }
+          ],
+          "comment": null,
+          "conceptUIConfig": {},
+          "value": 102,
+          "primaryObs": {
+            "concept": {
+              "uuid": "c37bd733-3f10-11e4-adec-0800271c1b75",
+              "name": "Temperature",
+              "shortName": "Temperature",
+              "description": null,
+              "set": false,
+              "dataType": "Numeric",
+              "hiAbsolute": null,
+              "lowAbsolute": null,
+              "hiNormal": 98.6,
+              "handler": null,
+              "allowDecimal": true,
+              "lowNormal": 98.6,
+              "conceptClass": "Misc",
+              "answers": [],
+              "units": "F",
+              "displayString": "Temperature",
+              "names": [
+                {
+                  "display": "Temperature",
+                  "uuid": "c37bdb8e-3f10-11e4-adec-0800271c1b75",
+                  "name": "Temperature",
+                  "locale": "en",
+                  "localePreferred": false,
+                  "conceptNameType": "SHORT",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37bd733-3f10-11e4-adec-0800271c1b75/name/c37bdb8e-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37bd733-3f10-11e4-adec-0800271c1b75/name/c37bdb8e-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                {
+                  "display": "Temperature",
+                  "uuid": "c37bdec5-3f10-11e4-adec-0800271c1b75",
+                  "name": "Temperature",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37bd733-3f10-11e4-adec-0800271c1b75/name/c37bdec5-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37bd733-3f10-11e4-adec-0800271c1b75/name/c37bdec5-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                }
+              ]
+            },
+            "units": "F",
+            "label": "Temperature",
+            "possibleAnswers": [],
+            "groupMembers": [],
+            "comment": null,
+            "isObservation": true,
+            "conceptUIConfig": [],
+            "uniqueId": "observation_23",
+            "erroneousValue": false,
+            "value": 102,
+            "autocompleteValue": 102,
+            "__prevValue": 10,
+            "_value": 102,
+            "voided": false,
+            "observationDateTime": null
+          },
+          "isObservationNode": true,
+          "uniqueId": "observation_24",
+          "abnormalObs": {
+            "concept": {
+              "uuid": "c37c942d-3f10-11e4-adec-0800271c1b75",
+              "name": "Temperature Abnormal",
+              "shortName": "Temperature Abnormal",
+              "description": null,
+              "set": false,
+              "dataType": "Boolean",
+              "hiAbsolute": null,
+              "lowAbsolute": null,
+              "hiNormal": null,
+              "handler": null,
+              "allowDecimal": null,
+              "lowNormal": null,
+              "conceptClass": "Abnormal",
+              "answers": [],
+              "units": null,
+              "displayString": "Temperature Abnormal",
+              "names": [
+                {
+                  "display": "Temperature Abnormal",
+                  "uuid": "c37c9ce5-3f10-11e4-adec-0800271c1b75",
+                  "name": "Temperature Abnormal",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37c942d-3f10-11e4-adec-0800271c1b75/name/c37c9ce5-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37c942d-3f10-11e4-adec-0800271c1b75/name/c37c9ce5-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                {
+                  "display": "Temperature Abnormal",
+                  "uuid": "c37c99b4-3f10-11e4-adec-0800271c1b75",
+                  "name": "Temperature Abnormal",
+                  "locale": "en",
+                  "localePreferred": false,
+                  "conceptNameType": "SHORT",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37c942d-3f10-11e4-adec-0800271c1b75/name/c37c99b4-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37c942d-3f10-11e4-adec-0800271c1b75/name/c37c99b4-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                }
+              ]
+            },
+            "units": null,
+            "label": "Temperature Abnormal",
+            "possibleAnswers": [],
+            "groupMembers": [],
+            "comment": null,
+            "isObservation": true,
+            "conceptUIConfig": {},
+            "uniqueId": "observation_22",
+            "erroneousValue": false,
+            "value": true,
+            "isBoolean": true
+          },
+          "showComment": false,
+          "disabled": false,
+          "voided": false
+        },
+        {
+          "concept": {
+            "uuid": "c36d22e6-3f10-11e4-adec-0800271c1b75",
+            "name": "Blood Pressure",
+            "dataType": "N/A"
+          },
+          "units": null,
+          "label": "Blood Pressure",
+          "possibleAnswers": [],
+          "groupMembers": [
+            {
+              "concept": {
+                "uuid": "c378f635-3f10-11e4-adec-0800271c1b75",
+                "name": "Diastolic Data",
+                "dataType": "N/A"
+              },
+              "units": null,
+              "label": "Diastolic",
+              "possibleAnswers": [],
+              "groupMembers": [
+                {
+                  "concept": {
+                    "uuid": "c379aa1d-3f10-11e4-adec-0800271c1b75",
+                    "name": "Diastolic",
+                    "dataType": "Numeric"
+                  },
+                  "units": "mm Hg",
+                  "label": "Diastolic",
+                  "possibleAnswers": [],
+                  "groupMembers": [],
+                  "comment": null,
+                  "isObservation": true,
+                  "conceptUIConfig": [],
+                  "uniqueId": "observation_25",
+                  "erroneousValue": false,
+                  "value": 80,
+                  "autocompleteValue": 80,
+                  "__prevValue": 8,
+                  "_value": 80,
+                  "voided": false,
+                  "observationDateTime": null,
+                  "disabled": false,
+                  "error": false,
+                  "hide": false
+                },
+                {
+                  "concept": {
+                    "uuid": "c37a5735-3f10-11e4-adec-0800271c1b75",
+                    "name": "Diastolic Abnormal",
+                    "dataType": "Boolean"
+                  },
+                  "units": null,
+                  "label": "Diastolic Abnormal",
+                  "possibleAnswers": [],
+                  "groupMembers": [],
+                  "comment": null,
+                  "isObservation": true,
+                  "conceptUIConfig": {},
+                  "uniqueId": "observation_26",
+                  "erroneousValue": false,
+                  "value": false,
+                  "isBoolean": true,
+                  "disabled": false,
+                  "error": false,
+                  "hide": false,
+                  "voided": false
+                }
+              ],
+              "comment": null,
+              "conceptUIConfig": {},
+              "value": 80,
+              "primaryObs": {
+                "concept": {
+                  "uuid": "c379aa1d-3f10-11e4-adec-0800271c1b75",
+                  "name": "Diastolic",
+                  "shortName": "Diastolic",
+                  "description": null,
+                  "set": false,
+                  "dataType": "Numeric",
+                  "hiAbsolute": null,
+                  "lowAbsolute": null,
+                  "hiNormal": 85,
+                  "handler": null,
+                  "allowDecimal": true,
+                  "lowNormal": 70,
+                  "conceptClass": "Misc",
+                  "answers": [],
+                  "units": "mm Hg",
+                  "displayString": "Diastolic",
+                  "names": [
+                    {
+                      "display": "Diastolic",
+                      "uuid": "c379adf9-3f10-11e4-adec-0800271c1b75",
+                      "name": "Diastolic",
+                      "locale": "en",
+                      "localePreferred": false,
+                      "conceptNameType": "SHORT",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c379aa1d-3f10-11e4-adec-0800271c1b75/name/c379adf9-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c379aa1d-3f10-11e4-adec-0800271c1b75/name/c379adf9-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    },
+                    {
+                      "display": "Diastolic",
+                      "uuid": "c379b311-3f10-11e4-adec-0800271c1b75",
+                      "name": "Diastolic",
+                      "locale": "en",
+                      "localePreferred": true,
+                      "conceptNameType": "FULLY_SPECIFIED",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c379aa1d-3f10-11e4-adec-0800271c1b75/name/c379b311-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c379aa1d-3f10-11e4-adec-0800271c1b75/name/c379b311-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    }
+                  ]
+                },
+                "units": "mm Hg",
+                "label": "Diastolic",
+                "possibleAnswers": [],
+                "groupMembers": [],
+                "comment": null,
+                "isObservation": true,
+                "conceptUIConfig": [],
+                "uniqueId": "observation_25",
+                "erroneousValue": false,
+                "value": 80,
+                "autocompleteValue": 80,
+                "__prevValue": 8,
+                "_value": 80,
+                "voided": false,
+                "observationDateTime": null,
+                "disabled": false,
+                "error": false,
+                "hide": false
+              },
+              "isObservationNode": true,
+              "uniqueId": "observation_27",
+              "abnormalObs": {
+                "concept": {
+                  "uuid": "c37a5735-3f10-11e4-adec-0800271c1b75",
+                  "name": "Diastolic Abnormal",
+                  "shortName": "Diastolic Abnormal",
+                  "description": null,
+                  "set": false,
+                  "dataType": "Boolean",
+                  "hiAbsolute": null,
+                  "lowAbsolute": null,
+                  "hiNormal": null,
+                  "handler": null,
+                  "allowDecimal": null,
+                  "lowNormal": null,
+                  "conceptClass": "Abnormal",
+                  "answers": [],
+                  "units": null,
+                  "displayString": "Diastolic Abnormal",
+                  "names": [
+                    {
+                      "display": "Diastolic Abnormal",
+                      "uuid": "c37a5dfd-3f10-11e4-adec-0800271c1b75",
+                      "name": "Diastolic Abnormal",
+                      "locale": "en",
+                      "localePreferred": true,
+                      "conceptNameType": "FULLY_SPECIFIED",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37a5735-3f10-11e4-adec-0800271c1b75/name/c37a5dfd-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37a5735-3f10-11e4-adec-0800271c1b75/name/c37a5dfd-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    },
+                    {
+                      "display": "Diastolic Abnormal",
+                      "uuid": "c37a5af3-3f10-11e4-adec-0800271c1b75",
+                      "name": "Diastolic Abnormal",
+                      "locale": "en",
+                      "localePreferred": false,
+                      "conceptNameType": "SHORT",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37a5735-3f10-11e4-adec-0800271c1b75/name/c37a5af3-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c37a5735-3f10-11e4-adec-0800271c1b75/name/c37a5af3-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    }
+                  ]
+                },
+                "units": null,
+                "label": "Diastolic Abnormal",
+                "possibleAnswers": [],
+                "groupMembers": [],
+                "comment": null,
+                "isObservation": true,
+                "conceptUIConfig": {},
+                "uniqueId": "observation_26",
+                "erroneousValue": false,
+                "value": false,
+                "isBoolean": true,
+                "disabled": false,
+                "error": false,
+                "hide": false
+              },
+              "showComment": false,
+              "disabled": false,
+              "error": false,
+              "hide": false,
+              "voided": false
+            },
+            {
+              "concept": {
+                "uuid": "c36ddb6d-3f10-11e4-adec-0800271c1b75",
+                "name": "Systolic Data",
+                "dataType": "N/A"
+              },
+              "units": null,
+              "label": "Systolic",
+              "possibleAnswers": [],
+              "groupMembers": [
+                {
+                  "concept": {
+                    "uuid": "c36e9c8b-3f10-11e4-adec-0800271c1b75",
+                    "name": "Systolic",
+                    "dataType": "Numeric"
+                  },
+                  "units": "mm Hg",
+                  "label": "Systolic",
+                  "possibleAnswers": [],
+                  "groupMembers": [],
+                  "comment": null,
+                  "isObservation": true,
+                  "conceptUIConfig": [],
+                  "uniqueId": "observation_28",
+                  "erroneousValue": false,
+                  "value": 112,
+                  "autocompleteValue": 112,
+                  "__prevValue": 11,
+                  "_value": 112,
+                  "voided": false,
+                  "observationDateTime": null,
+                  "disabled": false,
+                  "error": false,
+                  "hide": false
+                },
+                {
+                  "concept": {
+                    "uuid": "c36f5a8b-3f10-11e4-adec-0800271c1b75",
+                    "name": "Systolic Abnormal",
+                    "dataType": "Boolean"
+                  },
+                  "units": null,
+                  "label": "Systolic Abnormal",
+                  "possibleAnswers": [],
+                  "groupMembers": [],
+                  "comment": null,
+                  "isObservation": true,
+                  "conceptUIConfig": {},
+                  "uniqueId": "observation_29",
+                  "erroneousValue": false,
+                  "value": false,
+                  "isBoolean": true,
+                  "disabled": false,
+                  "error": false,
+                  "hide": false,
+                  "voided": false
+                }
+              ],
+              "comment": null,
+              "conceptUIConfig": {},
+              "value": 112,
+              "primaryObs": {
+                "concept": {
+                  "uuid": "c36e9c8b-3f10-11e4-adec-0800271c1b75",
+                  "name": "Systolic",
+                  "shortName": "Systolic",
+                  "description": null,
+                  "set": false,
+                  "dataType": "Numeric",
+                  "hiAbsolute": null,
+                  "lowAbsolute": null,
+                  "hiNormal": 140,
+                  "handler": null,
+                  "allowDecimal": true,
+                  "lowNormal": 110,
+                  "conceptClass": "Misc",
+                  "answers": [],
+                  "units": "mm Hg",
+                  "displayString": "Systolic",
+                  "names": [
+                    {
+                      "display": "Systolic",
+                      "uuid": "c36ea343-3f10-11e4-adec-0800271c1b75",
+                      "name": "Systolic",
+                      "locale": "en",
+                      "localePreferred": true,
+                      "conceptNameType": "FULLY_SPECIFIED",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36e9c8b-3f10-11e4-adec-0800271c1b75/name/c36ea343-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36e9c8b-3f10-11e4-adec-0800271c1b75/name/c36ea343-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    },
+                    {
+                      "display": "Systolic",
+                      "uuid": "c36ea04b-3f10-11e4-adec-0800271c1b75",
+                      "name": "Systolic",
+                      "locale": "en",
+                      "localePreferred": false,
+                      "conceptNameType": "SHORT",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36e9c8b-3f10-11e4-adec-0800271c1b75/name/c36ea04b-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36e9c8b-3f10-11e4-adec-0800271c1b75/name/c36ea04b-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    }
+                  ]
+                },
+                "units": "mm Hg",
+                "label": "Systolic",
+                "possibleAnswers": [],
+                "groupMembers": [],
+                "comment": null,
+                "isObservation": true,
+                "conceptUIConfig": [],
+                "uniqueId": "observation_28",
+                "erroneousValue": false,
+                "value": 112,
+                "autocompleteValue": 112,
+                "__prevValue": 11,
+                "_value": 112,
+                "voided": false,
+                "observationDateTime": null,
+                "disabled": false,
+                "error": false,
+                "hide": false
+              },
+              "isObservationNode": true,
+              "uniqueId": "observation_30",
+              "abnormalObs": {
+                "concept": {
+                  "uuid": "c36f5a8b-3f10-11e4-adec-0800271c1b75",
+                  "name": "Systolic Abnormal",
+                  "shortName": "Systolic Abnormal",
+                  "description": null,
+                  "set": false,
+                  "dataType": "Boolean",
+                  "hiAbsolute": null,
+                  "lowAbsolute": null,
+                  "hiNormal": null,
+                  "handler": null,
+                  "allowDecimal": null,
+                  "lowNormal": null,
+                  "conceptClass": "Abnormal",
+                  "answers": [],
+                  "units": null,
+                  "displayString": "Systolic Abnormal",
+                  "names": [
+                    {
+                      "display": "Systolic Abnormal",
+                      "uuid": "c374f4ee-3f10-11e4-adec-0800271c1b75",
+                      "name": "Systolic Abnormal",
+                      "locale": "en",
+                      "localePreferred": true,
+                      "conceptNameType": "FULLY_SPECIFIED",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36f5a8b-3f10-11e4-adec-0800271c1b75/name/c374f4ee-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36f5a8b-3f10-11e4-adec-0800271c1b75/name/c374f4ee-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    },
+                    {
+                      "display": "Systolic Abnormal",
+                      "uuid": "c374ed29-3f10-11e4-adec-0800271c1b75",
+                      "name": "Systolic Abnormal",
+                      "locale": "en",
+                      "localePreferred": false,
+                      "conceptNameType": "SHORT",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36f5a8b-3f10-11e4-adec-0800271c1b75/name/c374ed29-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c36f5a8b-3f10-11e4-adec-0800271c1b75/name/c374ed29-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    }
+                  ]
+                },
+                "units": null,
+                "label": "Systolic Abnormal",
+                "possibleAnswers": [],
+                "groupMembers": [],
+                "comment": null,
+                "isObservation": true,
+                "conceptUIConfig": {},
+                "uniqueId": "observation_29",
+                "erroneousValue": false,
+                "value": false,
+                "isBoolean": true,
+                "disabled": false,
+                "error": false,
+                "hide": false
+              },
+              "showComment": false,
+              "disabled": false,
+              "error": false,
+              "hide": false,
+              "voided": false
+            },
+            {
+              "concept": {
+                "uuid": "c44c3c37-3f10-11e4-adec-0800271c1b75",
+                "name": "Posture",
+                "dataType": "Coded"
+              },
+              "units": null,
+              "label": "Posture",
+              "possibleAnswers": [
+                {
+                  "uuid": "c44cfed2-3f10-11e4-adec-0800271c1b75",
+                  "name": {
+                    "display": "Sitting",
+                    "uuid": "c44d0752-3f10-11e4-adec-0800271c1b75",
+                    "name": "Sitting",
+                    "locale": "en",
+                    "localePreferred": true,
+                    "conceptNameType": "FULLY_SPECIFIED",
+                    "links": [
+                      {
+                        "rel": "self",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75"
+                      },
+                      {
+                        "rel": "full",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75?v=full"
+                      }
+                    ],
+                    "resourceVersion": "1.9"
+                  },
+                  "names": [
+                    {
+                      "display": "Sitting",
+                      "uuid": "c44d0752-3f10-11e4-adec-0800271c1b75",
+                      "name": "Sitting",
+                      "locale": "en",
+                      "localePreferred": true,
+                      "conceptNameType": "FULLY_SPECIFIED",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    },
+                    {
+                      "display": "Sitting",
+                      "uuid": "c44d02f5-3f10-11e4-adec-0800271c1b75",
+                      "name": "Sitting",
+                      "locale": "en",
+                      "localePreferred": false,
+                      "conceptNameType": "SHORT",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d02f5-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d02f5-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    }
+                  ],
+                  "displayString": "Sitting",
+                  "resourceVersion": "2.0"
+                },
+                {
+                  "uuid": "c44d6b8e-3f10-11e4-adec-0800271c1b75",
+                  "name": {
+                    "display": "Supine",
+                    "uuid": "c44d728a-3f10-11e4-adec-0800271c1b75",
+                    "name": "Supine",
+                    "locale": "en",
+                    "localePreferred": true,
+                    "conceptNameType": "FULLY_SPECIFIED",
+                    "links": [
+                      {
+                        "rel": "self",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44d6b8e-3f10-11e4-adec-0800271c1b75/name/c44d728a-3f10-11e4-adec-0800271c1b75"
+                      },
+                      {
+                        "rel": "full",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44d6b8e-3f10-11e4-adec-0800271c1b75/name/c44d728a-3f10-11e4-adec-0800271c1b75?v=full"
+                      }
+                    ],
+                    "resourceVersion": "1.9"
+                  },
+                  "names": [
+                    {
+                      "display": "Supine",
+                      "uuid": "c44d728a-3f10-11e4-adec-0800271c1b75",
+                      "name": "Supine",
+                      "locale": "en",
+                      "localePreferred": true,
+                      "conceptNameType": "FULLY_SPECIFIED",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44d6b8e-3f10-11e4-adec-0800271c1b75/name/c44d728a-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44d6b8e-3f10-11e4-adec-0800271c1b75/name/c44d728a-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    },
+                    {
+                      "display": "Supine",
+                      "uuid": "c44d6f5f-3f10-11e4-adec-0800271c1b75",
+                      "name": "Supine",
+                      "locale": "en",
+                      "localePreferred": false,
+                      "conceptNameType": "SHORT",
+                      "links": [
+                        {
+                          "rel": "self",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44d6b8e-3f10-11e4-adec-0800271c1b75/name/c44d6f5f-3f10-11e4-adec-0800271c1b75"
+                        },
+                        {
+                          "rel": "full",
+                          "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44d6b8e-3f10-11e4-adec-0800271c1b75/name/c44d6f5f-3f10-11e4-adec-0800271c1b75?v=full"
+                        }
+                      ],
+                      "resourceVersion": "1.9"
+                    }
+                  ],
+                  "displayString": "Supine",
+                  "resourceVersion": "2.0"
+                }
+              ],
+              "groupMembers": [],
+              "isObservation": true,
+              "conceptUIConfig": {
+                "buttonSelect": true
+              },
+              "uniqueId": "observation_31",
+              "erroneousValue": null,
+              "value": {
+                "uuid": "c44cfed2-3f10-11e4-adec-0800271c1b75",
+                "name": {
+                  "display": "Sitting",
+                  "uuid": "c44d0752-3f10-11e4-adec-0800271c1b75",
+                  "name": "Sitting",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                "names": [
+                  {
+                    "display": "Sitting",
+                    "uuid": "c44d0752-3f10-11e4-adec-0800271c1b75",
+                    "name": "Sitting",
+                    "locale": "en",
+                    "localePreferred": true,
+                    "conceptNameType": "FULLY_SPECIFIED",
+                    "links": [
+                      {
+                        "rel": "self",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75"
+                      },
+                      {
+                        "rel": "full",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75?v=full"
+                      }
+                    ],
+                    "resourceVersion": "1.9"
+                  },
+                  {
+                    "display": "Sitting",
+                    "uuid": "c44d02f5-3f10-11e4-adec-0800271c1b75",
+                    "name": "Sitting",
+                    "locale": "en",
+                    "localePreferred": false,
+                    "conceptNameType": "SHORT",
+                    "links": [
+                      {
+                        "rel": "self",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d02f5-3f10-11e4-adec-0800271c1b75"
+                      },
+                      {
+                        "rel": "full",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d02f5-3f10-11e4-adec-0800271c1b75?v=full"
+                      }
+                    ],
+                    "resourceVersion": "1.9"
+                  }
+                ],
+                "displayString": "Sitting",
+                "resourceVersion": "2.0"
+              },
+              "autocompleteValue": {
+                "display": "Sitting",
+                "uuid": "c44d0752-3f10-11e4-adec-0800271c1b75",
+                "name": "Sitting",
+                "locale": "en",
+                "localePreferred": true,
+                "conceptNameType": "FULLY_SPECIFIED",
+                "links": [
+                  {
+                    "rel": "self",
+                    "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75"
+                  },
+                  {
+                    "rel": "full",
+                    "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75?v=full"
+                  }
+                ],
+                "resourceVersion": "1.9"
+              },
+              "disabled": false,
+              "showComment": false,
+              "_value": {
+                "uuid": "c44cfed2-3f10-11e4-adec-0800271c1b75",
+                "name": {
+                  "display": "Sitting",
+                  "uuid": "c44d0752-3f10-11e4-adec-0800271c1b75",
+                  "name": "Sitting",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75?v=full"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                "names": [
+                  {
+                    "display": "Sitting",
+                    "uuid": "c44d0752-3f10-11e4-adec-0800271c1b75",
+                    "name": "Sitting",
+                    "locale": "en",
+                    "localePreferred": true,
+                    "conceptNameType": "FULLY_SPECIFIED",
+                    "links": [
+                      {
+                        "rel": "self",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75"
+                      },
+                      {
+                        "rel": "full",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d0752-3f10-11e4-adec-0800271c1b75?v=full"
+                      }
+                    ],
+                    "resourceVersion": "1.9"
+                  },
+                  {
+                    "display": "Sitting",
+                    "uuid": "c44d02f5-3f10-11e4-adec-0800271c1b75",
+                    "name": "Sitting",
+                    "locale": "en",
+                    "localePreferred": false,
+                    "conceptNameType": "SHORT",
+                    "links": [
+                      {
+                        "rel": "self",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d02f5-3f10-11e4-adec-0800271c1b75"
+                      },
+                      {
+                        "rel": "full",
+                        "uri": "http://localhost:8050/openmrs/ws/rest/v1/concept/c44cfed2-3f10-11e4-adec-0800271c1b75/name/c44d02f5-3f10-11e4-adec-0800271c1b75?v=full"
+                      }
+                    ],
+                    "resourceVersion": "1.9"
+                  }
+                ],
+                "displayString": "Sitting",
+                "resourceVersion": "2.0"
+              },
+              "voided": false
+            }
+          ],
+          "comment": null,
+          "isObservation": true,
+          "conceptUIConfig": [],
+          "uniqueId": "observation_32",
+          "erroneousValue": null,
+          "voided": false
+        }
+      ],
+      "comment": null,
+      "isObservation": true,
+      "conceptUIConfig": [],
+      "uniqueId": "observation_33",
+      "erroneousValue": null,
+      "conceptSetName": "Vitals",
+      "voided": false
+    }
+  ],
+  "encounterTypeUuid": "{$encounterTypeUuid}"
+}

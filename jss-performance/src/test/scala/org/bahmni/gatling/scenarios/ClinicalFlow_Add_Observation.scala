@@ -7,7 +7,7 @@ import org.bahmni.gatling.Configuration
 import org.bahmni.gatling.Configuration.Constants._
 import org.bahmni.gatling.HttpRequests._
 
-object ClinicalFlow {
+object ClinicalFlow_Add_Observation {
 
   val goToClinicalApp: ChainBuilder = exec(
     getPatientConfigFromServer
@@ -99,13 +99,58 @@ object ClinicalFlow {
     )
   }
 
-  val scn: ScenarioBuilder = scenario("clinical search")
+  val startConsultation : ChainBuilder = {
+    exec(
+      getConceptByNameCustomFieldAndNameType("byFullySpecifiedName", "All Observation Templates",
+        "custom:(uuid,name:(name,display),names:(uuid,conceptNameType,name)," +
+          "setMembers:(uuid,name:(name,display),names:(uuid,conceptNameType,name),setMembers:(uuid,name:(name,display)," +
+          "names:(uuid,conceptNameType,name))))")
+        .resources(
+          postAuditLog,
+          getLatestPublishedForms,
+          getConceptByNameCustomFieldAndNameType("byFullySpecifiedName", "History and Examination",
+            "bahmni")
+        )
+    )
+  }
+
+  def enterConsultation(patientUuid : String): ChainBuilder = {
+    exec(
+      getEncounterTypeConsultation
+        .check(
+        jsonPath("$..uuid").find.saveAs("encounterTypeUuid")
+        )
+        .resources(
+        postHistoryAndExaminationEncounter(patientUuid, "${encounterTypeUuid}", LOGIN_LOCATION_UUID ,
+          "${currentProviderUuid}"),
+          postVitalsEncounter(patientUuid, "${encounterTypeUuid}", LOGIN_LOCATION_UUID ,
+            "${currentProviderUuid}"),
+          postOrderEncounter(patientUuid, "${encounterTypeUuid}", LOGIN_LOCATION_UUID ,
+            "${currentProviderUuid}"),
+          postDrugOrderEncounter(patientUuid, "${encounterTypeUuid}", LOGIN_LOCATION_UUID ,
+                        "${currentProviderUuid}")
+      )
+    )
+  }
+
+  def closeVisit(patientUuid: String): ChainBuilder = {
+    exec(getPatientVisitInfo(PATIENT_UUID)
+    .check(
+      jsonPath("$.results[0].uuid").find.saveAs("visitUuid")
+    )
+      .resources(
+    closePatientVisit(PATIENT_UUID, "${visitUuid}")
+      )
+    )
+  }
+
+  val scn: ScenarioBuilder = scenario("clinical search & add observation")
     .during(Configuration.Load.DURATION) {
-      exec(goToClinicalApp)
-        .exec(goToClinicalSearch)
-        .exec(gotToDashboard(PATIENT_UUID, VISIT_UUID))
-        .pause(100)
-        .exec(goToClinicalSearch)
-        .exec(gotToDashboard(ANOTHER_PATIENT_UUID, ANOTHER_VISIT_UUID))
+            exec(goToClinicalApp)
+              .exec(goToClinicalSearch)
+              .exec(gotToDashboard(PATIENT_UUID, VISIT_UUID))
+              .exec(startConsultation)
+              .exec(enterConsultation(PATIENT_UUID))
+              .exec(closeVisit(PATIENT_UUID))
     }
 }
