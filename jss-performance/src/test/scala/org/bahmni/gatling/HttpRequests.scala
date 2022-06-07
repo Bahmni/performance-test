@@ -5,6 +5,8 @@ import io.gatling.core.body.{CompositeByteArrayBody, StringBody}
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
 import org.bahmni.gatling.Configuration.Constants._
+import scala.util.Random
+import scala.io.Source
 
 object HttpRequests {
 
@@ -19,11 +21,11 @@ object HttpRequests {
       .get("/openmrs/ws/rest/v1/session?v=custom:(uuid)")
   }
 
-  def postUserInfo(Uuid: String):HttpRequestBuilder = {
+  def postUserInfo(loggedInUserUuid: String):HttpRequestBuilder = {
     http("post user info")
-      .post("/openmrs/ws/rest/v1/user/"+Uuid)
+      .post("/openmrs/ws/rest/v1/user/"+loggedInUserUuid)
       .body(StringBody(
-        s"""{"uuid":"$Uuid","userProperties":{"defaultLocale":"en","favouriteObsTemplates":"",
+        s"""{"uuid":"$loggedInUserUuid","userProperties":{"defaultLocale":"en","favouriteObsTemplates":"",
            "recentlyViewedPatients":"","loginAttempts":"0","favouriteWards":"General Ward###Labour Ward"}}"""))
       .asJSON
   }
@@ -62,9 +64,9 @@ object HttpRequests {
       .get("/openmrs/module/addresshierarchy/ajax/getOrderedAddressHierarchyLevels.form")
   }
 
-  def getVisitLocation(loginLocationUuid: String): HttpRequestBuilder = {
+  def getVisitLocation(visitLocationUuid: String): HttpRequestBuilder = {
     http("get visit location")
-      .get("/openmrs/ws/rest/v1/bahmnicore/visitLocation/" + loginLocationUuid)
+      .get("/openmrs/ws/rest/v1/bahmnicore/visitLocation/" + visitLocationUuid)
   }
 
   def getIdentifierTypes: HttpRequestBuilder = {
@@ -85,6 +87,23 @@ object HttpRequests {
   def getEntityMapping: HttpRequestBuilder = {
     http("get LoginLocation to visit type mapping")
       .get("/openmrs/ws/rest/v1/entitymapping?mappingType=loginlocation_visittype&s=byEntityAndMappingType")
+  }
+
+  def getEntityMappingByUserId(entityUuid : String): HttpRequestBuilder = {
+    http("get LoginLocation to visit type mapping by user id")
+      .get("/openmrs/ws/rest/v1/entitymapping?mappingType=loginlocation_visittype&s=byEntityAndMappingType")
+      .queryParam("entityUuid",entityUuid)
+  }
+
+  def getSummaryByVisitUuid (visitUuid : String): HttpRequestBuilder = {
+    http("get summary by visit UUID")
+      .get("/openmrs/ws/rest/v1/bahmnicore/visit/summary")
+      .queryParam("visitUuid", visitUuid)
+  }
+
+  def getEncounterTypeConsultation: HttpRequestBuilder = {
+    http("get encounter type consultation")
+      .get("/openmrs/ws/rest/v1/encountertype/Consultation")
   }
 
   def getPersonAttributeTypes: HttpRequestBuilder = {
@@ -138,8 +157,35 @@ object HttpRequests {
 
   def getConcept(name: String): HttpRequestBuilder = {
     http("get " + name + " concept")
-      .get("/openmrs/ws/rest/v1/concept?s=byFullySpecifiedName&v=custom:(uuid,name,answers)")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s", "byFullySpecifiedName")
+      .queryParam("v", "custom:(uuid,name,answers)")
       .queryParam("name", name)
+  }
+
+  def getConceptByNameAndMemberDisplay(name: String): HttpRequestBuilder = {
+    http("get " + name + " concept")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s", "byFullySpecifiedName")
+      .queryParam("v", "custom:(setMembers:(display))")
+      .queryParam("name", name)
+  }
+
+  def getConceptByName(name: String): HttpRequestBuilder = {
+    http("get " + name + " concept")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s", "byFullySpecifiedName")
+      .queryParam("v", "custom:(uuid,name:(name))")
+      .queryParam("name", name)
+  }
+
+  def getConceptByNameCustomFieldAndNameType(nameType: String, name: String, customField: String): HttpRequestBuilder = {
+    http("get " + name + " concept")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s", nameType)
+      .queryParam("name", name)
+      .queryParam("v", customField)
+      .queryParam("locale", "en")
   }
 
   def getReasonForDeath: HttpRequestBuilder = {
@@ -154,6 +200,20 @@ object HttpRequests {
       .queryParam("provider_uuid", providerUuid)
       .queryParam("q", sqlName)
       .queryParam("v", "full")
+  }
+
+  def getPatientsInfoWithSqlInpatientInfoTabOfClinic(patientUuid: String, sqlName : String): HttpRequestBuilder = {
+    http("get patient upcoming appointment")
+      .get("/openmrs/ws/rest/v1/bahmnicore/sql")
+      .queryParam("v", "full")
+      .queryParam("patientUuid", patientUuid)
+      .queryParam("q", sqlName)
+  }
+
+  def getPatientDisposition(patientUuid: String): HttpRequestBuilder = {
+    http("get patient disposition")
+      .get("/openmrs/ws/rest/v1/bahmnicore/disposition/patientWithLocale?locale=en&numberOfVisits=1")
+      .queryParam("patientUuid", patientUuid)
   }
 
   def getWardListDetails(locationName: String): HttpRequestBuilder = {
@@ -226,7 +286,15 @@ object HttpRequests {
 
   def getVisits(patientUuid: String): HttpRequestBuilder = {
     http("getVisits")
-      .get("/openmrs/ws/rest/v1/visit?includeInactive=true&v=custom:(uuid,visitType,startDatetime,stopDatetime,location,encounters:(uuid))")
+      .get("/openmrs/ws/rest/v1/visit?includeInactive=true")
+      .queryParam("v", "custom:(uuid,visitType,startDatetime,stopDatetime,location,encounters:(uuid))")
+      .queryParam("patient", patientUuid)
+  }
+
+  def getPatientVisitInfo(patientUuid: String): HttpRequestBuilder = {
+    http("getVisits")
+      .get("/openmrs/ws/rest/v1/visit?includeInactive=false")
+      .queryParam("v", "custom:(uuid,location:(uuid))")
       .queryParam("patient", patientUuid)
   }
 
@@ -302,6 +370,57 @@ object HttpRequests {
       .asJSON
   }
 
+  def postFindEncounter(patientUuid: String, locationUuid: String, providerUuid: String, encounterTypeUuid: String):
+  HttpRequestBuilder = {
+    http("post encounter find")
+      .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
+      .body(StringBody(s"""{"patientUuid":"$patientUuid","providerUuids":["$providerUuid"],"includeAll":false,"encounterDateTimeFrom":null,"encounterDateTimeTo":null,"encounterTypeUuids":["$encounterTypeUuid"],"locationUuid":"$locationUuid"}"""))
+      .asJSON
+  }
+
+  def getEncoutnerByEncounterTypeUuid(patientUuid: String) : HttpRequestBuilder = {
+    http("get encounter by uuid")
+      .get("/openmrs/ws/rest/v1/encounter")
+      .queryParam("v", "custom:(uuid,provider,visit:(uuid,startDatetime,stopDatetime),obs:(uuid,concept:(uuid,name),groupMembers:(id,uuid,obsDatetime,value,comment)))")
+      .queryParam("patient", patientUuid)
+      .queryParam("encounterType", ENCOUNTER_TYPE_UUID)
+  }
+
+  def getConditionalHistory(patientUuid: String) : HttpRequestBuilder = {
+    http("get conditional history")
+      .get("/openmrs/ws/rest/emrapi/conditionhistory")
+      .queryParam("patientUuid", patientUuid)
+  }
+
+  def getDiseaseTemplates(patientUuid : String) : HttpRequestBuilder = {
+    http("get disease templates")
+      .post("/openmrs/ws/rest/v1/bahmnicore/diseaseTemplates")
+      .body(StringBody(s"""{"patientUuid":"$patientUuid","diseaseTemplateConfigList":[{"title":"Diabetes","templateName":"Diabetes Templates","type":"diseaseTemplate","displayOrder":18,"dashboardConfig":{"showOnly":[]},"expandedViewConfig":{"showDetailsButton":true,"pivotTable":{"numberOfVisits":"15","groupBy":"encounters","obsConcepts":["Weight","Height","Systolic","Diastolic","Diabetes, Foot Exam","Diabetes, Eye Exam"],"drugConcepts":["Ipratropium Pressurised","Garbhpal Rasa"],"labConcepts":["RBS","FBS","PP2BS","Hb1AC","Creatinine","Albumin","Polymorph"]}}}],"startDate":null,"endDate":null}"""))
+      .asJSON
+  }
+
+  def getPatientContext(patientUuid : String) : HttpRequestBuilder = {
+    http("get patient context")
+      .get("/openmrs/ws/rest/v1/bahmnicore/patientcontext")
+      .queryParam("patientIdentifiers", "National+ID")
+      .queryParam("personAttributes", "class")
+      .queryParam("personAttributes", "caste")
+      .queryParam("programAttributes", "Id_Number")
+      .queryParam("programAttributes", "Doctor")
+      .queryParam("programAttributes", "Stage")
+      .queryParam("patientUuid", patientUuid)
+  }
+
+  def getPatientFormTypes(patientUuid : String) : HttpRequestBuilder = {
+    http("get patient info, form type, visits")
+      .get("/openmrs/ws/rest/v1/bahmnicore/patient/"+patientUuid+"/forms?formType=v2&numberOfVisits=1")
+  }
+
+  def getLatestPublishedForms: HttpRequestBuilder = {
+    http("get latest published forms")
+      .get("/openmrs/ws/rest/v1/bahmniie/form/latestPublishedForms")
+  }
+
   def getAdmissionLocations: HttpRequestBuilder = {
     http("get admission locations")
       .get("/openmrs/ws/rest/v1/admissionLocation/")
@@ -352,6 +471,96 @@ object HttpRequests {
     http("start visit")
       .post("/openmrs/ws/rest/v1/visit")
       .body(StringBody(s"""{"patient":"$patient_uuid","visitType":"$opd_visit_type_id","location":"$login_location_id"}"""))
+      .asJSON
+  }
+
+  def getFlowSheet(patientUuid : String): HttpRequestBuilder = {
+    http("get flow sheet")
+      .get("/openmrs/ws/rest/v1/bahmnicore/observations/flowSheet")
+      .queryParam("groupByConcept", "")
+      .queryParam("numberOfVisits", "1")
+      .queryParam("patientUuid",patientUuid)
+  }
+
+  def closePatientVisit(patientUuid: String, visitUuid: String): HttpRequestBuilder = {
+    http("close patient visit")
+      .post("/openmrs/ws/rest/v1/bahmnicore/visit/endVisit")
+      .queryParam("visitUuid", visitUuid)
+      .body(StringBody("{\"withCredentials\":true}"))
+  }
+
+
+  def postHistoryAndExaminationEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
+                                         currentProviderUuid: String): HttpRequestBuilder = {
+
+      val jsonString: String = Source.fromFile(("jss-performance/src/test/resources/bodies/" +
+        "encounter_history_and_examination_body.json")).mkString
+
+      val json = dijon.parse(jsonString)
+      json.patientUuid = patientUuid;
+      json.encounterTypeUuid = encounterTypeUuid;
+      json.locationUuid = locationUuid;
+      json.providers(0).uuid = currentProviderUuid;
+
+      http("post history and examination for a patient")
+        .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter")
+        .body(StringBody(json.toString()))
+        .asJSON
+    }
+
+  def postVitalsEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
+                                         currentProviderUuid: String): HttpRequestBuilder = {
+
+    val jsonString: String = Source.fromFile(("jss-performance/src/test/resources/bodies/" +
+      "vitals_body.json")).mkString
+
+    val json = dijon.parse(jsonString)
+    json.patientUuid = patientUuid;
+    json.encounterTypeUuid = encounterTypeUuid;
+    json.locationUuid = locationUuid;
+    json.providers(0).uuid = currentProviderUuid;
+
+    http("post vitals for a patient")
+      .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter")
+      .body(StringBody(json.toString()))
+      .asJSON
+  }
+
+  def postOrderEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
+                          currentProviderUuid: String): HttpRequestBuilder = {
+
+    val jsonString: String = Source.fromFile(("jss-performance/src/test/resources/bodies/" +
+      "orders_body.json")).mkString
+
+    val json = dijon.parse(jsonString)
+    json.patientUuid = patientUuid;
+    json.encounterTypeUuid = encounterTypeUuid;
+    json.locationUuid = locationUuid;
+    json.providers(0).uuid = currentProviderUuid;
+
+    http("post orders for a patient")
+      .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter")
+      .body(StringBody(json.toString()))
+      .asJSON
+  }
+
+  def postDrugOrderEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
+                                         currentProviderUuid: String): HttpRequestBuilder = {
+
+    val jsonString: String = Source.fromFile(("jss-performance/src/test/resources/bodies/" +
+      "drug_order_body.json")).mkString
+
+    val randomDrugQuantity: Int = Random.nextInt(500)
+
+    val json = dijon.parse(jsonString)
+    json.patientUuid = patientUuid;
+    json.encounterTypeUuid = encounterTypeUuid;
+    json.locationUuid = locationUuid;
+    json.providers(0).uuid = currentProviderUuid;
+    json.drugOrders(0).drugNonCoded = "TestDrug-" + randomDrugQuantity + "mg";
+    http("post drug info for a patient")
+      .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter")
+      .body(StringBody(json.toString()))
       .asJSON
   }
 }
