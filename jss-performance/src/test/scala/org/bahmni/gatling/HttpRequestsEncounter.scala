@@ -702,6 +702,6 @@ object HttpRequestsEncounter {
   ],
   "encounterTypeUuid": "da7a4fe0-0a6a-11e3-939c-8c50edb4be99"
 }"""))
-      .asJSON
+      .asJson
   }
 }

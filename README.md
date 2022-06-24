@@ -10,4 +10,4 @@ Setup
 =========
 
 * Install JDK 8.
-* Scala version need to set at 2.11 in IDE.
+* Scala version need to set at 2.12 in IDE.

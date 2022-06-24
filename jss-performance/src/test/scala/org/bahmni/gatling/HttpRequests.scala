@@ -1,7 +1,8 @@
 package org.bahmni.gatling
 
 import io.gatling.core.Predef._
-import io.gatling.core.body.{CompositeByteArrayBody, StringBody}
+import io.gatling.core.body.{Body, CompositeByteArrayBody, StringBody}
+import io.gatling.core.session.Expression
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
 import org.bahmni.gatling.Configuration.Constants._
@@ -27,14 +28,14 @@ object HttpRequests {
       .body(StringBody(
         s"""{"uuid":"$loggedInUserUuid","userProperties":{"defaultLocale":"en","favouriteObsTemplates":"",
            "recentlyViewedPatients":"","loginAttempts":"0","favouriteWards":"General Ward###Labour Ward"}}"""))
-      .asJSON
+      .asJson
   }
 
   def postAuditLog:HttpRequestBuilder = {
     http("post audit log")
       .post("/openmrs/ws/rest/v1/auditlog")
       .body(StringBody("{\"eventType\":\"DUMMY_PERF_MESSAGE\",\"message\":\"DUMMY_PERF_TEST_MESSAGE\",\"module\":\"MODULE_PERF_TEST\"}"))
-      .asJSON
+      .asJson
   }
 
   def getGlobalProperty(property: String): HttpRequestBuilder = {
@@ -367,7 +368,7 @@ object HttpRequests {
     http("find encounter")
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
       .body(StringBody(s"""{"patientUuid":"$patientUuid","providerUuids":["$providerUuid"],"includeAll":false,"encounterDateTimeFrom":null,"encounterDateTimeTo":null,"encounterTypeUuids":["$ENCOUNTER_TYPE_UUID"],"locationUuid":"$locationUuid"}"""))
-      .asJSON
+      .asJson
   }
 
   def postFindEncounter(patientUuid: String, locationUuid: String, providerUuid: String, encounterTypeUuid: String):
@@ -375,7 +376,7 @@ object HttpRequests {
     http("post encounter find")
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
       .body(StringBody(s"""{"patientUuid":"$patientUuid","providerUuids":["$providerUuid"],"includeAll":false,"encounterDateTimeFrom":null,"encounterDateTimeTo":null,"encounterTypeUuids":["$encounterTypeUuid"],"locationUuid":"$locationUuid"}"""))
-      .asJSON
+      .asJson
   }
 
   def getEncoutnerByEncounterTypeUuid(patientUuid: String) : HttpRequestBuilder = {
@@ -396,7 +397,7 @@ object HttpRequests {
     http("get disease templates")
       .post("/openmrs/ws/rest/v1/bahmnicore/diseaseTemplates")
       .body(StringBody(s"""{"patientUuid":"$patientUuid","diseaseTemplateConfigList":[{"title":"Diabetes","templateName":"Diabetes Templates","type":"diseaseTemplate","displayOrder":18,"dashboardConfig":{"showOnly":[]},"expandedViewConfig":{"showDetailsButton":true,"pivotTable":{"numberOfVisits":"15","groupBy":"encounters","obsConcepts":["Weight","Height","Systolic","Diastolic","Diabetes, Foot Exam","Diabetes, Eye Exam"],"drugConcepts":["Ipratropium Pressurised","Garbhpal Rasa"],"labConcepts":["RBS","FBS","PP2BS","Hb1AC","Creatinine","Albumin","Polymorph"]}}}],"startDate":null,"endDate":null}"""))
-      .asJSON
+      .asJson
   }
 
   def getPatientContext(patientUuid : String) : HttpRequestBuilder = {
@@ -464,14 +465,20 @@ object HttpRequests {
   def createPatientRequest(fileBody : CompositeByteArrayBody): HttpRequestBuilder = {
       http("create patient")
         .post("/openmrs/ws/rest/v1/bahmnicore/patientprofile")
-        .body(fileBody).asJSON
+        .body(fileBody).asJson
+  }
+
+  def ccreatePatientRequest(body: Body with (Expression[String])): HttpRequestBuilder = {
+    http("create patient")
+      .post("/openmrs/ws/rest/v1/bahmnicore/patientprofile")
+      .body(body).asJson
   }
 
   def startVisitRequest(patient_uuid : String, opd_visit_type_id : String, login_location_id : String): HttpRequestBuilder = {
     http("start visit")
       .post("/openmrs/ws/rest/v1/visit")
       .body(StringBody(s"""{"patient":"$patient_uuid","visitType":"$opd_visit_type_id","location":"$login_location_id"}"""))
-      .asJSON
+      .asJson
   }
 
   def getFlowSheet(patientUuid : String): HttpRequestBuilder = {
@@ -508,7 +515,7 @@ object HttpRequests {
       http("post history and examination for a patient")
         .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter")
         .body(StringBody(json.toString()))
-        .asJSON
+        .asJson
     }
 
   def postVitalsEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
@@ -526,7 +533,7 @@ object HttpRequests {
     http("post vitals for a patient")
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter")
       .body(StringBody(json.toString()))
-      .asJSON
+      .asJson
   }
 
   def postOrderEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
@@ -544,7 +551,7 @@ object HttpRequests {
     http("post orders for a patient")
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter")
       .body(StringBody(json.toString()))
-      .asJSON
+      .asJson
   }
 
   def postDrugOrderEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
@@ -564,7 +571,7 @@ object HttpRequests {
     http("post drug info for a patient")
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter")
       .body(StringBody(json.toString()))
-      .asJSON
+      .asJson
   }
 
   def postUploadDocument(patientUuid: String): HttpRequestBuilder = {
@@ -576,6 +583,6 @@ object HttpRequests {
     http("post patient consultation image")
       .post("/openmrs/ws/rest/v1/bahmnicore/visitDocument/uploadDocument")
       .body(StringBody(json.toString()))
-      .asJSON
+      .asJson
   }
 }

@@ -1,11 +1,13 @@
 package org.bahmni.gatling.scenarios
 
-import io.gatling.core.Predef._
+import io.gatling.core.Predef.{jsonPath, _}
+import io.gatling.http.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
-import io.gatling.http.Predef.{jsonPath, status}
 import org.bahmni.gatling.Configuration
 import org.bahmni.gatling.Configuration.Constants._
 import org.bahmni.gatling.HttpRequests._
+
+import scala.concurrent.duration.DurationInt
 
 object ClinicalFlow_Add_Observation {
 
@@ -34,6 +36,11 @@ object ClinicalFlow_Add_Observation {
 
   val goToClinicalSearch: ChainBuilder = exec(
     getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
+      .check(
+        status.is(200),
+        jsonPath("$..uuid").find.saveAs("opdPatientId"),
+        jsonPath("$..activeVisitUuid").find.saveAs("opdVisitId")
+      )
       .resources(
         getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
         getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
@@ -114,6 +121,15 @@ object ClinicalFlow_Add_Observation {
     )
   }
 
+  def postUploadDocumentForPatient(patientUuid : String): ChainBuilder = {
+    exec(postUploadDocument(patientUuid)
+      .check(
+        jsonPath("$.url").find.saveAs("imageUrl"),
+        status.is(200)
+      )
+    )
+  }
+
   def enterConsultation(patientUuid : String): ChainBuilder = {
     exec(
       getEncounterTypeConsultation
@@ -121,12 +137,7 @@ object ClinicalFlow_Add_Observation {
         jsonPath("$..uuid").find.saveAs("encounterTypeUuid")
         )
         .resources(
-          postUploadDocument(patientUuid)
-            .check(
-              jsonPath("$.url").find.saveAs("imageUrl"),
-              status.is(200)
-            ),
-        postHistoryAndExaminationEncounter(patientUuid, "${encounterTypeUuid}", LOGIN_LOCATION_UUID ,
+         postHistoryAndExaminationEncounter(patientUuid, "${encounterTypeUuid}", LOGIN_LOCATION_UUID ,
           "${currentProviderUuid}", "${imageUrl}"),
           postVitalsEncounter(patientUuid, "${encounterTypeUuid}", LOGIN_LOCATION_UUID ,
             "${currentProviderUuid}"),
@@ -139,12 +150,12 @@ object ClinicalFlow_Add_Observation {
   }
 
   def closeVisit(patientUuid: String): ChainBuilder = {
-    exec(getPatientVisitInfo(PATIENT_UUID)
+    exec(getPatientVisitInfo(patientUuid)
     .check(
       jsonPath("$.results[0].uuid").find.saveAs("visitUuid")
     )
       .resources(
-    closePatientVisit(PATIENT_UUID, "${visitUuid}")
+    closePatientVisit(patientUuid, "${visitUuid}")
       )
     )
   }
@@ -153,9 +164,15 @@ object ClinicalFlow_Add_Observation {
     .during(Configuration.Load.DURATION) {
             exec(goToClinicalApp)
               .exec(goToClinicalSearch)
-              .exec(gotToDashboard(PATIENT_UUID, VISIT_UUID))
+              .pause(5 seconds)
+              .exec(gotToDashboard("${opdPatientId}", "${opdVisitId}"))
+              .pause(5 seconds)
               .exec(startConsultation)
-              .exec(enterConsultation(PATIENT_UUID))
-              .exec(closeVisit(PATIENT_UUID))
+              .pause(5 seconds)
+              .exec(postUploadDocumentForPatient("${opdPatientId}"))
+              .pause(5 seconds)
+              .exec(enterConsultation("${opdPatientId}"))
+              .pause(20 seconds)
+              .exec(closeVisit("${opdPatientId}"))
     }
 }

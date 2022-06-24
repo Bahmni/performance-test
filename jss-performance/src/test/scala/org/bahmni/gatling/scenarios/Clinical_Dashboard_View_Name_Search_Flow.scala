@@ -1,10 +1,13 @@
 package org.bahmni.gatling.scenarios
 
-import io.gatling.core.Predef._
+import io.gatling.core.Predef.{jsonPath, _}
+import io.gatling.http.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import org.bahmni.gatling.Configuration
 import org.bahmni.gatling.Configuration.Constants._
 import org.bahmni.gatling.HttpRequests._
+
+import scala.concurrent.duration.DurationInt
 
 object Clinical_Dashboard_View_Name_Search_Flow {
 
@@ -30,16 +33,16 @@ object Clinical_Dashboard_View_Name_Search_Flow {
   val goToClinicalSearch: ChainBuilder = exec(
     getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
       .resources(
-        //getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.todaysPatientsByProvider"),
-        //getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.admittedPatients"),
-        //getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.highRiskPatients"),
-        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.todaysPatientsByProvider"),
-        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.todaysPatientsByProvider"),
-        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients"),
         getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
+        .check(
+          status.is(200),
+          jsonPath("$..uuid").find.saveAs("opdPatientId"),
+          jsonPath("$..activeVisitUuid").find.saveAs("opdVisitId")
+        ),
+        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
+        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
       )
   )
-
 
   private def gotToDashboard(patientUuid: String, visitUuid: String): ChainBuilder = {
     exec(
@@ -68,15 +71,11 @@ object Clinical_Dashboard_View_Name_Search_Flow {
   }
 
 
-
  val scn: ScenarioBuilder = scenario("clinical search")
     .during(Configuration.Load.DURATION) {
       exec(goToClinicalApp)
-          .feed(csv("data.csv").circular)
         .exec(goToClinicalSearch)
-        .exec(gotToDashboard("${PATIENT_UUID}", "${VISIT_UUID}"))
-        .pause(100)
-//        .exec(goToClinicalSearch)
-//        .exec(gotToDashboard(ANOTHER_PATIENT_UUID, ANOTHER_VISIT_UUID))
+        .exec(gotToDashboard("${opdPatientId}", "${opdVisitId}"))
+        .pause(100 seconds)
     }
 }

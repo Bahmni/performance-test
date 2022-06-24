@@ -2,10 +2,12 @@ package org.bahmni.gatling.scenarios
 
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
-import io.gatling.http.Predef.jsonPath
+import io.gatling.http.Predef._
 import org.bahmni.gatling.Configuration
 import org.bahmni.gatling.HttpRequests._
 import org.bahmni.gatling.Configuration.Constants._
+
+import scala.concurrent.duration.DurationInt
 
 object Registration_Exact_Search_Flow {
 
@@ -58,7 +60,6 @@ object Registration_Exact_Search_Flow {
     )
   }
 
-
   val scn: ScenarioBuilder = scenario("IDSearch")
     .during(Configuration.Load.DURATION) {
       exec(login)
@@ -66,7 +67,7 @@ object Registration_Exact_Search_Flow {
         .exec(goToHomePage)
         .exec(goToRegistrationSearchPage)
         .exec(performSearch("${PATIENT_IDENTIFIER}"))
-        .pause(110)
+        .pause(110 seconds)
     }
 
 }

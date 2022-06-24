@@ -5,15 +5,18 @@ import org.bahmni.gatling.Configuration.HttpConf._
 import org.bahmni.gatling.Configuration.Load
 import org.bahmni.gatling.scenarios._
 
+import scala.concurrent.duration.DurationInt
+
 class UserSimulation extends Simulation {
 
   setUp(
-    Clinical_Dashboard_View_Name_Search_Flow.scn.inject(rampUsers(50) over 300).protocols(HTTPS_PROTOCOL),
-    Registration_Exact_Search_Flow.scn.inject(rampUsers(1) over 300).protocols(HTTPS_PROTOCOL),
-    Registration_Name_Search_Flow.scn.inject(rampUsers(2) over 60).protocols(HTTPS_PROTOCOL),
-    PatientCreateAndStartVisitFlow.scn.inject(rampUsers(1) over 300).protocols(HTTPS_PROTOCOL),
-    PatientImage.scn.inject(splitUsers(1300) into(rampUsers(20) over 10) separatedBy(5)).protocols(HTTP_PROTOCOL),
-    AdtFlow.scn.inject(rampUsers(2) over 20).protocols(HTTPS_PROTOCOL),
+    Clinical_Dashboard_View_Name_Search_Flow.scn.inject(rampUsers(50) during (300 seconds)).protocols(HTTPS_PROTOCOL),
+    Registration_Exact_Search_Flow.scn.inject(rampUsers(1) during (300 seconds)).protocols(HTTPS_PROTOCOL),
+    Registration_Name_Search_Flow.scn.inject(rampUsers(2) during (60 seconds)).protocols(HTTPS_PROTOCOL),
+    PatientCreateAndStartVisitFlow.scn.inject(rampUsers(1) during (300 seconds)).protocols(HTTPS_PROTOCOL),
+    PatientImage.scn.inject(incrementUsersPerSec(1300) .times(5) .eachLevelLasting(5 seconds)
+      .startingFrom(20).separatedByRampsLasting(5 seconds)).protocols(HTTP_PROTOCOL),
+    AdtFlow.scn.inject(rampUsers(2) during (20 seconds)).protocols(HTTPS_PROTOCOL),
     AtomfeedScenarios.patientFeed.inject(Load.ATOMFEED_USER_PROFILE).protocols(HTTP_PROTOCOL),
     AtomfeedScenarios.patientFeedContent.inject(Load.ATOMFEED_USER_PROFILE).protocols(HTTP_PROTOCOL),
     AtomfeedScenarios.encounterFeed.inject(Load.ATOMFEED_USER_PROFILE).protocols(HTTP_PROTOCOL),
@@ -22,16 +25,16 @@ class UserSimulation extends Simulation {
     AtomfeedScenarios.labFeedContent.inject(Load.ATOMFEED_USER_PROFILE).protocols(HTTP_PROTOCOL)
   )
     .assertions(
-	global.successfulRequests.percent.gte(90),
-	details("Search Patient by Identifier").successfulRequests.percent.gte(50),
-	//details("Search Patient by Identifier").responseTime.percentile3.lte(42000),
-	//details("Search Patient by Name").responseTime.percentile3.lte(37000),
-	details("Search Patient by Name").successfulRequests.percent.gte(95),
-	details("getVisits").responseTime.percentile3.lte(6000),
-	details("get lab order results").responseTime.percentile3.lte(17000),
-	details("get diagnoses for patient").responseTime.percentile3.lte(9000),
-	details("create patient").responseTime.percentile3.lte(22000),
-	details("get obs").responseTime.percentile3.lte(5000),
-	details("capture encounter").responseTime.percentile3.lte(8000)
+      global.successfulRequests.percent.gte(90),
+      details("Search Patient by Identifier").successfulRequests.percent.gte(50),
+      //details("Search Patient by Identifier").responseTime.percentile3.lte(42000),
+      //details("Search Patient by Name").responseTime.percentile3.lte(37000),
+      details("Search Patient by Name").successfulRequests.percent.gte(95),
+      details("getVisits").responseTime.percentile3.lte(6000),
+      details("get lab order results").responseTime.percentile3.lte(17000),
+      details("get diagnoses for patient").responseTime.percentile3.lte(9000),
+      details("create patient").responseTime.percentile3.lte(22000),
+      details("get obs").responseTime.percentile3.lte(5000),
+      details("capture encounter").responseTime.percentile3.lte(8000)
     )
 }

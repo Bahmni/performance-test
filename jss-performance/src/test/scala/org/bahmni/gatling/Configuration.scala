@@ -19,8 +19,8 @@ object Configuration {
     /*val PATIENT_IDENTIFIER = "Sujan Singh"
     val PATIENT_IDENTIFIER1 = "Nidhi"
     val PATIENT_IDENTIFIER2 = "kirtanjli"*/
-    val PATIENT_UUID = "727ab416-4916-40b3-bd00-b116e73f7cd9"
-    val VISIT_UUID = "33132f71-5f07-49a6-bdc5-f6ba240dcfd7"
+    val PATIENT_UUID = "dc9444c6-ad55-4200-b6e9-407e025eb948"
+    val VISIT_UUID = "8281dd37-45c0-4a45-a939-ecb95fdb6ed7"
     val ANOTHER_PATIENT_UUID = "08047a4e-bb16-42a3-ab0a-b83674756d62"
     val ANOTHER_VISIT_UUID = "71a7e789-1741-44f5-b54e-42e88c3b8e82"
     //val RADIOLOGY_ORDER_TYPE_UUID = "244b43be-28f1-11e4-86a0-005056822b0b" // possible DB
@@ -34,29 +34,29 @@ object Configuration {
 
   object HttpConf {
     val HTTPS_PROTOCOL = http
-      .baseURL(Configuration.Constants.BASE_HTTPS_URL)
-
+      .baseUrl(Configuration.Constants.BASE_HTTPS_URL).disableCaching
       .inferHtmlResources()
       .basicAuth("superman", "Admin123")
+      .acceptHeader("Cache-Control, max-age=0, no-store")
       .acceptHeader("application/json, text/plain, */*")
       .acceptEncodingHeader("gzip, deflate, sdch, br")
       .acceptLanguageHeader("en-US,en;q=0.8")
       .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
     val HTTP_PROTOCOL = http
-      .baseURL("http://product-qa09.mybahmni.local:8050")
+      .baseUrl("http://product-qa09.mybahmni.local:8050")
 
       .inferHtmlResources()
       .basicAuth("superman", "Admin123")
       .acceptHeader("application/json, text/plain, */*")
+      .acceptHeader("Cache-Control, max-age=0, no-store")
       .acceptEncodingHeader("gzip, deflate, sdch, br")
       .acceptLanguageHeader("en-US,en;q=0.8")
       .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
   }
 
   object Load {
-    var ATOMFEED_USER_PROFILE = rampUsers(1) over 10
-    var DURATION = 10800
-
+    var ATOMFEED_USER_PROFILE = rampUsers(1).during(20)
+    var DURATION = 50
   }
 
 }
