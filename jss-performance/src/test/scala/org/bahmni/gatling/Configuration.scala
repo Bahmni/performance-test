@@ -3,6 +3,8 @@ package org.bahmni.gatling
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
+import scala.concurrent.duration.DurationInt
+
 object Configuration {
 
   object Constants {
@@ -56,7 +58,7 @@ object Configuration {
 
   object Load {
     var ATOMFEED_USER_PROFILE = rampUsers(1).during(20)
-    var DURATION = 50
+    var DURATION = 120 seconds
   }
 
 }

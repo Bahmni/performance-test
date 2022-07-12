@@ -3,7 +3,6 @@ package org.bahmni.gatling.scenarios
 import io.gatling.core.Predef.{jsonPath, _}
 import io.gatling.http.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
-import org.bahmni.gatling.Configuration
 import org.bahmni.gatling.Configuration.Constants._
 import org.bahmni.gatling.HttpRequests._
 
@@ -72,10 +71,10 @@ object Clinical_Dashboard_View_Name_Search_Flow {
 
 
  val scn: ScenarioBuilder = scenario("clinical search")
-    .during(Configuration.Load.DURATION) {
-      exec(goToClinicalApp)
-        .exec(goToClinicalSearch)
-        .exec(gotToDashboard("${opdPatientId}", "${opdVisitId}"))
-        .pause(100 seconds)
-    }
+     .exec(goToClinicalApp)
+       .exec(goToClinicalSearch)
+       .pause(5 seconds, 10 seconds)
+       .exec(gotToDashboard("${opdPatientId}", "${opdVisitId}"))
+       .pause(5 seconds, 10 seconds)
+
 }

@@ -500,7 +500,7 @@ object HttpRequests {
   def postHistoryAndExaminationEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
                                          currentProviderUuid: String, imageUrl: String): HttpRequestBuilder = {
 
-      val jsonString: String = Source.fromFile(("jss-performance/src/test/resources/bodies/" +
+      val jsonString: String = Source.fromFile(("src/test/resources/bodies/" +
         "encounter_history_and_examination_body.json")).mkString
 
       val json = dijon.parse(jsonString)
@@ -521,7 +521,7 @@ object HttpRequests {
   def postVitalsEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
                                          currentProviderUuid: String): HttpRequestBuilder = {
 
-    val jsonString: String = Source.fromFile(("jss-performance/src/test/resources/bodies/" +
+    val jsonString: String = Source.fromFile(("src/test/resources/bodies/" +
       "vitals_body.json")).mkString
 
     val json = dijon.parse(jsonString)
@@ -539,7 +539,7 @@ object HttpRequests {
   def postOrderEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
                           currentProviderUuid: String): HttpRequestBuilder = {
 
-    val jsonString: String = Source.fromFile(("jss-performance/src/test/resources/bodies/" +
+    val jsonString: String = Source.fromFile(("src/test/resources/bodies/" +
       "orders_body.json")).mkString
 
     val json = dijon.parse(jsonString)
@@ -557,7 +557,7 @@ object HttpRequests {
   def postDrugOrderEncounter(patientUuid: String, encounterTypeUuid: String, locationUuid: String,
                                          currentProviderUuid: String): HttpRequestBuilder = {
 
-    val jsonString: String = Source.fromFile(("jss-performance/src/test/resources/bodies/" +
+    val jsonString: String = Source.fromFile(("src/test/resources/bodies/" +
       "drug_order_body.json")).mkString
 
     val randomDrugQuantity: Int = Random.nextInt(500)
@@ -576,7 +576,7 @@ object HttpRequests {
 
   def postUploadDocument(patientUuid: String): HttpRequestBuilder = {
 
-    val jsonString = Source.fromFile("jss-performance/src/test/resources/bodies/post_consultation_imageFile_body.json").mkString
+    val jsonString = Source.fromFile("src/test/resources/bodies/post_consultation_imageFile_body.json").mkString
     val json = dijon.parse(jsonString)
     json.patientUuid = patientUuid;
 

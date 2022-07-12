@@ -3,7 +3,6 @@ package org.bahmni.gatling.scenarios
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
-import org.bahmni.gatling.Configuration
 import org.bahmni.gatling.HttpRequests._
 import org.bahmni.gatling.Configuration.Constants._
 
@@ -61,13 +60,12 @@ object Registration_Exact_Search_Flow {
   }
 
   val scn: ScenarioBuilder = scenario("IDSearch")
-    .during(Configuration.Load.DURATION) {
-      exec(login)
+      .exec(login)
         .feed(csv("patient.csv").circular)
         .exec(goToHomePage)
+        .pause(10 seconds, 20 seconds)
         .exec(goToRegistrationSearchPage)
+        .pause(10 seconds, 20 seconds)
         .exec(performSearch("${PATIENT_IDENTIFIER}"))
-        .pause(110 seconds)
-    }
-
+        .pause(30 seconds)
 }

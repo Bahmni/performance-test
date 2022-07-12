@@ -3,9 +3,10 @@ package org.bahmni.gatling.scenarios
 import io.gatling.core.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
 import io.gatling.http.Predef._
-import org.bahmni.gatling.Configuration
 import org.bahmni.gatling.Configuration.Constants._
 import org.bahmni.gatling.HttpRequests._
+
+import scala.concurrent.duration.DurationInt
 
 object Registration_Name_Search_Flow {
 
@@ -59,13 +60,12 @@ object Registration_Name_Search_Flow {
   }
 
   val scn: ScenarioBuilder = scenario("NameSearch")
-    .during(Configuration.Load.DURATION) {
-      exec(login)
+      .exec(login)
         .feed(csv("patientName.csv").circular)
         .exec(goToHomePage)
+        .pause(10 seconds, 20 seconds)
         .exec(goToRegistrationSearchPage)
+        .pause(10 seconds, 20 seconds)
         .exec(performSearch("${PATIENT_NAME}"))
-        .pause(20)
-    }
-
+        .pause(20 seconds)
 }

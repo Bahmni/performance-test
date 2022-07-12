@@ -3,7 +3,6 @@ package org.bahmni.gatling.scenarios
 import io.gatling.core.Predef.{jsonPath, _}
 import io.gatling.http.Predef._
 import io.gatling.core.structure.{ChainBuilder, ScenarioBuilder}
-import org.bahmni.gatling.Configuration
 import org.bahmni.gatling.Configuration.Constants._
 import org.bahmni.gatling.HttpRequests._
 
@@ -161,8 +160,7 @@ object ClinicalFlow_Add_Observation {
   }
 
   val scn: ScenarioBuilder = scenario("clinical search & add observation")
-    .during(Configuration.Load.DURATION) {
-            exec(goToClinicalApp)
+            .exec(goToClinicalApp)
               .exec(goToClinicalSearch)
               .pause(5 seconds)
               .exec(gotToDashboard("${opdPatientId}", "${opdVisitId}"))
@@ -174,5 +172,4 @@ object ClinicalFlow_Add_Observation {
               .exec(enterConsultation("${opdPatientId}"))
               .pause(20 seconds)
               .exec(closeVisit("${opdPatientId}"))
-    }
 }

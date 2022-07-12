@@ -60,13 +60,11 @@ object PatientCreateAndStartVisitFlow {
   }
 
   val scn : ScenarioBuilder = scenario("create Patient and start visit")
-    .forever(){
-        exec(gotoCreatePatientPage)
+    .exec(gotoCreatePatientPage)
           .pause(5 seconds)
       .feed(jsonFeeder)
         .exec(createPatient)
           .pause(3 seconds)
           .exec(startVisit)
           .pause(5 seconds)
-    }
 }
