@@ -64,7 +64,7 @@ object PatientCreateAndStartVisitFlow {
           .pause(5 seconds)
       .feed(jsonFeeder)
         .exec(createPatient)
-          .pause(3 seconds)
+          .pause(3 seconds, 6 seconds)
           .exec(startVisit)
           .pause(5 seconds)
 }

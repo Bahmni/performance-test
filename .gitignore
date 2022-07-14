@@ -1,1 +1,9 @@
+# idea conf files
+.idea
+*.iml
+
+# building
 target/
+
+# misc
+.DS_Store

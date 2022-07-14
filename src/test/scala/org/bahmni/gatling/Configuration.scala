@@ -44,6 +44,27 @@ object Configuration {
       .acceptEncodingHeader("gzip, deflate, sdch, br")
       .acceptLanguageHeader("en-US,en;q=0.8")
       .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
+
+    val HTTPS_PROTOCOL_FrontDesk = http
+      .baseUrl(Configuration.Constants.BASE_HTTPS_URL).disableCaching
+      .inferHtmlResources()
+      .basicAuth("superman", "Admin123")
+      .acceptHeader("Cache-Control, max-age=0, no-store")
+      .acceptHeader("application/json, text/plain, */*")
+      .acceptEncodingHeader("gzip, deflate, sdch, br")
+      .acceptLanguageHeader("en-US,en;q=0.8")
+      .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
+
+    val HTTPS_PROTOCOL_Doctor = http
+      .baseUrl(Configuration.Constants.BASE_HTTPS_URL).disableCaching
+      .inferHtmlResources()
+      .basicAuth("superman", "Admin123")
+      .acceptHeader("Cache-Control, max-age=0, no-store")
+      .acceptHeader("application/json, text/plain, */*")
+      .acceptEncodingHeader("gzip, deflate, sdch, br")
+      .acceptLanguageHeader("en-US,en;q=0.8")
+      .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
+
     val HTTP_PROTOCOL = http
       .baseUrl("http://product-qa09.mybahmni.local:8050")
 

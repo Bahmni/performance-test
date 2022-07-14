@@ -14,13 +14,13 @@ class UserSimulation extends Simulation {
       (
         nothingFor(10 seconds),
         rampUsers(1).during(45 seconds),
-    ).protocols(HTTPS_PROTOCOL),
+    ).protocols(HTTPS_PROTOCOL_FrontDesk),
 
     ClinicalFlow_Add_Observation.scn.inject
     (
       nothingFor(60 seconds),
       rampUsers(1).during(1 minutes)
-   ).protocols(HTTPS_PROTOCOL),
+   ).protocols(HTTPS_PROTOCOL_Doctor),
 
     Registration_Exact_Search_Flow.scn.inject(
       rampUsers(1) during (30 seconds)
