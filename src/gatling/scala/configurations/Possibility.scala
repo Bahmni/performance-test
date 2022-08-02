@@ -1,4 +1,4 @@
-package infrastructure
+package configurations
 
 import io.gatling.core.structure.ChainBuilder
 

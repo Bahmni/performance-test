@@ -1,11 +1,10 @@
-package infrastructure
+package configurations
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
 import scala.math.{max, min}
 
 object Load {
-
   // Day to day usage, a steady stream of 10rps coming in
   val Standard = new TrafficLoadConfiguration(
     5, // initialNumberOfUsers
@@ -63,6 +62,13 @@ class TrafficLoadConfiguration(
   private def atLeast1Minute(value: FiniteDuration) = value.max(1 minutes)
   private def atLeast10Seconds(value: FiniteDuration) = value.max(10 seconds)
 }
+
+/** Need to define various possible measurement request types e.g. get, query, list, update, create
+  * We could also have a response type per API calls
+  * @param query
+  * @param list
+  * @param update
+  */
 
 case class MaximumResponseTimes(
     query: FiniteDuration,
