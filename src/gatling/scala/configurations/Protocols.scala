@@ -6,7 +6,6 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 
 object Protocols {
   private val url = "https://demo.mybahmni.org/" //System.getProperty("base_url")
-
   val default: HttpProtocolBuilder = http
     .baseUrl(url)
     .disableCaching

@@ -9,7 +9,7 @@ gatling {
     logLevel = 'WARN' // logback root level
     logHttp = 'NONE' // set to 'ALL' for all HTTP traffic in TRACE, 'FAILURES' for failed HTTP traffic in DEBUG
     simulations = {
-        include "**/simulations/FrontDesk.scala"
+        include "**/simulations/Bahmni*.scala"
     }
     enterprise {
         // Enterprise Cloud (https://cloud.gatling.io/) configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/gradle_plugin/#working-with-gatling-enterprise-cloud
