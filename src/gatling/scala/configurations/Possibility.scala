@@ -17,7 +17,7 @@ object PossibilityList {
 
 object Possibilities {
   def balance(
-      load: TrafficLoadConfiguration,
+      load: TrafficShareConfiguration,
       list: PossibilityList
   ): List[(Double, ChainBuilder)] = {
 
@@ -30,7 +30,7 @@ object Possibilities {
       val weight =
         if (totalWeight == 0) possibility.weight
         else possibility.weight / totalWeight * 100
-      (weight, possibility.createChain(load.responseTimes))
+      (weight, possibility.createChain(load.maximumResponseTimes))
     })
 
     balancedPossibilities

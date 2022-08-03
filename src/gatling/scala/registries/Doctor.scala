@@ -4,10 +4,10 @@ import configurations.MaximumResponseTimes
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
-object GoogleSearch {
+object Doctor {
   def home(responseTimes: MaximumResponseTimes) = {
     exec(
-      http("www.google.com")
+      http("patient encounter")
         .get("https://www.google.com")
         .check(
           status.is(200),
