@@ -6,7 +6,19 @@ on:
       - BAH-2105-CI
     paths-ignore:
       - "**.md"
-
+  workflow_dispatch:
+    inputs:
+      TRAFFIC_LOAD:
+        description: 'Traffic Load Simulation Type'
+        required: true
+        type: choice
+        default: standard
+        options:
+          - standard
+          - high
+          - peak
+env:
+  LOAD_SIMULATION_TYPE: ${{ github.event.inputs.TRAFFIC_LOAD || 'standard' }}
 jobs:
   build-upload-artifact:
     runs-on: ubuntu-latest
@@ -14,3 +26,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build
         run: ./gradlew build
+      - name: Run Performance Test
+        run: ./gradlew gatlingRun
