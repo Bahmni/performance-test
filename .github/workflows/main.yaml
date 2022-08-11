@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       TRAFFIC_LOAD:
-        description: 'Traffic Load Simulation Type'
+        description: "Traffic Load Simulation Type"
         required: true
         type: choice
         default: standard
@@ -48,3 +48,18 @@ jobs:
           git add .
           git commit -m "Publishing report /${{github.run_number}}"
           git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' gh-pages
+  notification:
+    name: Slack notification
+    needs:
+      - performance-test
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Success
+        if: ${{ needs.performance-test.result == 'success' }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"🎭 Bahmni Performance Tests Simulation completed for ${{ env.LOAD_SIMULATION_TYPE}} Traffic Load. \n> <https://bahmni.github.io/${{github.event.repository.name}}/${{github.run_number}}/index.html|View Report>"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Failure
+        if: ${{ needs.performance-test.result == 'failure' }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"💣 Bahmni Performance Tests Simulation failed. \n> <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View failed Job #${{github.run_id}}>"}' ${{ secrets.SLACK_WEBHOOK_URL }}
