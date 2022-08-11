@@ -20,7 +20,7 @@ on:
 env:
   LOAD_SIMULATION_TYPE: ${{ github.event.inputs.TRAFFIC_LOAD || 'standard' }}
 jobs:
-  build-upload-artifact:
+  performance-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,12 +28,23 @@ jobs:
         run: ./gradlew build
       - name: Run Performance Test
         run: ./gradlew gatlingRun
-      - name: Checkout reports brach
+      - name: Checkout reports branch
         uses: actions/checkout@v2
         with:
           repository: Bahmni/performance-test
           ref: gh-pages
           path: reports
           persist-credentials: false
-      - name: Copy repots
-        run: cp /build/reports/gatling reports
+      - name: Copy reports
+        run: |
+          ls -lrt
+          cp -r build/reports/gatling/bahmni* reports
+          mv reports/bahmni* reports/${{github.run_number}}
+      - name: Publish report
+        working-directory: reports/
+        run: |
+          git config user.name ${{ secrets.BAHMNI_USERNAME}}
+          git config user.email ${{ secrets.BAHMNI_EMAIL}}
+          git add .
+          git commit -m "Publishing report /${{github.run_number}}"
+          git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' gh-pages
