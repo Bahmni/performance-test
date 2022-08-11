@@ -22,6 +22,8 @@ env:
 jobs:
   performance-test:
     runs-on: ubuntu-latest
+    outputs:
+      epoch: ${{ steps.getEpoch.outputs.epoch }}
     steps:
       - uses: actions/checkout@v2
       - name: Build
@@ -35,18 +37,24 @@ jobs:
           ref: gh-pages
           path: reports
           persist-credentials: false
+      - name: Archive older reports
+        shell: bash
+        run: bash .github/archiveReports.sh
+      - id: getEpoch
+        run: |
+          export EPOCH=$(date +%s)
+          echo "::set-output name=epoch::${EPOCH}"
       - name: Copy reports
         run: |
-          ls -lrt
           cp -r build/reports/gatling/bahmni* reports
-          mv reports/bahmni* reports/${{github.run_number}}
+          mv reports/bahmni* reports/report-${{ steps.getEpoch.outputs.epoch }}
       - name: Publish report
         working-directory: reports/
         run: |
           git config user.name ${{ secrets.BAHMNI_USERNAME}}
           git config user.email ${{ secrets.BAHMNI_EMAIL}}
           git add .
-          git commit -m "Publishing report /${{github.run_number}}"
+          git commit -m "Publishing report /report-${{ steps.getEpoch.outputs.epoch }}"
           git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' gh-pages
   notification:
     name: Slack notification
@@ -58,7 +66,7 @@ jobs:
       - name: Success
         if: ${{ needs.performance-test.result == 'success' }}
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"🎭 Bahmni Performance Tests Simulation completed for ${{ env.LOAD_SIMULATION_TYPE}} Traffic Load. \n> <https://bahmni.github.io/${{github.event.repository.name}}/${{github.run_number}}/index.html|View Report>"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"🎭 Bahmni Performance Tests Simulation completed for ${{ env.LOAD_SIMULATION_TYPE}} Traffic Load. \n> <https://bahmni.github.io/${{github.event.repository.name}}/report-${{ needs.performance-test.outputs.epoch }}/index.html|View Report>"}' ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Failure
         if: ${{ needs.performance-test.result == 'failure' }}
         run: |
