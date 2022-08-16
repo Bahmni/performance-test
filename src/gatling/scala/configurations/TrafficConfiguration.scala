@@ -24,12 +24,13 @@ object Load {
   )
 
   def getTrafficShareConfiguration(loadSharePercentage: Int): TrafficShareConfiguration = {
-    System.getenv("LOAD_SIMULATION_TYPE") match {
-      case "High" =>
+    System.out.println(s"Load Simulation Type is : ${System.getenv("LOAD_SIMULATION_TYPE") toLowerCase}")
+    System.getenv("LOAD_SIMULATION_TYPE") toLowerCase match {
+      case "high" =>
         new TrafficShareConfiguration(high, loadSharePercentage)
-      case "Peak" =>
+      case "peak" =>
         new TrafficShareConfiguration(peak, loadSharePercentage)
-      case "Standard" | _ =>
+      case "standard" | _ =>
         new TrafficShareConfiguration(standard, loadSharePercentage)
     }
   }
