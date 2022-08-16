@@ -1,5 +1,15 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.opencsv:opencsv:5.6'
+  }
+}
+
 plugins {
     id 'scala'
+    id 'java'
     // The following line allows to load io.gatling.gradle plugin and directly apply it
     id 'io.gatling.gradle' version '3.8.3.2'
 }
@@ -29,4 +39,6 @@ compileJava {
 dependencies {
     implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.7.6'
     implementation 'me.vican.jorge:dijon_2.12:0.6.0'
+    implementation 'com.opencsv:opencsv:5.6'
+
 }
