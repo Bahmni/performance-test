@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - BAH-2105-CI
     paths-ignore:
       - "**.md"
   workflow_dispatch:
@@ -56,6 +55,15 @@ jobs:
           git add .
           git commit -m "Publishing report /report-${{ steps.getEpoch.outputs.epoch }}"
           git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' gh-pages
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: report-${{ steps.getEpoch.outputs.epoch }}
+          path: report-${{ steps.getEpoch.outputs.epoch }}
   notification:
     name: Slack notification
     needs:
