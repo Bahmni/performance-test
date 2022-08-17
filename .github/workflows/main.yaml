@@ -2,7 +2,7 @@ name: Run Performance Test
 on:
   push:
     branches:
-      - master
+      - testBranch
     paths-ignore:
       - "**.md"
   workflow_dispatch:
@@ -24,58 +24,67 @@ jobs:
     outputs:
       epoch: ${{ steps.getEpoch.outputs.epoch }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout test data generator
+      - uses: actions/checkout@v3
+          with:
+            repository: bahmni/bahmni-test-data-generator
+            path: test-data-generator
       - name: Build
-        run: ./gradlew build
-      - name: Run Performance Test
-        run: ./gradlew gatlingRun
-      - name: Checkout reports branch
-        uses: actions/checkout@v2
-        with:
-          repository: Bahmni/performance-test
-          ref: gh-pages
-          path: reports
-          persist-credentials: false
-      - name: Archive older reports
-        shell: bash
-        run: bash .github/archiveReports.sh
-      - id: getEpoch
-        run: |
-          export EPOCH=$(date +%s)
-          echo "::set-output name=epoch::${EPOCH}"
-      - name: Copy reports
-        run: |
-          cp -r build/reports/gatling/bahmni* reports
-          mv reports/bahmni* reports/report-${{ steps.getEpoch.outputs.epoch }}
-      - name: Publish report
-        working-directory: reports/
-        run: |
-          git config user.name ${{ secrets.BAHMNI_USERNAME}}
-          git config user.email ${{ secrets.BAHMNI_EMAIL}}
-          git add .
-          git commit -m "Publishing report /report-${{ steps.getEpoch.outputs.epoch }}"
-          git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' gh-pages
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages
-      - name: Upload Artifact
+         run: ./gradlew build
+      - name: Generate Test Data
+         run: ./gradlew run
+#      - uses: actions/checkout@v2
+#      - name: Build
+#        run: ./gradlew build
+#      - name: Run Performance Test
+#        run: ./gradlew gatlingRun
+#      - name: Checkout reports branch
+#        uses: actions/checkout@v2
+#        with:
+#          repository: Bahmni/performance-test
+#          ref: gh-pages
+#          path: reports
+#          persist-credentials: false
+#      - name: Archive older reports
+#        shell: bash
+#        run: bash .github/archiveReports.sh
+#      - id: getEpoch
+#        run: |
+#          export EPOCH=$(date +%s)
+#          echo "::set-output name=epoch::${EPOCH}"
+#      - name: Copy reports
+#        run: |
+#          cp -r build/reports/gatling/bahmni* reports
+#          mv reports/bahmni* reports/report-${{ steps.getEpoch.outputs.epoch }}
+#      - name: Publish report
+#        working-directory: reports/
+#        run: |
+#          git config user.name ${{ secrets.BAHMNI_USERNAME}}
+#          git config user.email ${{ secrets.BAHMNI_EMAIL}}
+#          git add .
+#          git commit -m "Publishing report /report-${{ steps.getEpoch.outputs.epoch }}"
+#          git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' gh-pages
+#      - name: Checkout gh-pages branch
+#        uses: actions/checkout@v3
+#        with:
+#          ref: gh-pages
+      - name: Upload Patient Registration
         uses: actions/upload-artifact@v2
         with:
-          name: report-${{ steps.getEpoch.outputs.epoch }}
-          path: report-${{ steps.getEpoch.outputs.epoch }}
-  notification:
-    name: Slack notification
-    needs:
-      - performance-test
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-      - name: Success
-        if: ${{ needs.performance-test.result == 'success' }}
-        run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"🎭 Bahmni Performance Tests Simulation completed for ${{ env.LOAD_SIMULATION_TYPE}} Traffic Load. \n> <https://bahmni.github.io/${{github.event.repository.name}}/report-${{ needs.performance-test.outputs.epoch }}/index.html|View Report>"}' ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Failure
-        if: ${{ needs.performance-test.result == 'failure' }}
-        run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"💣 Bahmni Performance Tests Simulation failed. \n> <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View failed Job #${{github.run_id}}>"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+          name: registration.csv
+          path: ./output/registration.csv
+#  notification:
+#    name: Slack notification
+#    needs:
+#      - performance-test
+#    runs-on: ubuntu-latest
+#    if: always()
+#    steps:
+#      - name: Success
+#        if: ${{ needs.performance-test.result == 'success' }}
+#        run: |
+#          curl -X POST -H 'Content-type: application/json' --data '{"text":"🎭 Bahmni Performance Tests Simulation completed for ${{ env.LOAD_SIMULATION_TYPE}} Traffic Load. \n> <https://bahmni.github.io/${{github.event.repository.name}}/report-${{ needs.performance-test.outputs.epoch }}/index.html|View Report>"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+#      - name: Failure
+#        if: ${{ needs.performance-test.result == 'failure' }}
+#        run: |
+#          curl -X POST -H 'Content-type: application/json' --data '{"text":"💣 Bahmni Performance Tests Simulation failed. \n> <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View failed Job #${{github.run_id}}>"}' ${{ secrets.SLACK_WEBHOOK_URL }}
