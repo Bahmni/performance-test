@@ -24,24 +24,34 @@ jobs:
     outputs:
       epoch: ${{ steps.getEpoch.outputs.epoch }}
     steps:
+      - name: Checkout Performance Test Suite
+        uses: actions/checkout@v2
       - name: Checkout test data generator
       - uses: actions/checkout@v3
-          with:
-            repository: bahmni/bahmni-test-data-generator
-            path: test-data-generator
-      - name: Build
-         run: ./gradlew build
+        with:
+          repository: bahmni/bahmni-test-data-generator
+          path: test-data-generator
       - name: Generate Test Data
-         run: ./gradlew run
-#      - uses: actions/checkout@v2
-#      - name: Build
-#        run: ./gradlew build
-#      - name: Run Performance Test
-#        run: ./gradlew gatlingRun
+        working-directory: test-data-generator/
+        run: |
+          if [${{ env.LOAD_SIMULATION_TYPE}} == 'peak']
+          then
+            export PATIENT_NAME='300'
+          elif [${{ env.LOAD_SIMULATION_TYPE}} == 'high']
+          then
+            export PATIENT_NAME='200'
+          else
+            export PATIENT_NAME='10'
+          ./gradlew run
+      - name: Copy registrations csv to Performance Test Suite
+        run: cp -r test-data-generator/output/registrations.csv src/gatling/resources
+      - name: Build Performance Module
+        run: ./gradlew build
+      - name: Run Performance Test
+        run: ./gradlew gatlingRun
 #      - name: Checkout reports branch
 #        uses: actions/checkout@v2
 #        with:
-#          repository: Bahmni/performance-test
 #          ref: gh-pages
 #          path: reports
 #          persist-credentials: false
@@ -68,11 +78,11 @@ jobs:
 #        uses: actions/checkout@v3
 #        with:
 #          ref: gh-pages
-      - name: Upload Patient Registration
-        uses: actions/upload-artifact@v2
-        with:
-          name: registration.csv
-          path: ./output/registration.csv
+#      - name: Upload Artifact
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: report-${{ steps.getEpoch.outputs.epoch }}
+#          path: report-${{ steps.getEpoch.outputs.epoch }}
 #  notification:
 #    name: Slack notification
 #    needs:
