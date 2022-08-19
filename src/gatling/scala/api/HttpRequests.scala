@@ -53,4 +53,19 @@ object HttpRequests {
       .get("/openmrs/ws/rest/v1/provider")
       .queryParam("user", userUuid)
   }
+
+  def getVisitLocation(visitLocationUuid: String): HttpRequestBuilder = {
+    http("get visit location")
+      .get("/openmrs/ws/rest/v1/bahmnicore/visitLocation/" + visitLocationUuid)
+  }
+
+  def getIdentifierTypes: HttpRequestBuilder = {
+    http("get identifier types")
+      .get("/openmrs/ws/rest/v1/idgen/identifiertype")
+  }
+
+  def getRegistrationConcepts: HttpRequestBuilder = {
+    http("get registration concepts")
+      .get("/openmrs/ws/rest/v1/bahmnicore/config/bahmniencounter?callerContext=REGISTRATION_CONCEPTS")
+  }
 }
