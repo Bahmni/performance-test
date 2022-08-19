@@ -24,15 +24,35 @@ jobs:
     outputs:
       epoch: ${{ steps.getEpoch.outputs.epoch }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Build
+      - name: Checkout Performance Test Suite
+        uses: actions/checkout@v2
+      - name: Checkout test data generator
+        uses: actions/checkout@v3
+        with:
+          repository: bahmni/bahmni-test-data-generator
+          path: test-data-generator
+      - name: Generate Test Data
+        working-directory: test-data-generator/
+        run: |
+          if [${{ env.LOAD_SIMULATION_TYPE}} == 'peak']
+          then
+            export PATIENT_NAME='300'
+          elif [${{ env.LOAD_SIMULATION_TYPE}} == 'high']
+          then
+            export PATIENT_NAME='200'
+          else
+            export PATIENT_NAME='10'
+          fi
+          ./gradlew run
+      - name: Copy registrations csv to Performance Test Suite
+        run: cp -r test-data-generator/output/registrations.csv src/gatling/resources
+      - name: Build Performance Module
         run: ./gradlew build
       - name: Run Performance Test
         run: ./gradlew gatlingRun
       - name: Checkout reports branch
         uses: actions/checkout@v2
         with:
-          repository: Bahmni/performance-test
           ref: gh-pages
           path: reports
           persist-credentials: false
@@ -40,6 +60,7 @@ jobs:
         shell: bash
         run: bash .github/archiveReports.sh
       - id: getEpoch
+        name: Run Epoch
         run: |
           export EPOCH=$(date +%s)
           echo "::set-output name=epoch::${EPOCH}"
