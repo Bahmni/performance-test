@@ -12,9 +12,8 @@ import scala.language.postfixOps
 
 object Registration {
   private val possibilities = List(
-//    Possibility(existingPatient_IdSearch_StartVisit, 100)
-    Possibility(existingPatient_NameSearch_StartVisit, 100)
-
+    Possibility(existingPatient_IdSearch_StartVisit, 50),
+    Possibility(existingPatient_NameSearch_StartVisit, 50)
   )
 
   def scenario(loadSharePercentage: Int): PopulationBuilder =
@@ -28,6 +27,8 @@ object Registration {
       .exec(goToRegistrationSearchPage)
       .pause(10 seconds, 20 seconds)
       .exec(performIdSearch("${Registration Number}"))
+      .pause(10 seconds, 20 seconds)
+      .exec(startVisitForID)
       .pause(20 seconds)
   }
 
@@ -39,6 +40,8 @@ object Registration {
       .exec(goToRegistrationSearchPage)
       .pause(10 seconds, 20 seconds)
       .exec(performNameSearch("${First Name}" + " " + "${Last Name}"))
+      .pause(10 seconds, 20 seconds)
+      .exec(startVisitForName)
       .pause(20 seconds)
   }
 }

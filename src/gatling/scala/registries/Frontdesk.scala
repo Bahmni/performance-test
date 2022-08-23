@@ -8,6 +8,8 @@ import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
 
+import scala.util.Random
+
 object Frontdesk {
   val goToHomePage: ChainBuilder = exec(
     getUser(LOGIN_USER)
@@ -48,25 +50,34 @@ object Frontdesk {
   def performNameSearch(patientName: String): ChainBuilder = {
     exec(
       searchPatientUsingName(LOGIN_LOCATION_UUID, patientName)
-        .check(status.is(200), bodyString.saveAs("body"))
+        .check(jsonPath("$..uuid").findAll.transform(Random.shuffle(_).head).optional.saveAs("pt_uuID"))
+        .resources(
+          getPatientProfileAfterRegistration("${pt_uuID}")
+        )
     )
-    exec(session => {
-      val response = session("body").as[String]
-      println(s"Response body: \n$response")
-      session
-    })
   }
 
   def performIdSearch(patientIdentifier: String): ChainBuilder = {
     exec(
       searchPatientUsingIdentifier(LOGIN_LOCATION_UUID, patientIdentifier)
-        .check(status.in(200 to 201))
+        .check(jsonPath("$..uuid").findAll.transform(Random.shuffle(_).head).optional.saveAs("p_uuID"))
+        .resources(
+          getPatientProfileAfterRegistration("${p_uuID}")
+        )
     )
   }
 
-  val startVisit: ChainBuilder = {
-    exec( startVisitRequest("${patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID).check(
-      status.is(201))
+  val startVisitForID: ChainBuilder = {
+    exec(
+      startVisitRequest("${p_uuID}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
     )
   }
+
+  val startVisitForName: ChainBuilder = {
+    exec(
+      startVisitRequest("${pt_uuID}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
+    )
+  }
+
+
 }
