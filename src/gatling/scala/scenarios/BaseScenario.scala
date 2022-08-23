@@ -3,8 +3,6 @@ package scenarios
 import configurations.{Possibilities, Possibility, Protocols, TrafficShareConfiguration}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
-
-import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
 object BaseScenario {

@@ -7,19 +7,19 @@ import scala.math.max
 object Load {
   val standard: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 40,
-    duration = 3 minutes,
+    duration = 60 minutes,
     responseTimes = MaximumResponseTimes(1000 milliseconds, 1000 milliseconds, 1000 milliseconds)
   )
 
   val high: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 70,
-    duration = 5 minutes,
+    duration = 60 minutes,
     responseTimes = MaximumResponseTimes(1200 milliseconds, 1200 milliseconds, 1200 milliseconds)
   )
 
   val peak: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 110,
-    duration = 10 minutes,
+    duration = 60 minutes,
     responseTimes = MaximumResponseTimes(28000 milliseconds, 28000 milliseconds, 28000 milliseconds)
   )
 
@@ -50,7 +50,7 @@ class TrafficShareConfiguration(
   val activeUsers: Int = atLeast10(roundUp(trafficConfiguration.activeUsers / shareFactor))
   val totalDuration: FiniteDuration = atLeast1Minute(trafficConfiguration.duration)
   val maximumResponseTimes: MaximumResponseTimes = trafficConfiguration.responseTimes
-  val initialRampUpDuration: FiniteDuration = 30 seconds //should be 10% of total duration with max of 5 mins
+  val initialRampUpDuration: FiniteDuration = 5 minutes //should be 10% of total duration with max of 5 mins
 
   private def roundUp(d: Double): Int = math.ceil(d).toInt
 

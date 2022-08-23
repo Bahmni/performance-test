@@ -32,7 +32,7 @@ object HttpRequests {
       .post("/openmrs/ws/rest/v1/user/" + loggedInUserUuid)
       .body(
         StringBody(s"""{"uuid":"$loggedInUserUuid","userProperties":{"defaultLocale":"en","favouriteObsTemplates":"",
-           "recentlyViewedPatients":"","loginAttempts":"0","favouriteWards":"General Ward###Labour Ward"}}""")
+           "recentlyViewedPatients":"","loginAttempts":"0","favouriteWards":""}}""")
       )
       .asJson
   }

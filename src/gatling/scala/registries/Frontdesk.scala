@@ -3,10 +3,10 @@ package registries
 import api.Constants.{LOGIN_LOCATION_UUID, LOGIN_USER, VISIT_TYPE_ID}
 import api.FrontdeskHttpRequests._
 import api.HttpRequests._
-import configurations.MaximumResponseTimes
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
+import scala.util.Random
 
 object Frontdesk {
   val goToHomePage: ChainBuilder = exec(
@@ -15,9 +15,9 @@ object Frontdesk {
         jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
       )
       .resources(
-        getProviderForUser("${runTimeUuid}"),
+        getProviderForUser("#{runTimeUuid}"),
         getSession,
-        postUserInfo("${runTimeUuid}"),
+        postUserInfo("#{runTimeUuid}"),
         getGlobalProperty("bahmni.enableAuditLog"),
         postAuditLog
       )
@@ -30,7 +30,7 @@ object Frontdesk {
           jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
         ),
         getSession,
-        getProviderForUser("${runTimeUuid}"),
+        getProviderForUser("#{runTimeUuid}"),
         getGlobalProperty("mrs.genders"),
         getGlobalProperty("bahmni.relationshipTypeMap"),
         getAddressHierarchyLevel,
@@ -48,25 +48,34 @@ object Frontdesk {
   def performNameSearch(patientName: String): ChainBuilder = {
     exec(
       searchPatientUsingName(LOGIN_LOCATION_UUID, patientName)
-        .check(status.is(200), bodyString.saveAs("body"))
+        .check(jsonPath("$..uuid").findAll.transform(Random.shuffle(_).head).optional.saveAs("pt_uuID"))
+        .resources(
+          getPatientProfileAfterRegistration("#{pt_uuID}")
+        )
     )
-    exec(session => {
-      val response = session("body").as[String]
-      println(s"Response body: \n$response")
-      session
-    })
   }
 
   def performIdSearch(patientIdentifier: String): ChainBuilder = {
     exec(
       searchPatientUsingIdentifier(LOGIN_LOCATION_UUID, patientIdentifier)
-        .check(status.in(200 to 201))
+        .check(jsonPath("$..uuid").findAll.transform(Random.shuffle(_).head).optional.saveAs("p_uuID"))
+        .resources(
+          getPatientProfileAfterRegistration("#{p_uuID}")
+        )
     )
   }
 
-  val startVisit: ChainBuilder = {
-    exec( startVisitRequest("${patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID).check(
-      status.is(201))
+  val startVisitForID: ChainBuilder = {
+    exec(
+      startVisitRequest("#{p_uuID}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
     )
   }
+
+  val startVisitForName: ChainBuilder = {
+    exec(
+      startVisitRequest("#{pt_uuID}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
+    )
+  }
+
+
 }

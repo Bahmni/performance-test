@@ -34,15 +34,16 @@ jobs:
       - name: Generate Test Data
         working-directory: test-data-generator/
         run: |
-          if [${{ env.LOAD_SIMULATION_TYPE}} == 'peak']
+          if [ ${{env.LOAD_SIMULATION_TYPE}} = "peak" ]
           then
-            export PATIENT_NAME='300'
-          elif [${{ env.LOAD_SIMULATION_TYPE}} == 'high']
+            export PATIENT_COUNT='300'
+          elif [ ${{env.LOAD_SIMULATION_TYPE}} = "high" ]
           then
-            export PATIENT_NAME='200'
+            export PATIENT_COUNT='200'
           else
-            export PATIENT_NAME='10'
+            export PATIENT_COUNT='100'
           fi
+          ./gradlew build
           ./gradlew run
       - name: Copy registrations csv to Performance Test Suite
         run: cp -r test-data-generator/output/registrations.csv src/gatling/resources
