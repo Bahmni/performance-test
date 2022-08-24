@@ -1,6 +1,8 @@
 package api
 
 import io.gatling.core.Predef._
+import io.gatling.core.body.Body
+import io.gatling.core.session.Expression
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
 
@@ -74,5 +76,16 @@ object FrontdeskHttpRequests {
       .post("/openmrs/ws/rest/v1/visit")
       .body(StringBody(s"""{"patient":"$patient_uuid","visitType":"$opd_visit_type_id","location":"$login_location_id"}"""))
       .asJson
+  }
+
+  def getReasonForDeath: HttpRequestBuilder = {
+    http("Get reason for death")
+      .get("/openmrs/ws/rest/v1/concept?s=byFullySpecifiedName&name=Reason+For+Death&v=custom:(uuid,name,set,names,setMembers:(uuid,display,name:(uuid,name),names,retired))")
+  }
+
+  def createPatientRequest(body: Body with (Expression[String])): HttpRequestBuilder = {
+    http("create patient")
+      .post("/openmrs/ws/rest/v1/bahmnicore/patientprofile")
+      .body(body).asJson
   }
 }
