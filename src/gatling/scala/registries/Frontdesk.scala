@@ -78,5 +78,36 @@ object Frontdesk {
     )
   }
 
+  val startVisitForCreatePatient: ChainBuilder = {
+    exec(
+      startVisitRequest("${patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
+    )
+  }
+
+  val gotoCreatePatientPage : ChainBuilder = exec(
+    getUser(LOGIN_USER)
+      .check(
+        jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
+      )
+      .resources(
+        getProviderForUser("${runTimeUuid}"),
+        getSession,
+        postAuditLog,
+        getGlobalProperty("concept.reasonForDeath"),
+        getReasonForDeath
+      )
+  )
+
+  val createPatient : ChainBuilder = {
+    exec(
+      createPatientRequest(ElFileBody("patient_profile.json"))
+        .check(
+          jsonPath("$.patient.uuid").saveAs("patient_uuid"),
+          status.is(200)
+        ).resources(
+        getPatientProfileAfterRegistration("${patient_uuid}")
+      )
+    )
+  }
 
 }
