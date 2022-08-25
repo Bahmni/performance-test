@@ -88,13 +88,23 @@ object Frontdesk {
     getUser(LOGIN_USER)
       .check(
         jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
-      )
-      .resources(
+      ).resources(
+        getLoginLocations,
         getProviderForUser("${runTimeUuid}"),
+        postUserInfo("${runTimeUuid}"),
         getSession,
+        getVisitLocation(LOGIN_LOCATION_UUID),
+        getRegistrationConcepts,
+        getPersonaAttributeType,
+        getIdentifierTypes,
+        getAddressHierarchyLevel,
+        getGlobalProperty("mrs.genders"),
+        getRelationshipTypes,
+        getGlobalProperty("bahmni.relationshipTypeMap"),
+        getEntityMapping,
+        getGlobalProperty("bahmni.enableAuditLog"),
         postAuditLog,
         getGlobalProperty("concept.reasonForDeath"),
-        getReasonForDeath
       )
   )
 
@@ -105,6 +115,12 @@ object Frontdesk {
           jsonPath("$.patient.uuid").saveAs("patient_uuid"),
           status.is(200)
         ).resources(
+        findEncounter(ElFileBody("encounter.json")),
+        activateVisit("${patient_uuid}"),
+        getNutrition,
+        getObservation("${patient_uuid}"),
+        getVital,
+        getFeeInformation,
         getPatientProfileAfterRegistration("${patient_uuid}")
       )
     )
