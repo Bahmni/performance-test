@@ -13,9 +13,9 @@ import scala.language.postfixOps
 
 object Registration {
   private val possibilities = List(
-//    Possibility(existingPatient_IdSearch_StartVisit, 50),
-//    Possibility(existingPatient_NameSearch_StartVisit, 50)
-    Possibility(createPatient_StartVisit, 100)
+    Possibility(existingPatient_IdSearch_StartVisit, 30),
+    Possibility(existingPatient_NameSearch_StartVisit, 30),
+    Possibility(createPatient_StartVisit, 40)
   )
 
   def scenario(loadSharePercentage: Int): PopulationBuilder =

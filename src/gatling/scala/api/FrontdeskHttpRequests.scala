@@ -88,9 +88,9 @@ object FrontdeskHttpRequests {
       .post("/openmrs/ws/rest/v1/bahmnicore/patientprofile")
       .body(body).asJson
   }
-  def findEncounter(body: Body with(Expression[String])):HttpRequestBuilder={
+  def findEncounter(patientUuid: String):HttpRequestBuilder={
     http("find encounter").post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
-      .body(body).asJson
+      .body(StringBody(s"""{"patientUuid": "${patientUuid}", "providerUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ] }""".stripMargin)).asJson
   }
 
   def getNutrition:HttpRequestBuilder={

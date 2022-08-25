@@ -80,7 +80,7 @@ object Frontdesk {
 
   val startVisitForCreatePatient: ChainBuilder = {
     exec(
-      startVisitRequest("${patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
+      startVisitRequest("#{patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
     )
   }
 
@@ -90,8 +90,8 @@ object Frontdesk {
         jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
       ).resources(
         getLoginLocations,
-        getProviderForUser("${runTimeUuid}"),
-        postUserInfo("${runTimeUuid}"),
+        getProviderForUser("#{runTimeUuid}"),
+        postUserInfo("#{runTimeUuid}"),
         getSession,
         getVisitLocation(LOGIN_LOCATION_UUID),
         getRegistrationConcepts,
@@ -113,15 +113,14 @@ object Frontdesk {
       createPatientRequest(ElFileBody("patient_profile.json"))
         .check(
           jsonPath("$.patient.uuid").saveAs("patient_uuid"),
-          status.is(200)
         ).resources(
-        findEncounter(ElFileBody("encounter.json")),
-        activateVisit("${patient_uuid}"),
+        findEncounter("#{patient_uuid}"),
+        activateVisit("#{patient_uuid}"),
         getNutrition,
-        getObservation("${patient_uuid}"),
+        getObservation("#{patient_uuid}"),
         getVital,
         getFeeInformation,
-        getPatientProfileAfterRegistration("${patient_uuid}")
+        getPatientProfileAfterRegistration("#{patient_uuid}")
       )
     )
   }
