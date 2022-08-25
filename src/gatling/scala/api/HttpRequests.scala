@@ -68,4 +68,15 @@ object HttpRequests {
     http("get registration concepts")
       .get("/openmrs/ws/rest/v1/bahmnicore/config/bahmniencounter?callerContext=REGISTRATION_CONCEPTS")
   }
+  def getPersonaAttributeType:HttpRequestBuilder={
+    http("get persona Attribute type")
+      .get("/openmrs/ws/rest/v1/personattributetype")
+      .queryParam("v","custom:(uuid,name,sortWeight,description,format,concept)")
+  }
+  def activateVisit(patientid:String):HttpRequestBuilder={
+  http("activate visit").get("/openmrs/ws/rest/v1/visit")
+    .queryParam("includeInactive","false")
+    .queryParam("patient",patientid)
+    .queryParam("v","custom:(uuid,location:(uuid)")
+  }
 }

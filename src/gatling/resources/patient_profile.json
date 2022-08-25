@@ -1,71 +1,32 @@
 {
   "patient": {
+    "person": {
+      "names": [
+        {
+          "givenName": "${givenName}",
+          "familyName": "demo",
+          "display": "${givenName} perf",
+          "preferred": false
+        }
+      ],
+      "addresses": [
+        {}
+      ],
+      "birthdate": "2010-08-25T10:35:54.772+0530",
+      "gender": "F",
+      "birthtime": null,
+      "deathDate": null,
+      "causeOfDeath": ""
+    },
     "identifiers": [
       {
-        "identifierPrefix": "ABC",
         "identifierSourceUuid": "c5cf4b68-6529-43fc-a644-c775ae73745e",
+        "identifierPrefix": "ABC",
         "identifierType": "ff7e312b-18a1-11ed-bd3f-02cf26abc856",
         "preferred": true,
         "voided": false
       }
-    ],
-    "person": {
-      "addresses": [
-        {
-          "address1": "${streetAddress1} lane",
-          "address3": "Takhatpur",
-          "cityVillage": "DHAN DHAN",
-          "countyDistrict": "Bilaspur",
-          "stateProvince": "Chattisgarh"
-        }
-      ],
-      "attributes": [
-        {
-          "attributeType": {
-            "uuid": "08bb2d03-18a2-11ed-bd3f-02cf26abc856"
-          },
-          "voided": true
-        },
-        {
-          "attributeType": {
-            "uuid": "006d3cb8-18a2-11ed-bd3f-02cf26abc856"
-          },
-          "voided": true
-        },
-        {
-          "attributeType": {
-            "uuid": "006ff38a-18a2-11ed-bd3f-02cf26abc856"
-          },
-          "voided": true
-        },
-        {
-          "attributeType": {
-            "uuid": "88ea3d33-320e-4967-9954-371205c0307b"
-          },
-          "value": "+919812345678"
-        },
-        {
-          "attributeType": {
-            "uuid": "fa6ed747-489f-486c-8ecc-976d273446fb"
-          },
-          "voided": true
-        }
-      ],
-      "birthdate": "2009-08-24T14:40:26.342+0530",
-      "birthtime": null,
-      "causeOfDeath": "",
-      "deathDate": null,
-      "gender": "M",
-      "names": [
-        {
-          "display": "${givenName} Perf",
-          "familyName": "efg",
-          "givenName": "${givenName}",
-          "preferred": false
-        }
-      ]
-    }
+    ]
   },
-  "relationships": [
-  ]
+  "relationships": []
 }

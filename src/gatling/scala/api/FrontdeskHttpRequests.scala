@@ -88,4 +88,43 @@ object FrontdeskHttpRequests {
       .post("/openmrs/ws/rest/v1/bahmnicore/patientprofile")
       .body(body).asJson
   }
+  def findEncounter(body: Body with(Expression[String])):HttpRequestBuilder={
+    http("find encounter").post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
+      .body(body).asJson
+  }
+
+  def getNutrition:HttpRequestBuilder={
+    http("get Nutrition")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s","byFullySpecifiedName")
+      .queryParam("locale","en")
+      .queryParam("name","Nutritional+Values")
+      .queryParam("v","bahmni")
+  }
+
+  def getObservation(patientId:String):HttpRequestBuilder={
+    http("get observation")
+      .get("/openmrs/ws/rest/v1/bahmnicore/observations")
+      .queryParam("concept","Height")
+      .queryParam("concept","Weight")
+      .queryParam("patientUuid",patientId)
+      .queryParam("scope","latest")
+
+  }
+  def getVital:HttpRequestBuilder={
+    http("get Vital")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s","byFullySpecifiedName")
+      .queryParam("locale","en")
+      .queryParam("name","Vitals")
+      .queryParam("v","bahmni")
+  }
+  def getFeeInformation:HttpRequestBuilder={
+    http("get fee information")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s","byFullySpecifiedName")
+      .queryParam("locale","en")
+      .queryParam("name","Fee+Information")
+      .queryParam("v","bahmni")
+  }
 }
