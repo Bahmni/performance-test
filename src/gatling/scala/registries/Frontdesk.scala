@@ -9,19 +9,6 @@ import io.gatling.http.Predef._
 import scala.util.Random
 
 object Frontdesk {
-  val goToHomePage: ChainBuilder = exec(
-    getUser(LOGIN_USER)
-      .check(
-        jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
-      )
-      .resources(
-        getProviderForUser("#{runTimeUuid}"),
-        getSession,
-        postUserInfo("#{runTimeUuid}"),
-        getGlobalProperty("bahmni.enableAuditLog"),
-        postAuditLog
-      )
-  )
 
   val goToRegistrationSearchPage: ChainBuilder = exec(
     getVisitLocation(LOGIN_LOCATION_UUID)
