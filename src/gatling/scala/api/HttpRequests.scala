@@ -73,4 +73,32 @@ object HttpRequests {
     http("get LoginLocation to visit type mapping")
       .get("/openmrs/ws/rest/v1/entitymapping?mappingType="+ mappingType +"&s=byEntityAndMappingType")
   }
+
+  def getPersonaAttributeType:HttpRequestBuilder={
+    http("get persona Attribute type")
+      .get("/openmrs/ws/rest/v1/personattributetype")
+      .queryParam("v","custom:(uuid,name,sortWeight,description,format,concept)")
+  }
+  def activateVisit(patientid:String):HttpRequestBuilder={
+  http("activate visit").get("/openmrs/ws/rest/v1/visit")
+    .queryParam("includeInactive","false")
+    .queryParam("patient",patientid)
+    .queryParam("v","custom:(uuid,location:(uuid)")
+  }
+
+  def findEncounter(patientUuid: String):HttpRequestBuilder={
+    http("find encounter").post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
+      .body(StringBody(s"""{"patientUuid": "${patientUuid}", "providerUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ] }""".stripMargin)).asJson
+  }
+
+  def getObservation(patientId:String, concepts: Array[String]):HttpRequestBuilder={
+    val request = http("get observation")
+      .get("/openmrs/ws/rest/v1/bahmnicore/observations")
+      for(c<-concepts){
+        request.queryParam("concept", c)
+      }
+      request.queryParam("patientUuid",patientId)
+      request.queryParam("scope","latest")
+      request.queryParam("numberOfVisits", "1")
+  }
 }

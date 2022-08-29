@@ -24,6 +24,7 @@ object Consultation {
       .pause(10 seconds, 20 seconds)
       .exec(goToClinicalApp)
       .exec(goToClinicalSearch)
+      .exec(goToDashboard("#{opdPatientId}"))
   }
 
 }

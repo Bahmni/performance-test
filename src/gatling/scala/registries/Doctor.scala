@@ -1,12 +1,11 @@
 package registries
 
 import api.Constants._
-import configurations.MaximumResponseTimes
+import api.DoctorHttpRequests._
+import api.HttpRequests._
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
-import api.DoctorHttpRequests._
-import api.HttpRequests._
 
 object Doctor {
 
@@ -38,10 +37,10 @@ object Doctor {
       )
   )
 
-  val goToClinicalSearch: ChainBuilder = exec(
+  val goToClinicalSearch :ChainBuilder = exec(
     getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
       .check(
-        jsonPath("$..uuid").find.saveAs("opdPatientId"),
+        jsonPath(PATIENT_NAME).find.saveAs("opdPatientId"),
         jsonPath("$..activeVisitUuid").find.saveAs("opdVisitId")
       )
       .resources(
@@ -51,38 +50,57 @@ object Doctor {
       )
   )
 
-  private def gotToDashboard(patientUuid: String, visitUuid: String): ChainBuilder = {
-    exec(
-      getRelationship(patientUuid)
-        .resources(
-          getSession.check(
-            jsonPath("$.currentProvider.uuid").find.saveAs("currentProviderUuid")
-          ),
-          getVisitLocation("${locationUuid}"),
-          getConceptByName("Follow-up Condition"),
-          getVisits(patientUuid).check(
-            jsonPath("$.results[0].uuid").find.saveAs( "visitTypeUuid"),
-            jsonPath("$..location.uuid").find.saveAs("locationUuid")
-          ),
-          getUser(LOGIN_USER).check(
-            jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
-          ),
-          getProviderForUser("${currentProviderUuid}"),
-          getOrderTypes,
-          getPatientFull(patientUuid),
-          getEntityMapping("location_encountertype"),
-          getSummaryByVisitUuid("${visitTypeUuid}"),
-          getEncounterTypeConsultation.check(
-            jsonPath("$..uuid").find.saveAs( "encounterTypeUuid")
-          ),
-          getDiagnoses(patientUuid),
-          getConditionalHistory(patientUuid),
-          getDiseaseTemplates(patientUuid),
-          getEncoutnerByEncounterTypeUuid(patientUuid),
-          postAuditLog,
-          getDrugOrderConfig,
-          getDrugOrdersForPatient(patientUuid),
-//          getOrdersForPatient(patientUuid, RADIOLOGY_ORDER_TYPE_UUID),
+  def goToDashboard(patientUuid: String): ChainBuilder = exec(
+    getRelationship(patientUuid)
+      .resources(
+        getSession.check(
+          jsonPath("$.currentProvider.uuid").find.saveAs("currentProviderUuid")
+        ),
+        getVisitLocation("${locationUuid}"),
+        getConceptByName("Follow-up Condition"),
+        getVisits(patientUuid).check(
+          jsonPath("$.results[0].uuid").find.saveAs( "visitTypeUuid"),
+          jsonPath("$..location.uuid").find.saveAs("locationUuid")
+        ),
+        getUser(LOGIN_USER).check(
+          jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
+        ),
+        getProviderForUser("${currentProviderUuid}"),
+        getOrderTypes,
+        getPatientFull(patientUuid),
+        getEntityMapping("location_encountertype"),
+        getSummaryByVisitUuid("${visitTypeUuid}"),
+        getEncounterTypeConsultation.check(
+          jsonPath("$..uuid").find.saveAs( "encounterTypeUuid")
+        ),
+        findEncounter(patientUuid),
+        postUserInfo(patientUuid),
+        getDiagnoses("#{runtimeUuid}"),
+        getConditionalHistory("#{runtimeUuid}"),
+        getDiseaseTemplates("#{runtimeUuid}"),
+        postAuditLog,
+        getPatientImage("#{runtimeUuid}"),
+        getEncoutnerByEncounterTypeUuid("#{runtimeUuid}"),
+        getPatientContext("#{runtimeUuid}", "ABHA Address", "phoneNumber"),
+        getPatientsInfoWithSqlInpatientInfoTabOfClinic(patientUuid, "bahmni.sqlGet.upComingAppointments"),
+        getRelationship("#{runtimeUuid}"),
+        getDrugOrderConfig,
+        getDrugOrdersForPatient("#{runtimeUuid}"),
+        getLabOrderResults("#{runtimeUuid}"),
+        getObservation("#{runtimeUuid}",Array("History and Examination")),
+        getObservation("#{runtimeUuid}",Array("Vitals")),
+        getObservation("#{runtimeUuid}",Array("Second Vitals")),
+        getObservation("#{runtimeUuid}",Array("HEIGHT", "Weight", "BMI Data", "BMI Status Data")),
+        getObservation("#{runtimeUuid}",Array("Prescription", "Discharge Summary", "Radiology Report", "Referral Documents")),
+        getConditionalHistory("#{runtimeUuid}"),
+        getVisits("#{runtimeUuid}"),
+        getAllObservationTemplates,
+        getObs("#{runtimeUuid}", "visitFormDetails"),
+        getPatientFormTypes("#{runtimeUuid}"),
+        getLatestPublishedForms,
+        getVisit("#{visitTypeUuid}"),
+        getGlobalProperty("drugOrder.drugOther")
+        //          getOrdersForPatient(patientUuid, RADIOLOGY_ORDER_TYPE_UUID),
 //          getOrdersForPatient(patientUuid, USG_ORDER_TYPE_UUID,
 //            List("USG Order fulfillment, Clinician", "USG Order fulfillment Notes, Findings", "USG Order fulfillment, Remarks")),
 //          getProgramEnrollment(patientUuid),
@@ -108,7 +126,6 @@ object Doctor {
 //          getLatestPublishedForms,
 //          getConceptByNameAndMemberDisplay("All Observation Templates"),
 //          getFlowSheet(patientUuid)
-        )
-    )
-  }
+      )
+  )
 }

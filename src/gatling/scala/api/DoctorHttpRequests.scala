@@ -135,4 +135,55 @@ object DoctorHttpRequests {
       .get("/openmrs/ws/rest/v1/bahmnicore/visit/summary")
       .queryParam("visitUuid", visitUuid)
   }
+
+  def getPatientContext(patientUuid : String, patientIdentitfiers: String, personAttributes: String ) : HttpRequestBuilder = {
+    http("get patient context")
+      .get("/openmrs/ws/rest/v1/bahmnicore/patientcontext")
+      .queryParam("patientIdentifiers", patientIdentitfiers)
+      .queryParam("personAttributes", personAttributes)
+      .queryParam("patientUuid", patientUuid)
+  }
+
+  def getPatientsInfoWithSqlInpatientInfoTabOfClinic(patientUuid: String, sqlName : String): HttpRequestBuilder = {
+    http("get patient upcoming appointment")
+      .get("/openmrs/ws/rest/v1/bahmnicore/sql")
+      .queryParam("v", "full")
+      .queryParam("patientUuid", patientUuid)
+      .queryParam("q", sqlName)
+  }
+
+  def getLabOrderResults(patientUuid: String): HttpRequestBuilder = {
+    http("get lab order results")
+      .get("/openmrs/ws/rest/v1/bahmnicore/labOrderResults?numberOfVisits=1")
+      .queryParam("patientUuid", patientUuid)
+  }
+
+  def getAllObservationTemplates: HttpRequestBuilder = {
+    http("Get all observation templates")
+      .get("/openmrs/ws/rest/v1/concept?s=byFullySpecifiedName&name=All+Observation+Templates&v=custom:(setMembers:(display))")
+  }
+
+  def getObs(patientUuid: String, v :String): HttpRequestBuilder = {
+    http("Get obs")
+      .get("/openmrs/ws/rest/v1/obs")
+      .queryParam("numberOfVisits","1")
+      .queryParam("patient",patientUuid)
+      .queryParam("s","byPatientUuid")
+      .queryParam("v",v)
+  }
+
+  def getPatientFormTypes(patientUuid : String) : HttpRequestBuilder = {
+    http("get patient info, form type, visits")
+      .get("/openmrs/ws/rest/v1/bahmnicore/patient/"+patientUuid+"/forms?formType=v2&numberOfVisits=1")
+  }
+
+  def getLatestPublishedForms: HttpRequestBuilder = {
+    http("get latest published forms")
+      .get("/openmrs/ws/rest/v1/bahmniie/form/latestPublishedForms")
+  }
+
+  def getVisit(visitUuid: String): HttpRequestBuilder = {
+    http("get visit")
+      .get("/openmrs/ws/rest/v1/visit/" + visitUuid + "?v=custom:(attributes:(value,attributeType:(display,name)))")
+  }
 }

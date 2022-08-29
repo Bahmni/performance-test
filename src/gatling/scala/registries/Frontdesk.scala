@@ -6,6 +6,7 @@ import api.HttpRequests._
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
+
 import scala.util.Random
 
 object Frontdesk {
@@ -64,5 +65,51 @@ object Frontdesk {
     )
   }
 
+  val startVisitForCreatePatient: ChainBuilder = {
+    exec(
+      startVisitRequest("#{patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
+    )
+  }
+
+  val gotoCreatePatientPage : ChainBuilder = exec(
+    getUser(LOGIN_USER)
+      .check(
+        jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
+      ).resources(
+        getLoginLocations,
+        getProviderForUser("#{runTimeUuid}"),
+        postUserInfo("#{runTimeUuid}"),
+        getSession,
+        getVisitLocation(LOGIN_LOCATION_UUID),
+        getRegistrationConcepts,
+        getPersonaAttributeType,
+        getIdentifierTypes,
+        getAddressHierarchyLevel,
+        getGlobalProperty("mrs.genders"),
+        getRelationshipTypes,
+        getGlobalProperty("bahmni.relationshipTypeMap"),
+        getEntityMapping("loginlocation_visittype"),
+        getGlobalProperty("bahmni.enableAuditLog"),
+        postAuditLog,
+        getGlobalProperty("concept.reasonForDeath"),
+      )
+  )
+
+  val createPatient : ChainBuilder = {
+    exec(
+      createPatientRequest(ElFileBody("patient_profile.json"))
+        .check(
+          jsonPath("$.patient.uuid").saveAs("patient_uuid"),
+        ).resources(
+        findEncounter("#{patient_uuid}"),
+        activateVisit("#{patient_uuid}"),
+        getNutrition,
+        getObservation("#{patient_uuid}",Array("HEIGHT","Weight")),
+        getVital,
+        getFeeInformation,
+        getPatientProfileAfterRegistration("#{patient_uuid}")
+      )
+    )
+  }
 
 }
