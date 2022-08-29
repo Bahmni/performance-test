@@ -15,11 +15,6 @@ object FrontdeskHttpRequests {
       .get("/openmrs/ws/rest/v1/relationshiptype?v=custom:(aIsToB,bIsToA,uuid)")
   }
 
-  def getEntityMapping: HttpRequestBuilder = {
-    http("get LoginLocation to visit type mapping")
-      .get("/openmrs/ws/rest/v1/entitymapping?mappingType=loginlocation_visittype&s=byEntityAndMappingType")
-  }
-
   def getPersonAttributeTypes: HttpRequestBuilder = {
     http("get person attribute types")
       .get("/openmrs/ws/rest/v1/personattributetype?v=custom:(uuid,name,sortWeight,description,format,concept)")

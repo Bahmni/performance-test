@@ -68,4 +68,9 @@ object HttpRequests {
     http("get registration concepts")
       .get("/openmrs/ws/rest/v1/bahmnicore/config/bahmniencounter?callerContext=REGISTRATION_CONCEPTS")
   }
+
+  def getEntityMapping(mappingType: String): HttpRequestBuilder = {
+    http("get LoginLocation to visit type mapping")
+      .get("/openmrs/ws/rest/v1/entitymapping?mappingType="+ mappingType +"&s=byEntityAndMappingType")
+  }
 }

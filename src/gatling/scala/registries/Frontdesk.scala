@@ -23,7 +23,7 @@ object Frontdesk {
         getAddressHierarchyLevel,
         getIdentifierTypes,
         getRelationshipTypes,
-        getEntityMapping,
+        getEntityMapping("loginlocation_visittype"),
         getPersonAttributeTypes,
         getRegistrationConcepts,
         getByVisitLocation(LOGIN_LOCATION_UUID),

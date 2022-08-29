@@ -68,6 +68,12 @@ object DoctorHttpRequests {
       .get("/openmrs/ws/rest/v1/patient/" + patientUuid)
   }
 
+  def getPatientFull(patientUuid: String): HttpRequestBuilder = {
+    http("get patient")
+      .get("/openmrs/ws/rest/v1/patient/" + patientUuid)
+      .queryParam("v","full")
+  }
+
   def getDiagnoses(patientUuid: String): HttpRequestBuilder = {
     http("get diagnoses for patient")
       .get("/openmrs/ws/rest/v1/bahmnicore/diagnosis/search")
@@ -124,4 +130,9 @@ object DoctorHttpRequests {
       .queryParam("patientUuid", patientUuid)
   }
 
+  def getSummaryByVisitUuid (visitUuid : String): HttpRequestBuilder = {
+    http("get summary by visit UUID")
+      .get("/openmrs/ws/rest/v1/bahmnicore/visit/summary")
+      .queryParam("visitUuid", visitUuid)
+  }
 }

@@ -3,10 +3,8 @@ package scenarios
 import configurations.{Load, MaximumResponseTimes, Possibility}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
-import registries.Doctor._
-import registries.Frontdesk._
 import registries.Common._
-import configurations.{Load, MaximumResponseTimes, Possibility}
+import registries.Doctor._
 import scenarios.BaseScenario.setupScenario
 
 import scala.concurrent.duration.DurationInt

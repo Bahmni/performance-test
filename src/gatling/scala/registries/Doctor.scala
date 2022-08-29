@@ -58,21 +58,23 @@ object Doctor {
           getSession.check(
             jsonPath("$.currentProvider.uuid").find.saveAs("currentProviderUuid")
           ),
+          getVisitLocation("${locationUuid}"),
           getConceptByName("Follow-up Condition"),
+          getVisits(patientUuid).check(
+            jsonPath("$.results[0].uuid").find.saveAs( "visitTypeUuid"),
+            jsonPath("$..location.uuid").find.saveAs("locationUuid")
+          ),
           getUser(LOGIN_USER).check(
             jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
           ),
           getProviderForUser("${currentProviderUuid}"),
           getOrderTypes,
-          getVisits(patientUuid).check(
-            jsonPath("$.results[0].uuid").find.saveAs( "visitTypeUuid"),
-            jsonPath("$..location.uuid").find.saveAs("locationUuid")
-
-          ),
+          getPatientFull(patientUuid),
+          getEntityMapping("location_encountertype"),
+          getSummaryByVisitUuid("${visitTypeUuid}"),
           getEncounterTypeConsultation.check(
             jsonPath("$..uuid").find.saveAs( "encounterTypeUuid")
           ),
-          getPatient(patientUuid),
           getDiagnoses(patientUuid),
           getConditionalHistory(patientUuid),
           getDiseaseTemplates(patientUuid),
