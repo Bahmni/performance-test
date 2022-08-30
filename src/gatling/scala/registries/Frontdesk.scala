@@ -70,6 +70,7 @@ object Frontdesk {
   val startVisitForCreatePatient: ChainBuilder = {
     exec(
       startVisitRequest("#{patient_uuid}", "#{visit_type_id}", LOGIN_LOCATION_UUID)
+
     )
   }
 
@@ -89,6 +90,7 @@ object Frontdesk {
           check(
             jsonPath("$[?(@.name==\"Patient Identifier\")].uuid").find.saveAs("identifier_type"),
             jsonPath("$[?(@.name==\"Patient Identifier\")].identifierSources..uuid").find.saveAs("identifier_sources_id")),
+
         getAddressHierarchyLevel,
         getGlobalProperty("mrs.genders"),
         getRelationshipTypes,
@@ -105,6 +107,7 @@ object Frontdesk {
       println(identifierType+ ":" +identiferSourceId)
       session
   }
+
 
   val createPatient : ChainBuilder = {
     exec(

@@ -84,7 +84,6 @@ object FrontdeskHttpRequests {
       .body(body).asJson
   }
 
-
   def getNutrition:HttpRequestBuilder={
     http("get Nutrition")
       .get("/openmrs/ws/rest/v1/concept")
