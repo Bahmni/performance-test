@@ -1,6 +1,8 @@
 package api
 
 import io.gatling.core.Predef._
+import io.gatling.core.body.Body
+import io.gatling.core.session.Expression
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
 
@@ -74,5 +76,55 @@ object FrontdeskHttpRequests {
       .post("/openmrs/ws/rest/v1/visit")
       .body(StringBody(s"""{"patient":"$patient_uuid","visitType":"$opd_visit_type_id","location":"$login_location_id"}"""))
       .asJson
+  }
+
+  def getReasonForDeath: HttpRequestBuilder = {
+    http("Get reason for death")
+      .get("/openmrs/ws/rest/v1/concept?s=byFullySpecifiedName&name=Reason+For+Death&v=custom:(uuid,name,set,names,setMembers:(uuid,display,name:(uuid,name),names,retired))")
+  }
+
+  def createPatientRequest(body: Body with (Expression[String])): HttpRequestBuilder = {
+    http("create patient")
+      .post("/openmrs/ws/rest/v1/bahmnicore/patientprofile")
+      .body(body).asJson
+  }
+  def findEncounter(patientUuid: String):HttpRequestBuilder={
+    http("find encounter").post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
+      .body(StringBody(s"""{"patientUuid": "${patientUuid}", "providerUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ] }""".stripMargin)).asJson
+  }
+
+  def getNutrition:HttpRequestBuilder={
+    http("get Nutrition")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s","byFullySpecifiedName")
+      .queryParam("locale","en")
+      .queryParam("name","Nutritional+Values")
+      .queryParam("v","bahmni")
+  }
+
+  def getObservation(patientId:String):HttpRequestBuilder={
+    http("get observation")
+      .get("/openmrs/ws/rest/v1/bahmnicore/observations")
+      .queryParam("concept","Height")
+      .queryParam("concept","Weight")
+      .queryParam("patientUuid",patientId)
+      .queryParam("scope","latest")
+
+  }
+  def getVital:HttpRequestBuilder={
+    http("get Vital")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s","byFullySpecifiedName")
+      .queryParam("locale","en")
+      .queryParam("name","Vitals")
+      .queryParam("v","bahmni")
+  }
+  def getFeeInformation:HttpRequestBuilder={
+    http("get fee information")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s","byFullySpecifiedName")
+      .queryParam("locale","en")
+      .queryParam("name","Fee+Information")
+      .queryParam("v","bahmni")
   }
 }

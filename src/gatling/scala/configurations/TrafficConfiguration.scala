@@ -23,6 +23,12 @@ object Load {
     responseTimes = MaximumResponseTimes(28000 milliseconds, 28000 milliseconds, 28000 milliseconds)
   )
 
+  val dev: TrafficConfiguration = TrafficConfiguration(
+    activeUsers = 1,
+    duration = 1 minutes,
+    responseTimes = MaximumResponseTimes(1000 milliseconds, 1000 milliseconds, 1000 milliseconds)
+  )
+
   def getTrafficShareConfiguration(loadSharePercentage: Int): TrafficShareConfiguration = {
     System.out.println(s"Load Simulation Type is : ${System.getenv("LOAD_SIMULATION_TYPE") toLowerCase}")
     System.getenv("LOAD_SIMULATION_TYPE") toLowerCase match {
@@ -30,6 +36,8 @@ object Load {
         new TrafficShareConfiguration(high, loadSharePercentage)
       case "peak" =>
         new TrafficShareConfiguration(peak, loadSharePercentage)
+      case "dev" =>
+        new TrafficShareConfiguration(dev, loadSharePercentage)
       case "standard" | _ =>
         new TrafficShareConfiguration(standard, loadSharePercentage)
     }
