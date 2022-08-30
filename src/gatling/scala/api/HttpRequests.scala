@@ -91,14 +91,8 @@ object HttpRequests {
       .body(StringBody(s"""{"patientUuid": "${patientUuid}", "providerUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ] }""".stripMargin)).asJson
   }
 
-  def getObservation(patientId:String, concepts: Array[String]):HttpRequestBuilder={
-    val request = http("get observation")
-      .get("/openmrs/ws/rest/v1/bahmnicore/observations")
-      for(c<-concepts){
-        request.queryParam("concept", c)
-      }
-      request.queryParam("patientUuid",patientId)
-      request.queryParam("scope","latest")
-      request.queryParam("numberOfVisits", "1")
+  def getObservation(concepts: Map[String,String]):HttpRequestBuilder={
+    http("get observation")
+      .get("/openmrs/ws/rest/v1/bahmnicore/observations").queryParamMap(concepts)
   }
 }

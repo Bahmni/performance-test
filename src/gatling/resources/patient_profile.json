@@ -20,9 +20,9 @@
     },
     "identifiers": [
       {
-        "identifierSourceUuid": "c5cf4b68-6529-43fc-a644-c775ae73745e",
+        "identifierSourceUuid": "${identifierSourcesId}",
         "identifierPrefix": "ABC",
-        "identifierType": "ff7e312b-18a1-11ed-bd3f-02cf26abc856",
+        "identifierType": "${identifierType}",
         "preferred": true,
         "voided": false
       }

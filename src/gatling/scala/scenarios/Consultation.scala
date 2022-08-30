@@ -23,8 +23,10 @@ object Consultation {
       .exec(goToHomePage)
       .pause(10 seconds, 20 seconds)
       .exec(goToClinicalApp)
-      .exec(goToClinicalSearch)
+      .exec(goToClinicalSearch())
       .exec(goToDashboard("#{opdPatientId}"))
+      .exec(setSession())
+      .exec(setVisit("#{opdPatientId}"))
   }
 
 }
