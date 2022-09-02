@@ -22,6 +22,7 @@ object Common {
       )
       .resources(
         getProviderForUser("#{runTimeUuid}"),
+        deleteSession,
         getSession,
         postUserInfo("#{runTimeUuid}"),
         getGlobalProperty("bahmni.enableAuditLog"),

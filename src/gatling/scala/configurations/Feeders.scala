@@ -1,30 +1,36 @@
 package configurations
 
+import api.Constants.{LOGIN_LOCATION_UUID, PROVIDER_UUID}
 import io.gatling.core.Predef.{configuration, csv}
 import io.gatling.core.feeder.BatchableFeederBuilder
-import api.HttpRequests._
-
-import scala.util.Random
 
 import scala.util.Random
 
 object Feeders {
   val patientName: BatchableFeederBuilder[String] = csv("patientName.csv").circular
   val rnd = new Random()
-  var identifierType:String=null
-  var identiferSourceId:String=null
-
-  def randomString(length: Int) = {
+  var identifierType: String = ""
+  var identifierSourceId: String = ""
+  var patientUuid: String = ""
+  var encounterTypeUuid: String = ""
+  var orders: String = "[]"
+  var drugOrders: String = "[]"
+  def randomString(length: Int): String = {
     rnd.alphanumeric.filter(_.isLetter).take(length).mkString
   }
 
-  val jsonFeeder = Iterator.continually(
+  var jsonFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
     Map(
       "givenName" -> randomString(5),
       "streetAddress1" -> randomString(8),
-      "identifierType"-> identifierType,
-      "identifierSourcesId"->identiferSourceId
-
+      "identifierType" -> identifierType,
+      "identifierSourcesId" -> identifierSourceId,
+      "locationUuid" -> LOGIN_LOCATION_UUID,
+      "patientUuid" -> patientUuid,
+      "encounterTypeUuid" -> encounterTypeUuid,
+      "providerUuid" -> PROVIDER_UUID,
+      "orders" -> orders,
+      "drugOrders" -> drugOrders
     )
   )
 }

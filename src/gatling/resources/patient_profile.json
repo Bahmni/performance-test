@@ -3,9 +3,9 @@
     "person": {
       "names": [
         {
-          "givenName": "${givenName}",
+          "givenName": "#{givenName}",
           "familyName": "demo",
-          "display": "${givenName} perf",
+          "display": "#{givenName} perf",
           "preferred": false
         }
       ],
@@ -20,9 +20,9 @@
     },
     "identifiers": [
       {
-        "identifierSourceUuid": "${identifierSourcesId}",
+        "identifierSourceUuid": "#{identifierSourcesId}",
         "identifierPrefix": "ABC",
-        "identifierType": "${identifierType}",
+        "identifierType": "#{identifierType}",
         "preferred": true,
         "voided": false
       }
