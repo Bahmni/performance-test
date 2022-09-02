@@ -118,4 +118,12 @@ object FrontdeskHttpRequests {
       .queryParam("name", "Fee+Information")
       .queryParam("v", "bahmni")
   }
+
+  def getPatientDocumentConcept = {
+    http("get patient document concept")
+      .get("/openmrs/ws/rest/v1/concept")
+      .queryParam("s","byFullySpecifiedName")
+      .queryParam("name","Patient Document")
+      .queryParam("v","custom:(uuid,setMembers:(uuid,name:(name)))")
+  }
 }

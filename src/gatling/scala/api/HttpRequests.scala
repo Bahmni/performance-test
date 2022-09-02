@@ -1,5 +1,6 @@
 package api
 
+import api.Constants.ENCOUNTER_TYPE_UUID
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
@@ -113,6 +114,17 @@ object HttpRequests {
       .asJson
   }
 
+  def findEncounter(patientUuid: String, providerUUID: String, encounterTypeUUID: String): HttpRequestBuilder = {
+    http("find encounter")
+      .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
+      .body(
+        StringBody(
+          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "$providerUUID" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "$encounterTypeUUID" ] }""".stripMargin
+        )
+      )
+      .asJson
+  }
+
   def getObservation(concepts: Map[String, String]): HttpRequestBuilder = {
     http("get observation")
       .get("/openmrs/ws/rest/v1/bahmnicore/observations")
@@ -124,5 +136,21 @@ object HttpRequests {
       .get("/openmrs/ws/rest/v1/bahmnicore/observations")
       .multivaluedQueryParam("concept", concept)
       .queryParamMap(params)
+  }
+
+  def getVisitType = {
+    http("get visitType")
+      .get("/openmrs/ws/rest/v1/visittype")
+  }
+
+  def getEncounterByEncounterTypeUuid(patientUuid: String, encounterTypeUUID: String): HttpRequestBuilder = {
+    http("get encounter by uuid")
+      .get("/openmrs/ws/rest/v1/encounter")
+      .queryParam(
+        "v",
+        "custom:(uuid,provider,visit:(uuid,startDatetime,stopDatetime),obs:(uuid,concept:(uuid,name),groupMembers:(id,uuid,obsDatetime,value,comment)))"
+      )
+      .queryParam("patient", patientUuid)
+      .queryParam("encounterType", encounterTypeUUID)
   }
 }

@@ -50,7 +50,8 @@ object DoctorHttpRequests {
 
   def getVisits(patientUuid: String): HttpRequestBuilder = {
     http("getVisits")
-      .get("/openmrs/ws/rest/v1/visit?includeInactive=true")
+      .get("/openmrs/ws/rest/v1/visit")
+      .queryParam("includeInactive","true")
       .queryParam("v", "custom:(uuid,visitType,startDatetime,stopDatetime,location,encounters:(uuid))")
       .queryParam("patient", patientUuid)
   }

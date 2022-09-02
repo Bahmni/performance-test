@@ -1,7 +1,7 @@
 package scenarios
 
 import configurations.Feeders.jsonFeeder
-import configurations.{Load, MaximumResponseTimes, Possibility}
+import configurations.{Load, MaximumResponseTimes, Possibility, TrafficConfiguration}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
 import registries.Common._
@@ -14,8 +14,9 @@ import scala.language.postfixOps
 object Registration {
   private val possibilities = List(
     Possibility(existingPatient_IdSearch_StartVisit, 30),
-    Possibility(existingPatient_NameSearch_StartVisit, 30),
-    Possibility(createPatient_StartVisit, 40)
+    Possibility(existingPatient_NameSearch_StartVisit, 20),
+    Possibility(createPatient_StartVisit, 40),
+    Possibility(patient_Document_Upload, 10)
   )
 
   def scenario(loadSharePercentage: Int): PopulationBuilder =
@@ -56,4 +57,13 @@ object Registration {
       .exec(startVisitForCreatePatient)
       .pause(5 seconds)
   }
+
+  private def patient_Document_Upload(expectedResTimes: MaximumResponseTimes) = {
+    exec(existingPatient_NameSearch_StartVisit(null))
+      .exec(getActivePatients)
+      .exec(getPatientImages)
+      .pause(5 seconds, 10 seconds)
+      .exec(goToPatientDocumentUpload)
+  }
+
 }
