@@ -1,9 +1,11 @@
 package configurations
 
-import api.Constants.{LOGIN_LOCATION_UUID, PROVIDER_UUID}
+import api.Constants.{IMAGES_ENCOUNTER_UUID, IMAGES_PROVIDER_UUID, LOGIN_LOCATION_UUID, PROVIDER_UUID}
 import io.gatling.core.Predef.{configuration, csv}
 import io.gatling.core.feeder.BatchableFeederBuilder
 
+import java.text.SimpleDateFormat
+import java.util.Calendar
 import scala.util.Random
 
 object Feeders {
@@ -15,8 +17,17 @@ object Feeders {
   var encounterTypeUuid: String = ""
   var orders: String = "[]"
   var drugOrders: String = "[]"
+  var ptUuid: String = ""
+  var visitTypeUuid: String =null
+  var visitUuid: String = null
+
   def randomString(length: Int): String = {
     rnd.alphanumeric.filter(_.isLetter).take(length).mkString
+  }
+
+  def getCurrentDateAndTime(): String = {
+    val inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    inputFormat.format(Calendar.getInstance.getTime)
   }
 
   var jsonFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
@@ -31,6 +42,18 @@ object Feeders {
       "providerUuid" -> PROVIDER_UUID,
       "orders" -> orders,
       "drugOrders" -> drugOrders
+    )
+  )
+
+  var docUploadFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
+    Map(
+      "ptUuid" -> ptUuid,
+      "visitTypeUuid" -> visitTypeUuid,
+      "visitStartDate" -> getCurrentDateAndTime(),
+      "encounterTypeUuid" -> IMAGES_ENCOUNTER_UUID,
+      "providerUuid" -> IMAGES_PROVIDER_UUID,
+      "visitUuid" -> visitUuid,
+      "locationUuid" -> LOGIN_LOCATION_UUID
     )
   )
 }

@@ -52,12 +52,12 @@ object HttpRequests {
       )
       .asJson
   }
-  def postAuditLog(loggedInUserUuid: String): HttpRequestBuilder = {
+  def postAuditLog(patientUuid: String): HttpRequestBuilder = {
     http("post audit log")
       .post("/openmrs/ws/rest/v1/auditlog")
       .body(
         StringBody(
-          s"""{\"eventType\":\"DUMMY_PERF_MESSAGE\",\"message\":\"DUMMY_PERF_TEST_MESSAGE\",\"module\":\"MODULE_PERF_TEST\",\"patientUuid\":\"$loggedInUserUuid\"}"""
+          s"""{\"eventType\":\"DUMMY_PERF_MESSAGE\",\"message\":\"DUMMY_PERF_TEST_MESSAGE\",\"module\":\"MODULE_PERF_TEST\",\"patientUuid\":\"$patientUuid\"}"""
         )
       )
       .asJson
@@ -152,5 +152,12 @@ object HttpRequests {
       )
       .queryParam("patient", patientUuid)
       .queryParam("encounterType", encounterTypeUUID)
+  }
+
+  def postUploadDocument(patientUuid: String): HttpRequestBuilder = {
+    http("post patient consultation image")
+      .post("/openmrs/ws/rest/v1/bahmnicore/visitDocument/uploadDocument")
+      .body(ElFileBody("bodies/post_consultation_imageFile_body.json"))
+      .asJson
   }
 }

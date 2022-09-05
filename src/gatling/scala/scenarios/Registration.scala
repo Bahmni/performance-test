@@ -1,6 +1,6 @@
 package scenarios
 
-import configurations.Feeders.jsonFeeder
+import configurations.Feeders.{docUploadFeeder, jsonFeeder}
 import configurations.{Load, MaximumResponseTimes, Possibility, TrafficConfiguration}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
@@ -37,7 +37,7 @@ object Registration {
 
   private def existingPatient_NameSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
     exec(login)
-      .feed(csv("registrations.csv").circular)
+      .feed(csv("registrations.csv").random)
       .exec(goToHomePage)
       .pause(10 seconds, 20 seconds)
       .exec(goToRegistrationSearchPage)
@@ -64,6 +64,12 @@ object Registration {
       .exec(getPatientImages)
       .pause(5 seconds, 10 seconds)
       .exec(goToPatientDocumentUpload)
+      .feed(docUploadFeeder)
+      .pause(5 seconds, 10 seconds)
+      .exec(uploadPatientDocument)
+      .pause(2 seconds, 4 seconds)
+      .exec(verifyPatientDocument)
+      .pause(5 seconds, 10 seconds)
   }
 
 }

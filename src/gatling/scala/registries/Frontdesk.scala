@@ -1,10 +1,10 @@
 package registries
 
-import api.Constants.{LOGIN_LOCATION_UUID, LOGIN_USER, PROVIDER_UUID}
+import api.Constants.{IMAGES_ENCOUNTER_UUID, IMAGES_PROVIDER_UUID, LOGIN_LOCATION_UUID, LOGIN_USER, PROVIDER_UUID}
 import api.DoctorHttpRequests._
 import api.FrontdeskHttpRequests._
 import api.HttpRequests._
-import configurations.Feeders.{identifierSourceId, identifierType}
+import configurations.Feeders.{identifierSourceId, identifierType, ptUuid, visitTypeUuid, visitUuid}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
@@ -151,8 +151,8 @@ object Frontdesk {
     var size: Int = 0
     exec(session => {
       size = session("patientUUIDs").as[Vector[String]].size
-      if (size > 5) {
-        size = 5
+      if (size > 54) {
+        size = 54
       }
       val patientUUIDs = session("patientUUIDs").as[Vector[String]].slice(0, size)
       session.set("indexed", patientUUIDs)
@@ -162,14 +162,39 @@ object Frontdesk {
       }
   }
 
-  def goToPatientDocumentUpload ={
-    exec(getPatientFull("#{pt_uuID}")
+  def goToPatientDocumentUpload = {
+    exec(getVisitByPatient("#{pt_uuID}")
+      .check(
+        jsonPath("$..results[0].uuid").find.saveAs("visitUUID"),
+        jsonPath("$..results[0].visitType.uuid").find.saveAs("visitTypeUUID")
+      )
       .resources(
         getVisitType,
-        findEncounter("#{pt_uuID}","a0cef4a7-2796-11ed-89d6-02500e1a53fa","9cf74449-2796-11ed-89d6-02500e1a53fa"),
+        findEncounter("#{pt_uuID}", IMAGES_PROVIDER_UUID, IMAGES_ENCOUNTER_UUID),
         getPatientDocumentConcept,
-        getVisits("#{pt_uuID}"),
-        getEncounterByEncounterTypeUuid("#{pt_uuID}","9cf74449-2796-11ed-89d6-02500e1a53fa")
+        getPatientFull("#{pt_uuID}"),
+        getEncounterByEncounterTypeUuid("#{pt_uuID}", IMAGES_ENCOUNTER_UUID)
+      )
+    )
+      .exec(session => {
+        ptUuid = session("pt_uuID").as[String]
+        visitUuid = session("visitUUID").as[String]
+        visitTypeUuid = session("visitTypeUUID").as[String]
+        session
+      })
+  }
+
+  def uploadPatientDocument = {
+    exec(postUploadDocument("#{pt_uuID}"))
+  }
+
+  def verifyPatientDocument = {
+    exec(postVisitDocument
+      .resources(
+        getGlobalProperty("bahmni.enableAuditLog"),
+        postAuditLog("#{pt_uuID}"),
+        getEncounterByEncounterTypeUuid("#{pt_uuID}", IMAGES_ENCOUNTER_UUID),
+        findEncounter("#{pt_uuID}", IMAGES_PROVIDER_UUID, IMAGES_PROVIDER_UUID)
       )
     )
   }

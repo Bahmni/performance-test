@@ -126,4 +126,19 @@ object FrontdeskHttpRequests {
       .queryParam("name","Patient Document")
       .queryParam("v","custom:(uuid,setMembers:(uuid,name:(name)))")
   }
+
+  def getVisitByPatient(patientUuid: String) = {
+    http("get visit by patient")
+      .get("/openmrs/ws/rest/v1/visit")
+      .queryParam("includeInactive","true")
+      .queryParam("patient",patientUuid)
+      .queryParam("v","custom:(uuid,startDatetime,stopDatetime,visitType,patient)")
+  }
+
+  def postVisitDocument = {
+    http("post visit document")
+      .post("/openmrs/ws/rest/v1/bahmnicore/visitDocument")
+      .body(ElFileBody("bodies/postVisitDocument.json"))
+      .asJson
+  }
 }

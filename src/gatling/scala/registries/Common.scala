@@ -24,9 +24,9 @@ object Common {
         getProviderForUser("#{runTimeUuid}"),
         deleteSession,
         getSession,
-        postUserInfo("#{runTimeUuid}"),
         getGlobalProperty("bahmni.enableAuditLog"),
         postAuditLog
       )
   )
+    .exec(postUserInfo("#{runTimeUuid}"))
 }
