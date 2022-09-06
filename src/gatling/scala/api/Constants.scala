@@ -3,6 +3,9 @@ package api
 object Constants {
   val LOGIN_USER = "superman"
   val LOGIN_LOCATION_UUID = "833d0c66-e29a-4d31-ac13-ca9050d1bfa9"
-  val VISIT_TYPE_ID = "85910860-0f02-4f8e-bbe0-e43ea30c870d"
+  val PROVIDER_UUID = "04774901-18a2-11ed-bd3f-02cf26abc856"
+  val ENCOUNTER_TYPE_UUID = "6a49e102-2509-11ed-9212-02b613456b60"
+  val IMAGES_PROVIDER_UUID = "a0cef4a7-2796-11ed-89d6-02500e1a53fa"
+  val IMAGES_ENCOUNTER_UUID = "9cf74449-2796-11ed-89d6-02500e1a53fa"
 }
 

@@ -1,0 +1,185 @@
+{
+  "locationUuid": "#{locationUuid}",
+  "patientUuid": "#{patientUuid}",
+  "encounterUuid": "#{encounterTypeUuid}",
+  "visitUuid": null,
+  "providers": [
+    {
+      "uuid": "#{providerUuid}"
+    }
+  ],
+  "encounterDateTime": null,
+  "extensions": {
+    "mdrtbSpecimen": []
+  },
+  "context": {},
+  "visitType": null,
+  "bahmniDiagnoses": [],
+  "orders": #{orders},
+  "drugOrders": #{drugOrders},
+  "disposition": null,
+  "observations": [
+    {
+      "concept": {
+        "uuid": "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Pulse"
+      },
+      "value": "72",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/1-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Arterial blood oxygen saturation (pulse oximeter)"
+      },
+      "value": "98",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/2-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Respiratory rate"
+      },
+      "value": "18",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/3-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "229e556d-42f2-4a77-81f5-38e93bc819c3",
+        "name": "Temperature"
+      },
+      "value": "98.6",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/10-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Systolic blood pressure"
+      },
+      "value": "72",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/5-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Diastolic blood pressure"
+      },
+      "value": "120",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/7-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "159633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Body position"
+      },
+      "value": {
+        "uuid": "159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": {
+          "display": "sitting",
+          "uuid": "107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "name": "sitting",
+          "locale": "en",
+          "localePreferred": true,
+          "conceptNameType": "FULLY_SPECIFIED",
+          "links": [
+            {
+              "rel": "self",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "resourceAlias": "name"
+            },
+            {
+              "rel": "full",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+              "resourceAlias": "name"
+            }
+          ],
+          "resourceVersion": "1.9"
+        },
+        "names": [
+          {
+            "display": "sitting",
+            "uuid": "107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "sitting",
+            "locale": "en",
+            "localePreferred": true,
+            "conceptNameType": "FULLY_SPECIFIED",
+            "links": [
+              {
+                "rel": "self",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "resourceAlias": "name"
+              },
+              {
+                "rel": "full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "resourceAlias": "name"
+              }
+            ],
+            "resourceVersion": "1.9"
+          },
+          {
+            "display": "seated",
+            "uuid": "107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "seated",
+            "locale": "en",
+            "localePreferred": false,
+            "conceptNameType": "SHORT",
+            "links": [
+              {
+                "rel": "self",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "resourceAlias": "name"
+              },
+              {
+                "rel": "full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "resourceAlias": "name"
+              }
+            ],
+            "resourceVersion": "1.9"
+          }
+        ],
+        "displayString": "sitting",
+        "resourceVersion": "2.0",
+        "translationKey": "SITTING_8"
+      },
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/8-0",
+      "groupMembers": [],
+      "interpretation": null
+    }
+  ],
+  "encounterTypeUuid": "9c0b5f72-2796-11ed-89d6-02500e1a53fa"
+}

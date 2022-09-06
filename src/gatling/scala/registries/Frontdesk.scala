@@ -1,28 +1,20 @@
 package registries
 
-import api.Constants.{LOGIN_LOCATION_UUID, LOGIN_USER, VISIT_TYPE_ID}
+import api.Constants.{IMAGES_ENCOUNTER_UUID, IMAGES_PROVIDER_UUID, LOGIN_LOCATION_UUID, LOGIN_USER, PROVIDER_UUID}
+import api.DoctorHttpRequests._
 import api.FrontdeskHttpRequests._
 import api.HttpRequests._
+import configurations.Feeders.{identifierSourceId, identifierType, ptUuid, visitTypeUuid, visitUuid}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
 
+import java.util.concurrent.atomic.AtomicInteger
+import scala.collection.mutable
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import scala.util.Random
 
 object Frontdesk {
-  val goToHomePage: ChainBuilder = exec(
-    getUser(LOGIN_USER)
-      .check(
-        jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
-      )
-      .resources(
-        getProviderForUser("#{runTimeUuid}"),
-        getSession,
-        postUserInfo("#{runTimeUuid}"),
-        getGlobalProperty("bahmni.enableAuditLog"),
-        postAuditLog
-      )
-  )
 
   val goToRegistrationSearchPage: ChainBuilder = exec(
     getVisitLocation(LOGIN_LOCATION_UUID)
@@ -37,9 +29,9 @@ object Frontdesk {
         getAddressHierarchyLevel,
         getIdentifierTypes,
         getRelationshipTypes,
-        getEntityMapping,
+        getEntityMapping("loginlocation_visittype"),
         getPersonAttributeTypes,
-        getRegistrationConcepts,
+        getRegistrationConcepts.check(jsonPath("$.visitTypes.OPD").find.saveAs("visit_type_id")),
         getByVisitLocation(LOGIN_LOCATION_UUID),
         getGlobalProperty("bahmni.enableAuditLog"),
         postAuditLog
@@ -68,27 +60,29 @@ object Frontdesk {
 
   val startVisitForID: ChainBuilder = {
     exec(
-      startVisitRequest("#{p_uuID}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
+      startVisitRequest("#{p_uuID}", "#{visit_type_id}", LOGIN_LOCATION_UUID)
     )
   }
 
   val startVisitForName: ChainBuilder = {
     exec(
-      startVisitRequest("#{pt_uuID}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
+      startVisitRequest("#{pt_uuID}", "#{visit_type_id}", LOGIN_LOCATION_UUID)
     )
   }
 
   val startVisitForCreatePatient: ChainBuilder = {
     exec(
-      startVisitRequest("#{patient_uuid}", VISIT_TYPE_ID, LOGIN_LOCATION_UUID)
+      startVisitRequest("#{patient_uuid}", "#{visit_type_id}", LOGIN_LOCATION_UUID)
+
     )
   }
 
-  val gotoCreatePatientPage : ChainBuilder = exec(
+  val gotoCreatePatientPage: ChainBuilder = exec(
     getUser(LOGIN_USER)
       .check(
         jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
-      ).resources(
+      )
+      .resources(
         getLoginLocations,
         getProviderForUser("#{runTimeUuid}"),
         postUserInfo("#{runTimeUuid}"),
@@ -96,33 +90,114 @@ object Frontdesk {
         getVisitLocation(LOGIN_LOCATION_UUID),
         getRegistrationConcepts,
         getPersonaAttributeType,
-        getIdentifierTypes,
+        getIdentifierTypes.check(
+          jsonPath("$[?(@.name==\"Patient Identifier\")].uuid").find.saveAs("identifier_type"),
+          jsonPath("$[?(@.name==\"Patient Identifier\")].identifierSources..uuid").find.saveAs("identifier_sources_id")
+        ),
         getAddressHierarchyLevel,
         getGlobalProperty("mrs.genders"),
         getRelationshipTypes,
         getGlobalProperty("bahmni.relationshipTypeMap"),
-        getEntityMapping,
+        getEntityMapping("loginlocation_visittype"),
         getGlobalProperty("bahmni.enableAuditLog"),
         postAuditLog,
-        getGlobalProperty("concept.reasonForDeath"),
+        getGlobalProperty("concept.reasonForDeath")
       )
-  )
+  ).exec { session =>
+    identifierType = session("identifier_type").as[String]
+    identifierSourceId = session("identifier_sources_id").as[String]
+    session
+  }
 
-  val createPatient : ChainBuilder = {
+  var createPatient: ChainBuilder = {
     exec(
       createPatientRequest(ElFileBody("patient_profile.json"))
         .check(
-          jsonPath("$.patient.uuid").saveAs("patient_uuid"),
-        ).resources(
-        findEncounter("#{patient_uuid}"),
-        activateVisit("#{patient_uuid}"),
-        getNutrition,
-        getObservation("#{patient_uuid}"),
-        getVital,
-        getFeeInformation,
-        getPatientProfileAfterRegistration("#{patient_uuid}")
+          jsonPath("$.patient.uuid").saveAs("patient_uuid")
+        )
+        .resources(
+          findEncounter("#{patient_uuid}"),
+          activateVisit("#{patient_uuid}"),
+          getNutrition,
+          getObservation(Seq("Height", "Weight"), Map("patientUuid" -> "#{patient_uuid}")),
+          getVital,
+          getFeeInformation,
+          getPatientProfileAfterRegistration("#{patient_uuid}")
+        )
+    )
+  }
+
+  def getActivePatients: ChainBuilder = {
+    exec(
+      getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
+        .check(
+          jsonPath("$..uuid").findAll.saveAs("patientUUIDs"),
+        )
+        .resources(
+          getUser(LOGIN_USER)
+            .check(
+              jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
+            ),
+          getSession,
+          getRegistrationConcepts,
+          getGlobalProperty("mrs.genders"),
+          getIdentifierTypes
+        )
+    )
+      .exec(getProviderForUser("#{runTimeUuid}"))
+  }
+
+  def getPatientImages = {
+    var size: Int = 0
+    exec(session => {
+      size = session("patientUUIDs").as[Vector[String]].size
+      if (size > 54) {
+        size = 54
+      }
+      val patientUUIDs = session("patientUUIDs").as[Vector[String]].slice(0, size)
+      session.set("indexed", patientUUIDs)
+    })
+      .foreach("#{indexed}", "index") {
+        exec(getPatientImage("#{index}"))
+      }
+  }
+
+  def goToPatientDocumentUpload = {
+    exec(getVisitByPatient("#{pt_uuID}")
+      .check(
+        jsonPath("$..results[0].uuid").find.saveAs("visitUUID"),
+        jsonPath("$..results[0].visitType.uuid").find.saveAs("visitTypeUUID")
+      )
+      .resources(
+        getVisitType,
+        findEncounter("#{pt_uuID}", IMAGES_PROVIDER_UUID, IMAGES_ENCOUNTER_UUID),
+        getPatientDocumentConcept,
+        getPatientFull("#{pt_uuID}"),
+        getEncounterByEncounterTypeUuid("#{pt_uuID}", IMAGES_ENCOUNTER_UUID)
+      )
+    )
+      .exec(session => {
+        ptUuid = session("pt_uuID").as[String]
+        visitUuid = session("visitUUID").as[String]
+        visitTypeUuid = session("visitTypeUUID").as[String]
+        session
+      })
+  }
+
+  def uploadPatientDocument = {
+    exec(postUploadDocument("#{pt_uuID}"))
+  }
+
+  def verifyPatientDocument = {
+    exec(postVisitDocument
+      .resources(
+        getGlobalProperty("bahmni.enableAuditLog"),
+        postAuditLog("#{pt_uuID}"),
+        getEncounterByEncounterTypeUuid("#{pt_uuID}", IMAGES_ENCOUNTER_UUID),
+        findEncounter("#{pt_uuID}", IMAGES_PROVIDER_UUID, IMAGES_PROVIDER_UUID)
       )
     )
   }
+
 
 }
