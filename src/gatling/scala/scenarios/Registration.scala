@@ -60,6 +60,9 @@ object Registration {
 
   private def patient_Document_Upload(expectedResTimes: MaximumResponseTimes) = {
     exec(existingPatient_NameSearch_StartVisit(null))
+      .pause(3 seconds, 6 seconds)
+      .exec(returnToHomePage)
+      .pause(3 seconds, 6 seconds)
       .exec(getActivePatients)
       .exec(getPatientImages)
       .pause(5 seconds, 10 seconds)

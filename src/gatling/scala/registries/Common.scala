@@ -29,4 +29,13 @@ object Common {
       )
   )
     .exec(postUserInfo("#{runTimeUuid}"))
+
+  def returnToHomePage = {
+    exec(getUser(LOGIN_USER)
+      .check(
+        jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
+      ))
+      .exec(getProviderForUser("#{runTimeUuid}"))
+      .exec(getLoginLocations)
+  }
 }
