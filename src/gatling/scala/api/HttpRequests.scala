@@ -1,6 +1,5 @@
 package api
 
-import api.Constants.ENCOUNTER_TYPE_UUID
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
@@ -28,7 +27,7 @@ object HttpRequests {
       .get("/openmrs/ws/rest/v1/session?v=custom:(uuid)")
   }
   def deleteSession: HttpRequestBuilder = {
-    http("get session")
+    http("delete session")
       .delete("/openmrs/ws/rest/v1/session?v=custom:(uuid)")
   }
 
@@ -159,5 +158,20 @@ object HttpRequests {
       .post("/openmrs/ws/rest/v1/bahmnicore/visitDocument/uploadDocument")
       .body(ElFileBody("bodies/post_consultation_imageFile_body.json"))
       .asJson
+  }
+  def closePatientVisit(patientUuid: String, visitUuid: String): HttpRequestBuilder = {
+    http("close patient visit")
+      .post("/openmrs/ws/rest/v1/bahmnicore/visit/endVisit")
+      .queryParam("visitUuid", visitUuid)
+      .body(StringBody("{\"withCredentials\":true}"))
+  }
+
+  def getVisitByAttributes(isInActive:String,pateintUuid:String,v :String)={
+    http("get visit")
+      .get("/openmrs/ws/rest/v1/visit")
+      .queryParam("includeInactive",isInActive)
+      .queryParam("patient",pateintUuid)
+      .queryParam("v",v)
+
   }
 }

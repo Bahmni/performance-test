@@ -1,0 +1,89 @@
+ [
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Paracetamol 500mg",
+        "form": "Acetaminophen",
+        "uuid": "e3315b29-0bee-4d87-8fcf-0e1941a433c1"
+      },
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 1,
+        "doseUnits": "Tablet(s)",
+        "route": "Oral",
+        "frequency": "Once a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 1,
+        "quantityUnits": "Tablet(s)",
+        "numberOfRefills": 0
+      },
+      "duration": 1,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "dateStopped": null,
+      "orderGroup": {
+        "orderSet": {}
+      }
+    },
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Rabeprazole 20mg",
+        "form": "Rabeprazole",
+        "uuid": "f28db229-dcf4-4ba5-8d89-81d86d025d67"
+      },
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 1,
+        "doseUnits": "Tablet(s)",
+        "route": "Oral",
+        "frequency": "Once a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 1,
+        "quantityUnits": "Tablet(s)",
+        "numberOfRefills": 0
+      },
+      "duration": 1,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "dateStopped": null,
+      "orderGroup": {
+        "orderSet": {}
+      }
+    },
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Metronidazole 500mg",
+        "form": "Metronidazole",
+        "uuid": "4667f8df-b0a6-4ad5-9cb7-f0c8056d7672"
+      },
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 1,
+        "doseUnits": "Tablet(s)",
+        "route": "Oral",
+        "frequency": "Once a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 1,
+        "quantityUnits": "Tablet(s)",
+        "numberOfRefills": 0
+      },
+      "duration": 1,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "dateStopped": null,
+      "orderGroup": {
+        "orderSet": {}
+      }
+    }
+  ]

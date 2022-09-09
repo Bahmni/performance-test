@@ -1,11 +1,11 @@
 {
-  "patientUuid": "#{ptUuid}",
-  "visitTypeUuid": "#{visitTypeUuid}",
+  "patientUuid": "#{pt_uuID}",
+  "visitTypeUuid": "#{visitTypeUUID}",
   "visitStartDate": "2022-09-05T11:04:41.000Z",
   "encounterTypeUuid": "#{encounterTypeUuid}",
   "encounterDateTime": null,
   "providerUuid": "#{providerUuid}",
-  "visitUuid": "#{visitUuid}",
+  "visitUuid": "#{visitUUID}",
   "locationUuid": "#{locationUuid}",
   "documents": [
     {

@@ -15,11 +15,13 @@ object BaseScenario {
       .exec(randomSwitch(Possibilities.balance(load, possibilities): _*))
       .inject(
         //Open System - this would produce more load
-//        rampUsers(300) during 30.seconds,
+        // rampUsers(20) during 180.seconds
 //        constantUsersPerSec(10) during 1.minutes
         //Closed System
         rampConcurrentUsers(0).to(load.activeUsers).during(load.initialRampUpDuration),
         constantConcurrentUsers(load.activeUsers).during(load.totalDuration)
+        //atOnceUsers(1)
+
       )
       .protocols(Protocols.default)
   }

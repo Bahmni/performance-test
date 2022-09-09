@@ -122,17 +122,17 @@ object FrontdeskHttpRequests {
   def getPatientDocumentConcept = {
     http("get patient document concept")
       .get("/openmrs/ws/rest/v1/concept")
-      .queryParam("s","byFullySpecifiedName")
-      .queryParam("name","Patient Document")
-      .queryParam("v","custom:(uuid,setMembers:(uuid,name:(name)))")
+      .queryParam("s", "byFullySpecifiedName")
+      .queryParam("name", "Patient Document")
+      .queryParam("v", "custom:(uuid,setMembers:(uuid,name:(name)))")
   }
 
   def getVisitByPatient(patientUuid: String) = {
     http("get visit by patient")
       .get("/openmrs/ws/rest/v1/visit")
-      .queryParam("includeInactive","true")
-      .queryParam("patient",patientUuid)
-      .queryParam("v","custom:(uuid,startDatetime,stopDatetime,visitType,patient)")
+      .queryParam("includeInactive", "true")
+      .queryParam("patient", patientUuid)
+      .queryParam("v", "custom:(uuid,startDatetime,stopDatetime,visitType,patient)")
   }
 
   def postVisitDocument = {

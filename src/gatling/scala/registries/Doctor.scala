@@ -1,17 +1,18 @@
 package registries
 
 import api.Constants._
-import api.DoctorHttpRequests.{getConfigDrugOrder, _}
+import api.DoctorHttpRequests._
 import api.HttpRequests._
-import io.gatling.core.Predef._
+import io.gatling.core.Predef.{jsonPath, _}
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
-import configurations.Feeders._
+import configurations.Feeders.{orders, _}
+
 import scala.util.Random
 
 object Doctor {
 
-  val goToClinicalApp: ChainBuilder = exec(
+  def goToClinicalApp: ChainBuilder = exec(
     getPatientConfigFromServer
       .resources(
         getUser(LOGIN_USER).check(
@@ -39,16 +40,15 @@ object Doctor {
       )
   )
 
-  val goToClinicalSearch: ChainBuilder = exec(
+  def goToClinicalSearch: ChainBuilder = exec(
     getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
       .check(
         jsonPath("$..uuid").findAll.transform(Random.shuffle(_).head).optional.saveAs("opdPatientId"),
-        jsonPath("$..[?(@.uuid==" + "\"#{opdPatientId}\")].activeVisitUuid").find.saveAs("opdVisitId")
+        jsonPath("$..uuid").findAll.saveAs("patientUUIDs")
       )
       .resources(
         getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
-        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation"),
-        getPatientImage("#{opdPatientId}")
+        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
       )
   )
 
@@ -111,7 +111,11 @@ object Doctor {
           "numberOfVisits" -> "1"
         )
       ),
-      getVisits(patientUuid),
+      getVisits(patientUuid).check(
+        jsonPath("$..results[0].uuid").find.saveAs("opdVisitId"),
+        jsonPath("$..results[?(@.uuid==\"#{opdVisitId}\")].encounters[0].uuid").ofType[Any].not(None).saveAs("encounterUuid"),
+
+      ),
       getAllObservationTemplates,
       getObs(patientUuid, "visitFormDetails"),
       getPatientFormTypes(patientUuid),
@@ -146,27 +150,25 @@ object Doctor {
       postAuditLog(pUuid),
       getLatestPublishedForms
         .check(
-          jsonPath("$[?(@.name==\"Vitals\")].uuid").find.saveAs("form_uuid"),
-          jsonPath("$[?(@.name==\"Vitals\")].name").find.saveAs("form_name")
+          jsonPath("$[?(@.name==\"History and Examination\")].uuid").find.saveAs("form_uuid"),
+          jsonPath("$[?(@.name==\"History and Examination\")].name").find.saveAs("form_name")
         )
-    )
-  ).exec { session =>
-    patientUuid = session("opdPatientId").as[String]
-    encounterTypeUuid = session("encounterTypeUuid").as[String]
-    session
-  }
-
-  val saveEncounter: ChainBuilder = exec(
-    getForm("#{form_uuid}").resources(
-      getFormTranslations("#{form_name}", "#{form_uuid}"),
-      getEntityMappingByLocationEncounter(LOGIN_LOCATION_UUID),
-      getEncounterTypeConsultation.check(jsonPath("$..uuid").find.saveAs("encounterTypeUuid")),
-      postEncounter("bodies/encounter.json")
     )
   )
 
-  val setOrders: ChainBuilder = exec { session =>
-    orders = "[{ \"concept\": {\"uuid\":\"73784885-4113-4e8e-8eab-cd07fb69974e\"}}]"
+  def saveEncounter: ChainBuilder = exec(
+    getForm("#{form_uuid}").resources(
+      getFormTranslations("#{form_name}", "#{form_uuid}"),
+      getEntityMappingByLocationEncounter(LOGIN_LOCATION_UUID),
+      getEncounterTypeConsultation.check(jsonPath("$..uuid").find.saveAs("encounterTypeUuid"))
+    )
+  ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_drugorder.json")) } {
+    exec(postEncounter("bodies/encounter.json"))
+  }
+  def setOrders: ChainBuilder = exec { session =>
+    observations = "[]"
+    val path = System.getProperty("user.dir") + "/src/gatling/resources"
+    orders = scala.io.Source.fromFile(path + "/bodies/orders.json").mkString
     session
   }
 
@@ -186,9 +188,19 @@ object Doctor {
     )
   )
 
-  val setMedication: ChainBuilder = exec { session =>
-    drugOrders =
-      "[{\"careSetting\":\"OUTPATIENT\",\"drug\": {\"name\": \"Dolo 650\",\"form\": null,\"uuid\": \"e3315b29-0bee-4d87-8fcf-0e1941a433c1\"},\"orderType\": \"Drug Order\",\"dosingInstructionType\": \"org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions\",\"dosingInstructions\": {\"dose\": 1,\"doseUnits\": \"Tablet(s)\",\n        \"route\": \"Oral\",\n        \"frequency\": \"Once a day\",\"asNeeded\": false,\"administrationInstructions\": \"{\\\"instructions\\\":\\\"As directed\\\"}\",\"quantity\": 3,\"quantityUnits\": \"Tablet(s)\",\"numberOfRefills\": 0},\"duration\": 3,\"durationUnits\": \"Day(s)\",\"scheduledDate\": null,\"autoExpireDate\": null,\"dateStopped\": null,\"orderGroup\": {\"orderSet\": {}}}]"
+  def setMedication: ChainBuilder = exec { session =>
+    orders = "[]"
+    val path = System.getProperty("user.dir") + "/src/gatling/resources"
+    drugOrders = scala.io.Source.fromFile(path + "/bodies/medications.json").mkString
     session
   }
+
+  def setObservation: ChainBuilder = exec {
+    exec { session =>
+      val path = System.getProperty("user.dir") + "/src/gatling/resources"
+      observations = scala.io.Source.fromFile(path + "/bodies/observations.json").mkString
+      session
+    }
+  }
+
 }

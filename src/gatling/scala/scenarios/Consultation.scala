@@ -6,10 +6,11 @@ import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
 import registries.Common._
 import registries.Doctor._
+import registries.Frontdesk.getPatientImages
 import scenarios.BaseScenario.setupScenario
+
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
-
 import scala.language.postfixOps
 
 object Consultation {
@@ -26,27 +27,24 @@ object Consultation {
       .pause(5 seconds , 10 seconds)
       .exec(goToClinicalApp)
       .exec(goToClinicalSearch)
+      .exec(getPatientImages)
       .pause(5 seconds , 10 seconds)
       .exec(goToDashboard("#{opdPatientId}"))
       .exec(setSession())
       .exec(setVisit("#{opdPatientId}"))
       .pause(5 seconds , 10 seconds)
       .exec(goToObservations("#{opdPatientId}"))
-      .pause(5 seconds , 10 seconds)
-      .feed(jsonFeeder)
-      .exec(saveEncounter)
-      .pause(5 seconds , 10 seconds)
-      .exec(setOrders)
-      .feed(jsonFeeder)
-      .exec(saveEncounter)
-      .pause(5 seconds , 10 seconds)
       .exec(goToMedications("#{opdPatientId}"))
-      .exec(addDrug("Dolo"))
-      .exec(setMedication)
+      .exec(addDrug("Reglan Tablet"))
+      .exec(addDrug("Loperamide Plus"))
+      .exec(addDrug("Promethazine"))
       .feed(jsonFeeder)
+      .pause(40 seconds , 60 seconds)
       .exec(saveEncounter)
-      .pause(5 seconds , 10 seconds)
-
-
+      .pause(2 seconds , 4 seconds)
+      .exec(goToDashboard("#{opdPatientId}"))
+      .pause(2 seconds , 4 seconds)
+      .exec(closeVisit())
+      .pause(4 seconds , 6 seconds)
   }
 }

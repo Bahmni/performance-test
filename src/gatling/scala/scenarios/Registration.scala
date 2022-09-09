@@ -49,7 +49,9 @@ object Registration {
   }
 
   private def createPatient_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(gotoCreatePatientPage)
+    exec(login)
+    .exec(goToHomePage)
+    .exec(gotoCreatePatientPage)
       .pause(5 seconds)
       .feed(jsonFeeder)
       .exec(createPatient)

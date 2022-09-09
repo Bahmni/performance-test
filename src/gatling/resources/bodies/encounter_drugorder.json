@@ -1,14 +1,16 @@
 {
   "locationUuid": "#{locationUuid}",
   "patientUuid": "#{opdPatientId}",
-  "encounterUuid": null,
-  "visitUuid": null,
+  "encounterUuid": "#{encounterUuid}",
+  "visitUuid": "#{opdVisitId}",
   "providers": [
     {
-      "uuid": "#{providerUuid}"
+      "uuid": "#{providerUuid}",
+      "name": "Super Man",
+      "encounterRoleUuid": "a0b03050-c99b-11e0-9572-0800200c9a66"
     }
   ],
-  "encounterDateTime": null,
+  "encounterDateTime": 1662722063000,
   "extensions": {
     "mdrtbSpecimen": []
   },
@@ -50,8 +52,11 @@
       },
       "duration": 30,
       "durationUnits": "Days",
-      "scheduledDate": null,
+      "scheduledDate": "2022-10-09T11:14:23.000Z",
       "autoExpireDate": null,
+      "action": "NEW",
+      "orderReasonConcept": null,
+      "orderReasonText": null,
       "dateStopped": null,
       "orderGroup": {
         "orderSet": {}
@@ -79,8 +84,11 @@
       },
       "duration": 30,
       "durationUnits": "Days",
-      "scheduledDate": null,
+      "scheduledDate": "2022-10-09T11:14:23.000Z",
       "autoExpireDate": null,
+      "action": "NEW",
+      "orderReasonConcept": null,
+      "orderReasonText": null,
       "dateStopped": null,
       "orderGroup": {
         "orderSet": {}
@@ -108,8 +116,11 @@
       },
       "duration": 30,
       "durationUnits": "Days",
-      "scheduledDate": null,
+      "scheduledDate": "2022-10-09T11:14:23.000Z",
       "autoExpireDate": null,
+      "action": "NEW",
+      "orderReasonConcept": null,
+      "orderReasonText": null,
       "dateStopped": null,
       "orderGroup": {
         "orderSet": {}

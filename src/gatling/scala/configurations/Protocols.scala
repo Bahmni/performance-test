@@ -13,6 +13,7 @@ object Protocols {
     .basicAuth("superman", "Admin123")
     .acceptHeader("Cache-Control, max-age=0, no-store")
     .acceptHeader("application/json, text/plain, */*")
+    .contentTypeHeader("application/json")
     .acceptEncodingHeader("gzip, deflate, sdch, br")
     .acceptLanguageHeader("en-US,en;q=0.8")
     .userAgentHeader(

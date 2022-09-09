@@ -20,9 +20,9 @@
     },
     "identifiers": [
       {
-        "identifierSourceUuid": "#{identifierSourcesId}",
+        "identifierSourceUuid": "#{identifier_sources_id}",
         "identifierPrefix": "ABC",
-        "identifierType": "#{identifierType}",
+        "identifierType": "#{identifier_type}",
         "preferred": true,
         "voided": false
       }
