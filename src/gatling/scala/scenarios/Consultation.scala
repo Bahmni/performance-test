@@ -39,7 +39,7 @@ object Consultation {
       .exec(addDrug("Loperamide Plus"))
       .exec(addDrug("Promethazine"))
       .feed(jsonFeeder)
-      .pause(40 seconds , 60 seconds)
+      .pause(20 seconds , 30 seconds)
       .exec(saveEncounter)
       .pause(2 seconds , 4 seconds)
       .exec(goToDashboard("#{opdPatientId}"))
