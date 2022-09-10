@@ -111,10 +111,9 @@ object Doctor {
           "numberOfVisits" -> "1"
         )
       ),
-      getVisits(patientUuid).check(
-        jsonPath("$..results[0].uuid").find.saveAs("opdVisitId"),
-        jsonPath("$..results[?(@.uuid==\"#{opdVisitId}\")].encounters[0].uuid").ofType[Any].not(None).saveAs("encounterUuid"),
-
+      getactiveDrugOrder(patientUuid).check(
+        jmesPath("[-1].visit.uuid").ofType[Any].not(None).saveAs("opdVisitId"),
+        jmesPath("[-1].drugOrder.uuid").ofType[Any].not(None).saveAs("drugOrderUuid")
       ),
       getAllObservationTemplates,
       getObs(patientUuid, "visitFormDetails"),
@@ -122,6 +121,10 @@ object Doctor {
       getLatestPublishedForms,
       getGlobalProperty("drugOrder.drugOther")
     )
+  ).exec(
+    getVisits(patientUuid).checkIf("#{opdVisitId.exists()}"){
+      jsonPath("$..results[?(@.uuid==\"#{opdVisitId}\")].encounters[0].uuid")
+        .saveAs("encounterUuid")}
   )
   def setSession(): ChainBuilder = exec(
     getSession
@@ -133,14 +136,11 @@ object Doctor {
   def setVisit(patientUuid: String): ChainBuilder = exec(
     getVisits(patientUuid)
       .check(
-        jsonPath("$.results[0].uuid").find.saveAs("visitTypeUuid"),
         jsonPath("$..location.uuid").find.saveAs("locationUuid")
       )
-      .resources(
-        getVisitLocation("#{locationUuid}"),
-        getSummaryByVisitUuid("#{visitTypeUuid}"),
-        getVisit("#{visitTypeUuid}")
-      )
+      .checkIf("#{opdVisitId.isUndefined()}") { jsonPath("$.results[0].uuid").find.saveAs("opdVisitId") }
+  ).exec(
+    getVisitLocation("#{locationUuid}").resources(getSummaryByVisitUuid("#{opdVisitId}"), getVisit("#{opdVisitId}"))
   )
   def goToObservations(pUuid: String): ChainBuilder = exec(
     getConcept(
@@ -162,7 +162,7 @@ object Doctor {
       getEntityMappingByLocationEncounter(LOGIN_LOCATION_UUID),
       getEncounterTypeConsultation.check(jsonPath("$..uuid").find.saveAs("encounterTypeUuid"))
     )
-  ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_drugorder.json")) } {
+  ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_revise_drugorder.json")) } {
     exec(postEncounter("bodies/encounter.json"))
   }
   def setOrders: ChainBuilder = exec { session =>
@@ -173,11 +173,10 @@ object Doctor {
   }
 
   def goToMedications(patientUuid: String): ChainBuilder = exec(
-    getactiveDrugOrder(patientUuid).resources(
-      getConfigDrugOrder(),
+    getConfigDrugOrder.resources(
       getGlobalProperty("drugOrder.drugOther"),
       postAuditLog(patientUuid),
-      includeActiveVisit(patientUuid)
+      getDrugOrders(patientUuid)
     )
   )
 

@@ -237,10 +237,10 @@ object DoctorHttpRequests {
       .get("/openmrs/ws/rest/v1/bahmnicore/config/drugOrders")
   }
 
-  def includeActiveVisit(patientUuid: String): HttpRequestBuilder = {
+  def getDrugOrders(patientUuid: String): HttpRequestBuilder = {
     http("get drug order")
       .get("/openmrs/ws/rest/v1/bahmnicore/drugOrders")
-      .queryParam("includeActiveVisit", "true")
+      .queryParam("getDrugOrders", "true")
       .queryParam("numberOfVisits", "1")
       .queryParam("patientUuid", patientUuid)
   }

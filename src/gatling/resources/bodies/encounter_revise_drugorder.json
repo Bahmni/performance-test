@@ -1,0 +1,240 @@
+{
+  "locationUuid": "#{locationUuid}",
+  "patientUuid": "#{opdPatientId}",
+  "encounterUuid": null,
+  "visitUuid": null,
+  "providers": [
+    {
+      "uuid": "#{providerUuid}"
+    }
+  ],
+  "encounterDateTime": null,
+  "extensions": {
+    "mdrtbSpecimen": []
+  },
+  "context": {},
+  "visitType": null,
+  "bahmniDiagnoses": [],
+  "orders": [],
+  "drugOrders": [
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Reglan Tablet",
+        "uuid": "d2f85885-3da5-42be-9b91-7a6e3b207bb8",
+        "form": "Metoclopramide",
+        "strength": null
+      },
+      "drugNonCoded": null,
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 1,
+        "doseUnits": "Tablet(s)",
+        "route": "Oral",
+        "frequency": "Once a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 30,
+        "quantityUnits": "Tablet(s)",
+        "numberOfRefills": 0
+      },
+      "duration": 30,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "previousOrderUuid": "e33eecf4-1ac2-4059-a56e-8b8d2ed3e05f",
+      "action": "REVISE",
+      "orderReasonText": null,
+      "dateStopped": null,
+      "concept": {
+        "uuid": "79755AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Metoclopramide",
+        "dataType": "N/A",
+        "shortName": "Metoclopramide",
+        "units": null,
+        "conceptClass": "Drug",
+        "hiNormal": null,
+        "lowNormal": null,
+        "set": false,
+        "mappings": [
+          {
+            "code": "751",
+            "name": null,
+            "source": "AMPATH"
+          },
+          {
+            "code": "79755",
+            "name": null,
+            "source": "CIEL"
+          },
+          {
+            "code": "56549003",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "372776000",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "6915",
+            "name": null,
+            "source": "RxNORM"
+          }
+        ]
+      },
+      "orderGroup": {
+        "orderSet": {}
+      }
+    },
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Loperamide Plus",
+        "uuid": "5b8ed812-ef54-471b-b71a-c79e15abb769",
+        "form": "Loperamide",
+        "strength": null
+      },
+      "drugNonCoded": null,
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 1,
+        "doseUnits": "Tablet(s)",
+        "route": "Oral",
+        "frequency": "Once a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 30,
+        "quantityUnits": "Tablet(s)",
+        "numberOfRefills": 0
+      },
+      "duration": 30,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "previousOrderUuid": "a81a9345-c340-40a8-a462-e3acc7767275",
+      "action": "REVISE",
+      "orderReasonText": null,
+      "dateStopped": null,
+      "concept": {
+        "uuid": "79037AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Loperamide",
+        "dataType": "N/A",
+        "shortName": "Loperamide",
+        "units": null,
+        "conceptClass": "Drug",
+        "hiNormal": null,
+        "lowNormal": null,
+        "set": false,
+        "mappings": [
+          {
+            "code": "116726003",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "430",
+            "name": null,
+            "source": "AMPATH"
+          },
+          {
+            "code": "6468",
+            "name": null,
+            "source": "RxNORM"
+          },
+          {
+            "code": "79037",
+            "name": null,
+            "source": "CIEL"
+          },
+          {
+            "code": "429",
+            "name": null,
+            "source": "AMPATH"
+          }
+        ]
+      },
+      "orderGroup": {
+        "orderSet": {}
+      }
+    },
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Promethazine 25mg",
+        "uuid": "5766fc82-d7cb-4e4d-80ea-e6ed86ffd8b7",
+        "form": "Promethazine",
+        "strength": null
+      },
+      "drugNonCoded": null,
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 1,
+        "doseUnits": "Tablet(s)",
+        "route": "Oral",
+        "frequency": "Once a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 30,
+        "quantityUnits": "Tablet(s)",
+        "numberOfRefills": 0
+      },
+      "duration": 30,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "previousOrderUuid": "e440314f-6017-4e0f-81cb-7df9a0cbaa01",
+      "action": "REVISE",
+      "orderReasonText": null,
+      "dateStopped": null,
+      "concept": {
+        "uuid": "82667AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Promethazine",
+        "dataType": "N/A",
+        "shortName": "Promethazine",
+        "units": null,
+        "conceptClass": "Drug",
+        "hiNormal": null,
+        "lowNormal": null,
+        "set": false,
+        "mappings": [
+          {
+            "code": "372871004",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "82667",
+            "name": null,
+            "source": "CIEL"
+          },
+          {
+            "code": "8372007",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "4059",
+            "name": null,
+            "source": "PIH"
+          },
+          {
+            "code": "8745",
+            "name": null,
+            "source": "RxNORM"
+          }
+        ]
+      },
+      "orderGroup": {
+        "orderSet": {}
+      }
+    }
+  ],
+  "disposition": null,
+  "observations": [],
+  "encounterTypeUuid": "#{encounterTypeUuid}"
+}
