@@ -38,21 +38,16 @@ object Frontdesk {
   def performNameSearch(patientName: String): ChainBuilder = {
     exec(
       searchPatientUsingName(LOGIN_LOCATION_UUID, patientName)
-        .check(jsonPath("$..uuid").findAll.transform(Random.shuffle(_).head).optional.saveAs("pt_uuID"))
-        .resources(
-          getPatientProfileAfterRegistration("#{pt_uuID}")
-        )
-    )
+        .check(jsonPath("$..uuid").find.saveAs("pt_uuID"))
+    ).exec(getPatientProfileAfterRegistration("#{pt_uuID}"))
   }
 
   def performIdSearch(patientIdentifier: String): ChainBuilder = {
     exec(
       searchPatientUsingIdentifier(LOGIN_LOCATION_UUID, patientIdentifier)
-        .check(jsonPath("$..uuid").findAll.transform(Random.shuffle(_).head).optional.saveAs("p_uuID"))
-        .resources(
-          getPatientProfileAfterRegistration("#{p_uuID}")
-        )
+        .check(jsonPath("$..uuid").find.saveAs("p_uuID"))
     )
+      .exec(getPatientProfileAfterRegistration("#{p_uuID}"))
   }
 
   def startVisitForID: ChainBuilder = {
@@ -189,5 +184,28 @@ object Frontdesk {
         )
     )
   }
+  def filterActivePatients(): ChainBuilder = {
+    exec(
+      getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
+        .check(
+          jsonPath("$..name").findAll.optional.saveAs("activepatientnames"),
+          jsonPath("$..identifier").findAll.optional.saveAs("activepatientids")
+        )
+    ).doIf("#{activepatientnames.exists()}") {
+      exec(session => {
+        val id = session("Registration Number").as[String]
+        val name = session("First Name").as[String] + " " + session("Last Name").as[String]
+        if (
+          session("activepatientids")
+            .as[Vector[String]]
+            .contains(id) || session("activepatientnames").as[Vector[String]].contains(name)
+        ) {
+          session
+        } else {
+          session.set("name", session("Registration Number").as[String])
+        }
+      })
+    }
 
+  }
 }

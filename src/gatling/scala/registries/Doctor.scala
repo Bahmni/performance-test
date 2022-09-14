@@ -113,11 +113,15 @@ object Doctor {
       ),
       getactiveDrugOrder(patientUuid).check(
         jmesPath("[-1].visit.uuid").ofType[Any].not(None).saveAs("opdVisitId"),
-        jmesPath("[?drugOrder.drug.uuid=='d2f85885-3da5-42be-9b91-7a6e3b207bb8'].uuid | [0]").optional.saveAs("reglanDrugOrderUuid"),
-        jmesPath("[?drugOrder.drug.uuid=='5b8ed812-ef54-471b-b71a-c79e15abb769'].uuid | [0]").optional.saveAs("lopeDrugOrderUuid"),
-        jmesPath("[?drugOrder.drug.uuid=='5766fc82-d7cb-4e4d-80ea-e6ed86ffd8b7'].uuid | [0]").optional.saveAs("promDrugOrderUuid")
-
-
+        jmesPath("[?drugOrder.drug.uuid=='1bdc7e85-aa09-4d66-a644-9f3489173a4d'].uuid | [0]").optional.saveAs(
+          "reglanDrugOrderUuid"
+        ),
+        jmesPath("[?drugOrder.drug.uuid=='468908b5-c141-4287-b116-761c0bfea007'].uuid | [0]").optional.saveAs(
+          "lopeDrugOrderUuid"
+        ),
+        jmesPath("[?drugOrder.drug.uuid=='99f32f18-a5bc-44a7-aa7d-4c7ff63d7a14'].uuid | [0]").optional.saveAs(
+          "promDrugOrderUuid"
+        )
       ),
       getAllObservationTemplates,
       getObs(patientUuid, "visitFormDetails"),
@@ -126,9 +130,12 @@ object Doctor {
       getGlobalProperty("drugOrder.drugOther")
     )
   ).exec(
-    getVisits(patientUuid).checkIf("#{opdVisitId.exists()}"){
+    getVisits(patientUuid).checkIf("#{opdVisitId.exists()}") {
       jsonPath("$..results[?(@.uuid==\"#{opdVisitId}\")].encounters[0].uuid")
-        .saveAs("encounterUuid")}
+        .ofType[Any]
+        .not(None)
+        .saveAs("encounterUuid")
+    }
   )
   def setSession(): ChainBuilder = exec(
     getSession

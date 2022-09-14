@@ -17,6 +17,7 @@ object Feeders {
   var observations:String= "[]"
   var visitUuid: String = null
 
+
   def randomString(length: Int): String = {
     rnd.alphanumeric.filter(_.isLetter).take(length).mkString
   }
@@ -45,4 +46,5 @@ object Feeders {
       "locationUuid" -> LOGIN_LOCATION_UUID
     )
   )
+
 }

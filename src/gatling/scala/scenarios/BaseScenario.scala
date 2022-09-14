@@ -20,7 +20,6 @@ object BaseScenario {
         //Closed System
         rampConcurrentUsers(0).to(load.activeUsers).during(load.initialRampUpDuration),
         constantConcurrentUsers(load.activeUsers).during(load.totalDuration)
-        //atOnceUsers(1)
 
       )
       .protocols(Protocols.default)

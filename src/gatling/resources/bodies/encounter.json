@@ -18,12 +18,12 @@
   "orders": [
     {
       "concept": {
-        "uuid": "316cfd68-cc68-4c80-90e1-cbdc9a81bcb0"
+        "uuid": "f9d35ff4-1c9f-4693-8079-7d022e090c78"
       }
     },
     {
       "concept": {
-        "uuid": "73784885-4113-4e8e-8eab-cd07fb69974e"
+        "uuid": "ad70d962-322a-4d6e-88cb-f2cbdc5252e6"
       }
     }
   ],
@@ -33,36 +33,7 @@
       "drug": {
         "name": "Reglan Tablet",
         "form": "Metoclopramide",
-        "uuid": "d2f85885-3da5-42be-9b91-7a6e3b207bb8"
-      },
-      "orderType": "Drug Order",
-      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
-      "dosingInstructions": {
-        "dose": 1,
-        "doseUnits": "Tablet(s)",
-        "route": "Oral",
-        "frequency": "Once a day",
-        "asNeeded": false,
-        "administrationInstructions": "{\"instructions\":\"As directed\"}",
-        "quantity": 30,
-        "quantityUnits": "Tablet(s)",
-        "numberOfRefills": 0
-      },
-      "duration": 30,
-      "durationUnits": "Days",
-      "scheduledDate": null,
-      "autoExpireDate": null,
-      "dateStopped": null,
-      "orderGroup": {
-        "orderSet": {}
-      }
-    },
-    {
-      "careSetting": "OUTPATIENT",
-      "drug": {
-        "name": "Loperamide Plus",
-        "form": "Loperamide",
-        "uuid": "5b8ed812-ef54-471b-b71a-c79e15abb769"
+        "uuid": "1bdc7e85-aa09-4d66-a644-9f3489173a4d"
       },
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
@@ -91,7 +62,36 @@
       "drug": {
         "name": "Promethazine 25mg",
         "form": "Promethazine",
-        "uuid": "5766fc82-d7cb-4e4d-80ea-e6ed86ffd8b7"
+        "uuid": "99f32f18-a5bc-44a7-aa7d-4c7ff63d7a14"
+      },
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 1,
+        "doseUnits": "Tablet(s)",
+        "route": "Oral",
+        "frequency": "Once a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 30,
+        "quantityUnits": "Tablet(s)",
+        "numberOfRefills": 0
+      },
+      "duration": 30,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "dateStopped": null,
+      "orderGroup": {
+        "orderSet": {}
+      }
+    },
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Loperamide Plus",
+        "form": "Loperamide",
+        "uuid": "468908b5-c141-4287-b116-761c0bfea007"
       },
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
@@ -298,7 +298,7 @@
         "uuid": "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "name": "Respiratory rate"
       },
-      "value": "17",
+      "value": "72",
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
@@ -324,7 +324,7 @@
         "uuid": "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "name": "Systolic blood pressure"
       },
-      "value": "90",
+      "value": "70",
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",

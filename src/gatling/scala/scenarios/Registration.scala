@@ -25,33 +25,39 @@ object Registration {
   private def existingPatient_IdSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
     exec(login)
       .feed(csv("registrations.csv").circular)
+      .exec(filterActivePatients())
       .exec(goToHomePage)
       .pause(10 seconds, 20 seconds)
       .exec(goToRegistrationSearchPage)
       .pause(10 seconds, 20 seconds)
       .exec(performIdSearch("#{Registration Number}"))
       .pause(10 seconds, 20 seconds)
-      .exec(startVisitForID)
-      .pause(20 seconds)
+      .doIf("#{name.exists()}") {
+        exec(startVisitForID)
+          .pause(20 seconds)
+      }
   }
 
   private def existingPatient_NameSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
     exec(login)
-      .feed(csv("registrations.csv").random)
+      .feed(csv("registrations.csv").circular)
+      .exec(filterActivePatients())
       .exec(goToHomePage)
       .pause(10 seconds, 20 seconds)
       .exec(goToRegistrationSearchPage)
       .pause(10 seconds, 20 seconds)
       .exec(performNameSearch("#{First Name}" + " " + "#{Last Name}"))
       .pause(10 seconds, 20 seconds)
-      .exec(startVisitForName)
-      .pause(20 seconds)
+      .doIf("#{name.exists()}") {
+        exec(startVisitForName)
+          .pause(20 seconds)
+      }
   }
 
   private def createPatient_StartVisit(expectedResTimes: MaximumResponseTimes) = {
     exec(login)
-    .exec(goToHomePage)
-    .exec(gotoCreatePatientPage)
+      .exec(goToHomePage)
+      .exec(gotoCreatePatientPage)
       .pause(5 seconds)
       .feed(jsonFeeder)
       .exec(createPatient)
@@ -62,19 +68,20 @@ object Registration {
 
   private def patient_Document_Upload(expectedResTimes: MaximumResponseTimes) = {
     exec(existingPatient_NameSearch_StartVisit(null))
-      .pause(3 seconds, 6 seconds)
-      .exec(returnToHomePage)
-      .pause(3 seconds, 6 seconds)
-      .exec(getActivePatients)
-      .exec(getPatientImages)
-      .pause(5 seconds, 10 seconds)
-      .exec(goToPatientDocumentUpload)
-      .feed(docUploadFeeder)
-      .pause(5 seconds, 10 seconds)
-      .exec(uploadPatientDocument)
-      .pause(2 seconds, 4 seconds)
-      .exec(verifyPatientDocument)
-      .pause(5 seconds, 10 seconds)
+      .doIf("#{pt_uuID.exists()}") {
+        pause(3 seconds, 6 seconds)
+          .exec(returnToHomePage)
+          .pause(3 seconds, 6 seconds)
+          .exec(getActivePatients)
+          .exec(getPatientImages)
+          .pause(5 seconds, 10 seconds)
+          .exec(goToPatientDocumentUpload)
+          .feed(docUploadFeeder)
+          .pause(5 seconds, 10 seconds)
+          .exec(uploadPatientDocument)
+          .pause(2 seconds, 4 seconds)
+          .exec(verifyPatientDocument)
+          .pause(5 seconds, 10 seconds)
+      }
   }
-
 }
