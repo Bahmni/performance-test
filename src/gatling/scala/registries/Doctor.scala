@@ -8,9 +8,12 @@ import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
 import configurations.Feeders.{orders, _}
 
+import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
 object Doctor {
+
+  var sessionActivePatients = ArrayBuffer[String]()
 
   def goToClinicalApp: ChainBuilder = exec(
     getPatientConfigFromServer
@@ -50,7 +53,16 @@ object Doctor {
         getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
         getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
       )
-  )
+  ).exec{session =>
+    var currentPatient = session("opdPatientId").as[String]
+    while(sessionActivePatients.contains(currentPatient)){
+      val activePatients = session("patientUUIDs").as[Vector[String]]
+      val activePatient = activePatients(Random.nextInt(activePatients.size))
+      currentPatient = activePatient
+    }
+    sessionActivePatients.addOne(session("opdPatientId").as[String])
+    session.set("opdPatientId",currentPatient)
+  }
 
   def goToDashboard(patientUuid: String): ChainBuilder = exec(
     getRelationship(patientUuid).resources(
