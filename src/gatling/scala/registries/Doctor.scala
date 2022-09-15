@@ -3,17 +3,17 @@ package registries
 import api.Constants._
 import api.DoctorHttpRequests._
 import api.HttpRequests._
+import configurations.Feeders._
 import io.gatling.core.Predef.{jmesPath, jsonPath, _}
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
-import configurations.Feeders.{orders, _}
 
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable
 import scala.util.Random
 
 object Doctor {
 
-  var sessionActivePatients = ArrayBuffer[String]()
+  val inMemoryOpdPatientsQueue: mutable.Map[String, Boolean] = mutable.Map.empty[String, Boolean]
 
   def goToClinicalApp: ChainBuilder = exec(
     getPatientConfigFromServer
@@ -43,24 +43,37 @@ object Doctor {
       )
   )
 
-  def goToClinicalSearch: ChainBuilder = exec(
-    getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
-      .check(
-        jsonPath("$..uuid").findAll.transform(Random.shuffle(_).head).optional.saveAs("opdPatientId"),
-        jsonPath("$..uuid").findAll.saveAs("patientUUIDs")
-      )
-      .resources(
-        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
-        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
-      )
-  ).exec{session =>
-    var currentPatient = session("opdPatientId").as[String]
-    while(sessionActivePatients.contains(currentPatient)){
-      val activePatients = session("patientUUIDs").as[Vector[String]]
-      currentPatient = activePatients(Random.nextInt(activePatients.size))
+  def selectNextPatientFromOpdQueue: ChainBuilder = exec { session =>
+    val waitingOpdPatients = inMemoryOpdPatientsQueue.filter(patient => !patient._2)
+    val nextPatientUuid: String = waitingOpdPatients.keys.toList(Random.nextInt(waitingOpdPatients.size))
+    inMemoryOpdPatientsQueue += (nextPatientUuid -> true)
+    session.set("opdPatientId", nextPatientUuid)
+  }
+
+  def refreshInMemoryOpdPatientQueue: ChainBuilder =
+    doIf(shouldRefreshInMemoryPatientQueue) {
+      exec(
+        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
+          .check(
+            jsonPath("$..uuid").findAll.saveAs("patientUUIDs")
+          )
+          .resources(
+            getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
+            getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
+          )
+      ).exec { session =>
+        session("patientUUIDs")
+          .as[Vector[String]]
+          .foreach(uuid => {
+            if (!inMemoryOpdPatientsQueue.contains(uuid))
+              inMemoryOpdPatientsQueue += (uuid -> false)
+          })
+        session
+      }
     }
-    sessionActivePatients.addOne(currentPatient)
-    session.set("opdPatientId",currentPatient)
+
+  private def shouldRefreshInMemoryPatientQueue = {
+    inMemoryOpdPatientsQueue.values.toList.reduceOption(_ && _).getOrElse(true)
   }
 
   def goToDashboard(patientUuid: String): ChainBuilder = exec(
@@ -187,7 +200,7 @@ object Doctor {
   ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_revise_drugorder.json")) } {
     exec(postEncounter("bodies/encounter.json"))
   }
-  def setOrders: ChainBuilder = exec { session =>
+  def setOrders(): ChainBuilder = exec { session =>
     observations = "[]"
     val path = System.getProperty("user.dir") + "/src/gatling/resources"
     orders = scala.io.Source.fromFile(path + "/bodies/orders.json").mkString
@@ -195,7 +208,7 @@ object Doctor {
   }
 
   def goToMedications(patientUuid: String): ChainBuilder = exec(
-    getConfigDrugOrder.resources(
+    getConfigDrugOrder().resources(
       getGlobalProperty("drugOrder.drugOther"),
       postAuditLog(patientUuid),
       getDrugOrders(patientUuid)
@@ -209,14 +222,14 @@ object Doctor {
     )
   )
 
-  def setMedication: ChainBuilder = exec { session =>
+  def setMedication(): ChainBuilder = exec { session =>
     orders = "[]"
     val path = System.getProperty("user.dir") + "/src/gatling/resources"
     drugOrders = scala.io.Source.fromFile(path + "/bodies/medications.json").mkString
     session
   }
 
-  def setObservation: ChainBuilder = exec {
+  def setObservation(): ChainBuilder = exec {
     exec { session =>
       val path = System.getProperty("user.dir") + "/src/gatling/resources"
       observations = scala.io.Source.fromFile(path + "/bodies/observations.json").mkString
