@@ -25,7 +25,7 @@ object DoctorHttpRequests {
       .get("/openmrs/ws/rest/v1/ordertype?v=custom:(uuid,display,conceptClasses:(uuid,display,name))")
   }
 
-  def getPatientsInSearchTab(locationUuid: String, providerUuid: String, sqlName: String): HttpRequestBuilder = {
+  def getActiveOpdPatients(locationUuid: String, providerUuid: String, sqlName: String): HttpRequestBuilder = {
     http(sqlName)
       .get("/openmrs/ws/rest/v1/bahmnicore/sql")
       .queryParam("location_uuid", locationUuid)
@@ -51,7 +51,7 @@ object DoctorHttpRequests {
   def getVisits(patientUuid: String): HttpRequestBuilder = {
     http("getVisits")
       .get("/openmrs/ws/rest/v1/visit")
-      .queryParam("includeInactive","true")
+      .queryParam("includeInactive", "true")
       .queryParam("v", "custom:(uuid,visitType,startDatetime,stopDatetime,location,encounters:(uuid))")
       .queryParam("patient", patientUuid)
   }
@@ -129,7 +129,7 @@ object DoctorHttpRequests {
       .queryParam("orderTypeUuid", orderTypeUuid)
   }
 
-  def getPatientImage(patientUuid: String): HttpRequestBuilder = {
+  def getPatientAvatar(patientUuid: String): HttpRequestBuilder = {
     http("get patient image")
       .get("/openmrs/ws/rest/v1/patientImage")
       .queryParam("patientUuid", patientUuid)

@@ -4,9 +4,10 @@ import api.Constants._
 import api.DoctorHttpRequests._
 import api.HttpRequests._
 import configurations.Feeders._
-import io.gatling.core.Predef.{jmesPath, jsonPath, _}
+import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
+import registries.Frontdesk.getPatientAvatars
 
 import scala.collection.mutable
 import scala.util.Random
@@ -53,23 +54,24 @@ object Doctor {
   def refreshInMemoryOpdPatientQueue: ChainBuilder =
     doIf(shouldRefreshInMemoryPatientQueue) {
       exec(
-        getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
+        getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
           .check(
             jsonPath("$..uuid").findAll.saveAs("patientUUIDs")
           )
           .resources(
-            getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
-            getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
+            getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
+            getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
           )
-      ).exec { session =>
-        session("patientUUIDs")
-          .as[Vector[String]]
-          .foreach(uuid => {
-            if (!inMemoryOpdPatientsQueue.contains(uuid))
-              inMemoryOpdPatientsQueue += (uuid -> false)
-          })
-        session
-      }
+      ).exec(getPatientAvatars)
+        .exec { session =>
+          session("patientUUIDs")
+            .as[Vector[String]]
+            .foreach(uuid => {
+              if (!inMemoryOpdPatientsQueue.contains(uuid))
+                inMemoryOpdPatientsQueue += (uuid -> false)
+            })
+          session
+        }
     }
 
   private def shouldRefreshInMemoryPatientQueue = {
@@ -91,7 +93,7 @@ object Doctor {
       getConditionalHistory(patientUuid),
       getDiseaseTemplates("#{runTimeUuid}"),
       postAuditLog,
-      getPatientImage("#{runTimeUuid}"),
+      getPatientAvatar("#{runTimeUuid}"),
       getEncoutnerByEncounterTypeUuid("#{runTimeUuid}"),
       getPatientContext(patientUuid, "ABHA Address", "phoneNumber"),
       getPatientsInfoWithSqlInpatientInfoTabOfClinic(patientUuid, "bahmni.sqlGet.upComingAppointments"),

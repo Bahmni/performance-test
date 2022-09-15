@@ -6,7 +6,7 @@ import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
 import registries.Common._
 import registries.Doctor._
-import registries.Frontdesk.getPatientImages
+import registries.Frontdesk.getPatientAvatars
 import scenarios.BaseScenario.setupScenario
 
 import scala.concurrent.duration.DurationInt
@@ -28,7 +28,6 @@ object Consultation {
       .exec(goToClinicalApp)
       .exec(refreshInMemoryOpdPatientQueue)
       .exec(selectNextPatientFromOpdQueue)
-      .exec(getPatientImages)
       .pause(5 seconds, 10 seconds)
       .exec(goToDashboard("#{opdPatientId}"))
       .exec(setSession())

@@ -73,7 +73,7 @@ object Registration {
           .exec(returnToHomePage)
           .pause(3 seconds, 6 seconds)
           .exec(getActivePatients)
-          .exec(getPatientImages)
+          .exec(getPatientAvatars)
           .pause(5 seconds, 10 seconds)
           .exec(goToPatientDocumentUpload)
           .feed(docUploadFeeder)

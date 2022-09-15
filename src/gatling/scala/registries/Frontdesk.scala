@@ -5,11 +5,8 @@ import api.DoctorHttpRequests._
 import api.FrontdeskHttpRequests._
 import api.HttpRequests._
 import io.gatling.core.Predef._
-import io.gatling.core.structure
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
-
-import scala.util.Random
 
 object Frontdesk {
 
@@ -119,7 +116,7 @@ object Frontdesk {
 
   def getActivePatients: ChainBuilder = {
     exec(
-      getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
+      getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
         .check(
           jsonPath("$..uuid").findAll.saveAs("patientUUIDs")
         )
@@ -137,19 +134,15 @@ object Frontdesk {
       .exec(getProviderForUser("#{runTimeUuid}"))
   }
 
-  def getPatientImages = {
-    var size: Int = 0
+  def getPatientAvatars: ChainBuilder = {
+    val maxVisiblePatientTiles = 54
     exec(session => {
-      size = session("patientUUIDs").as[Vector[String]].size
-      if (size > 54) {
-        size = 54
-      }
-      val patientUUIDs = session("patientUUIDs").as[Vector[String]].slice(0, size)
-      session.set("indexed", patientUUIDs)
-    })
-      .foreach("#{indexed}", "index") {
-        exec(getPatientImage("#{index}"))
-      }
+      val opdPatients = session("patientUUIDs").as[Vector[String]]
+      val size = if (opdPatients.size > maxVisiblePatientTiles) maxVisiblePatientTiles else opdPatients.size
+      session.set("opdPatients", opdPatients.slice(0, size))
+    }).foreach("#{opdPatients}", "patientUuid") {
+      exec(getPatientAvatar("#{patientUuid}"))
+    }
   }
 
   def goToPatientDocumentUpload = {
@@ -186,7 +179,7 @@ object Frontdesk {
   }
   def filterActivePatients(): ChainBuilder = {
     exec(
-      getPatientsInSearchTab(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
+      getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
         .check(
           jsonPath("$..name").findAll.optional.saveAs("activepatientnames"),
           jsonPath("$..identifier").findAll.optional.saveAs("activepatientids")
