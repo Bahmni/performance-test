@@ -58,7 +58,7 @@ class TrafficShareConfiguration(
   val activeUsers: Int = atLeast10(roundUp(trafficConfiguration.activeUsers / shareFactor))
   val totalDuration: FiniteDuration = atLeast1Minute(trafficConfiguration.duration)
   val maximumResponseTimes: MaximumResponseTimes = trafficConfiguration.responseTimes
-  val initialRampUpDuration: FiniteDuration = 1 minutes //should be 10% of total duration with max of 5 mins
+  val initialRampUpDuration: FiniteDuration = 1.5 minutes //should be 10% of total duration with max of 5 mins
 
   private def roundUp(d: Double): Int = math.ceil(d).toInt
 

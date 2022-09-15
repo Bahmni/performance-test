@@ -57,10 +57,9 @@ object Doctor {
     var currentPatient = session("opdPatientId").as[String]
     while(sessionActivePatients.contains(currentPatient)){
       val activePatients = session("patientUUIDs").as[Vector[String]]
-      val activePatient = activePatients(Random.nextInt(activePatients.size))
-      currentPatient = activePatient
+      currentPatient = activePatients(Random.nextInt(activePatients.size))
     }
-    sessionActivePatients.addOne(session("opdPatientId").as[String])
+    sessionActivePatients.addOne(currentPatient)
     session.set("opdPatientId",currentPatient)
   }
 
