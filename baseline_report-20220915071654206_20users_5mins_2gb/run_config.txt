@@ -1,0 +1,5 @@
+Heap-2GB
+Bandwidth-250Mbps
+hibernate.c3p0.max_size=50
+hibernate.c3p0.min_size=0
+hibernate.c3p0.acquire_increment=1

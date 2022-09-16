@@ -1,0 +1,6 @@
+bandwidth - 60Mbps
+Heap - 4GB
+hibernate.c3p0.max_size=50
+hibernate.c3p0.min_size=0
+hibernate.c3p0.acquire_increment=1
+Xms4096m -Xmx4096m -XX:NewSize=2048m -XX:MaxNewSize=2048m -XX:MetaspaceSize=768m -XX:MaxMetaspaceSize=768m -XX:InitialCodeCacheSize=64m -XX:ReservedCodeCacheSize=96m -XX:SurvivorRatio=16 -XX:TargetSurvivorRatio=50 -XX:MaxTenuringThreshold=15 -XX:+UseParNewGC -XX:ParallelGCThreads=16 -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+CMSCompactWhenClearAllSoftRefs -XX:CMSInitiatingOccupancyFraction=85 -XX:+CMSScavengeBeforeRemark

@@ -1,0 +1,6 @@
+bandwidth - 60Mbps
+Heap - 8GB
+hibernate.c3p0.max_size=50
+hibernate.c3p0.min_size=0
+hibernate.c3p0.acquire_increment=1
+JAVA_OPTS="-Dfile.encoding=UTF-8 -server -Xms8G -Xmx8G -XX:PermSize=512m -XX:MaxPermSize=512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:ParallelGCThreads=20 -XX:ConcGCThreads=5 -XX:InitiatingHeapOccupancyPercent=70"
