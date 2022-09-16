@@ -1,0 +1,10 @@
+{
+  "simulation": "simulations.BahmniClinic",
+  "simulationId": "bahmniclinic-20220916072010444",
+  "start": 1663312817753,
+  "description": "70 users 30 mins test",
+  "scenarios": ["Registration", "Consultation"],
+  "assertions": [
+
+  ]
+}
