@@ -10,12 +10,15 @@ import io.gatling.http.Predef._
 import registries.Frontdesk.getPatientAvatars
 
 import scala.collection.mutable
+import scala.concurrent.duration._
+import scala.language.postfixOps
 import scala.util.Random
 
 object Doctor {
 
   val inMemoryOpdPatientsQueue: mutable.Map[String, Boolean] = mutable.Map.empty[String, Boolean]
-
+  var remainingTime: FiniteDuration = 0 seconds
+  var dt: Long = 0
   def goToClinicalApp: ChainBuilder = exec(
     getPatientConfigFromServer
       .resources(
@@ -237,6 +240,25 @@ object Doctor {
       observations = scala.io.Source.fromFile(path + "/bodies/observations.json").mkString
       session
     }
+  }
+
+  def setStartTime(): ChainBuilder = {
+    exec(session => {
+      session.set("startTime", System.currentTimeMillis())
+    })
+  }
+  def pauseRemainingTime(value: Long): ChainBuilder = {
+    exec { session =>
+      dt = (System.currentTimeMillis() - session("startTime").as[Long]) / 1000
+      if (dt < value) {
+        remainingTime = (value - dt) seconds
+      } else {
+        remainingTime = 0 seconds
+      }
+      session.set("rt", remainingTime)
+    }
+      .exec(pause("#{rt}"))
+
   }
 
 }

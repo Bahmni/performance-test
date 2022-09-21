@@ -5,6 +5,7 @@ import configurations.{Load, MaximumResponseTimes, Possibility, TrafficConfigura
 import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
 import registries.Common._
+import registries.Doctor.{pauseRemainingTime, setStartTime}
 import registries.Frontdesk._
 import scenarios.BaseScenario.setupScenario
 
@@ -23,65 +24,63 @@ object Registration {
     setupScenario("Registration", Load.getTrafficShareConfiguration(loadSharePercentage), possibilities)
 
   private def existingPatient_IdSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(login)
+    exec(setStartTime())
+      .exec(login)
       .feed(csv("registrations.csv").circular)
-      .exec(filterActivePatients())
       .exec(goToHomePage)
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(20))
       .exec(goToRegistrationSearchPage)
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(40))
       .exec(performIdSearch("#{Registration Number}"))
-      .pause(10 seconds, 20 seconds)
-      .doIf("#{name.exists()}") {
-        exec(startVisitForID)
-          .pause(20 seconds)
-      }
+      .exec(pauseRemainingTime(150))
+      .exec(startVisitForID)
+      .exec(pauseRemainingTime(180))
   }
 
   private def existingPatient_NameSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(login)
+    exec(setStartTime())
+      .exec(login)
       .feed(csv("registrations.csv").circular)
-      .exec(filterActivePatients())
       .exec(goToHomePage)
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(20))
       .exec(goToRegistrationSearchPage)
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(40))
       .exec(performNameSearch("#{First Name}" + " " + "#{Last Name}"))
-      .pause(10 seconds, 20 seconds)
-      .doIf("#{name.exists()}") {
-        exec(startVisitForName)
-          .pause(20 seconds)
-      }
+      .exec(pauseRemainingTime(150))
+      .exec(startVisitForName)
+      .exec(pauseRemainingTime(180))
+
   }
 
   private def createPatient_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(login)
+    exec(setStartTime())
+      .exec(login)
       .exec(goToHomePage)
       .exec(gotoCreatePatientPage)
-      .pause(5 seconds)
+      .exec(pauseRemainingTime(20))
       .feed(jsonFeeder)
       .exec(createPatient)
-      .pause(3 seconds, 6 seconds)
+      .exec(pauseRemainingTime(120))
       .exec(startVisitForCreatePatient)
-      .pause(5 seconds)
+      .exec(pauseRemainingTime(180))
   }
 
   private def patient_Document_Upload(expectedResTimes: MaximumResponseTimes) = {
-    exec(existingPatient_NameSearch_StartVisit(null))
-      .doIf("#{pt_uuID.exists()}") {
-        pause(3 seconds, 6 seconds)
-          .exec(returnToHomePage)
-          .pause(3 seconds, 6 seconds)
-          .exec(getActivePatients)
-          .exec(getPatientAvatars)
-          .pause(5 seconds, 10 seconds)
-          .exec(goToPatientDocumentUpload)
-          .feed(docUploadFeeder)
-          .pause(5 seconds, 10 seconds)
-          .exec(uploadPatientDocument)
-          .pause(2 seconds, 4 seconds)
-          .exec(verifyPatientDocument)
-          .pause(5 seconds, 10 seconds)
-      }
+    exec(setStartTime())
+      .exec(existingPatient_NameSearch_StartVisit(null))
+      .exec(pauseRemainingTime(20))
+      .exec(returnToHomePage)
+      .exec(pauseRemainingTime(40))
+      .exec(getActivePatients)
+      .exec(getPatientAvatars)
+      .exec(pauseRemainingTime(80))
+      .exec(goToPatientDocumentUpload)
+      .feed(docUploadFeeder)
+      .exec(pauseRemainingTime(120))
+      .exec(uploadPatientDocument)
+      .exec(pauseRemainingTime(160))
+      .exec(verifyPatientDocument)
+      .exec(pauseRemainingTime(180))
   }
+
 }
