@@ -1,7 +1,6 @@
 package configurations
 
-import io.gatling.recorder.internal.bouncycastle.oer.its.ieee1609dot2.basetypes
-import io.gatling.recorder.internal.bouncycastle.oer.its.ieee1609dot2.basetypes.Duration.minutes
+
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
