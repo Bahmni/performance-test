@@ -1,5 +1,8 @@
 package configurations
 
+import io.gatling.recorder.internal.bouncycastle.oer.its.ieee1609dot2.basetypes
+import io.gatling.recorder.internal.bouncycastle.oer.its.ieee1609dot2.basetypes.Duration.minutes
+
 import scala.concurrent.duration._
 import scala.language.postfixOps
 import scala.math.max
@@ -27,9 +30,9 @@ object Load {
   )
 
   val dev: TrafficConfiguration = TrafficConfiguration(
-    activeUsers = 5,
-    duration =10 minutes,
-    patients=10,
+    activeUsers = 40,
+    duration =15 minutes,
+    patients=220,
     responseTimes = MaximumResponseTimes(1000 milliseconds, 1000 milliseconds, 1000 milliseconds)
   )
 
@@ -44,6 +47,19 @@ object Load {
         new TrafficShareConfiguration(dev, loadSharePercentage)
       case "standard" | _ =>
         new TrafficShareConfiguration(standard, loadSharePercentage)
+    }
+  }
+
+  val getLoadParameters: TrafficConfiguration = {
+    System.getenv("LOAD_SIMULATION_TYPE") toLowerCase match {
+      case "high" =>
+        Load.high
+      case "peak" =>
+        Load.peak
+      case "dev" =>
+        Load.dev
+      case "standard" | _ =>
+        Load.standard
     }
   }
 }
@@ -63,16 +79,8 @@ class TrafficShareConfiguration(
   val activeUsers: Int = atLeast10(roundUp(trafficConfiguration.activeUsers / shareFactor))
   val totalDuration: FiniteDuration = atLeast1Minute(trafficConfiguration.duration)
   val maximumResponseTimes: MaximumResponseTimes = trafficConfiguration.responseTimes
-  val initialRampUpDuration: FiniteDuration = 1 minutes //should be 10% of total duration with max of 5 mins
+  val initialRampUpDuration: FiniteDuration = Duration(totalDuration.mul(0.1).toSeconds,SECONDS).min(5 minutes) //should be 10% of total duration with max of 5 mins
   val patients:Int=roundUp(trafficConfiguration.patients)
-
-  val pace:FiniteDuration= {
-    var actualPace:FiniteDuration=(totalDuration * activeUsers )/ patients
-     if(actualPace.gteq(15 minutes)) actualPace = 15 minutes
-       else if(actualPace.lteq(2 minutes)) actualPace =2 minutes
-
-    actualPace
-  }
 
   private def roundUp(d: Double): Int = math.ceil(d).toInt
 

@@ -104,7 +104,7 @@ object Doctor {
       getRelationship("#{runTimeUuid}"),
       getDrugOrderConfig,
       getDrugOrdersForPatient(patientUuid),
-      getLabOrderResults("#{runTimeUuid}"),
+      //getLabOrderResults("#{runTimeUuid}"),
       getObservation(
         Map(
           "concept" -> "History and Examination",

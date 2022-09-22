@@ -21,7 +21,7 @@ object Registration {
   )
 
   def scenario(loadSharePercentage: Int): PopulationBuilder =
-    setupScenario("Registration", Load.getTrafficShareConfiguration(loadSharePercentage), possibilities)
+    setupScenario("Registration",5 minutes, Load.getTrafficShareConfiguration(loadSharePercentage), possibilities)
 
   private def existingPatient_IdSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
     exec(setStartTime())
