@@ -1,0 +1,8 @@
+bandwidth - 44.9Mbps
+Heap - 768mb
+hibernate.c3p0.max_size=50
+hibernate.c3p0.min_size=0
+hibernate.c3p0.acquire_increment=1
+run_config.txt
+export JAVA_OPTS="-Dfile.encoding=UTF-8 -server -Xms256m -Xmx768m -XX:PermSize=256m -XX:MaxPermSize=512m"
+export CATALINA_OPTS="-DOPENMRS_INSTALLATION_SCRIPT=/usr/local/tomcat/openmrs-server.properties -DOPENMRS_APPLICATION_DATA_DIRECTORY=/usr/local/tomcat/.OpenMRS"
