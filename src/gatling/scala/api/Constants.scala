@@ -9,6 +9,7 @@ object  Constants {
   val CLOSE_VISIT_ENCOUNTER_TYPE_UUID="9c0e20ec-2796-11ed-89d6-02500e1a53fa"
   val PROVIDER_UUID = "787cb992-3363-11ed-9de7-02cfabf10776"
   val IMAGES_ENCOUNTER_UUID = "755ae66e-3363-11ed-9de7-02cfabf10776"
+  val PATIENT_SWITCH = true
 }
 
 

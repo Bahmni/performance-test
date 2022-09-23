@@ -22,11 +22,11 @@ object Registration {
   )
   val setRate = {
     val trafficConfig = Load.getLoadParameters
-    var actualPace: FiniteDuration = Duration(((trafficConfig.duration * (REGISTRATION_LOAD_SHARE/100.00 * trafficConfig.activeUsers)) / (0.68*trafficConfig.patients)).toSeconds,SECONDS)
+    var actualPace: FiniteDuration = Duration(((trafficConfig.duration * (REGISTRATION_LOAD_SHARE/100.00 * trafficConfig.activeUsers)) / Load.getPatientCount("frontdesk")).toSeconds,SECONDS)
     if (actualPace.gteq(2 minutes)) actualPace = 2 minutes
     else if (actualPace.lteq(1 minutes)) actualPace = 1 minutes
 
-    println("Patients at Registration : "+(0.73*trafficConfig.patients))
+    println("Patients at Registration : "+Load.getPatientCount("frontdesk"))
     println("Time available for Registration : "+ (trafficConfig.duration * ((REGISTRATION_LOAD_SHARE/100.00) * trafficConfig.activeUsers)).toSeconds)
     println("Registration Pace : " + actualPace.toSeconds)
     actualPace

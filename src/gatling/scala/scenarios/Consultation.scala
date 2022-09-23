@@ -19,11 +19,11 @@ object Consultation {
 
   val setRate = {
     val trafficConfig = Load.getLoadParameters
-    var actualPace: FiniteDuration = Duration(((trafficConfig.duration * (CONSULTATION_LOAD_SHARE/100.00 * trafficConfig.activeUsers)) / (0.272*trafficConfig.patients)).toSeconds,SECONDS)
+    var actualPace: FiniteDuration = Duration(((trafficConfig.duration * (CONSULTATION_LOAD_SHARE/100.00 * trafficConfig.activeUsers)) / Load.getPatientCount("doctor")).toSeconds,SECONDS)
     if (actualPace.gteq(5 minutes)) actualPace = 5 minutes
     else if (actualPace.lteq(2 minutes)) actualPace = 2 minutes
 
-    println("Patients at consultation : "+(0.27*trafficConfig.patients))
+    println("Patients at consultation : "+Load.getPatientCount("doctor"))
     println("Time available for consultation : "+(trafficConfig.duration * ((CONSULTATION_LOAD_SHARE/100.00) * trafficConfig.activeUsers)).toSeconds)
     println("Consultation Pace : " + actualPace.toSeconds)
     actualPace

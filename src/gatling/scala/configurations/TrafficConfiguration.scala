@@ -5,25 +5,26 @@ package configurations
 import scala.concurrent.duration._
 import scala.language.postfixOps
 import scala.math.max
+import api.Constants._
 
 object Load {
   val standard: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 40,
-    duration = 15 minutes,
+    duration = 30 minutes,
     patients=220,
     responseTimes = MaximumResponseTimes(1000 milliseconds, 1000 milliseconds, 1000 milliseconds)
   )
 
   val high: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 70,
-    duration = 15 minutes,
+    duration = 30 minutes,
     patients=385,
     responseTimes = MaximumResponseTimes(1200 milliseconds, 1200 milliseconds, 1200 milliseconds)
   )
 
   val peak: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 90,
-    duration = 15 minutes,
+    duration = 30 minutes,
     patients=495,
     responseTimes = MaximumResponseTimes(28000 milliseconds, 28000 milliseconds, 28000 milliseconds)
   )
@@ -52,13 +53,32 @@ object Load {
   val getLoadParameters: TrafficConfiguration = {
     System.getenv("LOAD_SIMULATION_TYPE") toLowerCase match {
       case "high" =>
-        Load.high
+        high
       case "peak" =>
-        Load.peak
+        peak
       case "dev" =>
-        Load.dev
+        dev
       case "standard" | _ =>
-        Load.standard
+        standard
+    }
+  }
+
+  val getPatientCount: String => Int = (registries: String) => {
+    val trafficConfig = getLoadParameters
+    if(PATIENT_SWITCH) {
+      registries toLowerCase match {
+        case "doctor" =>
+          (trafficConfig.duration.div(5 minutes)*(trafficConfig.activeUsers*(CONSULTATION_LOAD_SHARE/100.00))).toInt
+        case "frontdesk" =>
+          (trafficConfig.duration.div(2 minutes)*(trafficConfig.activeUsers*(REGISTRATION_LOAD_SHARE/100.00))).toInt
+      }
+    } else {
+      registries toLowerCase match {
+        case "doctor" =>
+          (0.272*trafficConfig.patients).toInt
+        case "frontdesk" =>
+          (0.68*trafficConfig.patients).toInt
+      }
     }
   }
 }
