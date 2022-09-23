@@ -22,7 +22,7 @@ object Registration {
   )
   val setRate = {
     val trafficConfig = Load.getLoadParameters
-    var actualPace: FiniteDuration = Duration(((trafficConfig.duration * (REGISTRATION_LOAD_SHARE/100.00 * trafficConfig.activeUsers)) / (0.73*trafficConfig.patients)).toSeconds,SECONDS)
+    var actualPace: FiniteDuration = Duration(((trafficConfig.duration * (REGISTRATION_LOAD_SHARE/100.00 * trafficConfig.activeUsers)) / (0.68*trafficConfig.patients)).toSeconds,SECONDS)
     if (actualPace.gteq(2 minutes)) actualPace = 2 minutes
     else if (actualPace.lteq(1 minutes)) actualPace = 1 minutes
 
@@ -74,19 +74,16 @@ object Registration {
   }
 
   private def patient_Document_Upload(expectedResTimes: MaximumResponseTimes) = {
-    exec(setStartTime())
-      .exec(existingPatient_NameSearch_StartVisit(null))
-      .exec(pauseRemainingTime(10))
+       exec(existingPatient_NameSearch_StartVisit(null))
       .exec(returnToHomePage)
-      .exec(pauseRemainingTime(20))
       .exec(getActivePatients)
       .exec(getPatientAvatars)
-      .exec(pauseRemainingTime(30))
+      .exec(pauseRemainingTime(70))
       .exec(goToPatientDocumentUpload)
       .feed(docUploadFeeder)
-      .exec(pauseRemainingTime(40))
+      .exec(pauseRemainingTime(75))
       .exec(uploadPatientDocument)
-      .exec(pauseRemainingTime(60))
+      .exec(pauseRemainingTime(90))
       .exec(verifyPatientDocument)
   }
 

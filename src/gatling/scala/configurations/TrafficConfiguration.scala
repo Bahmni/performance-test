@@ -9,22 +9,22 @@ import scala.math.max
 object Load {
   val standard: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 40,
-    duration = 2 minutes,
-    patients=20,
+    duration = 15 minutes,
+    patients=220,
     responseTimes = MaximumResponseTimes(1000 milliseconds, 1000 milliseconds, 1000 milliseconds)
   )
 
   val high: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 70,
-    duration = 2 minutes,
-    patients=20,
+    duration = 15 minutes,
+    patients=385,
     responseTimes = MaximumResponseTimes(1200 milliseconds, 1200 milliseconds, 1200 milliseconds)
   )
 
   val peak: TrafficConfiguration = TrafficConfiguration(
-    activeUsers = 110,
-    duration = 2 minutes,
-    patients=20,
+    activeUsers = 90,
+    duration = 15 minutes,
+    patients=495,
     responseTimes = MaximumResponseTimes(28000 milliseconds, 28000 milliseconds, 28000 milliseconds)
   )
 
