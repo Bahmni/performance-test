@@ -31,7 +31,7 @@ object Load {
 
   val dev: TrafficConfiguration = TrafficConfiguration(
     activeUsers = 40,
-    duration =15 minutes,
+    duration =5 minutes,
     patients=220,
     responseTimes = MaximumResponseTimes(1000 milliseconds, 1000 milliseconds, 1000 milliseconds)
   )

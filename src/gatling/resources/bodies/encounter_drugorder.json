@@ -20,12 +20,12 @@
   "orders": [
     {
       "concept": {
-        "uuid": "316cfd68-cc68-4c80-90e1-cbdc9a81bcb0"
+        "uuid": "25279f02-e7de-4a50-bd0b-0be9d1b6eafc"
       }
     },
     {
       "concept": {
-        "uuid": "73784885-4113-4e8e-8eab-cd07fb69974e"
+        "uuid": "dc931470-712b-4cd9-9231-a2b1dcf09448"
       }
     }
   ],
@@ -35,7 +35,7 @@
       "drug": {
         "name": "Reglan Tablet",
         "form": "Metoclopramide",
-        "uuid": "d2f85885-3da5-42be-9b91-7a6e3b207bb8"
+        "uuid": "b56462b7-f96b-4e79-8f22-82c6a2c5ba10"
       },
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
@@ -67,7 +67,7 @@
       "drug": {
         "name": "Loperamide Plus",
         "form": "Loperamide",
-        "uuid": "5b8ed812-ef54-471b-b71a-c79e15abb769"
+        "uuid": "3e553b83-9b07-4ce6-80ca-edffa5e0ad36"
       },
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
@@ -99,7 +99,7 @@
       "drug": {
         "name": "Promethazine 25mg",
         "form": "Promethazine",
-        "uuid": "5766fc82-d7cb-4e4d-80ea-e6ed86ffd8b7"
+        "uuid": "92b7af4d-b96b-40c4-8c96-0baa0c61fe87"
       },
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
