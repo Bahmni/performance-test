@@ -1,0 +1,10 @@
+bandwidth - 67Mbps
+Heap - 768mb
+
+hibernate.c3p0.max_size=50
+hibernate.c3p0.min_size=0
+hibernate.c3p0.acquire_increment=1
+
+-Xms768m -Xmx768m -XX:NewSize=384m -XX:MaxNewSize=384m -XX:MetaspaceSize=768m -XX:MaxMetaspaceSize=768m -XX:InitialCodeCacheSize=64m -XX:ReservedCodeCacheSize=96m -XX:SurvivorRatio=16 -XX:TargetSurvivorRatio=50 -XX:MaxTenuringThreshold=15 -XX:+UseParNewGC -XX:ParallelGCThreads=16 -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+CMSCompactWhenClearAllSoftRefs -XX:CMSInitiatingOccupancyFraction=85 -XX:+CMSScavengeBeforeRemark
+
+export CATALINA_OPTS="-DOPENMRS_INSTALLATION_SCRIPT=/usr/local/tomcat/openmrs-server.properties -DOPENMRS_APPLICATION_DATA_DIRECTORY=/usr/local/tomcat/.OpenMRS"
