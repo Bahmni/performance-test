@@ -1,6 +1,6 @@
 package configurations
 
-import api.Constants.{IMAGES_ENCOUNTER_UUID, LOGIN_LOCATION_UUID, PROVIDER_UUID}
+import api.Constants.{HAEMOGRAM_ORDER, IMAGES_ENCOUNTER_UUID, LOGIN_LOCATION_UUID, LOPERAMIDE_DRUG, PROMETHAZINE_DRUG, PROVIDER_UUID, REGLAN_DRUG, THYROID_ORDER}
 import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import io.gatling.core.Predef.{configuration, csv}
 import io.gatling.core.feeder.BatchableFeederBuilder
@@ -44,6 +44,16 @@ object Feeders {
       "encounterTypeUuid" -> IMAGES_ENCOUNTER_UUID,
       "providerUuid" -> PROVIDER_UUID,
       "locationUuid" -> LOGIN_LOCATION_UUID
+    )
+  )
+
+  var observationsFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
+    Map(
+      "regUuid" -> REGLAN_DRUG,
+      "promUuid" -> PROMETHAZINE_DRUG,
+      "lopUuid" -> LOPERAMIDE_DRUG,
+      "haeUuid" -> HAEMOGRAM_ORDER,
+      "thyUuid"->THYROID_ORDER
     )
   )
 

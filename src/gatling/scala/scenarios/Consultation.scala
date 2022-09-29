@@ -1,6 +1,6 @@
 package scenarios
 
-import configurations.Feeders.jsonFeeder
+import configurations.Feeders._
 import configurations.{Load, MaximumResponseTimes, Possibility}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
@@ -51,6 +51,7 @@ object Consultation {
       .exec(addDrug("Loperamide Plus"))
       .exec(addDrug("Promethazine"))
       .feed(jsonFeeder)
+      .feed(observationsFeeder)
       .exec(pauseRemainingTime(60))
       .exec(saveEncounter)
       .exec(pauseRemainingTime(80))

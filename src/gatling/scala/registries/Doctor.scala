@@ -142,13 +142,13 @@ object Doctor {
       ),
       getactiveDrugOrder(patientUuid).check(
         jmesPath("[-1].visit.uuid").ofType[Any].not(None).saveAs("opdVisitId"),
-        jmesPath("[?drugOrder.drug.uuid=='b56462b7-f96b-4e79-8f22-82c6a2c5ba10'].uuid | [0]").optional.saveAs(
+        jmesPath("[?drugOrder.drug.uuid=='"+REGLAN_DRUG+"'].uuid | [0]").optional.saveAs(
           "reglanDrugOrderUuid"
         ),
-        jmesPath("[?drugOrder.drug.uuid=='3e553b83-9b07-4ce6-80ca-edffa5e0ad36'].uuid | [0]").optional.saveAs(
+        jmesPath("[?drugOrder.drug.uuid=='"+LOPERAMIDE_DRUG+"'].uuid | [0]").optional.saveAs(
           "lopeDrugOrderUuid"
         ),
-        jmesPath("[?drugOrder.drug.uuid=='92b7af4d-b96b-40c4-8c96-0baa0c61fe87'].uuid | [0]").optional.saveAs(
+        jmesPath("[?drugOrder.drug.uuid=='"+PROMETHAZINE_DRUG+"'].uuid | [0]").optional.saveAs(
           "promDrugOrderUuid"
         )
       ),
