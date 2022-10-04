@@ -32,9 +32,11 @@
       "careSetting": "OUTPATIENT",
       "drug": {
         "name": "Reglan Tablet",
+        "uuid": "#{regUuid}",
         "form": "Metoclopramide",
-        "uuid": "#{regUuid}"
+        "strength": null
       },
+      "drugNonCoded": null,
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
@@ -52,7 +54,48 @@
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
+      "previousOrderUuid": "#{reglanDrugOrderUuid}",
+      "action": "REVISE",
+      "orderReasonText": null,
       "dateStopped": null,
+      "concept": {
+        "uuid": "79755AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Metoclopramide",
+        "dataType": "N/A",
+        "shortName": "Metoclopramide",
+        "units": null,
+        "conceptClass": "Drug",
+        "hiNormal": null,
+        "lowNormal": null,
+        "set": false,
+        "mappings": [
+          {
+            "code": "751",
+            "name": null,
+            "source": "AMPATH"
+          },
+          {
+            "code": "79755",
+            "name": null,
+            "source": "CIEL"
+          },
+          {
+            "code": "56549003",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "372776000",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "6915",
+            "name": null,
+            "source": "RxNORM"
+          }
+        ]
+      },
       "orderGroup": {
         "orderSet": {}
       }
@@ -61,9 +104,11 @@
       "careSetting": "OUTPATIENT",
       "drug": {
         "name": "Promethazine 25mg",
+        "uuid": "#{promUuid}",
         "form": "Promethazine",
-        "uuid": "#{promUuid}"
+        "strength": null
       },
+      "drugNonCoded": null,
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
@@ -81,7 +126,48 @@
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
+      "previousOrderUuid": "#{promDrugOrderUuid}",
+      "action": "REVISE",
+      "orderReasonText": null,
       "dateStopped": null,
+      "concept": {
+        "uuid": "82667AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Promethazine",
+        "dataType": "N/A",
+        "shortName": "Promethazine",
+        "units": null,
+        "conceptClass": "Drug",
+        "hiNormal": null,
+        "lowNormal": null,
+        "set": false,
+        "mappings": [
+          {
+            "code": "372871004",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "82667",
+            "name": null,
+            "source": "CIEL"
+          },
+          {
+            "code": "8372007",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "4059",
+            "name": null,
+            "source": "PIH"
+          },
+          {
+            "code": "8745",
+            "name": null,
+            "source": "RxNORM"
+          }
+        ]
+      },
       "orderGroup": {
         "orderSet": {}
       }
@@ -90,9 +176,11 @@
       "careSetting": "OUTPATIENT",
       "drug": {
         "name": "Loperamide Plus",
+        "uuid": "#{lopUuid}",
         "form": "Loperamide",
-        "uuid": "#{lopUuid}"
+        "strength": null
       },
+      "drugNonCoded": null,
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
@@ -110,7 +198,48 @@
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
+      "previousOrderUuid": "#{lopeDrugOrderUuid}",
+      "action": "REVISE",
+      "orderReasonText": null,
       "dateStopped": null,
+      "concept": {
+        "uuid": "79037AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Loperamide",
+        "dataType": "N/A",
+        "shortName": "Loperamide",
+        "units": null,
+        "conceptClass": "Drug",
+        "hiNormal": null,
+        "lowNormal": null,
+        "set": false,
+        "mappings": [
+          {
+            "code": "116726003",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "430",
+            "name": null,
+            "source": "AMPATH"
+          },
+          {
+            "code": "6468",
+            "name": null,
+            "source": "RxNORM"
+          },
+          {
+            "code": "79037",
+            "name": null,
+            "source": "CIEL"
+          },
+          {
+            "code": "429",
+            "name": null,
+            "source": "AMPATH"
+          }
+        ]
+      },
       "orderGroup": {
         "orderSet": {}
       }

@@ -1,14 +1,16 @@
 package scenarios
 
+import api.Constants.REGISTRATION_LOAD_SHARE
 import configurations.Feeders.{docUploadFeeder, jsonFeeder}
-import configurations.{Load, MaximumResponseTimes, Possibility, TrafficConfiguration}
+import configurations.{Load, MaximumResponseTimes, Possibility}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
 import registries.Common._
+import registries.Doctor.{pauseRemainingTime, setStartTime}
 import registries.Frontdesk._
 import scenarios.BaseScenario.setupScenario
 
-import scala.concurrent.duration.DurationInt
+import scala.concurrent.duration.{Duration, DurationInt, FiniteDuration, SECONDS}
 import scala.language.postfixOps
 
 object Registration {
@@ -18,61 +20,71 @@ object Registration {
     Possibility(createPatient_StartVisit, 40),
     Possibility(patient_Document_Upload, 10)
   )
+  val setRate = {
+    val trafficConfig = Load.getLoadParameters
+    var actualPace: FiniteDuration = Duration(((trafficConfig.duration * (REGISTRATION_LOAD_SHARE/100.00 * trafficConfig.activeUsers)) / Load.getPatientCount("frontdesk")).toSeconds,SECONDS)
+    if (actualPace.gteq(2 minutes)) actualPace = 2 minutes
+    else if (actualPace.lteq(1 minutes)) actualPace = 1 minutes
 
+    println("Patients at Registration : "+Load.getPatientCount("frontdesk"))
+    println("Time available for Registration : "+ (trafficConfig.duration * ((REGISTRATION_LOAD_SHARE/100.00) * trafficConfig.activeUsers)).toSeconds)
+    println("Registration Pace : " + actualPace.toSeconds)
+    actualPace
+  }
   def scenario(loadSharePercentage: Int): PopulationBuilder =
-    setupScenario("Registration", Load.getTrafficShareConfiguration(loadSharePercentage), possibilities)
+    setupScenario("Registration",setRate, Load.getTrafficShareConfiguration(loadSharePercentage), possibilities)
 
   private def existingPatient_IdSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(login)
+    exec(setStartTime())
+      .exec(login)
       .feed(csv("registrations.csv").circular)
       .exec(goToHomePage)
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(10))
       .exec(goToRegistrationSearchPage)
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(20))
       .exec(performIdSearch("#{Registration Number}"))
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(30))
       .exec(startVisitForID)
-      .pause(20 seconds)
   }
 
   private def existingPatient_NameSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(login)
-      .feed(csv("registrations.csv").random)
+    exec(setStartTime())
+      .exec(login)
+      .feed(csv("registrations.csv").circular)
       .exec(goToHomePage)
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(20))
       .exec(goToRegistrationSearchPage)
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(40))
       .exec(performNameSearch("#{First Name}" + " " + "#{Last Name}"))
-      .pause(10 seconds, 20 seconds)
+      .exec(pauseRemainingTime(60))
       .exec(startVisitForName)
-      .pause(20 seconds)
+
   }
 
   private def createPatient_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(gotoCreatePatientPage)
-      .pause(5 seconds)
+    exec(setStartTime())
+      .exec(login)
+      .exec(goToHomePage)
+      .exec(gotoCreatePatientPage)
+      .exec(pauseRemainingTime(10))
       .feed(jsonFeeder)
       .exec(createPatient)
-      .pause(3 seconds, 6 seconds)
+      .exec(pauseRemainingTime(40))
       .exec(startVisitForCreatePatient)
-      .pause(5 seconds)
   }
 
   private def patient_Document_Upload(expectedResTimes: MaximumResponseTimes) = {
-    exec(existingPatient_NameSearch_StartVisit(null))
-      .pause(3 seconds, 6 seconds)
+       exec(existingPatient_NameSearch_StartVisit(null))
       .exec(returnToHomePage)
-      .pause(3 seconds, 6 seconds)
       .exec(getActivePatients)
-      .exec(getPatientImages)
-      .pause(5 seconds, 10 seconds)
+      .exec(getPatientAvatars)
+      .exec(pauseRemainingTime(70))
       .exec(goToPatientDocumentUpload)
       .feed(docUploadFeeder)
-      .pause(5 seconds, 10 seconds)
+      .exec(pauseRemainingTime(75))
       .exec(uploadPatientDocument)
-      .pause(2 seconds, 4 seconds)
+      .exec(pauseRemainingTime(90))
       .exec(verifyPatientDocument)
-      .pause(5 seconds, 10 seconds)
   }
 
 }
