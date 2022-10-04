@@ -1,0 +1,10 @@
+{
+  "simulation": "simulations.BahmniClinic",
+  "simulationId": "bahmniclinic-20221003052151170",
+  "start": 1664774518266,
+  "description": "2 mbps high load test",
+  "scenarios": ["Registration", "Consultation"],
+  "assertions": [
+
+  ]
+}
