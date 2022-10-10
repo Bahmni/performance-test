@@ -7,7 +7,7 @@ import configurations.Feeders._
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
-import registries.Frontdesk.getPatientAvatars
+import registries.FrontDesk.getPatientAvatars
 
 import scala.collection.mutable
 import scala.concurrent.duration._
@@ -247,18 +247,4 @@ object Doctor {
       session.set("startTime", System.currentTimeMillis())
     })
   }
-  def pauseRemainingTime(value: Long): ChainBuilder = {
-    exec { session =>
-      dt = (System.currentTimeMillis() - session("startTime").as[Long]) / 1000
-      if (dt < value) {
-        remainingTime = (value - dt) seconds
-      } else {
-        remainingTime = 0 seconds
-      }
-      session.set("rt", remainingTime)
-    }
-      .exec(pause("#{rt}"))
-
-  }
-
 }
