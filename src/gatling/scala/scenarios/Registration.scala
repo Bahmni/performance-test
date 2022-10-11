@@ -1,90 +1,99 @@
 package scenarios
 
-import api.Constants.REGISTRATION_LOAD_SHARE
 import configurations.Feeders.{docUploadFeeder, jsonFeeder}
-import configurations.{Load, MaximumResponseTimes, Possibility}
 import io.gatling.core.Predef._
 import io.gatling.core.structure.PopulationBuilder
 import registries.Common._
-import registries.Doctor.{pauseRemainingTime, setStartTime}
-import registries.Frontdesk._
+import registries.FrontDesk._
 import scenarios.BaseScenario.setupScenario
+import configurations.{Scenario, ScenarioWorkLoad, UserFlow}
+import scenarios.BaseScenario.{handleWorkLoad}
 
-import scala.concurrent.duration.{Duration, DurationInt, FiniteDuration, SECONDS}
+import scala.concurrent.duration.{DurationInt}
 import scala.language.postfixOps
 
 object Registration {
-  private val possibilities = List(
-    Possibility(existingPatient_IdSearch_StartVisit, 30),
-    Possibility(existingPatient_NameSearch_StartVisit, 20),
-    Possibility(createPatient_StartVisit, 40),
-    Possibility(patient_Document_Upload, 10)
+  private val scenarios = List(
+    Scenario(
+      existingPatient_IdSearch_StartVisit,
+      UserFlow.Registration.existingPatientIdSearchOpdVisit
+    ),
+    Scenario(
+      existingPatient_NameSearch_StartVisit,
+      UserFlow.Registration.existingPatientNameSearchOpdVisit
+    ),
+    Scenario(
+      createPatient_StartVisit,
+      UserFlow.Registration.newPatientOpdVisit
+    ),
+    Scenario(
+      patient_Document_Upload,
+      UserFlow.Registration.patientDocumentUpload
+    )
   )
-  val setRate = {
-    val trafficConfig = Load.getLoadParameters
-    var actualPace: FiniteDuration = Duration(((trafficConfig.duration * (REGISTRATION_LOAD_SHARE/100.00 * trafficConfig.activeUsers)) / Load.getPatientCount("frontdesk")).toSeconds,SECONDS)
-    if (actualPace.gteq(2 minutes)) actualPace = 2 minutes
-    else if (actualPace.lteq(1 minutes)) actualPace = 1 minutes
 
-    println("Patients at Registration : "+Load.getPatientCount("frontdesk"))
-    println("Time available for Registration : "+ (trafficConfig.duration * ((REGISTRATION_LOAD_SHARE/100.00) * trafficConfig.activeUsers)).toSeconds)
-    println("Registration Pace : " + actualPace.toSeconds)
-    actualPace
+  def scenario(trafficSharePercentage: Int): List[PopulationBuilder] = {
+    scenarios.map(scn => setupScenario(scn, trafficSharePercentage))
   }
-  def scenario(loadSharePercentage: Int): PopulationBuilder =
-    setupScenario("Registration",setRate, Load.getTrafficShareConfiguration(loadSharePercentage), possibilities)
-
-  private def existingPatient_IdSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(setStartTime())
-      .exec(login)
+  private def existingPatient_IdSearch_StartVisit(workLoad: ScenarioWorkLoad) = {
+    handleWorkLoad(
+      exec(login)
       .feed(csv("registrations.csv").circular)
       .exec(goToHomePage)
-      .exec(pauseRemainingTime(10))
+      //.exec(pause(10 seconds))
       .exec(goToRegistrationSearchPage)
-      .exec(pauseRemainingTime(20))
+      //.exec(pause(20 seconds))
       .exec(performIdSearch("#{Registration Number}"))
-      .exec(pauseRemainingTime(30))
-      .exec(startVisitForID)
+      //.exec(pause(30 seconds))
+      .exec(startVisitForID),workLoad)
   }
 
-  private def existingPatient_NameSearch_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(setStartTime())
-      .exec(login)
+  private def existingPatient_NameSearch_StartVisit(workLoad: ScenarioWorkLoad) = {
+    handleWorkLoad(
+       exec(login)
       .feed(csv("registrations.csv").circular)
       .exec(goToHomePage)
-      .exec(pauseRemainingTime(20))
+      //.exec(pause(20 seconds))
       .exec(goToRegistrationSearchPage)
-      .exec(pauseRemainingTime(40))
+     // .exec(pause(20 seconds))
       .exec(performNameSearch("#{First Name}" + " " + "#{Last Name}"))
-      .exec(pauseRemainingTime(60))
-      .exec(startVisitForName)
+      //.exec(pause(20 seconds))
+      .exec(startVisitForName),workLoad)
 
   }
 
-  private def createPatient_StartVisit(expectedResTimes: MaximumResponseTimes) = {
-    exec(setStartTime())
-      .exec(login)
+  private def createPatient_StartVisit(workLoad: ScenarioWorkLoad) = {
+    handleWorkLoad(
+       exec(login)
       .exec(goToHomePage)
       .exec(gotoCreatePatientPage)
-      .exec(pauseRemainingTime(10))
+     // .exec(pause(10 seconds))
       .feed(jsonFeeder)
       .exec(createPatient)
-      .exec(pauseRemainingTime(40))
-      .exec(startVisitForCreatePatient)
+      //.exec(pause(30 seconds))
+      .exec(startVisitForCreatePatient),workLoad)
   }
 
-  private def patient_Document_Upload(expectedResTimes: MaximumResponseTimes) = {
-       exec(existingPatient_NameSearch_StartVisit(null))
-      .exec(returnToHomePage)
-      .exec(getActivePatients)
-      .exec(getPatientAvatars)
-      .exec(pauseRemainingTime(70))
-      .exec(goToPatientDocumentUpload)
-      .feed(docUploadFeeder)
-      .exec(pauseRemainingTime(75))
-      .exec(uploadPatientDocument)
-      .exec(pauseRemainingTime(90))
-      .exec(verifyPatientDocument)
+  private def patient_Document_Upload(workLoad: ScenarioWorkLoad) = {
+    handleWorkLoad(
+      exec(login)
+        .feed(csv("registrations.csv").circular)
+        .exec(goToHomePage)
+       // .exec(pause(20 seconds))
+        .exec(goToRegistrationSearchPage)
+       // .exec(pause(20 seconds))
+        .exec(performNameSearch("#{First Name}" + " " + "#{Last Name}"))
+        //.exec(pause(20 seconds))
+        .exec(startVisitForName)
+        .exec(returnToHomePage)
+        .exec(getActivePatients)
+        .exec(getPatientAvatars)
+        //.exec(pause(20 seconds))
+        .exec(goToPatientDocumentUpload)
+        .feed(docUploadFeeder)
+        //.exec(pause(20 seconds))
+        .exec(uploadPatientDocument)
+       // .exec(pause(20 seconds))
+        .exec(verifyPatientDocument), workLoad)
   }
-
 }

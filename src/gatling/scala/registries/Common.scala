@@ -7,6 +7,10 @@ import io.gatling.http.Predef._
 import api.Constants._
 import api.DoctorHttpRequests._
 import api.FrontdeskHttpRequests._
+import registries.Doctor.remainingTime
+
+import scala.concurrent.duration.{DurationLong, FiniteDuration}
+import scala.language.postfixOps
 
 object Common {
   def login: ChainBuilder = exec(
@@ -30,13 +34,13 @@ object Common {
     .exec(getGlobalProperty("bahmni.enableAuditLog"))
     .exec(postAuditLog)
 
-
-
-  def returnToHomePage = {
-    exec(getUser(LOGIN_USER)
-      .check(
-        jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
-      ))
+  def returnToHomePage: ChainBuilder = {
+    exec(
+      getUser(LOGIN_USER)
+        .check(
+          jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
+        )
+    )
       .exec(getProviderForUser("#{runTimeUuid}"))
       .exec(getLoginLocations)
   }
@@ -64,4 +68,17 @@ def closeVisit():ChainBuilder= {
   closePatientVisit("#{opdPatientId}","#{opdVisitId}")
 )
 }
+
+
+  def waitBeforeNextWorkLoad(expectedCompletionTime: FiniteDuration): ChainBuilder = {
+    exec { session =>
+      val timeElapsed = (System.currentTimeMillis() - session("startTime").as[Long])
+      if (timeElapsed < expectedCompletionTime.toMillis) {
+        remainingTime = (expectedCompletionTime.toMillis - timeElapsed) millis
+      } else {
+        remainingTime = 0 millis
+      }
+      session.set("rt", remainingTime)
+    }.exec(pause("#{rt}"))
+  }
 }

@@ -1,9 +1,7 @@
 package configurations
 
 import api.Constants.{HAEMOGRAM_ORDER, IMAGES_ENCOUNTER_UUID, LOGIN_LOCATION_UUID, LOPERAMIDE_DRUG, PROMETHAZINE_DRUG, PROVIDER_UUID, REGLAN_DRUG, THYROID_ORDER}
-import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
-import io.gatling.core.Predef.{configuration, csv}
-import io.gatling.core.feeder.BatchableFeederBuilder
+
 
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -46,7 +44,6 @@ object Feeders {
       "locationUuid" -> LOGIN_LOCATION_UUID
     )
   )
-
   var observationsFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
     Map(
       "regUuid" -> REGLAN_DRUG,
