@@ -8,7 +8,7 @@ import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
 
-object Frontdesk {
+object FrontDesk {
 
   def goToRegistrationSearchPage: ChainBuilder = exec(
     getVisitLocation(LOGIN_LOCATION_UUID)
@@ -176,29 +176,5 @@ object Frontdesk {
           findEncounter("#{pt_uuID}", PROVIDER_UUID, IMAGES_ENCOUNTER_UUID)
         )
     )
-  }
-  def filterActivePatients(): ChainBuilder = {
-    exec(
-      getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
-        .check(
-          jsonPath("$..name").findAll.optional.saveAs("activepatientnames"),
-          jsonPath("$..identifier").findAll.optional.saveAs("activepatientids")
-        )
-    ).doIf("#{activepatientnames.exists()}") {
-      exec(session => {
-        val id = session("Registration Number").as[String]
-        val name = session("First Name").as[String] + " " + session("Last Name").as[String]
-        if (
-          session("activepatientids")
-            .as[Vector[String]]
-            .contains(id) || session("activepatientnames").as[Vector[String]].contains(name)
-        ) {
-          session
-        } else {
-          session.set("name", session("Registration Number").as[String])
-        }
-      })
-    }
-
   }
 }
