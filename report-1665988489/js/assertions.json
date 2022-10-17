@@ -1,0 +1,10 @@
+{
+  "simulation": "simulations.BahmniClinic",
+  "simulationId": "bahmniclinic-20221017060323832",
+  "start": 1665986607001,
+  "description": "",
+  "scenarios": ["Consultation - Average Patient", "Registration - New Patient - OPD Visit", "Registration - Existing Patient ID Search - OPD Visit", "Registration - Existing Patient Name Search - OPD Visit", "Registration - Patient document upload"],
+  "assertions": [
+
+  ]
+}
