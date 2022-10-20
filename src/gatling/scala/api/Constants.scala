@@ -1,5 +1,8 @@
 package api
 
+import scala.concurrent.duration.DurationInt
+import scala.language.postfixOps
+
 object  Constants {
   val CONSULTATION_LOAD_SHARE : Int = 50
   val REGISTRATION_LOAD_SHARE : Int = 50
@@ -15,5 +18,13 @@ object  Constants {
   val LOPERAMIDE_DRUG="844a8acd-d719-49cd-b9c3-d952d9c90b3b"
   val HAEMOGRAM_ORDER="9bd562b5-c4ed-462c-b3e2-f1bb99b90d48"
   val THYROID_ORDER="6a342ff5-d063-43af-8171-0c610815bc99"
+  val PERCENTILE1=95.0
+  val PERCENTILE2=99.0
+  val PERCENTILE1_EXPECTED_RESPONSE_TIME=1000
+  val PERCENTILE2_EXPECTED_RESPONSE_TIME=1000
+  val MAX_EXPECTED_RESPONSE_TIME=3000
+
+  val ADDITIONAL_HARD_STOP_TIME=5 minutes
+
 }
 

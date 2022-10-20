@@ -6,7 +6,7 @@ import io.gatling.core.structure.{ChainBuilder, PopulationBuilder}
 import registries.Common.waitBeforeNextWorkLoad
 import registries.Doctor.setStartTime
 
-import scala.concurrent.duration.DurationInt
+import scala.concurrent.duration.{Duration, DurationInt, SECONDS}
 import scala.language.postfixOps
 
 object BaseScenario {
@@ -16,11 +16,12 @@ object BaseScenario {
   ): PopulationBuilder = {
     val trafficShareConfiguration = TrafficLoad.getTrafficShareConfiguration(trafficSharePercentage)
     val workLoad = createWorkLoad(trafficShareConfiguration, scn.config)
+    val rampUp=Duration(trafficShareConfiguration.totalDuration.mul(0.1).toSeconds,SECONDS).min(5 minutes)
     scenario(scn.config.name)
       .exec(scn.userFlow(workLoad))
       .inject(
-        rampConcurrentUsers(0).to(workLoad.activeUsersCount).during(1 minutes),
-        constantConcurrentUsers(workLoad.activeUsersCount).during(9 minutes)
+        rampConcurrentUsers(0).to(workLoad.activeUsersCount).during(rampUp),
+        constantConcurrentUsers(workLoad.activeUsersCount).during(trafficShareConfiguration.totalDuration-(2*rampUp))
       )
       .protocols(Protocols.default)
   }
