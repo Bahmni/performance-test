@@ -13,7 +13,7 @@
     "mdrtbSpecimen": []
   },
   "context": {},
-  "visitType": null,
+  "visitType": "OPD",
   "bahmniDiagnoses": [],
   "orders": [
     {
@@ -70,31 +70,30 @@
         "set": false,
         "mappings": [
           {
-            "code": "751",
-            "name": null,
-            "source": "AMPATH"
+            "code":"751",
+            "name":null,
+            "source":"AMPATH"
           },
           {
-            "code": "79755",
-            "name": null,
-            "source": "CIEL"
+            "code":"79755",
+            "name":null,
+            "source":"CIEL"
           },
           {
-            "code": "56549003",
-            "name": null,
-            "source": "SNOMED-CT"
+            "code":"56549003",
+            "name":null,
+            "source":"SNOMED-CT"
           },
           {
-            "code": "372776000",
-            "name": null,
-            "source": "SNOMED-CT"
+            "code":"372776000",
+            "name":null,
+            "source":"SNOMED-CT"
           },
           {
-            "code": "6915",
-            "name": null,
-            "source": "RxNORM"
-          }
-        ]
+            "code":"6915",
+            "name":null,
+            "source":"RxNORM"
+          }]
       },
       "orderGroup": {
         "orderSet": {}
@@ -140,33 +139,32 @@
         "hiNormal": null,
         "lowNormal": null,
         "set": false,
-        "mappings": [
+        "mappings":[
           {
-            "code": "372871004",
-            "name": null,
-            "source": "SNOMED-CT"
+            "code":"372871004",
+            "name":null,
+            "source":"SNOMED-CT"
           },
           {
-            "code": "82667",
-            "name": null,
-            "source": "CIEL"
+            "code":"82667",
+            "name":null,
+            "source":"CIEL"
           },
           {
-            "code": "8372007",
-            "name": null,
-            "source": "SNOMED-CT"
+            "code":"8372007",
+            "name":null,
+            "source":"SNOMED-CT"
           },
           {
-            "code": "4059",
-            "name": null,
-            "source": "PIH"
+            "code":"4059",
+            "name":null,
+            "source":"PIH"
           },
           {
-            "code": "8745",
-            "name": null,
-            "source": "RxNORM"
-          }
-        ]
+            "code":"8745",
+            "name":null,
+            "source":"RxNORM"
+          }]
       },
       "orderGroup": {
         "orderSet": {}

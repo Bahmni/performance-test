@@ -2,23 +2,22 @@ package api
 
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
-
 object Constants {
   val OVERALL_LOAD_SHARE: Int = 100
   val CONSULTATION_LOAD_SHARE: Int = 50
   val REGISTRATION_LOAD_SHARE: Int = 50
   val LOGIN_USER = "superman"
   val LOGIN_LOCATION_UUID = "833d0c66-e29a-4d31-ac13-ca9050d1bfa9"
-  val ENCOUNTER_TYPE_UUID = "130d6b41-3e5c-11ed-8bc5-020a25dcfbc6"
-  val CLOSE_VISIT_ENCOUNTER_TYPE_UUID = "122ca85f-3e5c-11ed-8bc5-020a25dcfbc6"
-  val PROVIDER_UUID = "1722c77d-3e5c-11ed-8bc5-020a25dcfbc6"
-  val IMAGES_ENCOUNTER_UUID = "130d6b41-3e5c-11ed-8bc5-020a25dcfbc6"
+  val ENCOUNTER_TYPE_UUID = "2c3dda37-5b74-11ed-9f57-02f61461dc04"
+  val CLOSE_VISIT_ENCOUNTER_TYPE_UUID = "2b8855ee-5b74-11ed-9f57-02f61461dc04"
+  val PROVIDER_UUID = "2fbd6214-5b74-11ed-9f57-02f61461dc04"
+  val IMAGES_ENCOUNTER_UUID = "2c3dda37-5b74-11ed-9f57-02f61461dc04"
   val PATIENT_SWITCH = true
-  val REGLAN_DRUG = "ca0dd656-0ffe-4c81-bf70-3c1571aa9e0e"
-  val PROMETHAZINE_DRUG = "6d7ec6ec-9567-4f89-a925-121a9829de9a"
-  val LOPERAMIDE_DRUG = "844a8acd-d719-49cd-b9c3-d952d9c90b3b"
-  val HAEMOGRAM_ORDER = "9bd562b5-c4ed-462c-b3e2-f1bb99b90d48"
-  val THYROID_ORDER = "6a342ff5-d063-43af-8171-0c610815bc99"
+  val REGLAN_DRUG = "b2a6a2ad-f755-43dd-9ec6-06ce796b9a5d"
+  val PROMETHAZINE_DRUG = "e68dbb5a-6d81-4ea0-bd82-f73cf6feb620"
+  val LOPERAMIDE_DRUG = "6097c64e-90bc-42e1-8c1e-289e7cfed5d3"
+  val HAEMOGRAM_ORDER = "923f08d6-f32c-42ba-97c6-285fba1cb95f"
+  val THYROID_ORDER = "79e1a124-a5f4-4254-bb3b-237c3c018fbf"
   val PERCENTILE1 = 95.0
   val PERCENTILE2 = 99.0
   val PERCENTILE1_EXPECTED_RESPONSE_TIME = 1000
