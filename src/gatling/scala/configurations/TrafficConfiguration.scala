@@ -39,8 +39,8 @@ object TrafficLoad {
   )
 
   val dev: TrafficConfiguration = TrafficConfiguration(
-    activeUsers = 40,
-    duration = 10 minutes
+    activeUsers = System.getenv("ACTIVE_USERS").toInt,
+    duration = FiniteDuration.apply(System.getenv("DURATION").toInt,System.getenv("UNITS"))
   )
 
   def getTrafficShareConfiguration(loadSharePercentage: Int): TrafficShareConfiguration = {
