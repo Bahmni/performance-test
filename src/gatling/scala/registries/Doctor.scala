@@ -203,8 +203,12 @@ object Doctor {
       getEntityMappingByLocationEncounter(LOGIN_LOCATION_UUID),
       getEncounterTypeConsultation.check(jsonPath("$..uuid").find.saveAs("encounterTypeUuid"))
     )
-  ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_revise_drugorder.json")) } {
-    exec(postEncounter("bodies/encounter.json"))
+  ).doIfOrElse("#{encounterUuid.exists()}")
+  {
+    exec(postEncounter("bodies/encounter_revise_drugorder.json").check(status.saveAs("status"),bodyString.saveAs("response"))).exec(printRevised)
+  }
+  {
+    exec(postEncounter("bodies/encounter.json").check(status.saveAs("status"),bodyString.saveAs("response"))).exec(printNew)
   }
   def setOrders(): ChainBuilder = exec { session =>
     observations = "[]"
@@ -248,5 +252,22 @@ object Doctor {
       session.set("startTime", System.currentTimeMillis())
     })
   }
-
+  def printRevised:ChainBuilder=exec{
+    session=> if(session("status").as[String].contains("50"))
+    {
+      println("Patient uuid : "+session("opdPatientId").as[String])
+      println("Drug Method : %%%%%%_Revised_Drug_%%%%%%")
+      println(session("response").as[String])
+    }
+      session
+  }
+  def printNew:ChainBuilder=exec {
+    session =>
+      if (session("status").as[String].contains("50")) {
+        println("Patient uuid : "+session("opdPatientId").as[String])
+        println("Drug Method : %%%%%_New_Drug_%%%%%%%")
+        println(session("response").as[String])
+      }
+      session
+  }
 }
