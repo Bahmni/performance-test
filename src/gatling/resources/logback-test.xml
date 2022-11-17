@@ -17,7 +17,7 @@
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
     <filter class="ch.qos.logback.classic.filter.LevelFilter">
     </filter>
-    <file>logs/execution.log</file>
+    <file>logs/${myTimestamp}.log</file>
     <append>true</append>
     <encoder>
       <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
