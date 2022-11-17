@@ -28,9 +28,9 @@
   <!-- <logger name="io.gatling.http" level="DEBUG" />-->
   <!-- Uncomment for logging ONLY FAILED HTTP request and responses -->
   <!--<logger name="io.gatling.http" level="ERROR" />-->
-  <logger name="io.gatling.http.engine.tx" level="TRACE"/>
+  <logger name="io.gatling.http.response" level="${LOG_LEVEL:-WARN}"/>
 
-  <root level="WARN">
+  <root level="${LOG_LEVEL:-WARN}">
     <appender-ref ref="CONSOLE" />
     <appender-ref ref="FILE" />
   </root>
