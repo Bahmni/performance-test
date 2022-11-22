@@ -8,12 +8,22 @@
 
 Simulations can be run locally using Gradle. `./gradlew gatlingRun`
 
-> Note: By default the simulation would run for Standard traffic. Please set `LOAD_SIMULATION_TYPE` env variable to `High` or `Peak` to simulate other traffic conditions
+> Note: By default the simulation would run for Standard traffic. Please set `LOAD_SIMULATION_TYPE` env variable to `High` or `Peak` to simulate other traffic conditions and to `dev` to run with dynamic load conditions
 
-**Standard**
+**Pre-requisites**
+ - Ensure at-least 50 patients are active in OPD
+ - Clone the repository and navigate to root directory
+ 
+**IDE Execution**
 `export LOAD_SIMULATION_TYPE='Standard' && ./gradlew gatlingRun` \
 **High** `export LOAD_SIMULATION_TYPE='High' && ./gradlew gatlingRun` \
-**Peak** `export LOAD_SIMULATION_TYPE='Peak' && ./gradlew gatlingRun`
+**Peak** `export LOAD_SIMULATION_TYPE='Peak' && ./gradlew gatlingRun` \
+**dev**  `export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun`
+
+**AWS EC2 Execution**
+ - nohup  bash -c 'export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun' &
+ - save the PID
+ - To stop the execution `kill -9 PID`
 
 ### Stack
 
@@ -33,7 +43,7 @@ Simulations can be run locally using Gradle. `./gradlew gatlingRun`
 
 - `Possibility` : Base object to represent possible variants of various User flows
 - `Protocol` : http protocol for running simulations
-- `TrafficConfiguration` : Contains 3 configurable load configurations such as Standard, High and Peak
+- `TrafficConfiguration` : Contains 4 configurable load configurations such as Standard, High , Peak and dev
 - `Feeders` : csv data Feeders
 
 > 📁 **registries**
@@ -41,6 +51,9 @@ Simulations can be run locally using Gradle. `./gradlew gatlingRun`
 - Domain object registry that represents various functions performed by the user
 
 > 📁 **scenarios**
+
+- Patient count will be calculated based on pace for each user and total duration
+- workload will be created for each user based on patient count
 
 - Closed System for simulating constant traffic of concurrent users
 
@@ -55,11 +68,12 @@ constantConcurrentUsers(10).during(5 minutes)
 - Current suit supports **Bhamni Clinic** simulation
 - Following `closed system` concurrent user configurations are defined in `TrafficConfiguration`
 
-| Load Type | Concurrent Users | Duration   | Initial Ramp Duration |
-| --------- | ---------------- | ---------- | --------------------- |
-| STANDARD  | 40               | 3 minutes  | 30 seconds            |
-| HIGH      | 50               | 5 minutes  | 30 seconds            |
-| PEAK      | 70               | 10 minutes | 30 seconds            |
+| Load Type | Concurrent Users | Duration     | Initial Ramp Duration |
+| --------- | ---------------- | ----------   | --------------------- |
+| STANDARD  | 40               | 1 hour       | 60 seconds            |
+| HIGH      | 50               | 1 hour       | 60 seconds            |
+| PEAK      | 70               | 1 hour       | 60 seconds            |
+| dev       | env variable     | env variable | 10% of Duration       |
 
 To get an idea how this behaves, have a look at this visual representation of a capacity load test:
 
