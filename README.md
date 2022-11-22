@@ -21,7 +21,7 @@ Simulations can be run locally using Gradle. `./gradlew gatlingRun`
 **dev**  `export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun`
 
 **AWS EC2 Execution**
- - nohup  bash -c 'export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun' &
+ - `nohup  bash -c 'export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun' &`
  - save the PID
  - To stop the execution `kill -9 PID`
 
