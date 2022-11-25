@@ -1,0 +1,28 @@
+15:12:44.289 [ERROR] i.g.c.a.b.SessionHookBuilder$$anon$1 - 'hook-119' crashed with 'j.u.NoSuchElementException: No attribute named 'patientUUIDs' is defined', forwarding to the next one
+15:12:44.292 [ERROR] i.g.c.s.LoopBlock$ - Condition evaluation crashed with message 'No attribute named 'opdPatients' is defined', exiting loop
+15:12:44.293 [ERROR] i.g.c.a.b.SessionHookBuilder$$anon$1 - 'hook-115' crashed with 'j.u.NoSuchElementException: No attribute named 'patientUUIDs' is defined', forwarding to the next one
+15:12:44.294 [ERROR] i.g.c.a.b.SessionHookBuilder$$anon$1 - 'hook-114' crashed with 'j.l.IllegalArgumentException: bound must be positive', forwarding to the next one
+15:12:44.296 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-113' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:44.296 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-112' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:44.459 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-110' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:44.459 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-109' failed to execute: No attribute named 'locationUuid' is defined
+15:12:45.927 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-100' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:45.927 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-98' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:45.927 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-97' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:46.326 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-91' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:46.326 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-90' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:46.390 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-88' failed to execute: No attribute named 'opdVisitId' is defined
+15:12:46.680 [ERROR] i.g.c.a.b.SessionHookBuilder$$anon$1 - 'hook-119' crashed with 'j.u.NoSuchElementException: No attribute named 'patientUUIDs' is defined', forwarding to the next one
+15:12:46.681 [ERROR] i.g.c.s.LoopBlock$ - Condition evaluation crashed with message 'No attribute named 'opdPatients' is defined', exiting loop
+15:12:46.681 [ERROR] i.g.c.a.b.SessionHookBuilder$$anon$1 - 'hook-115' crashed with 'j.u.NoSuchElementException: No attribute named 'patientUUIDs' is defined', forwarding to the next one
+15:12:46.681 [ERROR] i.g.c.a.b.SessionHookBuilder$$anon$1 - 'hook-114' crashed with 'j.l.IllegalArgumentException: bound must be positive', forwarding to the next one
+15:12:46.681 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-113' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:46.682 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-112' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:46.847 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-110' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:46.847 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-109' failed to execute: No attribute named 'locationUuid' is defined
+15:12:48.000 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-100' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:48.001 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-98' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:48.001 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-97' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:48.525 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-91' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:48.526 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-90' failed to execute: No attribute named 'opdPatientId' is defined
+15:12:48.578 [ERROR] i.g.h.a.HttpRequestAction - 'httpRequest-88' failed to execute: No attribute named 'opdVisitId' is defined
