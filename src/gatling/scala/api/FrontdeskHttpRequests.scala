@@ -35,7 +35,7 @@ object FrontdeskHttpRequests {
 
   def searchPatientUsingName(loginLocationUuid: String, identifier: String): HttpRequestBuilder = {
     http("Search Patient by Name")
-      .get("/openmrs/ws/rest/v1/bahmnicore/search/patient")
+      .get("/openmrs/ws/rest/v1/bahmni/search/patient")
       .queryParam("addressFieldValue", "")
       .queryParam("customAttribute", "")
       .queryParam("loginLocationUuid", loginLocationUuid)
@@ -51,7 +51,7 @@ object FrontdeskHttpRequests {
 
   def searchPatientUsingIdentifier(loginLocationUuid: String, identifier: String): HttpRequestBuilder = {
     http("Search Patient by Identifier")
-      .get("/openmrs/ws/rest/v1/bahmnicore/search/patient/lucene")
+      .get("/openmrs/ws/rest/v1/bahmni/search/patient/lucene")
       .queryParam("filterOnAllIdentifiers", "true")
       .queryParam("identifier", identifier)
       .queryParam("loginLocationUuid", loginLocationUuid)
