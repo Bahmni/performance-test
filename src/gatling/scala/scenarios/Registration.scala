@@ -45,7 +45,8 @@ object Registration {
       //.exec(pause(20 seconds))
       .exec(performIdSearch("#{Registration Number}"))
       //.exec(pause(30 seconds))
-      .exec(startVisitForID),workLoad)
+      .exec(startVisitForID)
+        .exec(otherCloseVisit("#{p_uuID}")),workLoad)
   }
 
   private def existingPatient_NameSearch_StartVisit(workLoad: ScenarioWorkLoad) = {
@@ -58,7 +59,8 @@ object Registration {
      // .exec(pause(20 seconds))
       .exec(performNameSearch("#{First Name}" + " " + "#{Last Name}"))
       //.exec(pause(20 seconds))
-      .exec(startVisitForName),workLoad)
+      .exec(startVisitForName)
+      .exec(otherCloseVisit("#{pt_uuID}")),workLoad)
 
   }
 
@@ -71,7 +73,8 @@ object Registration {
       .feed(jsonFeeder)
       .exec(createPatient)
       //.exec(pause(30 seconds))
-      .exec(startVisitForCreatePatient),workLoad)
+      .exec(startVisitForCreatePatient)
+      .exec(otherCloseVisit("#{patient_uuid}")),workLoad)
   }
 
   private def patient_Document_Upload(workLoad: ScenarioWorkLoad) = {
@@ -94,6 +97,7 @@ object Registration {
         //.exec(pause(20 seconds))
         .exec(uploadPatientDocument)
        // .exec(pause(20 seconds))
-        .exec(verifyPatientDocument), workLoad)
+        .exec(verifyPatientDocument)
+        .exec(otherCloseVisit("#{pt_uuID}")), workLoad)
   }
 }
