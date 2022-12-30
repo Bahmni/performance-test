@@ -18,6 +18,7 @@ import scala.util.Random
 object Doctor {
 
   val inMemoryOpdPatientsQueue: mutable.Map[String, Boolean] = mutable.Map.empty[String, Boolean]
+  var inMemoryOpdPatientsIds: Map[String, String] = Map.empty[String, String]
   var remainingTime: FiniteDuration = 0 seconds
   var dt: Long = 0
   def goToClinicalApp: ChainBuilder = exec(
@@ -60,7 +61,8 @@ object Doctor {
       exec(
         getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
           .check(
-            jsonPath("$..uuid").findAll.saveAs("patientUUIDs")
+            jsonPath("$..uuid").findAll.saveAs("patientUUIDs"),
+            jsonPath("$..identifier").findAll.saveAs("ids")
           )
           .resources(
             getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
@@ -68,10 +70,11 @@ object Doctor {
           )
       ).exec(getPatientAvatars)
         .exec { session =>
+          inMemoryOpdPatientsIds=(session("patientUUIDs").as[Vector[String]] zip session("ids").as[Vector[String]]).toMap
           session("patientUUIDs")
             .as[Vector[String]]
             .foreach(uuid => {
-              if (!inMemoryOpdPatientsQueue.contains(uuid))
+              if (!inMemoryOpdPatientsQueue.contains(uuid) && !inMemoryOpdPatientsIds.get(uuid).contains("ABC"))
                 inMemoryOpdPatientsQueue += (uuid -> false)
             })
           session

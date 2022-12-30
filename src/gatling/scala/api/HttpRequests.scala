@@ -102,6 +102,13 @@ object HttpRequests {
       .queryParam("v", "custom:(uuid,location:(uuid)")
   }
 
+  def getactiveVisit(patientid:String):HttpRequestBuilder={
+    http("get active visit")
+      .get("/openmrs/ws/rest/v1/visit")
+      .queryParam("includeInactive","true")
+      .queryParam("patient",patientid)
+      .queryParam("v","custom:(uuid,visitType,startDatetime,stopDatetime,location,encounters:(uuid))")
+  }
   def findEncounter(patientUuid: String): HttpRequestBuilder = {
     http("find encounter")
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
