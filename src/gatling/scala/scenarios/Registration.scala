@@ -73,8 +73,7 @@ object Registration {
       .feed(jsonFeeder)
       .exec(createPatient)
       //.exec(pause(30 seconds))
-      .exec(startVisitForCreatePatient)
-      .exec(otherCloseVisit("#{patient_uuid}")),workLoad)
+      .exec(startVisitForCreatePatient),workLoad)
   }
 
   private def patient_Document_Upload(workLoad: ScenarioWorkLoad) = {
