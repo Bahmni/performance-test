@@ -1,0 +1,731 @@
+<testsuite name="simulations.BahmniClinic" tests="243" errors="0" failures="6" time="0">
+<testcase name="get login locations: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get login locations: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get locale.allowed.list global property: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get locale.allowed.list global property: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get user: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get user: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="delete session: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>delete session: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get session: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get session: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post user info: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>post user info: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get provider: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get provider: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get bahmni.enableAuditLog global property: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get bahmni.enableAuditLog global property: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post audit log: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>post audit log: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="patient config: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>patient config: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get registration concepts: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get registration concepts: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Consultation Note concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Consultation Note concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Lab Order Notes concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Lab Order Notes concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Impression concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Impression concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get All_Tests_and_Panels concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get All_Tests_and_Panels concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Dosage Frequency concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Dosage Frequency concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Dosage Instructions concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Dosage Instructions concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Stopped Order Reason concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Stopped Order Reason concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get mrs.genders global property: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get mrs.genders global property: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get bahmni.relationshipTypeMap global property: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get bahmni.relationshipTypeMap global property: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get bahmni.encounterType.default global property: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get bahmni.encounterType.default global property: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get order types: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get order types: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get identifier types: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get identifier types: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatients: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatients: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatientsByProvider: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatientsByProvider: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatientsByLocation: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatientsByLocation: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient image: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient image: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get relationship: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get relationship: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get LoginLocation to visit type mapping: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get LoginLocation to visit type mapping: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Follow-up Condition concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Follow-up Condition concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get encounter type consultation: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get encounter type consultation: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="find encounter: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>find encounter: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get diagnoses for patient: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get diagnoses for patient: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get conditional history: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get conditional history: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get disease templates: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get disease templates: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get encounter by uuid: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get encounter by uuid: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient context: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient context: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient upcoming appointment: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient upcoming appointment: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get config for drug orders: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get config for drug orders: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get drug orders: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get drug orders: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get observation: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get observation: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get active drugOrders: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get active drugOrders: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="Get all observation templates: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>Get all observation templates: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="Get obs: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>Get obs: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient info, form type, visits: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient info, form type, visits: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get latest published forms: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get latest published forms: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get drugOrder.drugOther global property: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get drugOrder.drugOther global property: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="getVisits: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>getVisits: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get visit location: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get visit location: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get summary by visit UUID: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get summary by visit UUID: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get visit: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get visit: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get All Observation Templates concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get All Observation Templates concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get config drug order: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get config drug order: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get drug order: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get drug order: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="find Reglan Tablet drug: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>find Reglan Tablet drug: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get entity mapping by location Encounter: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get entity mapping by location Encounter: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="find Loperamide Plus drug: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>find Loperamide Plus drug: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="find Promethazine drug: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>find Promethazine drug: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get form: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get form: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get form translation: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get form translation: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post encounter: 95th percentile of response time is less than 1000.0" status="false" time="0">
+  <failure type="post encounter">Actual value: 2619.0</failure>
+</testcase>
+<testcase name="get persona Attribute type: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get persona Attribute type: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get relationship types: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get relationship types: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="close patient visit: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>close patient visit: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="create patient: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>create patient: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Nutrition: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Nutrition: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="activate visit: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>activate visit: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Vital: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Vital: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get fee information: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get fee information: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="start visit: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>start visit: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get address hierarchy level: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get address hierarchy level: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get person attribute types: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get person attribute types: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="Search Patient by Identifier: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>Search Patient by Identifier: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get active visit: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get active visit: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="Search Patient by Name: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>Search Patient by Name: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get visit by patient: 95th percentile of response time is less than 1000.0" status="false" time="0">
+  <failure type="get visit by patient">Actual value: 1124.0</failure>
+</testcase>
+<testcase name="get visitType: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get visitType: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient document concept: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient document concept: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post patient consultation image: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>post patient consultation image: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post visit document: 95th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>post visit document: 95th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get login locations: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get login locations: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get locale.allowed.list global property: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get locale.allowed.list global property: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get user: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get user: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="delete session: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>delete session: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get session: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get session: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post user info: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>post user info: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get provider: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get provider: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get bahmni.enableAuditLog global property: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get bahmni.enableAuditLog global property: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post audit log: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>post audit log: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="patient config: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>patient config: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get registration concepts: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get registration concepts: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Consultation Note concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Consultation Note concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Lab Order Notes concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Lab Order Notes concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Impression concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Impression concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get All_Tests_and_Panels concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get All_Tests_and_Panels concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Dosage Frequency concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Dosage Frequency concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Dosage Instructions concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Dosage Instructions concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Stopped Order Reason concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Stopped Order Reason concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get mrs.genders global property: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get mrs.genders global property: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get bahmni.relationshipTypeMap global property: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get bahmni.relationshipTypeMap global property: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get bahmni.encounterType.default global property: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get bahmni.encounterType.default global property: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get order types: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get order types: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get identifier types: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get identifier types: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatients: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatients: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatientsByProvider: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatientsByProvider: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatientsByLocation: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatientsByLocation: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient image: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient image: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get relationship: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get relationship: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get LoginLocation to visit type mapping: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get LoginLocation to visit type mapping: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Follow-up Condition concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Follow-up Condition concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get encounter type consultation: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get encounter type consultation: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="find encounter: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>find encounter: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get diagnoses for patient: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get diagnoses for patient: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get conditional history: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get conditional history: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get disease templates: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get disease templates: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get encounter by uuid: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get encounter by uuid: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient context: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient context: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient upcoming appointment: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient upcoming appointment: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get config for drug orders: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get config for drug orders: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get drug orders: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get drug orders: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get observation: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get observation: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get active drugOrders: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get active drugOrders: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="Get all observation templates: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>Get all observation templates: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="Get obs: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>Get obs: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient info, form type, visits: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient info, form type, visits: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get latest published forms: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get latest published forms: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get drugOrder.drugOther global property: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get drugOrder.drugOther global property: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="getVisits: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>getVisits: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get visit location: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get visit location: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get summary by visit UUID: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get summary by visit UUID: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get visit: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get visit: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get All Observation Templates concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get All Observation Templates concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get config drug order: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get config drug order: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get drug order: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get drug order: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="find Reglan Tablet drug: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>find Reglan Tablet drug: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get entity mapping by location Encounter: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get entity mapping by location Encounter: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="find Loperamide Plus drug: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>find Loperamide Plus drug: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="find Promethazine drug: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>find Promethazine drug: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get form: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get form: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get form translation: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get form translation: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post encounter: 99th percentile of response time is less than 1000.0" status="false" time="0">
+  <failure type="post encounter">Actual value: 3024.0</failure>
+</testcase>
+<testcase name="get persona Attribute type: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get persona Attribute type: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get relationship types: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get relationship types: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="close patient visit: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>close patient visit: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="create patient: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>create patient: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Nutrition: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Nutrition: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="activate visit: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>activate visit: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get Vital: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get Vital: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get fee information: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get fee information: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="start visit: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>start visit: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get address hierarchy level: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get address hierarchy level: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get person attribute types: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get person attribute types: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="Search Patient by Identifier: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>Search Patient by Identifier: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get active visit: 99th percentile of response time is less than 1000.0" status="false" time="0">
+  <failure type="get active visit">Actual value: 1239.0</failure>
+</testcase>
+<testcase name="Search Patient by Name: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>Search Patient by Name: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get visit by patient: 99th percentile of response time is less than 1000.0" status="false" time="0">
+  <failure type="get visit by patient">Actual value: 1407.0</failure>
+</testcase>
+<testcase name="get visitType: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get visitType: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get patient document concept: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>get patient document concept: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post patient consultation image: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>post patient consultation image: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="post visit document: 99th percentile of response time is less than 1000.0" status="true" time="0">
+  <system-out>post visit document: 99th percentile of response time is less than 1000.0</system-out>
+</testcase>
+<testcase name="get login locations: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get login locations: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get locale.allowed.list global property: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get locale.allowed.list global property: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get user: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get user: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="delete session: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>delete session: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get session: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get session: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="post user info: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>post user info: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get provider: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get provider: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get bahmni.enableAuditLog global property: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get bahmni.enableAuditLog global property: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="post audit log: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>post audit log: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="patient config: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>patient config: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get registration concepts: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get registration concepts: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Consultation Note concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Consultation Note concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Lab Order Notes concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Lab Order Notes concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Impression concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Impression concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get All_Tests_and_Panels concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get All_Tests_and_Panels concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Dosage Frequency concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Dosage Frequency concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Dosage Instructions concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Dosage Instructions concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Stopped Order Reason concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Stopped Order Reason concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get mrs.genders global property: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get mrs.genders global property: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get bahmni.relationshipTypeMap global property: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get bahmni.relationshipTypeMap global property: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get bahmni.encounterType.default global property: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get bahmni.encounterType.default global property: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get order types: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get order types: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get identifier types: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get identifier types: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatients: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatients: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatientsByProvider: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatientsByProvider: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="emrapi.sqlSearch.activePatientsByLocation: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>emrapi.sqlSearch.activePatientsByLocation: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get patient image: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get patient image: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get relationship: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get relationship: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get LoginLocation to visit type mapping: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get LoginLocation to visit type mapping: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Follow-up Condition concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Follow-up Condition concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get encounter type consultation: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get encounter type consultation: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get patient: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get patient: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="find encounter: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>find encounter: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get diagnoses for patient: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get diagnoses for patient: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get conditional history: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get conditional history: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get disease templates: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get disease templates: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get encounter by uuid: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get encounter by uuid: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get patient context: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get patient context: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get patient upcoming appointment: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get patient upcoming appointment: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get config for drug orders: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get config for drug orders: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get drug orders: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get drug orders: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get observation: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get observation: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get active drugOrders: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get active drugOrders: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="Get all observation templates: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>Get all observation templates: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="Get obs: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>Get obs: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get patient info, form type, visits: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get patient info, form type, visits: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get latest published forms: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get latest published forms: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get drugOrder.drugOther global property: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get drugOrder.drugOther global property: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="getVisits: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>getVisits: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get visit location: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get visit location: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get summary by visit UUID: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get summary by visit UUID: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get visit: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get visit: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get All Observation Templates concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get All Observation Templates concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get config drug order: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get config drug order: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get drug order: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get drug order: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="find Reglan Tablet drug: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>find Reglan Tablet drug: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get entity mapping by location Encounter: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get entity mapping by location Encounter: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="find Loperamide Plus drug: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>find Loperamide Plus drug: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="find Promethazine drug: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>find Promethazine drug: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get form: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get form: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get form translation: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get form translation: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="post encounter: max of response time is less than 3000.0" status="false" time="0">
+  <failure type="post encounter">Actual value: 4763.0</failure>
+</testcase>
+<testcase name="get persona Attribute type: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get persona Attribute type: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get relationship types: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get relationship types: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="close patient visit: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>close patient visit: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="create patient: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>create patient: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Nutrition: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Nutrition: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="activate visit: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>activate visit: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get Vital: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get Vital: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get fee information: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get fee information: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="start visit: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>start visit: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get address hierarchy level: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get address hierarchy level: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get person attribute types: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get person attribute types: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="Search Patient by Identifier: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>Search Patient by Identifier: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get active visit: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get active visit: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="Search Patient by Name: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>Search Patient by Name: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get visit by patient: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get visit by patient: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get visitType: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get visitType: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="get patient document concept: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>get patient document concept: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="post patient consultation image: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>post patient consultation image: max of response time is less than 3000.0</system-out>
+</testcase>
+<testcase name="post visit document: max of response time is less than 3000.0" status="true" time="0">
+  <system-out>post visit document: max of response time is less than 3000.0</system-out>
+</testcase>
+</testsuite>
