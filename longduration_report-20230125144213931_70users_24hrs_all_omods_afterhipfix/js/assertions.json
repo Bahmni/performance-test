@@ -1,0 +1,2196 @@
+{
+  "simulation": "simulations.BahmniClinic",
+  "simulationId": "bahmniclinic-20230125144213931",
+  "start": 1674657742914,
+  "description": "",
+  "scenarios": ["Consultation - Average Patient", "Registration - New Patient - OPD Visit", "Registration - Existing Patient ID Search - OPD Visit", "Registration - Existing Patient Name Search - OPD Visit", "Registration - Patient document upload"],
+  "assertions": [
+{
+  "path": "get login locations",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get login locations: 95th percentile of response time is less than 1000.0",
+  "actualValue": [139.0]
+},
+{
+  "path": "get locale.allowed.list global property",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get locale.allowed.list global property: 95th percentile of response time is less than 1000.0",
+  "actualValue": [76.0]
+},
+{
+  "path": "get user",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get user: 95th percentile of response time is less than 1000.0",
+  "actualValue": [317.0]
+},
+{
+  "path": "delete session",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "delete session: 95th percentile of response time is less than 1000.0",
+  "actualValue": [31.0]
+},
+{
+  "path": "get session",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get session: 95th percentile of response time is less than 1000.0",
+  "actualValue": [390.0]
+},
+{
+  "path": "post user info",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "post user info: 95th percentile of response time is less than 1000.0",
+  "actualValue": [1076.0]
+},
+{
+  "path": "get provider",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get provider: 95th percentile of response time is less than 1000.0",
+  "actualValue": [297.0]
+},
+{
+  "path": "get bahmni.enableAuditLog global property",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get bahmni.enableAuditLog global property: 95th percentile of response time is less than 1000.0",
+  "actualValue": [62.0]
+},
+{
+  "path": "post audit log",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "post audit log: 95th percentile of response time is less than 1000.0",
+  "actualValue": [51.0]
+},
+{
+  "path": "patient config",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "patient config: 95th percentile of response time is less than 1000.0",
+  "actualValue": [28.0]
+},
+{
+  "path": "get Consultation Note concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Consultation Note concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [328.0]
+},
+{
+  "path": "get registration concepts",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get registration concepts: 95th percentile of response time is less than 1000.0",
+  "actualValue": [243.0]
+},
+{
+  "path": "get Lab Order Notes concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Lab Order Notes concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [326.0]
+},
+{
+  "path": "get Impression concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Impression concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [307.0]
+},
+{
+  "path": "get All_Tests_and_Panels concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get All_Tests_and_Panels concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [290.0]
+},
+{
+  "path": "get Dosage Frequency concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Dosage Frequency concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [393.0]
+},
+{
+  "path": "get Dosage Instructions concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Dosage Instructions concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [357.0]
+},
+{
+  "path": "get Stopped Order Reason concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Stopped Order Reason concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [325.0]
+},
+{
+  "path": "get mrs.genders global property",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get mrs.genders global property: 95th percentile of response time is less than 1000.0",
+  "actualValue": [72.0]
+},
+{
+  "path": "get bahmni.relationshipTypeMap global property",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get bahmni.relationshipTypeMap global property: 95th percentile of response time is less than 1000.0",
+  "actualValue": [71.0]
+},
+{
+  "path": "get bahmni.encounterType.default global property",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get bahmni.encounterType.default global property: 95th percentile of response time is less than 1000.0",
+  "actualValue": [39.0]
+},
+{
+  "path": "get order types",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get order types: 95th percentile of response time is less than 1000.0",
+  "actualValue": [154.0]
+},
+{
+  "path": "get identifier types",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get identifier types: 95th percentile of response time is less than 1000.0",
+  "actualValue": [89.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatients",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatients: 95th percentile of response time is less than 1000.0",
+  "actualValue": [471.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatientsByProvider",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatientsByProvider: 95th percentile of response time is less than 1000.0",
+  "actualValue": [334.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatientsByLocation",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatientsByLocation: 95th percentile of response time is less than 1000.0",
+  "actualValue": [291.0]
+},
+{
+  "path": "get patient image",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient image: 95th percentile of response time is less than 1000.0",
+  "actualValue": [18.0]
+},
+{
+  "path": "get relationship",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get relationship: 95th percentile of response time is less than 1000.0",
+  "actualValue": [111.0]
+},
+{
+  "path": "get LoginLocation to visit type mapping",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get LoginLocation to visit type mapping: 95th percentile of response time is less than 1000.0",
+  "actualValue": [112.0]
+},
+{
+  "path": "get Follow-up Condition concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Follow-up Condition concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [274.0]
+},
+{
+  "path": "get patient",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient: 95th percentile of response time is less than 1000.0",
+  "actualValue": [402.0]
+},
+{
+  "path": "find encounter",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "find encounter: 95th percentile of response time is less than 1000.0",
+  "actualValue": [547.0]
+},
+{
+  "path": "get encounter type consultation",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get encounter type consultation: 95th percentile of response time is less than 1000.0",
+  "actualValue": [106.0]
+},
+{
+  "path": "get diagnoses for patient",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get diagnoses for patient: 95th percentile of response time is less than 1000.0",
+  "actualValue": [549.0]
+},
+{
+  "path": "get conditional history",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get conditional history: 95th percentile of response time is less than 1000.0",
+  "actualValue": [127.0]
+},
+{
+  "path": "get disease templates",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get disease templates: 95th percentile of response time is less than 1000.0",
+  "actualValue": [81.0]
+},
+{
+  "path": "get encounter by uuid",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "get encounter by uuid: 95th percentile of response time is less than 1000.0",
+  "actualValue": [1060.0]
+},
+{
+  "path": "get patient context",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient context: 95th percentile of response time is less than 1000.0",
+  "actualValue": [128.0]
+},
+{
+  "path": "get patient upcoming appointment",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient upcoming appointment: 95th percentile of response time is less than 1000.0",
+  "actualValue": [376.0]
+},
+{
+  "path": "get drug orders",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get drug orders: 95th percentile of response time is less than 1000.0",
+  "actualValue": [967.0]
+},
+{
+  "path": "get config for drug orders",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get config for drug orders: 95th percentile of response time is less than 1000.0",
+  "actualValue": [785.0]
+},
+{
+  "path": "get observation",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get observation: 95th percentile of response time is less than 1000.0",
+  "actualValue": [151.0]
+},
+{
+  "path": "get active drugOrders",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get active drugOrders: 95th percentile of response time is less than 1000.0",
+  "actualValue": [591.0]
+},
+{
+  "path": "Get all observation templates",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "Get all observation templates: 95th percentile of response time is less than 1000.0",
+  "actualValue": [230.0]
+},
+{
+  "path": "Get obs",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "Get obs: 95th percentile of response time is less than 1000.0",
+  "actualValue": [427.0]
+},
+{
+  "path": "get patient info, form type, visits",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient info, form type, visits: 95th percentile of response time is less than 1000.0",
+  "actualValue": [410.0]
+},
+{
+  "path": "get latest published forms",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get latest published forms: 95th percentile of response time is less than 1000.0",
+  "actualValue": [118.0]
+},
+{
+  "path": "get drugOrder.drugOther global property",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get drugOrder.drugOther global property: 95th percentile of response time is less than 1000.0",
+  "actualValue": [63.0]
+},
+{
+  "path": "getVisits",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "getVisits: 95th percentile of response time is less than 1000.0",
+  "actualValue": [156.0]
+},
+{
+  "path": "get visit location",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get visit location: 95th percentile of response time is less than 1000.0",
+  "actualValue": [127.0]
+},
+{
+  "path": "get visit",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get visit: 95th percentile of response time is less than 1000.0",
+  "actualValue": [127.0]
+},
+{
+  "path": "get summary by visit UUID",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get summary by visit UUID: 95th percentile of response time is less than 1000.0",
+  "actualValue": [77.0]
+},
+{
+  "path": "get All Observation Templates concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get All Observation Templates concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [88.0]
+},
+{
+  "path": "get config drug order",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get config drug order: 95th percentile of response time is less than 1000.0",
+  "actualValue": [226.0]
+},
+{
+  "path": "get drug order",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get drug order: 95th percentile of response time is less than 1000.0",
+  "actualValue": [75.0]
+},
+{
+  "path": "find Reglan Tablet drug",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "find Reglan Tablet drug: 95th percentile of response time is less than 1000.0",
+  "actualValue": [234.0]
+},
+{
+  "path": "get entity mapping by location Encounter",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get entity mapping by location Encounter: 95th percentile of response time is less than 1000.0",
+  "actualValue": [63.0]
+},
+{
+  "path": "find Loperamide Plus drug",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "find Loperamide Plus drug: 95th percentile of response time is less than 1000.0",
+  "actualValue": [249.0]
+},
+{
+  "path": "find Promethazine drug",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "find Promethazine drug: 95th percentile of response time is less than 1000.0",
+  "actualValue": [350.0]
+},
+{
+  "path": "get form",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get form: 95th percentile of response time is less than 1000.0",
+  "actualValue": [639.0]
+},
+{
+  "path": "get form translation",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get form translation: 95th percentile of response time is less than 1000.0",
+  "actualValue": [52.0]
+},
+{
+  "path": "post encounter",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "post encounter: 95th percentile of response time is less than 1000.0",
+  "actualValue": [5270.0]
+},
+{
+  "path": "get persona Attribute type",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get persona Attribute type: 95th percentile of response time is less than 1000.0",
+  "actualValue": [90.0]
+},
+{
+  "path": "get relationship types",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get relationship types: 95th percentile of response time is less than 1000.0",
+  "actualValue": [129.0]
+},
+{
+  "path": "close patient visit",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "close patient visit: 95th percentile of response time is less than 1000.0",
+  "actualValue": [367.0]
+},
+{
+  "path": "create patient",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "create patient: 95th percentile of response time is less than 1000.0",
+  "actualValue": [536.0]
+},
+{
+  "path": "get Nutrition",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Nutrition: 95th percentile of response time is less than 1000.0",
+  "actualValue": [255.0]
+},
+{
+  "path": "activate visit",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "activate visit: 95th percentile of response time is less than 1000.0",
+  "actualValue": [208.0]
+},
+{
+  "path": "get Vital",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Vital: 95th percentile of response time is less than 1000.0",
+  "actualValue": [253.0]
+},
+{
+  "path": "get fee information",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get fee information: 95th percentile of response time is less than 1000.0",
+  "actualValue": [257.0]
+},
+{
+  "path": "start visit",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "start visit: 95th percentile of response time is less than 1000.0",
+  "actualValue": [310.0]
+},
+{
+  "path": "get address hierarchy level",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get address hierarchy level: 95th percentile of response time is less than 1000.0",
+  "actualValue": [303.0]
+},
+{
+  "path": "get person attribute types",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get person attribute types: 95th percentile of response time is less than 1000.0",
+  "actualValue": [254.0]
+},
+{
+  "path": "Search Patient by Identifier",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "Search Patient by Identifier: 95th percentile of response time is less than 1000.0",
+  "actualValue": [711.0]
+},
+{
+  "path": "get active visit",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "get active visit: 95th percentile of response time is less than 1000.0",
+  "actualValue": [1814.0]
+},
+{
+  "path": "Search Patient by Name",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "Search Patient by Name: 95th percentile of response time is less than 1000.0",
+  "actualValue": [281.0]
+},
+{
+  "path": "get visit by patient",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "get visit by patient: 95th percentile of response time is less than 1000.0",
+  "actualValue": [1500.0]
+},
+{
+  "path": "get visitType",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get visitType: 95th percentile of response time is less than 1000.0",
+  "actualValue": [92.0]
+},
+{
+  "path": "get patient document concept",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient document concept: 95th percentile of response time is less than 1000.0",
+  "actualValue": [221.0]
+},
+{
+  "path": "post patient consultation image",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "post patient consultation image: 95th percentile of response time is less than 1000.0",
+  "actualValue": [616.0]
+},
+{
+  "path": "post visit document",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "post visit document: 95th percentile of response time is less than 1000.0",
+  "actualValue": [482.0]
+},
+{
+  "path": "get login locations",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get login locations: 99th percentile of response time is less than 1000.0",
+  "actualValue": [244.0]
+},
+{
+  "path": "get locale.allowed.list global property",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get locale.allowed.list global property: 99th percentile of response time is less than 1000.0",
+  "actualValue": [130.0]
+},
+{
+  "path": "get user",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get user: 99th percentile of response time is less than 1000.0",
+  "actualValue": [602.0]
+},
+{
+  "path": "delete session",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "delete session: 99th percentile of response time is less than 1000.0",
+  "actualValue": [75.0]
+},
+{
+  "path": "get session",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get session: 99th percentile of response time is less than 1000.0",
+  "actualValue": [678.0]
+},
+{
+  "path": "post user info",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "post user info: 99th percentile of response time is less than 1000.0",
+  "actualValue": [1492.0]
+},
+{
+  "path": "get provider",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get provider: 99th percentile of response time is less than 1000.0",
+  "actualValue": [739.0]
+},
+{
+  "path": "get bahmni.enableAuditLog global property",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get bahmni.enableAuditLog global property: 99th percentile of response time is less than 1000.0",
+  "actualValue": [205.0]
+},
+{
+  "path": "post audit log",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "post audit log: 99th percentile of response time is less than 1000.0",
+  "actualValue": [122.0]
+},
+{
+  "path": "patient config",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "patient config: 99th percentile of response time is less than 1000.0",
+  "actualValue": [62.0]
+},
+{
+  "path": "get Consultation Note concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Consultation Note concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [564.0]
+},
+{
+  "path": "get registration concepts",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get registration concepts: 99th percentile of response time is less than 1000.0",
+  "actualValue": [620.0]
+},
+{
+  "path": "get Lab Order Notes concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Lab Order Notes concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [563.0]
+},
+{
+  "path": "get Impression concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Impression concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [584.0]
+},
+{
+  "path": "get All_Tests_and_Panels concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get All_Tests_and_Panels concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [553.0]
+},
+{
+  "path": "get Dosage Frequency concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Dosage Frequency concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [651.0]
+},
+{
+  "path": "get Dosage Instructions concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Dosage Instructions concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [690.0]
+},
+{
+  "path": "get Stopped Order Reason concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Stopped Order Reason concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [597.0]
+},
+{
+  "path": "get mrs.genders global property",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get mrs.genders global property: 99th percentile of response time is less than 1000.0",
+  "actualValue": [258.0]
+},
+{
+  "path": "get bahmni.relationshipTypeMap global property",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get bahmni.relationshipTypeMap global property: 99th percentile of response time is less than 1000.0",
+  "actualValue": [269.0]
+},
+{
+  "path": "get bahmni.encounterType.default global property",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get bahmni.encounterType.default global property: 99th percentile of response time is less than 1000.0",
+  "actualValue": [110.0]
+},
+{
+  "path": "get order types",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get order types: 99th percentile of response time is less than 1000.0",
+  "actualValue": [249.0]
+},
+{
+  "path": "get identifier types",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get identifier types: 99th percentile of response time is less than 1000.0",
+  "actualValue": [228.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatients",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatients: 99th percentile of response time is less than 1000.0",
+  "actualValue": [679.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatientsByProvider",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatientsByProvider: 99th percentile of response time is less than 1000.0",
+  "actualValue": [554.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatientsByLocation",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatientsByLocation: 99th percentile of response time is less than 1000.0",
+  "actualValue": [498.0]
+},
+{
+  "path": "get patient image",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient image: 99th percentile of response time is less than 1000.0",
+  "actualValue": [36.0]
+},
+{
+  "path": "get relationship",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get relationship: 99th percentile of response time is less than 1000.0",
+  "actualValue": [184.0]
+},
+{
+  "path": "get LoginLocation to visit type mapping",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get LoginLocation to visit type mapping: 99th percentile of response time is less than 1000.0",
+  "actualValue": [241.0]
+},
+{
+  "path": "get Follow-up Condition concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Follow-up Condition concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [388.0]
+},
+{
+  "path": "get patient",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient: 99th percentile of response time is less than 1000.0",
+  "actualValue": [704.0]
+},
+{
+  "path": "find encounter",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "find encounter: 99th percentile of response time is less than 1000.0",
+  "actualValue": [852.0]
+},
+{
+  "path": "get encounter type consultation",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get encounter type consultation: 99th percentile of response time is less than 1000.0",
+  "actualValue": [168.0]
+},
+{
+  "path": "get diagnoses for patient",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get diagnoses for patient: 99th percentile of response time is less than 1000.0",
+  "actualValue": [774.0]
+},
+{
+  "path": "get conditional history",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get conditional history: 99th percentile of response time is less than 1000.0",
+  "actualValue": [194.0]
+},
+{
+  "path": "get disease templates",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get disease templates: 99th percentile of response time is less than 1000.0",
+  "actualValue": [147.0]
+},
+{
+  "path": "get encounter by uuid",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "get encounter by uuid: 99th percentile of response time is less than 1000.0",
+  "actualValue": [1859.0]
+},
+{
+  "path": "get patient context",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient context: 99th percentile of response time is less than 1000.0",
+  "actualValue": [202.0]
+},
+{
+  "path": "get patient upcoming appointment",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient upcoming appointment: 99th percentile of response time is less than 1000.0",
+  "actualValue": [574.0]
+},
+{
+  "path": "get drug orders",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "get drug orders: 99th percentile of response time is less than 1000.0",
+  "actualValue": [1426.0]
+},
+{
+  "path": "get config for drug orders",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "get config for drug orders: 99th percentile of response time is less than 1000.0",
+  "actualValue": [1089.0]
+},
+{
+  "path": "get observation",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get observation: 99th percentile of response time is less than 1000.0",
+  "actualValue": [241.0]
+},
+{
+  "path": "get active drugOrders",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get active drugOrders: 99th percentile of response time is less than 1000.0",
+  "actualValue": [891.0]
+},
+{
+  "path": "Get all observation templates",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "Get all observation templates: 99th percentile of response time is less than 1000.0",
+  "actualValue": [343.0]
+},
+{
+  "path": "Get obs",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "Get obs: 99th percentile of response time is less than 1000.0",
+  "actualValue": [650.0]
+},
+{
+  "path": "get patient info, form type, visits",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient info, form type, visits: 99th percentile of response time is less than 1000.0",
+  "actualValue": [657.0]
+},
+{
+  "path": "get latest published forms",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get latest published forms: 99th percentile of response time is less than 1000.0",
+  "actualValue": [189.0]
+},
+{
+  "path": "get drugOrder.drugOther global property",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get drugOrder.drugOther global property: 99th percentile of response time is less than 1000.0",
+  "actualValue": [109.0]
+},
+{
+  "path": "getVisits",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "getVisits: 99th percentile of response time is less than 1000.0",
+  "actualValue": [383.0]
+},
+{
+  "path": "get visit location",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get visit location: 99th percentile of response time is less than 1000.0",
+  "actualValue": [297.0]
+},
+{
+  "path": "get visit",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get visit: 99th percentile of response time is less than 1000.0",
+  "actualValue": [257.0]
+},
+{
+  "path": "get summary by visit UUID",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get summary by visit UUID: 99th percentile of response time is less than 1000.0",
+  "actualValue": [124.0]
+},
+{
+  "path": "get All Observation Templates concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get All Observation Templates concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [159.0]
+},
+{
+  "path": "get config drug order",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get config drug order: 99th percentile of response time is less than 1000.0",
+  "actualValue": [426.0]
+},
+{
+  "path": "get drug order",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get drug order: 99th percentile of response time is less than 1000.0",
+  "actualValue": [134.0]
+},
+{
+  "path": "find Reglan Tablet drug",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "find Reglan Tablet drug: 99th percentile of response time is less than 1000.0",
+  "actualValue": [401.0]
+},
+{
+  "path": "get entity mapping by location Encounter",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get entity mapping by location Encounter: 99th percentile of response time is less than 1000.0",
+  "actualValue": [108.0]
+},
+{
+  "path": "find Loperamide Plus drug",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "find Loperamide Plus drug: 99th percentile of response time is less than 1000.0",
+  "actualValue": [415.0]
+},
+{
+  "path": "find Promethazine drug",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "find Promethazine drug: 99th percentile of response time is less than 1000.0",
+  "actualValue": [716.0]
+},
+{
+  "path": "get form",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get form: 99th percentile of response time is less than 1000.0",
+  "actualValue": [847.0]
+},
+{
+  "path": "get form translation",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get form translation: 99th percentile of response time is less than 1000.0",
+  "actualValue": [85.0]
+},
+{
+  "path": "post encounter",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "post encounter: 99th percentile of response time is less than 1000.0",
+  "actualValue": [8857.0]
+},
+{
+  "path": "get persona Attribute type",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get persona Attribute type: 99th percentile of response time is less than 1000.0",
+  "actualValue": [156.0]
+},
+{
+  "path": "get relationship types",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get relationship types: 99th percentile of response time is less than 1000.0",
+  "actualValue": [341.0]
+},
+{
+  "path": "close patient visit",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "close patient visit: 99th percentile of response time is less than 1000.0",
+  "actualValue": [665.0]
+},
+{
+  "path": "create patient",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "create patient: 99th percentile of response time is less than 1000.0",
+  "actualValue": [794.0]
+},
+{
+  "path": "get Nutrition",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Nutrition: 99th percentile of response time is less than 1000.0",
+  "actualValue": [373.0]
+},
+{
+  "path": "activate visit",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "activate visit: 99th percentile of response time is less than 1000.0",
+  "actualValue": [300.0]
+},
+{
+  "path": "get Vital",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get Vital: 99th percentile of response time is less than 1000.0",
+  "actualValue": [372.0]
+},
+{
+  "path": "get fee information",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get fee information: 99th percentile of response time is less than 1000.0",
+  "actualValue": [365.0]
+},
+{
+  "path": "start visit",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "start visit: 99th percentile of response time is less than 1000.0",
+  "actualValue": [470.0]
+},
+{
+  "path": "get address hierarchy level",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get address hierarchy level: 99th percentile of response time is less than 1000.0",
+  "actualValue": [885.0]
+},
+{
+  "path": "get person attribute types",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get person attribute types: 99th percentile of response time is less than 1000.0",
+  "actualValue": [823.0]
+},
+{
+  "path": "Search Patient by Identifier",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "Search Patient by Identifier: 99th percentile of response time is less than 1000.0",
+  "actualValue": [1075.0]
+},
+{
+  "path": "get active visit",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "get active visit: 99th percentile of response time is less than 1000.0",
+  "actualValue": [2348.0]
+},
+{
+  "path": "Search Patient by Name",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "Search Patient by Name: 99th percentile of response time is less than 1000.0",
+  "actualValue": [424.0]
+},
+{
+  "path": "get visit by patient",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": false,
+  "message": "get visit by patient: 99th percentile of response time is less than 1000.0",
+  "actualValue": [2313.0]
+},
+{
+  "path": "get visitType",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get visitType: 99th percentile of response time is less than 1000.0",
+  "actualValue": [132.0]
+},
+{
+  "path": "get patient document concept",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "get patient document concept: 99th percentile of response time is less than 1000.0",
+  "actualValue": [332.0]
+},
+{
+  "path": "post patient consultation image",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "post patient consultation image: 99th percentile of response time is less than 1000.0",
+  "actualValue": [933.0]
+},
+{
+  "path": "post visit document",
+  "target": "99th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [1000.0],
+  "result": true,
+  "message": "post visit document: 99th percentile of response time is less than 1000.0",
+  "actualValue": [836.0]
+},
+{
+  "path": "get login locations",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get login locations: max of response time is less than 3000.0",
+  "actualValue": [1643.0]
+},
+{
+  "path": "get locale.allowed.list global property",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get locale.allowed.list global property: max of response time is less than 3000.0",
+  "actualValue": [910.0]
+},
+{
+  "path": "get user",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get user: max of response time is less than 3000.0",
+  "actualValue": [4484.0]
+},
+{
+  "path": "delete session",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "delete session: max of response time is less than 3000.0",
+  "actualValue": [1195.0]
+},
+{
+  "path": "get session",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get session: max of response time is less than 3000.0",
+  "actualValue": [3578.0]
+},
+{
+  "path": "post user info",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "post user info: max of response time is less than 3000.0",
+  "actualValue": [4273.0]
+},
+{
+  "path": "get provider",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get provider: max of response time is less than 3000.0",
+  "actualValue": [2191.0]
+},
+{
+  "path": "get bahmni.enableAuditLog global property",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get bahmni.enableAuditLog global property: max of response time is less than 3000.0",
+  "actualValue": [3146.0]
+},
+{
+  "path": "post audit log",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "post audit log: max of response time is less than 3000.0",
+  "actualValue": [3193.0]
+},
+{
+  "path": "patient config",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "patient config: max of response time is less than 3000.0",
+  "actualValue": [1292.0]
+},
+{
+  "path": "get Consultation Note concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get Consultation Note concept: max of response time is less than 3000.0",
+  "actualValue": [2535.0]
+},
+{
+  "path": "get registration concepts",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get registration concepts: max of response time is less than 3000.0",
+  "actualValue": [3612.0]
+},
+{
+  "path": "get Lab Order Notes concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get Lab Order Notes concept: max of response time is less than 3000.0",
+  "actualValue": [2536.0]
+},
+{
+  "path": "get Impression concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get Impression concept: max of response time is less than 3000.0",
+  "actualValue": [3763.0]
+},
+{
+  "path": "get All_Tests_and_Panels concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get All_Tests_and_Panels concept: max of response time is less than 3000.0",
+  "actualValue": [3538.0]
+},
+{
+  "path": "get Dosage Frequency concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get Dosage Frequency concept: max of response time is less than 3000.0",
+  "actualValue": [3809.0]
+},
+{
+  "path": "get Dosage Instructions concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get Dosage Instructions concept: max of response time is less than 3000.0",
+  "actualValue": [4052.0]
+},
+{
+  "path": "get Stopped Order Reason concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get Stopped Order Reason concept: max of response time is less than 3000.0",
+  "actualValue": [3713.0]
+},
+{
+  "path": "get mrs.genders global property",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get mrs.genders global property: max of response time is less than 3000.0",
+  "actualValue": [1710.0]
+},
+{
+  "path": "get bahmni.relationshipTypeMap global property",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get bahmni.relationshipTypeMap global property: max of response time is less than 3000.0",
+  "actualValue": [1872.0]
+},
+{
+  "path": "get bahmni.encounterType.default global property",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get bahmni.encounterType.default global property: max of response time is less than 3000.0",
+  "actualValue": [907.0]
+},
+{
+  "path": "get order types",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get order types: max of response time is less than 3000.0",
+  "actualValue": [2354.0]
+},
+{
+  "path": "get identifier types",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get identifier types: max of response time is less than 3000.0",
+  "actualValue": [1579.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatients",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatients: max of response time is less than 3000.0",
+  "actualValue": [2463.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatientsByProvider",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatientsByProvider: max of response time is less than 3000.0",
+  "actualValue": [2333.0]
+},
+{
+  "path": "emrapi.sqlSearch.activePatientsByLocation",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "emrapi.sqlSearch.activePatientsByLocation: max of response time is less than 3000.0",
+  "actualValue": [1683.0]
+},
+{
+  "path": "get patient image",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get patient image: max of response time is less than 3000.0",
+  "actualValue": [1078.0]
+},
+{
+  "path": "get relationship",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get relationship: max of response time is less than 3000.0",
+  "actualValue": [1852.0]
+},
+{
+  "path": "get LoginLocation to visit type mapping",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get LoginLocation to visit type mapping: max of response time is less than 3000.0",
+  "actualValue": [2165.0]
+},
+{
+  "path": "get Follow-up Condition concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get Follow-up Condition concept: max of response time is less than 3000.0",
+  "actualValue": [2047.0]
+},
+{
+  "path": "get patient",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get patient: max of response time is less than 3000.0",
+  "actualValue": [4386.0]
+},
+{
+  "path": "find encounter",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "find encounter: max of response time is less than 3000.0",
+  "actualValue": [2780.0]
+},
+{
+  "path": "get encounter type consultation",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get encounter type consultation: max of response time is less than 3000.0",
+  "actualValue": [2411.0]
+},
+{
+  "path": "get diagnoses for patient",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get diagnoses for patient: max of response time is less than 3000.0",
+  "actualValue": [2274.0]
+},
+{
+  "path": "get conditional history",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get conditional history: max of response time is less than 3000.0",
+  "actualValue": [886.0]
+},
+{
+  "path": "get disease templates",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get disease templates: max of response time is less than 3000.0",
+  "actualValue": [730.0]
+},
+{
+  "path": "get encounter by uuid",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get encounter by uuid: max of response time is less than 3000.0",
+  "actualValue": [7975.0]
+},
+{
+  "path": "get patient context",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get patient context: max of response time is less than 3000.0",
+  "actualValue": [1187.0]
+},
+{
+  "path": "get patient upcoming appointment",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get patient upcoming appointment: max of response time is less than 3000.0",
+  "actualValue": [2213.0]
+},
+{
+  "path": "get drug orders",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get drug orders: max of response time is less than 3000.0",
+  "actualValue": [4590.0]
+},
+{
+  "path": "get config for drug orders",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get config for drug orders: max of response time is less than 3000.0",
+  "actualValue": [5284.0]
+},
+{
+  "path": "get observation",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get observation: max of response time is less than 3000.0",
+  "actualValue": [1882.0]
+},
+{
+  "path": "get active drugOrders",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get active drugOrders: max of response time is less than 3000.0",
+  "actualValue": [2894.0]
+},
+{
+  "path": "Get all observation templates",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "Get all observation templates: max of response time is less than 3000.0",
+  "actualValue": [1502.0]
+},
+{
+  "path": "Get obs",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "Get obs: max of response time is less than 3000.0",
+  "actualValue": [4420.0]
+},
+{
+  "path": "get patient info, form type, visits",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get patient info, form type, visits: max of response time is less than 3000.0",
+  "actualValue": [4457.0]
+},
+{
+  "path": "get latest published forms",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get latest published forms: max of response time is less than 3000.0",
+  "actualValue": [1041.0]
+},
+{
+  "path": "get drugOrder.drugOther global property",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get drugOrder.drugOther global property: max of response time is less than 3000.0",
+  "actualValue": [4135.0]
+},
+{
+  "path": "getVisits",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "getVisits: max of response time is less than 3000.0",
+  "actualValue": [4709.0]
+},
+{
+  "path": "get visit location",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get visit location: max of response time is less than 3000.0",
+  "actualValue": [3164.0]
+},
+{
+  "path": "get visit",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get visit: max of response time is less than 3000.0",
+  "actualValue": [1177.0]
+},
+{
+  "path": "get summary by visit UUID",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get summary by visit UUID: max of response time is less than 3000.0",
+  "actualValue": [566.0]
+},
+{
+  "path": "get All Observation Templates concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get All Observation Templates concept: max of response time is less than 3000.0",
+  "actualValue": [485.0]
+},
+{
+  "path": "get config drug order",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get config drug order: max of response time is less than 3000.0",
+  "actualValue": [1917.0]
+},
+{
+  "path": "get drug order",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get drug order: max of response time is less than 3000.0",
+  "actualValue": [1052.0]
+},
+{
+  "path": "find Reglan Tablet drug",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "find Reglan Tablet drug: max of response time is less than 3000.0",
+  "actualValue": [2008.0]
+},
+{
+  "path": "get entity mapping by location Encounter",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get entity mapping by location Encounter: max of response time is less than 3000.0",
+  "actualValue": [502.0]
+},
+{
+  "path": "find Loperamide Plus drug",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "find Loperamide Plus drug: max of response time is less than 3000.0",
+  "actualValue": [1895.0]
+},
+{
+  "path": "find Promethazine drug",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "find Promethazine drug: max of response time is less than 3000.0",
+  "actualValue": [4261.0]
+},
+{
+  "path": "get form",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get form: max of response time is less than 3000.0",
+  "actualValue": [1378.0]
+},
+{
+  "path": "get form translation",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get form translation: max of response time is less than 3000.0",
+  "actualValue": [261.0]
+},
+{
+  "path": "post encounter",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "post encounter: max of response time is less than 3000.0",
+  "actualValue": [32442.0]
+},
+{
+  "path": "get persona Attribute type",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get persona Attribute type: max of response time is less than 3000.0",
+  "actualValue": [1184.0]
+},
+{
+  "path": "get relationship types",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get relationship types: max of response time is less than 3000.0",
+  "actualValue": [1617.0]
+},
+{
+  "path": "close patient visit",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "close patient visit: max of response time is less than 3000.0",
+  "actualValue": [2271.0]
+},
+{
+  "path": "create patient",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "create patient: max of response time is less than 3000.0",
+  "actualValue": [1831.0]
+},
+{
+  "path": "get Nutrition",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get Nutrition: max of response time is less than 3000.0",
+  "actualValue": [1920.0]
+},
+{
+  "path": "activate visit",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "activate visit: max of response time is less than 3000.0",
+  "actualValue": [1918.0]
+},
+{
+  "path": "get Vital",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get Vital: max of response time is less than 3000.0",
+  "actualValue": [1977.0]
+},
+{
+  "path": "get fee information",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get fee information: max of response time is less than 3000.0",
+  "actualValue": [1959.0]
+},
+{
+  "path": "start visit",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "start visit: max of response time is less than 3000.0",
+  "actualValue": [2628.0]
+},
+{
+  "path": "get address hierarchy level",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get address hierarchy level: max of response time is less than 3000.0",
+  "actualValue": [2135.0]
+},
+{
+  "path": "get person attribute types",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get person attribute types: max of response time is less than 3000.0",
+  "actualValue": [1469.0]
+},
+{
+  "path": "Search Patient by Identifier",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "Search Patient by Identifier: max of response time is less than 3000.0",
+  "actualValue": [2097.0]
+},
+{
+  "path": "get active visit",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get active visit: max of response time is less than 3000.0",
+  "actualValue": [4605.0]
+},
+{
+  "path": "Search Patient by Name",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "Search Patient by Name: max of response time is less than 3000.0",
+  "actualValue": [1251.0]
+},
+{
+  "path": "get visit by patient",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": false,
+  "message": "get visit by patient: max of response time is less than 3000.0",
+  "actualValue": [5698.0]
+},
+{
+  "path": "get visitType",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get visitType: max of response time is less than 3000.0",
+  "actualValue": [534.0]
+},
+{
+  "path": "get patient document concept",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "get patient document concept: max of response time is less than 3000.0",
+  "actualValue": [914.0]
+},
+{
+  "path": "post patient consultation image",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "post patient consultation image: max of response time is less than 3000.0",
+  "actualValue": [1633.0]
+},
+{
+  "path": "post visit document",
+  "target": "max of response time",
+  "condition": "is less than",
+  "expectedValues": [3000.0],
+  "result": true,
+  "message": "post visit document: max of response time is less than 3000.0",
+  "actualValue": [2173.0]
+}
+  ]
+}
