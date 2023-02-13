@@ -41,7 +41,3 @@ jobs:
       - name: Start Performance Test AWS EC2
         run: |
           aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.BAHMNI_AWS_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.BAHMNI_AWS_SECRET }}
-          AWS_DEFAULT_REGION: ap-south-1
