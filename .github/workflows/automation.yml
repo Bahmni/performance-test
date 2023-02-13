@@ -1,0 +1,37 @@
+# This is a basic workflow that is manually triggered
+
+name: Performance Test Workflow
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      users:
+        description: 'Number of concurrent users to test'
+        default: '40'
+        required: true
+      hours:
+        description: 'Duration of test'
+        default: '24'
+        required: true
+      reportname:
+        description: 'Number of concurrent users to test'
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  start:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: Start Performance Test AWS EC2
+      run: |
+          aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
+      env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.BAHMNI_AWS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.BAHMNI_AWS_SECRET }}
+          AWS_DEFAULT_REGION: ap-south-1
