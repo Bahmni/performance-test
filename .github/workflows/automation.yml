@@ -25,13 +25,23 @@ jobs:
   start:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    env:
+      CLUSTER_NAME: bahmni-cluster-nonprod
     steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.BAHMNI_AWS_ID }}
+          aws-secret-access-key: ${{ secrets.BAHMNI_AWS_SECRET }}
+          aws-region: ap-south-1
+          role-to-assume: ${{ secrets.BAHMNI_INFRA_ADMIN_ROLE }}
+          role-duration-seconds: 1200  # 20 mins
+          role-session-name: BahmniInfraAdminSession
     # Runs a single command using the runners shell
-    - name: Start Performance Test AWS EC2
-      run: |
+      - name: Start Performance Test AWS EC2
+        run: |
           aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
-      env:
+        env:
           AWS_ACCESS_KEY_ID: ${{ secrets.BAHMNI_AWS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.BAHMNI_AWS_SECRET }}
           AWS_DEFAULT_REGION: ap-south-1
