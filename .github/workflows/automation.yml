@@ -34,7 +34,7 @@ jobs:
           aws-access-key-id: ${{ secrets.BAHMNI_AWS_ID }}
           aws-secret-access-key: ${{ secrets.BAHMNI_AWS_SECRET }}
           aws-region: ap-south-1
-          role-to-assume: ${{ secrets.BAHMNI_INFRA_ADMIN_ROLE }}
+          role-to-assume: arn:aws:iam::863324974761:role/BahmniInfraAdminRoleForIAMUsers
           role-duration-seconds: 1200  # 20 mins
           role-session-name: BahmniInfraAdminSession
     # Runs a single command using the runners shell
