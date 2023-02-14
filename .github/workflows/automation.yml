@@ -40,26 +40,30 @@ jobs:
           role-to-assume: arn:aws:iam::863324974761:role/BahmniInfraAdminRoleForIAMUsers
           role-duration-seconds: 1200  # 20 mins
           role-session-name: BahmniInfraAdminSession
-#    # Runs a single command using the runners shell
-#      - name: Start Performance Test AWS EC2
-#        run: |
-#          aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
+      #    # Runs a single command using the runners shell
+      #      - name: Start Performance Test AWS EC2
+      #        run: |
+      #          aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
       - name: Connect to Performance Test AWS EC2 instance
         run: |
-            INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
+          INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
 
-            if [ -z "$INSTANCE_ID" ]; then
-              aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
-              echo "Performance test instance started"
-              sleep 5s
-            else
-              echo "Performance test instance is already running"
-            fi
-      - name: Create patients
-        run: |
-          if [[ ${{ github.event.inputs.create_patients }} -gt '0' ]]; then
-            echo "Create Patients"
+          if [ -z "$INSTANCE_ID" ]; then
+            aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
+            echo "Performance test instance started"
+            sleep 5s
+          else
+            echo "Performance test instance is already running"
           fi
+      - name: Create patients
+        if: ${{ github.event.inputs.create_patients > 0}}
+        run: |
+          echo "Created the patients"
+#      - name: Create patients
+#        run: |
+#          if [[ ${{ github.event.inputs.create_patients }} -gt '0' ]]; then
+#            echo "Create Patients"
+#          fi
 #      - name: Start the test
 #        run: |
 #          INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
