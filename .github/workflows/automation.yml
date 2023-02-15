@@ -20,45 +20,72 @@ on:
         description: 'Valid reportname'
       create_patients:
         description: 'Enter number of patients to be created'
-        default: '0'
+        default: '500'
         required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  run-performance-test:
-    name: Run Performance Test
+  create-patients:
+    name: Create patients
     runs-on: ubuntu-latest
-    env:
-      CLUSTER_NAME: bahmni-cluster-nonprod
     steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Checkout Performance Test Suite
+        uses: actions/checkout@v2
+      - name: Checkout test data generator
+        uses: actions/checkout@v3
         with:
-          aws-access-key-id: ${{ secrets.BAHMNI_AWS_ID }}
-          aws-secret-access-key: ${{ secrets.BAHMNI_AWS_SECRET }}
-          aws-region: ap-south-1
-          role-to-assume: arn:aws:iam::863324974761:role/BahmniInfraAdminRoleForIAMUsers
-          role-duration-seconds: 1200  # 20 mins
-          role-session-name: BahmniInfraAdminSession
-      #    # Runs a single command using the runners shell
-      #      - name: Start Performance Test AWS EC2
-      #        run: |
-      #          aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
-      - name: Connect to Performance Test AWS EC2 instance
+          repository: bahmni/bahmni-test-data-generator
+          path: test-data-generator
+      - name: Generate Test Data
+        working-directory: test-data-generator/
         run: |
-          INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
-
-          if [ -z "$INSTANCE_ID" ]; then
-            aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
-            echo "Performance test instance started"
-            sleep 5s
+          if [[ ${{ github.event.inputs.create_patients }} -gt '500' ]]; then
+            export PATIENT_COUNT=${{ github.event.inputs.create_patients }}
+            echo $PATIENT_COUNT
           else
-            echo "Performance test instance is already running"
+            export PATIENT_COUNT='500'
+            echo $PATIENT_COUNT
           fi
-      - name: Create patients
-        if: ${{ github.event.inputs.create_patients > 0}}
-        run: |
-          echo "Created the patients"
+
+#          ./gradlew build
+#          ./gradlew run
+#      - name: Copy registrations csv to Performance Test Suite
+#        run: cp -r test-data-generator/output/registrations.csv src/gatling/resources
+#
+#  run-performance-test:
+#    name: Run Performance Test
+#    runs-on: ubuntu-latest
+#    env:
+#      CLUSTER_NAME: bahmni-cluster-nonprod
+#    steps:
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-access-key-id: ${{ secrets.BAHMNI_AWS_ID }}
+#          aws-secret-access-key: ${{ secrets.BAHMNI_AWS_SECRET }}
+#          aws-region: ap-south-1
+#          role-to-assume: ${{ secrets.BAHMNI_INFRA_ADMIN_ROLE }}
+#          role-duration-seconds: 1200  # 20 mins
+#          role-session-name: BahmniInfraAdminSession
+#      #    # Runs a single command using the runners shell
+#      #      - name: Start Performance Test AWS EC2
+#      #        run: |
+#      #          aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
+#      - name: Connect to Performance Test AWS EC2 instance
+#        run: |
+#          INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
+#
+#          if [ -z "$INSTANCE_ID" ]; then
+#            aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
+#            echo "Performance test instance started"
+#            sleep 5s
+#          else
+#            echo "Performance test instance is already running"
+#          fi
+#      - name: Create patients
+#        if: ${{ github.event.inputs.create_patients > 0}}
+#        run: |
+#          echo "Created the patients"
 #      - name: Create patients
 #        run: |
 #          if [[ ${{ github.event.inputs.create_patients }} -gt '0' ]]; then
