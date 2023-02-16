@@ -20,13 +20,12 @@ on:
         description: 'Valid reportname'
       create_patients:
         description: 'Enter number of patients to be created'
-        default: '500'
-        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   create-patients:
     name: Create patients
+    if: ${{ github.event.inputs.create_patients > 0}}
     runs-on: ubuntu-latest
     outputs:
       epoch: ${{ steps.getEpoch.outputs.epoch }}
@@ -49,7 +48,7 @@ jobs:
             export PATIENT_COUNT=${{ github.event.inputs.create_patients }}
             echo $PATIENT_COUNT
           else
-            export PATIENT_COUNT='500'
+            export PATIENT_COUNT='10'
             echo $PATIENT_COUNT
           fi
           ./gradlew build
