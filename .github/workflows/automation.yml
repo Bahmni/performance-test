@@ -28,9 +28,15 @@ jobs:
   create-patients:
     name: Create patients
     runs-on: ubuntu-latest
+    outputs:
+      epoch: ${{ steps.getEpoch.outputs.epoch }}
     steps:
       - name: Checkout Performance Test Suite
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          repository: bahmni/performance-test
+          ref: workflowAutomation
+          path: performance-test
       - name: Checkout test data generator
         uses: actions/checkout@v3
         with:
@@ -46,11 +52,23 @@ jobs:
             export PATIENT_COUNT='500'
             echo $PATIENT_COUNT
           fi
-
-#          ./gradlew build
-#          ./gradlew run
-#      - name: Copy registrations csv to Performance Test Suite
-#        run: cp -r test-data-generator/output/registrations.csv src/gatling/resources
+          ./gradlew build
+          ./gradlew run
+      - name: Copy registrations csv to Performance Test Suite
+        run: cp -r test-data-generator/output/registrations.csv performance-test/src/gatling/resources
+      - id: getEpoch
+        name: Run Epoch
+        run: |
+          export EPOCH=$(date +%s)
+          echo "{epoch}=${EPOCH}" >> $GITHUB_OUTPUT
+      - name: Commit and push the registration csv file
+        working-directory: performance-test/
+        run: |
+          git config user.name ${{ secrets.BAHMNI_USERNAME}}
+          git config user.email ${{ secrets.BAHMNI_EMAIL}}
+          git add src/gatling/resources/registrations.csv
+          git commit -m "Adding updated registration csv at -${{ steps.getEpoch.outputs.epoch }}"
+          git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' workflowAutomation
 #
 #  run-performance-test:
 #    name: Run Performance Test
