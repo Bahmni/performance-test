@@ -59,7 +59,7 @@ jobs:
         name: Run Epoch
         run: |
           export EPOCH=$(date +%s)
-          echo "{epoch}=${EPOCH}" >> $GITHUB_OUTPUT
+          echo "epoch=$EPOCH" >> $GITHUB_OUTPUT
       - name: Commit and push the registration csv file
         working-directory: performance-test/
         run: |
