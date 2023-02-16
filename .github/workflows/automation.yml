@@ -60,7 +60,7 @@ jobs:
         name: Run Epoch
         run: |
           export EPOCH=$(date +%s)
-          echo "::set-output name=epoch::${EPOCH}"
+          echo "{epoch}=${EPOCH}" >> $GITHUB_OUTPUT
       - name: Commit and push the registration csv file
         working-directory: performance-test/
         run: |
