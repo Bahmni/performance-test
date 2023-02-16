@@ -65,68 +65,51 @@ jobs:
         run: |
           git config user.name ${{ secrets.BAHMNI_USERNAME}}
           git config user.email ${{ secrets.BAHMNI_EMAIL}}
+          git pull
           git add src/gatling/resources/registrations.csv
           git commit -m "Adding updated registration csv at ${{ steps.getEpoch.outputs.epoch }}"
           git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' workflowAutomation
-#
-#  run-performance-test:
-#    name: Run Performance Test
-#    runs-on: ubuntu-latest
-#    env:
-#      CLUSTER_NAME: bahmni-cluster-nonprod
-#    steps:
-#      - name: Configure AWS Credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.BAHMNI_AWS_ID }}
-#          aws-secret-access-key: ${{ secrets.BAHMNI_AWS_SECRET }}
-#          aws-region: ap-south-1
-#          role-to-assume: ${{ secrets.BAHMNI_INFRA_ADMIN_ROLE }}
-#          role-duration-seconds: 1200  # 20 mins
-#          role-session-name: BahmniInfraAdminSession
-#      #    # Runs a single command using the runners shell
-#      #      - name: Start Performance Test AWS EC2
-#      #        run: |
-#      #          aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
-#      - name: Connect to Performance Test AWS EC2 instance
-#        run: |
-#          INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
-#
-#          if [ -z "$INSTANCE_ID" ]; then
-#            aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
-#            echo "Performance test instance started"
-#            sleep 5s
-#          else
-#            echo "Performance test instance is already running"
-#          fi
-#      - name: Create patients
-#        if: ${{ github.event.inputs.create_patients > 0}}
-#        run: |
-#          echo "Created the patients"
-#      - name: Create patients
-#        run: |
-#          if [[ ${{ github.event.inputs.create_patients }} -gt '0' ]]; then
-#            echo "Create Patients"
-#          fi
-#      - name: Start the test
-#        run: |
-#          INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
-#
-#          if [ -z "$INSTANCE_ID" ]; then
-#            aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
-#            echo "Performance test instance started"
-#            sleep 5s
-#          else
-#            aws ssm send-command \
-#            --instance-ids "$INSTANCE_ID" \
-#            --document-name "AWS-RunShellScript" \
-#            --comment "Update running containers" \
-#            --parameters '{
-#                "commands": [
-#                  "mkdir testGA"
-#                ],
-#                "workingDirectory": [
-#                  "/home/ubuntu/Bahmni/scripts"
-#              ]
-#            }' | jq '.Command | {CommandId: .CommandId, Parameters: .Parameters, Status: .Status}'
-#          fi
+
+  run-performance-test:
+    name: Run Performance Test
+    needs:
+      - create-patients
+    runs-on: ubuntu-latest
+    env:
+      CLUSTER_NAME: bahmni-cluster-nonprod
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.BAHMNI_AWS_ID }}
+          aws-secret-access-key: ${{ secrets.BAHMNI_AWS_SECRET }}
+          aws-region: ap-south-1
+          role-to-assume: ${{ secrets.BAHMNI_INFRA_ADMIN_ROLE }}
+          role-duration-seconds: 1200  # 20 mins
+          role-session-name: BahmniInfraAdminSession
+      - name: Connect to Performance Test AWS EC2 instance
+        run: |
+          INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
+
+          if [ -z "$INSTANCE_ID" ]; then
+            aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
+            echo "Performance test instance started"
+            sleep 5s
+          else
+            echo "Performance test instance is already running"
+          fi
+      - name: Start the test
+        run: |
+          aws ssm send-command \
+          --instance-ids "$INSTANCE_ID" \
+          --document-name "AWS-RunShellScript" \
+          --comment "Update running containers" \
+          --parameters '{
+              "commands": [
+                "export newEpoch=$(date +%s)"
+                "mkdir $newEpoch"
+              ],
+              "workingDirectory": [
+                "/home/ubuntu/Bahmni/scripts"
+            ]
+          }' | jq '.Command | {CommandId: .CommandId, Parameters: .Parameters, Status: .Status}'
