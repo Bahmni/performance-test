@@ -106,7 +106,7 @@ jobs:
           --comment "Update running containers" \
           --parameters '{
               "commands": [
-                "export newEpoch=$(date +%s)"
+                "export newEpoch=$(date +%s)",
                 "mkdir ${newEpoch}"
               ],
               "workingDirectory": [
