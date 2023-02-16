@@ -60,14 +60,14 @@ jobs:
         name: Run Epoch
         run: |
           export EPOCH=$(date +%s)
-          echo "{epoch}=${EPOCH}" >> $GITHUB_OUTPUT
+          echo "::set-output name=epoch::${EPOCH}"
       - name: Commit and push the registration csv file
         working-directory: performance-test/
         run: |
           git config user.name ${{ secrets.BAHMNI_USERNAME}}
           git config user.email ${{ secrets.BAHMNI_EMAIL}}
           git add src/gatling/resources/registrations.csv
-          git commit -m "Adding updated registration csv at -${{ steps.getEpoch.outputs.epoch }}"
+          git commit -m "Adding updated registration csv at ${{ steps.getEpoch.outputs.epoch }}"
           git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/performance-test.git' workflowAutomation
 #
 #  run-performance-test:
