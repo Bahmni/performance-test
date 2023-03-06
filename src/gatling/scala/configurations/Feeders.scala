@@ -2,10 +2,12 @@ package configurations
 
 import api.Constants.{HAEMOGRAM_ORDER, IMAGES_ENCOUNTER_UUID, LOGIN_LOCATION_UUID, LOPERAMIDE_DRUG, PROMETHAZINE_DRUG, PROVIDER_UUID, REGLAN_DRUG, THYROID_ORDER}
 
-
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import scala.concurrent.duration.{DurationInt, FiniteDuration}
 import scala.util.Random
+import scala.concurrent.duration.DurationInt
+import scala.language.postfixOps
 
 object Feeders {
   val rnd = new Random()
@@ -24,6 +26,9 @@ object Feeders {
     inputFormat.format(Calendar.getInstance.getTime)
   }
 
+  def getRandomPause(min :Int,max:Int):FiniteDuration={
+     (60-rnd.between(min,max)) seconds
+  }
   var jsonFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
     Map(
       "givenName" -> randomString(5),
@@ -51,6 +56,12 @@ object Feeders {
       "lopUuid" -> LOPERAMIDE_DRUG,
       "haeUuid" -> HAEMOGRAM_ORDER,
       "thyUuid"->THYROID_ORDER
+    )
+  )
+
+  var pauseFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
+    Map(
+      "pausePeriod" -> getRandomPause(0,60)
     )
   )
 
