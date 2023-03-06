@@ -252,4 +252,18 @@ object DoctorHttpRequests {
       .queryParam("s", "ordered")
       .queryParam("v", "custom:(uuid,strength,name,dosageForm,concept:(uuid,name,names:(name)))")
   }
+
+  def getDiseaseSummaryData(patientUuid: String):HttpRequestBuilder={
+    http("get disease summary data")
+      .get("/openmrs/ws/rest/v1/bahmnicore/diseaseSummaryData")
+      .queryParam("groupBy","obstime")
+      .queryParam("latestCount","5")
+      .queryParam("obsConcepts","Pulse")
+      .queryParam("obsConcepts","Arterial+blood+oxygen+saturation+(pulse+oximeter)")
+      .queryParam("obsConcepts","Respiratory+rate")
+      .queryParam("obsConcepts","Temperature")
+      .queryParam("obsConcepts","Diastolic+blood+pressure")
+      .queryParam("obsConcepts","Body+position")
+      .queryParam("patientUuid",patientUuid)
+  }
 }

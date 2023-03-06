@@ -159,6 +159,7 @@ object Doctor {
       getAllObservationTemplates,
       getObs(patientUuid, "visitFormDetails"),
       getPatientFormTypes(patientUuid),
+      getDiseaseSummaryData(patientUuid),
       getLatestPublishedForms,
       getGlobalProperty("drugOrder.drugOther")
     )
