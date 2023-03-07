@@ -37,7 +37,7 @@ object Registration {
   }
   private def existingPatient_IdSearch_StartVisit(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-      exec(login)
+      exec(goToLoginPage)
       .feed(csv("registrations.csv").circular)
       .exec(goToHomePage)
       //.exec(pause(10 seconds))
@@ -51,7 +51,7 @@ object Registration {
 
   private def existingPatient_NameSearch_StartVisit(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-       exec(login)
+       exec(goToLoginPage)
       .feed(csv("registrations.csv").circular)
       .exec(goToHomePage)
       //.exec(pause(20 seconds))
@@ -66,7 +66,7 @@ object Registration {
 
   private def createPatient_StartVisit(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-       exec(login)
+       exec(goToLoginPage)
       .exec(goToHomePage)
       .exec(gotoCreatePatientPage)
      // .exec(pause(10 seconds))
@@ -78,7 +78,7 @@ object Registration {
 
   private def patient_Document_Upload(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-      exec(login)
+      exec(goToLoginPage)
         .feed(csv("registrations.csv").circular)
         .exec(goToHomePage)
        // .exec(pause(20 seconds))

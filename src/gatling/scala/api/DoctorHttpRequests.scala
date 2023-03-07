@@ -266,4 +266,16 @@ object DoctorHttpRequests {
       .queryParam("obsConcepts","Body+position")
       .queryParam("patientUuid",patientUuid)
   }
+  def getPatientIdentifier(patientUuid: String): HttpRequestBuilder = {
+    http("get patient")
+      .get("/openmrs/ws/rest/v1/patient/" + patientUuid+"/identifier")
+      .queryParam("includeAll","true")
+  }
+  def getVisitsLocation(patientUuid: String): HttpRequestBuilder = {
+    http("getVisits")
+      .get("/openmrs/ws/rest/v1/visit")
+      .queryParam("includeInactive", "false")
+      .queryParam("v", "custom:(uuid,visitType,location:(uuid))")
+      .queryParam("patient", patientUuid)
+  }
 }

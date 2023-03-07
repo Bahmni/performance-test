@@ -36,7 +36,7 @@ object HttpRequests {
       .post("/openmrs/ws/rest/v1/user/" + loggedInUserUuid)
       .body(
         StringBody(s"""{"uuid":"$loggedInUserUuid","userProperties":{"defaultLocale":"en","favouriteObsTemplates":"",
-           "recentlyViewedPatients":"","loginAttempts":"0","favouriteWards":""}}""")
+           "recentlyViewedPatients":"[]","loginAttempts":"0","favouriteWards":""}}""")
       )
       .asJson
   }
@@ -180,5 +180,11 @@ object HttpRequests {
       .queryParam("patient",pateintUuid)
       .queryParam("v",v)
 
+  }
+  def getPatientObservation(patient:String,concepts: Map[String, String]): HttpRequestBuilder = {
+    http("get observation")
+      .get("/openmrs/ws/rest/v1/bahmnicore/observations")
+      .queryParam("patientUuid",patient)
+      .queryParamMap(concepts)
   }
 }

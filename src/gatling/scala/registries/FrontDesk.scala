@@ -20,14 +20,15 @@ object FrontDesk {
         getProviderForUser("#{runTimeUuid}"),
         getGlobalProperty("mrs.genders"),
         getGlobalProperty("bahmni.relationshipTypeMap"),
+        getGlobalProperty("clinic.helpDeskNumber"),
+        getGlobalProperty("sms.enableRegistrationSMSAlert"),
+        getGlobalProperty("bahmni.enableAuditLog"),
         getAddressHierarchyLevel,
         getIdentifierTypes,
         getRelationshipTypes,
         getEntityMapping("loginlocation_visittype"),
         getPersonAttributeTypes,
         getRegistrationConcepts.check(jsonPath("$.visitTypes.OPD").find.exists.saveAs("visit_type_id")),
-        getByVisitLocation(LOGIN_LOCATION_UUID),
-        getGlobalProperty("bahmni.enableAuditLog"),
         postAuditLog
       )
   )
@@ -40,17 +41,36 @@ object FrontDesk {
   }
 
   def performIdSearch(patientIdentifier: String): ChainBuilder = {
-    exec(
+    exec(postAuditLog)
+    .exec(getSession)
+    .exec(
       searchPatientUsingIdentifier(LOGIN_LOCATION_UUID, patientIdentifier)
         .check(jsonPath("$..uuid").find.saveAs("p_uuID"))
     )
       .exec(getPatientProfileAfterRegistration("#{p_uuID}"))
+      .exec(getEncoutnerByEncounterTypeUuid("#{p_uuID}"))
+      .exec(getGlobalProperty("concept.reasonForDeath"))
+      .exec(getPatientIdentifier("#{p_uuID}"))
+      .exec(getProviderForUser("#{p_uuID}"))
+      .exec(getUser("superman"))
+      .exec(getVisitsLocation("#{p_uuID}"))
+
   }
 
   def startVisitForID: ChainBuilder = {
-    exec(
+    exec(getLatestPublishedForms.check(
+      jsonPath("$[?(@.name==\"Registration Details\")].uuid").find.saveAs("form_uuid")
+    ))
+      .exec(getForm("#{form_uuid}"))
+      .exec(postAuditLog)
+      .exec(getPatientFull("#{p_uuID}"))
+      .exec(findEncounter("#{p_uuID}", PROVIDER_UUID, IMAGES_ENCOUNTER_UUID))
+      .exec(getPatientObservation("#{p_uuID}",
+        Map("concept"->"Height+(cm)","concept"->"Weight+(Kg)","concept"->"Body+mass+index","concept"->"BMI+Status","scope"->"latest")))
+      .exec(getFormTranslations("Registration+Details","#{form_uuid}"))
+      .exec(
       startVisitRequest("#{p_uuID}", "#{visit_type_id}", LOGIN_LOCATION_UUID)
-    )
+    ).exec(getVisitsLocation("#{p_uuID}"))
   }
 
   def startVisitForName: ChainBuilder = {

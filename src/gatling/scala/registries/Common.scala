@@ -13,10 +13,11 @@ import scala.concurrent.duration.{DurationLong, FiniteDuration}
 import scala.language.postfixOps
 
 object Common {
-  def login: ChainBuilder = exec(
+  def goToLoginPage: ChainBuilder = exec(
     getLoginLocations
       .resources(
-        getGlobalProperty("locale.allowed.list")
+        getGlobalProperty("locale.allowed.list"),
+        getSession
       )
   )
 
@@ -26,7 +27,7 @@ object Common {
         jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
       )
       .resources(
-        deleteSession,
+        deleteSession, //remove
       )
     ).exec(getSession)
     .exec(postUserInfo("#{runTimeUuid}"))
@@ -70,7 +71,12 @@ def closeVisit():ChainBuilder= {
 }
 
 def otherCloseVisit(patientUuid:String):ChainBuilder={
-   exec(getactiveVisit(patientUuid).check(
+  exec(postAuditLog)
+    .exec(getUser(LOGIN_USER))
+    .exec(getProviderForUser("#{runTimeUuid}"))
+    .exec(getSession)
+    .exec(getSummaryByVisitUuid("opdVisitId"))
+    .exec(getactiveVisit(patientUuid).check(
   jmesPath("results[0].uuid").ofType[Any].not(None).saveAs("opdVisitId")))
   .exec(closePatientVisit(patientUuid,"#{opdVisitId}"))
 }

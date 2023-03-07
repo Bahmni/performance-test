@@ -29,7 +29,7 @@ object Consultation {
   }
   def doctor_Consultation_Average_Patient(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-      exec(login)
+      exec(goToLoginPage)
         .feed(pauseFeeder)
         .exec(goToHomePage)
         .exec(pause("#{pausePeriod}"))
