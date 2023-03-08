@@ -8,11 +8,13 @@ import api.Constants._
 import api.DoctorHttpRequests._
 import api.FrontdeskHttpRequests._
 import registries.Doctor.remainingTime
-
 import scala.concurrent.duration.{DurationLong, FiniteDuration}
 import scala.language.postfixOps
+import scala.util.Random
 
 object Common {
+  val rnd = new Random()
+
   def login: ChainBuilder = exec(
     getLoginLocations
       .resources(
@@ -87,4 +89,11 @@ def otherCloseVisit(patientUuid:String):ChainBuilder={
       session.set("rt", remainingTime)
     }.exec(pause("#{rt}"))
   }
+
+  def waitBeforeNextStep(min:Int,max:Int): ChainBuilder = {
+    exec { session =>
+      session.set("pt", rnd.between(min,max) seconds)
+    }.exec(pause("#{pt}"))
+  }
+
 }
