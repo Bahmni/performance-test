@@ -38,7 +38,7 @@ object Registration {
     handleWorkLoad(
       exec(waitBeforeNextStep(0, 30))
       .exec(login)
-      .feed(csv("registrations.csv").circular)
+      .feed(csv("registrations.csv").random)
       .exec(goToHomePage)
         .exec(waitBeforeNextStep(0, 20))
       .exec(goToRegistrationSearchPage)
@@ -54,7 +54,7 @@ object Registration {
     handleWorkLoad(
       exec(waitBeforeNextStep(0, 30))
         .exec(login)
-      .feed(csv("registrations.csv").circular)
+      .feed(csv("registrations.csv").random)
       .exec(goToHomePage)
          .exec(waitBeforeNextStep(0, 20))
       .exec(goToRegistrationSearchPage)
@@ -85,7 +85,7 @@ object Registration {
     handleWorkLoad(
       exec(waitBeforeNextStep(0, 30))
         .exec(login)
-        .feed(csv("registrations.csv").circular)
+        .feed(csv("registrations.csv").random)
         .exec(goToHomePage)
         .exec(waitBeforeNextStep(0, 10))
         .exec(goToRegistrationSearchPage)
