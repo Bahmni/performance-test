@@ -51,7 +51,7 @@ object Consultation {
         .exec(saveEncounter)
         .exec(goToDashboard("#{opdPatientId}"))
         .exec(waitBeforeNextStep(0, 30))
-        .exec{session=> if(session("encounterResponseTime").as[Long]<60000) {exec(closeVisit())}
+        .exec{session=> if(session("encounterResponseTime").as[Integer]<60000) {exec(closeVisit())}
           session
         },workLoad
     )
