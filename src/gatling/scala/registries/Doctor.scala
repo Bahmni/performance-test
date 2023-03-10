@@ -7,8 +7,8 @@ import configurations.Feeders._
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
+import registries.Common.closeVisit
 import registries.FrontDesk._
-
 
 import scala.collection.mutable
 import scala.concurrent.duration._
@@ -206,8 +206,10 @@ object Doctor {
       getEntityMappingByLocationEncounter(LOGIN_LOCATION_UUID),
       getEncounterTypeConsultation.check(jsonPath("$..uuid").find.saveAs("encounterTypeUuid"))
     )
-  ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_revise_drugorder.json")) } {
-    exec(postEncounter("bodies/encounter.json"))
+  ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_revise_drugorder.json").check(responseTimeInMillis.saveAs("encounterResponseTime"))) } {
+    exec(postEncounter("bodies/encounter.json").check(responseTimeInMillis.saveAs("encounterResponseTime")))
+  }.exec{session=> if(session("encounterResponseTime").as[Long]>60000) {exec(closeVisit())}
+    session
   }
   def setOrders(): ChainBuilder = exec { session =>
     observations = "[]"

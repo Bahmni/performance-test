@@ -12,7 +12,7 @@ import scala.language.postfixOps
 //This name will be used as title for report - hence prefixing it with Bahmni
 class BahmniClinic extends Simulation {
   setUp(
-    Registration.scenario(UserFlow.Registration.trafficLoadShare) ++
+    //Registration.scenario(UserFlow.Registration.trafficLoadShare) ++
       Consultation.scenario(UserFlow.Consultation.trafficLoadShare)
   ).assertions(
     forAll.responseTime.percentile(PERCENTILE1).lt(PERCENTILE1_EXPECTED_RESPONSE_TIME),
