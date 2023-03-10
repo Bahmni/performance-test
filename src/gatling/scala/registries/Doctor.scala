@@ -208,7 +208,7 @@ object Doctor {
     )
   ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_revise_drugorder.json").check(responseTimeInMillis.saveAs("encounterResponseTime"))) } {
     exec(postEncounter("bodies/encounter.json").check(responseTimeInMillis.saveAs("encounterResponseTime")))
-  }.exec{session=> if(session("encounterResponseTime").as[Long]>60000) {exec(closeVisit())}
+  }.exec{session=> if(session("encounterResponseTime").as[Integer] > 60000) {exec(closeVisit())}
     session
   }
   def setOrders(): ChainBuilder = exec { session =>
