@@ -74,7 +74,7 @@ def closeVisit():ChainBuilder= {
 def otherCloseVisit(patientUuid:String):ChainBuilder={
    exec(getactiveVisit(patientUuid).check(
   jmesPath("results[0].uuid").ofType[Any].not(None).saveAs("opdVisitId")))
-  .exec(closePatientVisit(patientUuid,"#{opdVisitId}"))
+  //.exec(closePatientVisit(patientUuid,"#{opdVisitId}"))
 }
 
 
