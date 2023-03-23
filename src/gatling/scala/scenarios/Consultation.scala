@@ -7,12 +7,8 @@ import io.gatling.core.structure.PopulationBuilder
 import registries.Common._
 import registries.Doctor._
 import scenarios.BaseScenario.setupScenario
-
 import scala.language.postfixOps
-
 import scenarios.BaseScenario.{handleWorkLoad}
-
-import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
 object Consultation {
@@ -28,29 +24,35 @@ object Consultation {
   }
   def doctor_Consultation_Average_Patient(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-      exec(login)
+      exec(waitBeforeNextStep(0, 60))
+        .exec(login)
         .exec(goToHomePage)
-       // .exec(pause(1 minutes))
+        .exec(waitBeforeNextStep(0, 30))
         .exec(goToClinicalApp)
+        .exec(waitBeforeNextStep(0, 30))
         .exec(refreshInMemoryOpdPatientQueue)
         .exec(selectNextPatientFromOpdQueue)
-        //.exec(pause(1 minutes))
         .exec(goToDashboard("#{opdPatientId}"))
         .exec(setSession())
         .exec(setVisit("#{opdPatientId}"))
-        //.exec(pause(1 minutes))
+        .exec(waitBeforeNextStep(0, 30))
         .exec(goToObservations("#{opdPatientId}"))
+        .exec(waitBeforeNextStep(0, 30))
         .exec(goToMedications("#{opdPatientId}"))
+        .exec(waitBeforeNextStep(0, 10))
         .exec(addDrug("Reglan Tablet"))
+        .exec(waitBeforeNextStep(0, 10))
         .exec(addDrug("Loperamide Plus"))
+        .exec(waitBeforeNextStep(0, 10))
         .exec(addDrug("Promethazine"))
         .feed(jsonFeeder)
         .feed(observationsFeeder)
-        //.exec(pause(1 minutes))
+        .exec(waitBeforeNextStep(0, 60))
         .exec(saveEncounter)
-        //.exec(pause(1 minutes))
         .exec(goToDashboard("#{opdPatientId}"))
-        //.exec(pause(1 minutes))
-        .exec(closeVisit()), workLoad)
+        .exec(waitBeforeNextStep(0, 30))
+        .exec(closeVisit()),
+      workLoad
+    )
   }
 }

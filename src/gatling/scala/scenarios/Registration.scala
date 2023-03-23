@@ -8,8 +8,6 @@ import registries.FrontDesk._
 import scenarios.BaseScenario.setupScenario
 import configurations.{Scenario, ScenarioWorkLoad, UserFlow}
 import scenarios.BaseScenario.{handleWorkLoad}
-
-import scala.concurrent.duration.{DurationInt}
 import scala.language.postfixOps
 
 object Registration {
@@ -22,6 +20,7 @@ object Registration {
       existingPatient_NameSearch_StartVisit,
       UserFlow.Registration.existingPatientNameSearchOpdVisit
     ),
+
     Scenario(
       createPatient_StartVisit,
       UserFlow.Registration.newPatientOpdVisit
@@ -37,66 +36,76 @@ object Registration {
   }
   private def existingPatient_IdSearch_StartVisit(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-      exec(login)
-      .feed(csv("registrations.csv").circular)
+      exec(waitBeforeNextStep(0, 30))
+      .exec(login)
+      .feed(csv("registrations.csv").random)
       .exec(goToHomePage)
-      //.exec(pause(10 seconds))
+        .exec(waitBeforeNextStep(0, 20))
       .exec(goToRegistrationSearchPage)
-      //.exec(pause(20 seconds))
+        .exec(waitBeforeNextStep(0, 20))
       .exec(performIdSearch("#{Registration Number}"))
-      //.exec(pause(30 seconds))
+        .exec(waitBeforeNextStep(0, 20))
       .exec(startVisitForID)
+        .exec(waitBeforeNextStep(0, 30))
         .exec(otherCloseVisit("#{p_uuID}")),workLoad)
   }
 
   private def existingPatient_NameSearch_StartVisit(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-       exec(login)
-      .feed(csv("registrations.csv").circular)
+      exec(waitBeforeNextStep(0, 30))
+        .exec(login)
+      .feed(csv("registrations.csv").random)
       .exec(goToHomePage)
-      //.exec(pause(20 seconds))
+         .exec(waitBeforeNextStep(0, 20))
       .exec(goToRegistrationSearchPage)
-     // .exec(pause(20 seconds))
+         .exec(waitBeforeNextStep(0, 20))
       .exec(performNameSearch("#{First Name}" + " " + "#{Last Name}"))
-      //.exec(pause(20 seconds))
+         .exec(waitBeforeNextStep(0, 20))
       .exec(startVisitForName)
-      .exec(otherCloseVisit("#{pt_uuID}")),workLoad)
+        .exec(waitBeforeNextStep(0, 30))
+        .exec(otherCloseVisit("#{pt_uuID}")),workLoad)
 
   }
 
   private def createPatient_StartVisit(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-       exec(login)
+      exec(waitBeforeNextStep(0, 30))
+    .exec(login)
       .exec(goToHomePage)
-      .exec(gotoCreatePatientPage)
-     // .exec(pause(10 seconds))
+        .exec(waitBeforeNextStep(0, 30))
+        .exec(gotoCreatePatientPage)
+         .exec(waitBeforeNextStep(0, 30))
       .feed(jsonFeeder)
       .exec(createPatient)
-      //.exec(pause(30 seconds))
+         .exec(waitBeforeNextStep(0, 30))
       .exec(startVisitForCreatePatient),workLoad)
   }
 
   private def patient_Document_Upload(workLoad: ScenarioWorkLoad) = {
     handleWorkLoad(
-      exec(login)
-        .feed(csv("registrations.csv").circular)
+      exec(waitBeforeNextStep(0, 30))
+        .exec(login)
+        .feed(csv("registrations.csv").random)
         .exec(goToHomePage)
-       // .exec(pause(20 seconds))
+        .exec(waitBeforeNextStep(0, 10))
         .exec(goToRegistrationSearchPage)
-       // .exec(pause(20 seconds))
+        .exec(waitBeforeNextStep(0, 10))
         .exec(performNameSearch("#{First Name}" + " " + "#{Last Name}"))
-        //.exec(pause(20 seconds))
+        .exec(waitBeforeNextStep(0, 10))
         .exec(startVisitForName)
+        .exec(waitBeforeNextStep(0, 5))
         .exec(returnToHomePage)
         .exec(getActivePatients)
+        .exec(waitBeforeNextStep(0, 5))
         .exec(getPatientAvatars)
-        //.exec(pause(20 seconds))
+        .exec(waitBeforeNextStep(0, 20))
         .exec(goToPatientDocumentUpload)
         .feed(docUploadFeeder)
-        //.exec(pause(20 seconds))
+        .exec(waitBeforeNextStep(0, 10))
         .exec(uploadPatientDocument)
-       // .exec(pause(20 seconds))
+        .exec(waitBeforeNextStep(0, 10))
         .exec(verifyPatientDocument)
+        .exec(waitBeforeNextStep(0, 10))
         .exec(otherCloseVisit("#{pt_uuID}")), workLoad)
   }
 }
