@@ -17,7 +17,7 @@ object UserFlow {
       ScenarioConfig("Registration - Patient document upload", 10, 2 minutes)
   }
   object Consultation {
-    val trafficLoadShare: Int = 100
+    val trafficLoadShare: Int = 50
     val averagePatient: ScenarioConfig = ScenarioConfig("Consultation - Average Patient", 100, 5 minutes)
   }
 }
