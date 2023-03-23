@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Performance Test Workflow
+name: Run Performance Test
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -12,10 +12,18 @@ on:
         description: 'Number of concurrent users to test'
         default: '40'
         required: true
-      hours:
+      duration:
         description: 'Duration of test'
         default: '24'
         required: true
+      units:
+        description: 'Units for duration'
+        required: true
+        default: 'hours'
+        type: choice
+        options:
+          - hours
+          - minutes
       reportname:
         description: 'Valid reportname'
       create_patients:
@@ -111,7 +119,9 @@ jobs:
           --comment "Run performance test" \
           --parameters '{
               "commands": [
-                "mkdir testNow"
+                "rm nohup.out",
+                "rm -rf performance-test/build/reports/gatling/*",
+                "nohup bash ./startPerformanceTest.sh dev '"${{ github.event.inputs.users }}"' '"${{ github.event.inputs.duration }}"' '"${{ github.event.inputs.units }}"' > nohup.out &"
               ],
               "workingDirectory": [
                 "/home/ubuntu/Bahmni/scripts"

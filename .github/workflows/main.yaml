@@ -1,10 +1,5 @@
-name: Run Performance Test
+name: Execution in GH Machine
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - "**.md"
   workflow_dispatch:
     inputs:
       TRAFFIC_LOAD:
