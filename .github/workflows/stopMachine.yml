@@ -28,8 +28,8 @@ jobs:
         run: |
           INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
           if [ -z "$INSTANCE_ID" ]; then
+            echo "Performance Test EC2 instance is not available to stop"
+          else
             aws ec2 stop-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
             echo "Performance Test EC2 instance stopped"
-          else
-            echo "Performance Test EC2 instance is not available to stop"
           fi

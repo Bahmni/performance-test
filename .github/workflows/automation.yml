@@ -99,17 +99,14 @@ jobs:
       - name: Connect to Performance Test AWS EC2 instance
         run: |
           INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
-          echo $INSTANCE_ID
           if [ -z "$INSTANCE_ID" ]; then
             aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" --query "Reservations[].Instances[].InstanceId" --output text --region ap-south-1) --region ap-south-1
             echo "Performance test instance started"
             sleep 100s
             INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=performance-instance" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
-            echo $INSTANCE_ID
           else
             echo "Performance test instance is already running"
           fi
-          echo $INSTANCE_ID
           echo "INSTANCE_ID=$INSTANCE_ID" >> $GITHUB_ENV
       - name: Start the test
         run: |
