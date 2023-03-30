@@ -2,7 +2,7 @@
 
 ### [Documentation](https://bahmni.atlassian.net/wiki/spaces/BAH/pages/3038445574/Performance+Benchmarking+and+Capacity+Planning)
 
-![Design](https://raw.githubusercontent.com/Bahmni/bahmni-diagrams/main/quality-gates/performance_test_design.png)
+![Design](https://github.com/Bahmni/bahmni-diagrams/blob/main/quality-gates/performance_design_plan.png)
 
 ### Local Execution
 
@@ -21,9 +21,13 @@ Simulations can be run locally using Gradle. `./gradlew gatlingRun`
 **dev**  `export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun`
 
 **AWS EC2 Execution**
- - `nohup  bash -c 'export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun' &`
- - save the PID
- - To stop the execution `kill -9 PID`
+ - Get the `ec2access.pem` key from the infra admin
+ - use the following command to login `ssh -i "ec2access.pem" ubuntu@***********.ap-south-1.compute.amazonaws.com`
+ - Change the directory using `cd Bahmni/scripts`
+ - Run this to start the test `nohup  bash -c 'export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun' &`
+ - To view execution progress  `tail -f nohup.out`
+ - To download report `scp -i "ec2access.pem" -r ubuntu@***********.ap-south-1.compute.amazonaws.com:/home/ubuntu/Bahmni/scripts/performance-test/build/reports/gatling/* ./`
+ - To stop the execution `kill -9 {JAVA_PID}`
 
 ### Stack
 
@@ -79,12 +83,24 @@ To get an idea how this behaves, have a look at this visual representation of a 
 
 ### Workflow
 
-- Gets triggered on push to master branch.
-- The `workflow-dispatch` trigger could be utilised to generate performance test report based on suitable `LOAD_SIMULATION_TYPE`.
+- Trigger is set as Manual
+- The `Run Performance Test` trigger could be utilised to generate performance test report based `CUSTOM_SIMULATION`
 - The workflow performs the following steps :
+  - Starting the EC2 Instance
   - Building the project
-  - Running performance test based on the `LOAD_SIMULATION_TYPE`
-  - Removing older reports (keeps hold of latest 10 reports)
-  - Publishing reports
-  - Uploading the artifact (latest performance report) and
-  - Posting Slack notification containing Success/Failure message and link to the published report on successful workflow.
+  - Running performance test in the EC2 instance based on the `LOAD_SIMULATION_TYPE` or `CUSTOM_SIMULATION`
+  - To start the custom simulation provide the following as inputs
+      - Number of concurrent users to test - Example: 50,70,100
+      - Duration of test - Example: 5,10,24
+      - Units for duration - Hours or Minutes
+      - Valid reportname (optional) - Example: bahmniclinic-20230330090426833
+      - Enter number of patients to be created (optional) - Example: 50,100 (These patients will be created and same will be replaced in registrations.csv)
+  - By default the startup script which runs before the test closes all the exisiting active patients visits  and create 60% of Number of concurrent users as new patients followed by starting the visit for them
+  - Follow the steps in `AWS EC2 Execution` to view the progress and download the report
+
+### Note 
+   - `Stop Performance Test EC2 instance` this workflow can be used to stop the EC2 instance
+   - `Execution in GH Machine` this workflow can be used to run the test in Github provided machine which is not recommanded due to hardware restrictions
+
+    
+  
