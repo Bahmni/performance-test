@@ -6,8 +6,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-chrome_options = Options()  
-chrome_options.add_argument('--headless') 
+chrome_options = Options()
+chrome_options.add_argument('--headless')
 driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',options=chrome_options)
 options = Options()
 baseUrl=os.getenv('BASE_URL')
@@ -15,7 +15,7 @@ tailUrl=os.getenv('TAIL_URL')
 
 
 def scrapeReport(filename):
-    url=baseUrl+filename+tailUrl
+    url=filename+tailUrl
     print(url)
     driver.get(url)
     content = driver.page_source
@@ -23,14 +23,14 @@ def scrapeReport(filename):
     headtable=soup.find('table',id='container_statistics_head').find('tbody')
     bodytable = soup.find('table',id='container_statistics_body')
     headerrows=headtable.findAll('tr')
-    bodyrows = bodytable.findAll('tr') 
+    bodyrows = bodytable.findAll('tr')
     try:
      os.mkdir(os.getenv('OUTPUT_PATH'))
     except OSError as e:
      print('Dump Directory exists')
     writeCsvFile(filename,headerrows,bodyrows)
-    
-  
+
+
 
 def writeCsvFile(filename,headerrows,bodyrows):
     with open(os.getenv('OUTPUT_PATH')+filename+'.csv', 'wt+', newline='') as f:
@@ -58,10 +58,10 @@ def writeCsvFile(filename,headerrows,bodyrows):
             else:
                 csv_row.append(cell.text.strip())
         writer.writerow(csv_row)
-        
+
 
 for name in os.listdir(os.getenv('REPORTS_PATH')):
-    if 'report' in name:
+    if 'bahmniclinic' in name:
       scrapeReport(name)
 
 
