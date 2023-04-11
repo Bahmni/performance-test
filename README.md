@@ -23,8 +23,8 @@ Simulations can be run locally using Gradle. `./gradlew gatlingRun`
 **AWS EC2 Execution**
  - Get the `ec2access.pem` key from the infra admin
  - use the following command to login `ssh -i "ec2access.pem" ubuntu@***********.ap-south-1.compute.amazonaws.com`
- - Change the directory using `cd Bahmni/scripts`
- - Run this to start the test `nohup  bash -c 'export LOAD_SIMULATION_TYPE=dev ACTIVE_USERS=40 DURATION=10 UNITS=minutes && ./gradlew gatlingRun' &`
+ - Copy the scripts 📁 into the EC2 machine
+ - Run this to start the test `nohup  bash ./startPerformanceTest.sh dev 40 30 minutes &` in the scripts folder
  - To view execution progress  `tail -f nohup.out`
  - To download report `scp -i "ec2access.pem" -r ubuntu@***********.ap-south-1.compute.amazonaws.com:/home/ubuntu/Bahmni/scripts/performance-test/build/reports/gatling/* ./`
  - To stop the execution `kill -9 {JAVA_PID}`
