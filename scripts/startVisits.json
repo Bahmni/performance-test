@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "18a0cbb4-824b-44d6-aa72-200a31a4ec43",
+		"name": "startVisits",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Admin123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "superman",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=0, no-store",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/openmrs/ws/rest/v1/user?v=custom:(username,uuid,person:(uuid,),privileges:(name,retired),userProperties)&username=superman",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openmrs",
+						"ws",
+						"rest",
+						"v1",
+						"user"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "custom:(username,uuid,person:(uuid,),privileges:(name,retired),userProperties)"
+						},
+						{
+							"key": "username",
+							"value": "superman"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSessionID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/openmrs/ws/rest/v1/session?v=custom:(uuid)",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openmrs",
+						"ws",
+						"rest",
+						"v1",
+						"session"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "custom:(uuid)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get visitType",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"set the visit type\",()=>{",
+							"",
+							"var res=pm.response.json()",
+							"",
+							"var typeId=res.visitTypes.OPD",
+							"pm.collectionVariables.set(\"typeId\",typeId)",
+							"pm.collectionVariables.set(\"ids\",[])",
+							"",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/openmrs/ws/rest/v1/bahmnicore/config/bahmniencounter?callerContext=REGISTRATION_CONCEPTS",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openmrs",
+						"ws",
+						"rest",
+						"v1",
+						"bahmnicore",
+						"config",
+						"bahmniencounter"
+					],
+					"query": [
+						{
+							"key": "callerContext",
+							"value": "REGISTRATION_CONCEPTS"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create patient",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var bool=pm.variables.replaceIn(\"{{$randomBoolean}}\")",
+							"pm.test(\"set create patient variables\",function(){",
+							"",
+							"pm.collectionVariables.set(\"name\",pm.variables.replaceIn(\"{{$randomFirstName}}\"))",
+							"if(bool == 'true')",
+							"{",
+							"  pm.collectionVariables.set(\"gender\",\"M\")  ",
+							"}",
+							"else",
+							"{",
+							"  pm.collectionVariables.set(\"gender\",\"F\")  ",
+							"",
+							"}})",
+							"",
+							"pm.test(\"set bdate\",function(){",
+							"var phonenumber=pm.variables.replaceIn(\"{{$randomPhoneNumber}}\").replaceAll('-','')",
+							"pm.globals.set('phonenumber','+91'+phonenumber)",
+							"if(bool == 'true')",
+							"{",
+							"  pm.collectionVariables.set(\"bdate\",\"1982-03-02T13:25:18.649+0530\") ",
+							"}",
+							"else",
+							"{",
+							"  pm.collectionVariables.set(\"bdate\",\"2003-03-02T13:25:18.649+0530\")  ",
+							"",
+							"}",
+							"})",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"set patient id\",function(){",
+							"    var res=pm.response.json()",
+							"    counter=pm.environment.get('patientsCount')",
+							"    ids=pm.collectionVariables.get('ids')",
+							"    if (counter >1)",
+							"    {",
+							"        ids.push(res.patient.uuid)",
+							"        postman.setNextRequest(\"create patient\");",
+							"        pm.environment.set('patientsCount',counter-1)",
+							"} else ",
+							"{",
+							"    ids.push(res.patient.uuid)",
+							"    postman.setNextRequest(\"start visit\");",
+							"}",
+							"    pm.collectionVariables.set('ids',ids)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patient\": {\n        \"person\": {\n            \"names\": [\n                {\n                    \"givenName\": \"{{name}}\",\n                    \"familyName\": \"Demo\",\n                    \"display\": \"{{name}} Demo\",\n                    \"preferred\": false\n                }\n            ],\n            \"addresses\": [\n                {}\n            ],\n            \"birthdate\": \"{{bdate}}\",\n            \"gender\": \"{{gender}}\",\n            \"birthtime\": null,\n            \"attributes\": [\n                {\n                    \"attributeType\": {\n                        \"uuid\": \"92ebd36c-874c-11ed-beff-025021bd0800\"\n                    },\n                    \"voided\": true\n                },\n                {\n                    \"attributeType\": {\n                        \"uuid\": \"89c0d055-874c-11ed-beff-025021bd0800\"\n                    },\n                    \"voided\": true\n                },\n                {\n                    \"attributeType\": {\n                        \"uuid\": \"89c41ddb-874c-11ed-beff-025021bd0800\"\n                    },\n                    \"voided\": true\n                },\n                {\n                    \"attributeType\": {\n                        \"uuid\": \"991d89df-e677-49f3-9752-36977579b89d\"\n                    },\n                    \"value\": \"{{phonenumber}}\"\n                },\n                {\n                    \"attributeType\": {\n                        \"uuid\": \"17cbc9a8-d20e-413e-96e1-056021a5013b\"\n                    },\n                    \"voided\": true\n                }\n            ],\n            \"deathDate\": null,\n            \"causeOfDeath\": \"\"\n        },\n        \"identifiers\": [\n            {\n                \"identifierSourceUuid\": \"c5cf4b68-6529-43fc-a644-c775ae73745e\",\n                \"identifierPrefix\": \"ABC\",\n                \"identifierType\": \"88b5b059-874c-11ed-beff-025021bd0800\",\n                \"preferred\": true,\n                \"voided\": false\n            }\n        ]\n    },\n    \"relationships\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/openmrs/ws/rest/v1/bahmnicore/patientprofile",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openmrs",
+						"ws",
+						"rest",
+						"v1",
+						"bahmnicore",
+						"patientprofile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "start visit",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let ids = pm.collectionVariables.get(\"ids\");",
+							"if(ids.length>0)",
+							"{",
+							"let currentid = ids.shift();",
+							"pm.collectionVariables.set(\"id\", currentid);",
+							"pm.collectionVariables.set(\"ids\", ids);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const ids = pm.collectionVariables.get(\"ids\");",
+							"console.log(ids)",
+							"if (ids.length > 0){",
+							"    postman.setNextRequest(\"start visit\");",
+							"} else {",
+							"    postman.setNextRequest(null);",
+							"}",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patient\": \"{{id}}\",\n    \"visitType\": \"{{typeId}}\",\n    \"location\": \"833d0c66-e29a-4d31-ac13-ca9050d1bfa9\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/openmrs/ws/rest/v1/visit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openmrs",
+						"ws",
+						"rest",
+						"v1",
+						"visit"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "gender",
+			"value": ""
+		},
+		{
+			"key": "phonenumber",
+			"value": ""
+		},
+		{
+			"key": "bdate",
+			"value": ""
+		},
+		{
+			"key": "typeId",
+			"value": ""
+		},
+		{
+			"key": "ids",
+			"value": ""
+		},
+		{
+			"key": "id",
+			"value": ""
+		}
+	]
+}
