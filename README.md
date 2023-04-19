@@ -101,6 +101,8 @@ To get an idea how this behaves, have a look at this visual representation of a 
 ### Note 
    - `Stop Performance Test EC2 instance` this workflow can be used to stop the EC2 instance
    - `Execution in GH Machine` this workflow can be used to run the test in Github provided machine which is not recommanded due to hardware restrictions
+   - Manually executing [scrape.py](scripts/scrape.py) helps to fetch values from gatling reports, according to `HEADERS` set in [.env](/scripts/.env) file, and convert it into a CSV file.
+   - **WIP** - To convert CSV files into an interactive dashboard for easier comparison of reports and deducing the best executions based on patient encounter count, no: of concurrent users and so on.  
 
     
   
