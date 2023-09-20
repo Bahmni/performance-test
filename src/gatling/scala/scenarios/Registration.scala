@@ -12,7 +12,7 @@ import scala.language.postfixOps
 
 object Registration {
   private val scenarios = List(
-    Scenario(
+ Scenario(
       existingPatient_IdSearch_StartVisit,
       UserFlow.Registration.existingPatientIdSearchOpdVisit
     ),
@@ -20,15 +20,14 @@ object Registration {
       existingPatient_NameSearch_StartVisit,
       UserFlow.Registration.existingPatientNameSearchOpdVisit
     ),
-
     Scenario(
       createPatient_StartVisit,
       UserFlow.Registration.newPatientOpdVisit
-    ),
+    )/*,
     Scenario(
       patient_Document_Upload,
       UserFlow.Registration.patientDocumentUpload
-    )
+    )*/
   )
 
   def scenario(trafficSharePercentage: Int): List[PopulationBuilder] = {

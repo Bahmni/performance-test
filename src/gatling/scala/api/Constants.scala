@@ -4,15 +4,13 @@ import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 object Constants {
   val OVERALL_LOAD_SHARE: Int = 100
-  val CONSULTATION_LOAD_SHARE: Int = 50
-  val REGISTRATION_LOAD_SHARE: Int = 50
   val LOGIN_USER = "superman"
-  val LOGIN_LOCATION_UUID = "833d0c66-e29a-4d31-ac13-ca9050d1bfa9"
+  val PASSWORD="Secret007"
+  val LOGIN_LOCATION_UUID = "0fbbeaf4-f3ea-11ed-a05b-0242ac120002"
   val ENCOUNTER_TYPE_UUID = "89c7fa5d-874c-11ed-beff-025021bd0800"
   val CLOSE_VISIT_ENCOUNTER_TYPE_UUID = "88e576e8-874c-11ed-beff-025021bd0800"
   val PROVIDER_UUID = "8de1c96e-874c-11ed-beff-025021bd0800"
   val IMAGES_ENCOUNTER_UUID = "89c7fa5d-874c-11ed-beff-025021bd0800"
-  val PATIENT_SWITCH = true
   val REGLAN_DRUG = "d7db0608-2f3b-4859-877f-ed1abbca9028"
   val PROMETHAZINE_DRUG = "d43c79d0-0457-450b-a827-4d61f3272837"
   val LOPERAMIDE_DRUG = "9281d1db-0ba4-45fe-80c5-5ef6d2401de0"

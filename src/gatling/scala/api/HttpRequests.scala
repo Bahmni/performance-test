@@ -114,7 +114,7 @@ object HttpRequests {
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
       .body(
         StringBody(
-          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ] }""".stripMargin
+          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "c1c21e11-3f10-11e4-adec-0800271c1b75" ], "includeAll": false, "locationUuid": "0fbbeaf4-f3ea-11ed-a05b-0242ac120002", "encounterTypeUuids": [ "81852aee-3f10-11e4-adec-0800271c1b75" ] }""".stripMargin
         )
       )
       .asJson

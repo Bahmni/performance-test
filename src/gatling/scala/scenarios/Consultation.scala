@@ -13,10 +13,10 @@ import scala.language.postfixOps
 
 object Consultation {
   private val scenarios = List(
-    Scenario(
+    /*Scenario(
       doctor_Consultation_Average_Patient,
       UserFlow.Consultation.averagePatient
-    )
+    )*/
   )
 
   def scenario(trafficSharePercentage: Int): List[PopulationBuilder] = {

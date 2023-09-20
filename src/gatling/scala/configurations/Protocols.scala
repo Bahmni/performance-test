@@ -1,16 +1,17 @@
 package configurations
 
+import api.Constants.{LOGIN_USER, PASSWORD}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
 object Protocols {
-  private val url = "https://performance.lite.mybahmni.in/" //System.getProperty("base_url")
+  private val url = "https://gcp-qa.emr.cure.org/" //System.getProperty("base_url")
   val default: HttpProtocolBuilder = http
     .baseUrl(url)
     .disableCaching
     .inferHtmlResources()
-    .basicAuth("superman", "Admin123")
+    .basicAuth(LOGIN_USER, PASSWORD)
     .acceptHeader("Cache-Control, max-age=0, no-store")
     .acceptHeader("application/json, text/plain, */*")
     .contentTypeHeader("application/json")

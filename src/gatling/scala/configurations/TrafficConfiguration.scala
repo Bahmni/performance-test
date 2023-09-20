@@ -6,18 +6,18 @@ import scala.math.max
 
 object UserFlow {
   object Registration {
-    val trafficLoadShare: Int = 50
+    val trafficLoadShare: Int = 100
     val newPatientOpdVisit: ScenarioConfig =
       ScenarioConfig("Registration - New Patient - OPD Visit", 40, 2 minutes)
     val existingPatientIdSearchOpdVisit: ScenarioConfig =
       ScenarioConfig("Registration - Existing Patient ID Search - OPD Visit", 30, 2 minutes)
     val existingPatientNameSearchOpdVisit: ScenarioConfig =
-      ScenarioConfig("Registration - Existing Patient Name Search - OPD Visit", 20, 2 minutes)
+      ScenarioConfig("Registration - Existing Patient Name Search - OPD Visit", 30, 2 minutes)
     val patientDocumentUpload: ScenarioConfig =
       ScenarioConfig("Registration - Patient document upload", 10, 2 minutes)
   }
   object Consultation {
-    val trafficLoadShare: Int = 50
+    val trafficLoadShare: Int = 0
     val averagePatient: ScenarioConfig = ScenarioConfig("Consultation - Average Patient", 100, 5 minutes)
   }
 }

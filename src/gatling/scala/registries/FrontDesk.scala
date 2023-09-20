@@ -105,10 +105,8 @@ object FrontDesk {
         .resources(
           findEncounter("#{patient_uuid}"),
           activateVisit("#{patient_uuid}"),
-          getNutrition,
           getObservation(Seq("Height", "Weight"), Map("patientUuid" -> "#{patient_uuid}")),
           getVital,
-          getFeeInformation,
           getPatientProfileAfterRegistration("#{patient_uuid}")
         )
     )
