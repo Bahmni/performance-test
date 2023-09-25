@@ -95,7 +95,7 @@ object DoctorHttpRequests {
       .asJson
   }
 
-  def getEncoutnerByEncounterTypeUuid(patientUuid: String): HttpRequestBuilder = {
+  def getEncoutnerByEncounterTypeUuid(patientUuid: String,encounterUuid:String): HttpRequestBuilder = {
     http("get encounter by uuid")
       .get("/openmrs/ws/rest/v1/encounter")
       .queryParam(
@@ -103,7 +103,7 @@ object DoctorHttpRequests {
         "custom:(uuid,provider,visit:(uuid,startDatetime,stopDatetime),obs:(uuid,concept:(uuid,name),groupMembers:(id,uuid,obsDatetime,value,comment)))"
       )
       .queryParam("patient", patientUuid)
-      .queryParam("encounterType", ENCOUNTER_TYPE_UUID)
+      .queryParam("encounterType", encounterUuid)
   }
 
   def getDrugOrderConfig: HttpRequestBuilder = {

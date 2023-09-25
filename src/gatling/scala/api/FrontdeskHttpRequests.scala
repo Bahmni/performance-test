@@ -150,4 +150,12 @@ object FrontdeskHttpRequests {
       .body(ElFileBody("bodies/postVisitDocument.json"))
       .asJson
   }
+
+  def getPossibleAddressHierarchyEntries(key:String):HttpRequestBuilder={
+    http("get possible address Hierarchy Entry")
+      .get("/openmrs/module/addresshierarchy/ajax/getPossibleAddressHierarchyEntriesWithParents.form")
+      .queryParam("addressField","address3")
+      .queryParam("limit","20")
+      .queryParam("searchString",key)
+  }
 }

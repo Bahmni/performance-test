@@ -12,7 +12,7 @@ object UserFlow {
     val existingPatientIdSearchOpdVisit: ScenarioConfig =
       ScenarioConfig("Registration - Existing Patient ID Search - OPD Visit", 30, 2 minutes)
     val existingPatientNameSearchOpdVisit: ScenarioConfig =
-      ScenarioConfig("Registration - Existing Patient Name Search - OPD Visit", 30, 2 minutes)
+      ScenarioConfig("Registration - Existing Patient Name Search - OPD Visit", 20, 2 minutes)
     val patientDocumentUpload: ScenarioConfig =
       ScenarioConfig("Registration - Patient document upload", 10, 2 minutes)
   }

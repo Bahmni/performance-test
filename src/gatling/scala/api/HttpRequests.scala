@@ -1,5 +1,6 @@
 package api
 
+import api.Constants.{ENCOUNTER_TYPE_UUID, LOGIN_LOCATION_UUID, PROVIDER_UUID}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
@@ -114,7 +115,7 @@ object HttpRequests {
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
       .body(
         StringBody(
-          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "c1c21e11-3f10-11e4-adec-0800271c1b75" ], "includeAll": false, "locationUuid": "0fbbeaf4-f3ea-11ed-a05b-0242ac120002", "encounterTypeUuids": [ "81852aee-3f10-11e4-adec-0800271c1b75" ] }""".stripMargin
+          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "$PROVIDER_UUID" ], "includeAll": false, "locationUuid": "$LOGIN_LOCATION_UUID", "encounterTypeUuids": [ "$ENCOUNTER_TYPE_UUID" ] }""".stripMargin
         )
       )
       .asJson
@@ -125,7 +126,7 @@ object HttpRequests {
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
       .body(
         StringBody(
-          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "$providerUUID" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "$encounterTypeUUID" ] }""".stripMargin
+          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "$providerUUID" ], "includeAll": false, "locationUuid": "$LOGIN_LOCATION_UUID", "encounterTypeUuids": [ "$encounterTypeUUID" ] }""".stripMargin
         )
       )
       .asJson
@@ -180,5 +181,25 @@ object HttpRequests {
       .queryParam("patient",pateintUuid)
       .queryParam("v",v)
 
+  }
+
+  def getAppConfig(): HttpRequestBuilder = {
+    http("get bahmni config")
+      .get("/bahmni_config/openmrs/apps/registration/app.json")
+  }
+
+  def getExtensionConfig():HttpRequestBuilder={
+    http("get extension config")
+      .get("/bahmni_config/openmrs/apps/registration/extension.json")
+  }
+def getPatientIdentifier(patientId:String):HttpRequestBuilder={
+  http("get patient identifier")
+  .get(f"/openmrs/ws/rest/v1/patient/${patientId}/identifier")
+    .queryParam("includeAll","true")
+}
+
+  def getAnyVisitLocation():HttpRequestBuilder={
+    http("get any visit location")
+      .get("/openmrs/ws/rest/v1/location?operator=ANY&s=byTags&tags=Visit+Location&v=default")
   }
 }

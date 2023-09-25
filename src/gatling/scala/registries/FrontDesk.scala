@@ -4,7 +4,7 @@ import api.Constants.{IMAGES_ENCOUNTER_UUID, LOGIN_LOCATION_UUID, LOGIN_USER, PR
 import api.DoctorHttpRequests._
 import api.FrontdeskHttpRequests._
 import api.HttpRequests._
-import io.gatling.core.Predef._
+import io.gatling.core.Predef.{jsonPath, _}
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
 
@@ -16,10 +16,16 @@ object FrontDesk {
         getUser(LOGIN_USER).check(
           jsonPath("$..results[0].uuid").find.saveAs("runTimeUuid")
         ),
+        getAppConfig(),
+        getExtensionConfig(),
+        getAnyVisitLocation(),
         getSession,
         getProviderForUser("#{runTimeUuid}"),
         getGlobalProperty("mrs.genders"),
         getGlobalProperty("bahmni.relationshipTypeMap"),
+        getGlobalProperty("clinic.helpDeskNumber"),
+        getGlobalProperty("concept.reasonForDeath"),
+        getGlobalProperty("sms.enableRegistrationSMSAlert"),
         getAddressHierarchyLevel,
         getIdentifierTypes,
         getRelationshipTypes,
@@ -37,6 +43,9 @@ object FrontDesk {
       searchPatientUsingName(LOGIN_LOCATION_UUID, patientName)
         .check(jsonPath("$..uuid").find.saveAs("pt_uuID"))
     ).exec(getPatientProfileAfterRegistration("#{pt_uuID}"))
+      .exec(getVisitByAttributes("false", "#{pt_uuID}", "custom:(uuid,visitType,location:(uuid))"))
+      .exec(getPatientIdentifier("#{pt_uuID}"))
+      .exec(getEncounterByEncounterTypeUuid("#{pt_uuID}", IMAGES_ENCOUNTER_UUID))
   }
 
   def performIdSearch(patientIdentifier: String): ChainBuilder = {
@@ -45,6 +54,9 @@ object FrontDesk {
         .check(jsonPath("$..uuid").find.saveAs("p_uuID"))
     )
       .exec(getPatientProfileAfterRegistration("#{p_uuID}"))
+      .exec(getVisitByAttributes("false", "#{p_uuID}", "custom:(uuid,visitType,location:(uuid))"))
+      .exec(getPatientIdentifier("#{p_uuID}"))
+      .exec(getEncounterByEncounterTypeUuid("#{p_uuID}", IMAGES_ENCOUNTER_UUID))
   }
 
   def startVisitForID: ChainBuilder = {
@@ -85,10 +97,15 @@ object FrontDesk {
                 "identifier_sources_id"
               )
             ),
+            getAppConfig(),
+            getExtensionConfig(),
+            getAnyVisitLocation(),
             getGlobalProperty("mrs.genders"),
             getRelationshipTypes,
             getGlobalProperty("bahmni.relationshipTypeMap"),
-            getEntityMapping("loginlocation_visittype")
+            getEntityMapping("loginlocation_visittype"),
+            getAddressHierarchyLevel,
+            getPossibleAddressHierarchyEntries("add")
           )
       )
   )
@@ -144,11 +161,11 @@ object FrontDesk {
   }
 
   def goToPatientDocumentUpload = {
-    exec(
+      exec(
       getVisitByPatient("#{pt_uuID}")
         .check(
-          jsonPath("$..results[0].uuid").find.saveAs("visitUUID"),
           jsonPath("$..results[0].visitType.uuid").find.saveAs("visitTypeUUID")
+          ,jsonPath("$..results[0].uuid").find.saveAs("visitUUID")
         )
         .resources(
           getVisitType,

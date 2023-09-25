@@ -101,7 +101,7 @@ object Doctor {
       getDiseaseTemplates("#{runTimeUuid}"),
       postAuditLog,
       getPatientAvatar("#{runTimeUuid}"),
-      getEncoutnerByEncounterTypeUuid("#{runTimeUuid}"),
+      getEncoutnerByEncounterTypeUuid("#{runTimeUuid}",ENCOUNTER_TYPE_UUID),
       getPatientContext(patientUuid, "ABHA Address", "phoneNumber"),
       getPatientsInfoWithSqlInpatientInfoTabOfClinic(patientUuid, "bahmni.sqlGet.upComingAppointments"),
       getPatientsInfoWithSqlInpatientInfoTabOfClinic(patientUuid, "bahmni.sqlGet.pastAppointments"),
