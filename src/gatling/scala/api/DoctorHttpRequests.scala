@@ -34,6 +34,15 @@ object DoctorHttpRequests {
       .queryParam("v", "full")
   }
 
+  def getActiveOpdPatientsBySpeciality(locationUuid: String, providerUuid: String, speciality: String): HttpRequestBuilder = {
+    http(speciality)
+      .get("/openmrs/ws/rest/v1/bahmnicore/sql")
+      .queryParam("additionalParams",speciality)
+      .queryParam("location_uuid", locationUuid)
+      .queryParam("provider_uuid", providerUuid)
+      .queryParam("q", "emrapi.sqlSearch.activePatientsBySpeciality")
+      .queryParam("v", "full")
+  }
   def getRelationship(personUuid: String): HttpRequestBuilder = {
     http("get relationship")
       .get("/openmrs/ws/rest/v1/relationship")
@@ -213,6 +222,12 @@ object DoctorHttpRequests {
 
   }
 
+  def getAllForms():HttpRequestBuilder={
+    http("get all forms")
+      .get("/openmrs/ws/rest/v1/bahmniie/form/allForms")
+      .queryParam("v","custom:(version,name,uuid)")
+
+  }
   def getEntityMappingByLocationEncounter(entityUuid: String): HttpRequestBuilder = {
     http("get entity mapping by location Encounter")
       .get("/openmrs/ws/rest/v1/entitymapping")

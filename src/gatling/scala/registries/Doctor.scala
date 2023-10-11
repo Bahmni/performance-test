@@ -19,6 +19,7 @@ object Doctor {
 
   val inMemoryOpdPatientsQueue: mutable.Map[String, Boolean] = mutable.Map.empty[String, Boolean]
   var inMemoryOpdPatientsIds: Map[String, String] = Map.empty[String, String]
+  var nextPatientUuid: String=""
   var remainingTime: FiniteDuration = 0 seconds
   var dt: Long = 0
   def goToClinicalApp: ChainBuilder = exec(
@@ -51,9 +52,11 @@ object Doctor {
 
   def selectNextPatientFromOpdQueue: ChainBuilder = exec { session =>
     val waitingOpdPatients = inMemoryOpdPatientsQueue.filter(patient => !patient._2)
-    val nextPatientUuid: String = waitingOpdPatients.keys.toList(Random.nextInt(waitingOpdPatients.size))
+    nextPatientUuid = waitingOpdPatients.keys.toList(Random.nextInt(waitingOpdPatients.size))
     inMemoryOpdPatientsQueue += (nextPatientUuid -> true)
     session.set("opdPatientId", nextPatientUuid)
+  }.exec{session=>
+    session.set("patientId",inMemoryOpdPatientsIds.get(nextPatientUuid).getOrElse("ET"))
   }
 
   def refreshInMemoryOpdPatientQueue: ChainBuilder =
@@ -62,19 +65,35 @@ object Doctor {
         getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatients")
           .check(
             jsonPath("$..uuid").findAll.saveAs("patientUUIDs"),
-            jsonPath("$..identifier").findAll.saveAs("ids")
+            jmesPath("[*].\"Patient ID\"").ofType[Any].not(None).saveAs("ids")
           )
           .resources(
-            getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByProvider"),
-            getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activePatientsByLocation")
+            getActiveOpdPatients(LOGIN_LOCATION_UUID, PROVIDER_UUID, "emrapi.sqlSearch.activeMyPatientsByAppointmentProvider"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Orthopaedics"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Plastics"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Paediatrics"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "General+Surgery"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Anesthesia"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Radiology"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Diagnostic+Testing"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Physiotherapy"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Occupational+Therapy"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Speech+Therapy"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Prosthetics+and+Orthotics"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Gait+Lab"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Nutrition"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Epilepsy"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Other+Speciality"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "Neuro"),
+            getActiveOpdPatientsBySpeciality(LOGIN_LOCATION_UUID, PROVIDER_UUID, "ENT")
           )
-      ).exec(getPatientAvatars)
+      )
         .exec { session =>
           inMemoryOpdPatientsIds=(session("patientUUIDs").as[Vector[String]] zip session("ids").as[Vector[String]]).toMap
           session("patientUUIDs")
             .as[Vector[String]]
             .foreach(uuid => {
-              if (!inMemoryOpdPatientsQueue.contains(uuid) && !inMemoryOpdPatientsIds.get(uuid).contains("ABC"))
+              if (!inMemoryOpdPatientsQueue.contains(uuid))
                 inMemoryOpdPatientsQueue += (uuid -> false)
             })
           session
@@ -194,12 +213,15 @@ object Doctor {
       postAuditLog(pUuid),
       getLatestPublishedForms
         .check(
-          jsonPath("$[?(@.name==\"History and Examination\")].uuid").find.saveAs("form_uuid"),
-          jsonPath("$[?(@.name==\"History and Examination\")].name").find.saveAs("form_name")
+          jsonPath("$[?(@.name==\"Orthopaedic Triage\")].uuid").find.saveAs("form_uuid"),
+          jsonPath("$[?(@.name==\"Orthopaedic Triage\")].name").find.saveAs("form_name")
         )
     )
   )
 
+  def fillForms(pUuid:String):ChainBuilder=exec(
+
+  )
   def saveEncounter: ChainBuilder = exec(
     getForm("#{form_uuid}").resources(
       getFormTranslations("#{form_name}", "#{form_uuid}"),
@@ -251,5 +273,12 @@ object Doctor {
       session.set("startTime", System.currentTimeMillis())
     })
   }
-
+def openTheForm():ChainBuilder={
+  exec(
+      getForm("#{form_uuid}").resources(
+      getAllForms(),
+      getFormTranslations("#{form_name}", "#{form_uuid}")
+    )
+  )
+}
 }

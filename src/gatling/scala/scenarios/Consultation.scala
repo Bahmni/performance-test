@@ -13,10 +13,10 @@ import scala.language.postfixOps
 
 object Consultation {
   private val scenarios = List(
-    /*Scenario(
+    Scenario(
       doctor_Consultation_Average_Patient,
       UserFlow.Consultation.averagePatient
-    )*/
+    )
   )
 
   def scenario(trafficSharePercentage: Int): List[PopulationBuilder] = {
@@ -38,18 +38,12 @@ object Consultation {
         .exec(waitBeforeNextStep(0, 30))
         .exec(goToObservations("#{opdPatientId}"))
         .exec(waitBeforeNextStep(0, 30))
-        .exec(goToMedications("#{opdPatientId}"))
-        .exec(waitBeforeNextStep(0, 10))
-        .exec(addDrug("Reglan Tablet"))
-        .exec(waitBeforeNextStep(0, 10))
-        .exec(addDrug("Loperamide Plus"))
-        .exec(waitBeforeNextStep(0, 10))
-        .exec(addDrug("Promethazine"))
         .feed(jsonFeeder)
         .feed(observationsFeeder)
         .exec(waitBeforeNextStep(0, 60))
         .exec(saveEncounter)
         .exec(goToDashboard("#{opdPatientId}"))
+          .exec(openTheForm)
         .exec(waitBeforeNextStep(0, 30))
         .exec(closeVisit()),
       workLoad

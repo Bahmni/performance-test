@@ -92,8 +92,8 @@ object FrontDesk {
         getPersonaAttributeType
           .resources(
             getIdentifierTypes.check(
-              jsonPath("$[?(@.name==\"Patient Identifier\")].uuid").find.saveAs("identifier_type"),
-              jsonPath("$[?(@.name==\"Patient Identifier\")].identifierSources..uuid").find.saveAs(
+              jsonPath("$[?(@.name==\"Identification Number\")].uuid").find.saveAs("identifier_type"),
+              jsonPath("$[?(@.name==\"Identification Number\")].identifierSources..uuid").find.saveAs(
                 "identifier_sources_id"
               )
             ),
@@ -178,7 +178,7 @@ object FrontDesk {
   }
 
   def uploadPatientDocument = {
-    exec(postUploadDocument("#{pt_uuID}"))
+    exec(postUploadDocument("#{pt_uuID}").check(jsonPath("$..url").find.saveAs("imageUrl")))
   }
 
   def verifyPatientDocument = {

@@ -9,8 +9,8 @@
   "locationUuid": "#{locationUuid}",
   "documents": [
     {
-      "testUuid": "6d7347fa-14b6-41c7-a15a-516403ad43ed",
-      "image": "49500/49429-Patient Document-23b73161-1fb5-4b1d-b544-12675d481872__Medical-Consent-Form-For-Adult.jpeg",
+      "testUuid": "e6899f74-6a8e-43ed-8010-f7dc27a0058b",
+      "image": "#{imageUrl}",
       "obsDateTime": null
     }
   ]

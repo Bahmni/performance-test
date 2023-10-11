@@ -6,22 +6,16 @@
           "givenName": "#{givenName}",
           "middleName": "perf",
           "familyName": "#{givenName} perf",
-          "display": "performance patient",
+          "display": "#{givenName} perf",
           "preferred": false
         }
       ],
       "addresses": [
         {
-          "address1": "Amhara",
-          "address2": "North Gondar",
-          "address3": "Addi Arkay",
-          "address4": "Test Kebele",
-          "address5": "Test Address",
-          "country": "Ethiopia"
         }
       ],
-      "birthdate": "1997-09-18",
-      "gender": "F",
+      "birthdate": "1998-10-11",
+      "gender": "M",
       "birthtime": null,
       "attributes": [
         {
@@ -32,13 +26,13 @@
         },
         {
           "attributeType": {
-            "uuid": "29715af7-8465-44e5-9315-4abcbc7b65e4"
+            "uuid": "10eadc3a-b3e8-4513-8df6-713dda324250"
           },
           "voided": true
         },
         {
           "attributeType": {
-            "uuid": "b7f1a7cf-9125-4bf7-92fb-c7bc2132f11e"
+            "uuid": "20d560fb-7fba-46ca-b413-c10ff91c212f"
           },
           "voided": true
         },
@@ -87,7 +81,7 @@
         },
         {
           "attributeType": {
-            "uuid": "d41ad496-b56d-4acd-9189-ca5286388713"
+            "uuid": "0fc53737-0d70-4941-94f5-365a881311cf"
           },
           "voided": true
         },
@@ -123,31 +117,31 @@
         },
         {
           "attributeType": {
-            "uuid": "b3e29a37-77ae-46b0-b04e-c8b5811adcce"
+            "uuid": "431ae647-61ee-48e7-b3d6-e087811200d0"
           },
           "voided": true
         },
         {
           "attributeType": {
-            "uuid": "7ab0ec34-d0ee-4392-b2ec-6a3e96d0595d"
+            "uuid": "892723ec-d7eb-48bb-8310-c058256b15f6"
           },
           "voided": true
         },
         {
           "attributeType": {
-            "uuid": "11017106-5b75-45cd-bce5-7a8a8d3cb31e"
+            "uuid": "4d83bb7f-00e2-49cf-ae24-e815536403b7"
           },
           "voided": true
         },
         {
           "attributeType": {
-            "uuid": "07bc8359-bc55-41da-bbd8-e2deeea002b6"
+            "uuid": "c68ddd17-f5c2-4ed9-a0c3-4131976177b3"
           },
           "voided": true
         },
         {
           "attributeType": {
-            "uuid": "a024468b-bb6a-4bd7-b306-a1bf9fbae1bb"
+            "uuid": "432148ed-5817-4420-9216-a6ef569db784"
           },
           "value": "true"
         }
@@ -157,24 +151,6 @@
     },
     "identifiers": [
       {
-        "identifier": "Govt12345",
-        "identifierType": "68aeee02-fba8-11ed-be56-0242ac120002",
-        "preferred": false,
-        "voided": false
-      },
-      {
-        "identifier": "Pat12345",
-        "identifierType": "68aef23a-fba8-11ed-be56-0242ac120002",
-        "preferred": false,
-        "voided": false
-      },
-      {
-        "identifier": "Stu12345",
-        "identifierType": "68aef0fa-fba8-11ed-be56-0242ac120002",
-        "preferred": false,
-        "voided": false
-      },
-      {
         "identifierSourceUuid": "#{identifier_sources_id}",
         "identifierPrefix": "ET",
         "identifierType": "#{identifier_type}",
@@ -183,5 +159,6 @@
       }
     ]
   },
-  "relationships": []
+  "relationships": [
+  ]
 }
