@@ -1,14 +1,14 @@
 package configurations
 
-import api.Constants.{LOGIN_USER, PASSWORD}
+import api.Constants.{BASE_URL, LOGIN_USER, PASSWORD}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
 object Protocols {
-  private val url = "https://gcp-qa.emr.cure.org/" //System.getProperty("base_url")
+
   val default: HttpProtocolBuilder = http
-    .baseUrl(url)
+    .baseUrl(BASE_URL)
     .disableCaching
     .inferHtmlResources()
     .basicAuth(LOGIN_USER, PASSWORD)

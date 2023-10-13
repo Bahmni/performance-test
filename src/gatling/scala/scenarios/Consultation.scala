@@ -43,7 +43,7 @@ object Consultation {
         .exec(waitBeforeNextStep(0, 60))
         .exec(saveEncounter)
         .exec(goToDashboard("#{opdPatientId}"))
-          .exec(openTheForm)
+          .exec(openTheForm())
         .exec(waitBeforeNextStep(0, 30))
         .exec(closeVisit()),
       workLoad
