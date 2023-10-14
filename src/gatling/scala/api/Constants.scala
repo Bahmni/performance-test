@@ -5,7 +5,7 @@ import scala.language.postfixOps
 object Constants {
   val BASE_URL = System.getenv("BASE_URL")
   val OVERALL_LOAD_SHARE: Int = 100
-  val LOGIN_USER = System.getenv("USERNAME")
+  val LOGIN_USER = System.getenv("UNAME")
   val PASSWORD= System.getenv("PASSWORD")
   val LOGIN_LOCATION_UUID = "0fbbeaf4-f3ea-11ed-a05b-0242ac120002"
   val ENCOUNTER_TYPE_UUID = "89c7fa5d-874c-11ed-beff-025021bd0800"
