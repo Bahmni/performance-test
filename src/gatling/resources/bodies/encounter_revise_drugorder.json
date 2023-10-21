@@ -10,67 +10,20 @@
   ],
   "encounterDateTime": null,
   "extensions": {
-    "mdrtbSpecimen": []
+    "mdrtbSpecimen": [
+    ]
   },
-  "context": {},
+  "context": {
+  },
   "visitType": "OPD",
-  "bahmniDiagnoses": [],
-  "orders": [],
-  "drugOrders": [],
+  "bahmniDiagnoses": [
+  ],
+  "orders": [
+  ],
+  "drugOrders": [
+  ],
   "disposition": null,
   "observations": [
-    {
-      "concept": {
-        "uuid": "b34f9e88-19cd-4c95-8f16-f34e19a4a40c",
-        "name": "Pulse"
-      },
-      "value": "70",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Orthopaedic Triage.1/95-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Arterial blood oxygen saturation (pulse oximeter)"
-      },
-      "value": "98",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Orthopaedic Triage.1/67-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "a03cbbdf-09f7-49d7-bcf5-ea0d1a2cf651",
-        "name": "Respiratory Rate"
-      },
-      "value": "16",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Orthopaedic Triage.1/96-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "af3915ff-b1db-4a8f-8749-910f84f141f4",
-        "name": "Temperature (F)"
-      },
-      "value": "97",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Orthopaedic Triage.1/98-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
     {
       "concept": {
         "uuid": "83f76f76-673f-4232-8196-3ee11cb4c84e",
@@ -91,7 +44,8 @@
           "inactive": false,
           "formNamespace": "Bahmni",
           "formFieldPath": "Orthopaedic Triage.1/111-0",
-          "groupMembers": [],
+          "groupMembers": [
+          ],
           "interpretation": null
         },
         {
@@ -104,7 +58,8 @@
           "inactive": false,
           "formNamespace": "Bahmni",
           "formFieldPath": "Orthopaedic Triage.1/112-0",
-          "groupMembers": [],
+          "groupMembers": [
+          ],
           "interpretation": null
         },
         {
@@ -113,23 +68,23 @@
             "name": "Duration Unit[s]"
           },
           "value": {
-            "uuid": "7187574f-2c3a-42db-b97c-3f89a53695ff",
+            "uuid": "1f993000-be82-4974-8a0e-d8173b7a1d34",
             "name": {
-              "display": "Week[s]",
-              "uuid": "100303BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-              "name": "Week[s]",
+              "display": "Hour[s]",
+              "uuid": "100301BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "name": "Hour[s]",
               "locale": "en",
               "localePreferred": true,
               "conceptNameType": "FULLY_SPECIFIED",
               "links": [
                 {
                   "rel": "self",
-                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/7187574f-2c3a-42db-b97c-3f89a53695ff/name/100303BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/1f993000-be82-4974-8a0e-d8173b7a1d34/name/100301BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                   "resourceAlias": "name"
                 },
                 {
                   "rel": "full",
-                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/7187574f-2c3a-42db-b97c-3f89a53695ff/name/100303BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/1f993000-be82-4974-8a0e-d8173b7a1d34/name/100301BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                   "resourceAlias": "name"
                 }
               ],
@@ -137,60 +92,75 @@
             },
             "names": [
               {
-                "display": "Week[s]",
-                "uuid": "100303BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                "name": "Week[s]",
-                "locale": "en",
-                "localePreferred": true,
-                "conceptNameType": "FULLY_SPECIFIED",
-                "links": [
-                  {
-                    "rel": "self",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/7187574f-2c3a-42db-b97c-3f89a53695ff/name/100303BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                    "resourceAlias": "name"
-                  },
-                  {
-                    "rel": "full",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/7187574f-2c3a-42db-b97c-3f89a53695ff/name/100303BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                    "resourceAlias": "name"
-                  }
-                ],
-                "resourceVersion": "1.9"
-              },
-              {
-                "display": "Week(s)",
-                "uuid": "100303CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
-                "name": "Week(s)",
+                "display": "Hour(s)",
+                "uuid": "100301CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+                "name": "Hour(s)",
                 "locale": "en",
                 "localePreferred": false,
                 "conceptNameType": "SHORT",
                 "links": [
                   {
                     "rel": "self",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/7187574f-2c3a-42db-b97c-3f89a53695ff/name/100303CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1f993000-be82-4974-8a0e-d8173b7a1d34/name/100301CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
                     "resourceAlias": "name"
                   },
                   {
                     "rel": "full",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/7187574f-2c3a-42db-b97c-3f89a53695ff/name/100303CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC?v=full",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1f993000-be82-4974-8a0e-d8173b7a1d34/name/100301CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC?v=full",
+                    "resourceAlias": "name"
+                  }
+                ],
+                "resourceVersion": "1.9"
+              },
+              {
+                "display": "Hour[s]",
+                "uuid": "100301BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "name": "Hour[s]",
+                "locale": "en",
+                "localePreferred": true,
+                "conceptNameType": "FULLY_SPECIFIED",
+                "links": [
+                  {
+                    "rel": "self",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1f993000-be82-4974-8a0e-d8173b7a1d34/name/100301BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "resourceAlias": "name"
+                  },
+                  {
+                    "rel": "full",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1f993000-be82-4974-8a0e-d8173b7a1d34/name/100301BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                     "resourceAlias": "name"
                   }
                 ],
                 "resourceVersion": "1.9"
               }
             ],
-            "displayString": "Week[s]",
+            "displayString": "Hour[s]",
             "resourceVersion": "2.0",
-            "translationKey": "WEEK[S]_113"
+            "translationKey": "HOUR[S]_113"
           },
           "voided": false,
           "inactive": false,
           "formNamespace": "Bahmni",
           "formFieldPath": "Orthopaedic Triage.1/113-0",
-          "groupMembers": [],
+          "groupMembers": [
+          ],
           "interpretation": null
         }
       ]
+    },
+    {
+      "concept": {
+        "uuid": "e51a95b4-c0eb-4057-8d31-53e2714a54d0",
+        "name": "Other Symptoms"
+      },
+      "value": "test",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Orthopaedic Triage.1/81-0",
+      "groupMembers": [
+      ],
+      "interpretation": null
     },
     {
       "concept": {
@@ -251,7 +221,8 @@
       "inactive": false,
       "formNamespace": "Bahmni",
       "formFieldPath": "Orthopaedic Triage.1/100-0",
-      "groupMembers": [],
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
@@ -328,13 +299,14 @@
         ],
         "displayString": "No",
         "resourceVersion": "2.0",
-        "translationKey": "NO_101"
+        "translationKey": "NO_115"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
-      "formFieldPath": "Orthopaedic Triage.1/101-0",
-      "groupMembers": [],
+      "formFieldPath": "Orthopaedic Triage.1/115-0",
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
@@ -343,23 +315,23 @@
         "name": "Swelling"
       },
       "value": {
-        "uuid": "482975a1-cea5-4de4-b24a-3b922e826c8c",
+        "uuid": "40d0907d-de3c-41ee-a82e-b3894cffc38a",
         "name": {
-          "display": "Yes - Slowly Increasing",
-          "uuid": "100260BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-          "name": "Yes - Slowly Increasing",
+          "display": "Yes - No Change",
+          "uuid": "100259BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "name": "Yes - No Change",
           "locale": "en",
           "localePreferred": true,
           "conceptNameType": "FULLY_SPECIFIED",
           "links": [
             {
               "rel": "self",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/482975a1-cea5-4de4-b24a-3b922e826c8c/name/100260BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/40d0907d-de3c-41ee-a82e-b3894cffc38a/name/100259BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
               "resourceAlias": "name"
             },
             {
               "rel": "full",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/482975a1-cea5-4de4-b24a-3b922e826c8c/name/100260BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/40d0907d-de3c-41ee-a82e-b3894cffc38a/name/100259BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
               "resourceAlias": "name"
             }
           ],
@@ -367,36 +339,37 @@
         },
         "names": [
           {
-            "display": "Yes - Slowly Increasing",
-            "uuid": "100260BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "Yes - Slowly Increasing",
+            "display": "Yes - No Change",
+            "uuid": "100259BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "Yes - No Change",
             "locale": "en",
             "localePreferred": true,
             "conceptNameType": "FULLY_SPECIFIED",
             "links": [
               {
                 "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/482975a1-cea5-4de4-b24a-3b922e826c8c/name/100260BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/40d0907d-de3c-41ee-a82e-b3894cffc38a/name/100259BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                 "resourceAlias": "name"
               },
               {
                 "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/482975a1-cea5-4de4-b24a-3b922e826c8c/name/100260BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/40d0907d-de3c-41ee-a82e-b3894cffc38a/name/100259BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                 "resourceAlias": "name"
               }
             ],
             "resourceVersion": "1.9"
           }
         ],
-        "displayString": "Yes - Slowly Increasing",
+        "displayString": "Yes - No Change",
         "resourceVersion": "2.0",
-        "translationKey": "YES_-_SLOWLY_INCREASING_102"
+        "translationKey": "YES_-_NO_CHANGE_102"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
       "formFieldPath": "Orthopaedic Triage.1/102-0",
-      "groupMembers": [],
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
@@ -479,7 +452,8 @@
       "inactive": false,
       "formNamespace": "Bahmni",
       "formFieldPath": "Orthopaedic Triage.1/103-0",
-      "groupMembers": [],
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
@@ -562,7 +536,8 @@
       "inactive": false,
       "formNamespace": "Bahmni",
       "formFieldPath": "Orthopaedic Triage.1/104-0",
-      "groupMembers": [],
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
@@ -571,23 +546,23 @@
         "name": "Wound"
       },
       "value": {
-        "uuid": "d7b44fa1-c8e9-4689-8d7b-e8da025189ef",
+        "uuid": "ce4ecf09-6394-480a-8870-faeaa598ed59",
         "name": {
-          "display": "No",
-          "uuid": "1138BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-          "name": "No",
+          "display": "Yes",
+          "uuid": "1136BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "name": "Yes",
           "locale": "en",
           "localePreferred": true,
           "conceptNameType": "FULLY_SPECIFIED",
           "links": [
             {
               "rel": "self",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/d7b44fa1-c8e9-4689-8d7b-e8da025189ef/name/1138BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/ce4ecf09-6394-480a-8870-faeaa598ed59/name/1136BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
               "resourceAlias": "name"
             },
             {
               "rel": "full",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/d7b44fa1-c8e9-4689-8d7b-e8da025189ef/name/1138BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/ce4ecf09-6394-480a-8870-faeaa598ed59/name/1136BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
               "resourceAlias": "name"
             }
           ],
@@ -595,62 +570,63 @@
         },
         "names": [
           {
-            "display": "No",
-            "uuid": "1138BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "No",
-            "locale": "en",
-            "localePreferred": true,
-            "conceptNameType": "FULLY_SPECIFIED",
-            "links": [
-              {
-                "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/d7b44fa1-c8e9-4689-8d7b-e8da025189ef/name/1138BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                "resourceAlias": "name"
-              },
-              {
-                "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/d7b44fa1-c8e9-4689-8d7b-e8da025189ef/name/1138BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                "resourceAlias": "name"
-              }
-            ],
-            "resourceVersion": "1.9"
-          },
-          {
-            "display": "False",
-            "uuid": "126356BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "False",
+            "display": "True",
+            "uuid": "126313BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "True",
             "locale": "en",
             "localePreferred": false,
             "conceptNameType": null,
             "links": [
               {
                 "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/d7b44fa1-c8e9-4689-8d7b-e8da025189ef/name/126356BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/ce4ecf09-6394-480a-8870-faeaa598ed59/name/126313BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                 "resourceAlias": "name"
               },
               {
                 "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/d7b44fa1-c8e9-4689-8d7b-e8da025189ef/name/126356BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/ce4ecf09-6394-480a-8870-faeaa598ed59/name/126313BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "resourceAlias": "name"
+              }
+            ],
+            "resourceVersion": "1.9"
+          },
+          {
+            "display": "Yes",
+            "uuid": "1136BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "Yes",
+            "locale": "en",
+            "localePreferred": true,
+            "conceptNameType": "FULLY_SPECIFIED",
+            "links": [
+              {
+                "rel": "self",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/ce4ecf09-6394-480a-8870-faeaa598ed59/name/1136BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "resourceAlias": "name"
+              },
+              {
+                "rel": "full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/ce4ecf09-6394-480a-8870-faeaa598ed59/name/1136BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                 "resourceAlias": "name"
               }
             ],
             "resourceVersion": "1.9"
           }
         ],
-        "displayString": "No",
+        "displayString": "Yes",
         "resourceVersion": "2.0",
-        "translationKey": "NO_105"
+        "translationKey": "YES_105"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
       "formFieldPath": "Orthopaedic Triage.1/105-0",
-      "groupMembers": [],
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
       "concept": {
-        "uuid": "d3b81a5a-3c0c-4beb-9117-5a3550e22c3c",
+        "uuid": "3092645a-a2e0-41c1-a26f-0ee3ac06c9c3",
         "name": "Discoloration"
       },
       "value": {
@@ -722,13 +698,14 @@
         ],
         "displayString": "Yes",
         "resourceVersion": "2.0",
-        "translationKey": "YES_106"
+        "translationKey": "YES_114"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
-      "formFieldPath": "Orthopaedic Triage.1/106-0",
-      "groupMembers": [],
+      "formFieldPath": "Orthopaedic Triage.1/114-0",
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
@@ -811,7 +788,22 @@
       "inactive": false,
       "formNamespace": "Bahmni",
       "formFieldPath": "Orthopaedic Triage.1/107-0",
-      "groupMembers": [],
+      "groupMembers": [
+      ],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "fd18b6f0-0d6d-4cff-bd4b-694a931d37b5",
+        "name": "Skin Colour"
+      },
+      "value": "test",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Orthopaedic Triage.1/91-0",
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
@@ -820,10 +812,10 @@
         "name": "Body Part"
       },
       "value": {
-        "uuid": "962a3c40-2704-4c5f-8e72-c5025db2caf8",
+        "uuid": "1809AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "name": {
           "display": "Head",
-          "uuid": "100450BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "uuid": "2089BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
           "name": "Head",
           "locale": "en",
           "localePreferred": true,
@@ -831,12 +823,12 @@
           "links": [
             {
               "rel": "self",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/962a3c40-2704-4c5f-8e72-c5025db2caf8/name/100450BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/1809AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/2089BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
               "resourceAlias": "name"
             },
             {
               "rel": "full",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/962a3c40-2704-4c5f-8e72-c5025db2caf8/name/100450BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/1809AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/2089BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
               "resourceAlias": "name"
             }
           ],
@@ -845,7 +837,7 @@
         "names": [
           {
             "display": "Head",
-            "uuid": "100450BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "uuid": "2089BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
             "name": "Head",
             "locale": "en",
             "localePreferred": true,
@@ -853,33 +845,12 @@
             "links": [
               {
                 "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/962a3c40-2704-4c5f-8e72-c5025db2caf8/name/100450BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/1809AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/2089BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                 "resourceAlias": "name"
               },
               {
                 "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/962a3c40-2704-4c5f-8e72-c5025db2caf8/name/100450BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                "resourceAlias": "name"
-              }
-            ],
-            "resourceVersion": "1.9"
-          },
-          {
-            "display": "Head",
-            "uuid": "100450CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
-            "name": "Head",
-            "locale": "en",
-            "localePreferred": false,
-            "conceptNameType": "SHORT",
-            "links": [
-              {
-                "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/962a3c40-2704-4c5f-8e72-c5025db2caf8/name/100450CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
-                "resourceAlias": "name"
-              },
-              {
-                "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/962a3c40-2704-4c5f-8e72-c5025db2caf8/name/100450CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC?v=full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/1809AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/2089BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                 "resourceAlias": "name"
               }
             ],
@@ -888,13 +859,14 @@
         ],
         "displayString": "Head",
         "resourceVersion": "2.0",
-        "translationKey": "HEAD_108"
+        "translationKey": "HEAD_116"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
-      "formFieldPath": "Orthopaedic Triage.1/32-0/108-0",
-      "groupMembers": [],
+      "formFieldPath": "Orthopaedic Triage.1/32-0/116-0",
+      "groupMembers": [
+      ],
       "interpretation": null
     },
     {
@@ -903,23 +875,23 @@
         "name": "Side"
       },
       "value": {
-        "uuid": "91a7f8f4-bcc3-4e7b-b4e9-ac3e93e993ef",
+        "uuid": "1fc07ed1-82d2-40a1-ab8c-a5f3d26d3233",
         "name": {
-          "display": "Left",
-          "uuid": "100188BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-          "name": "Left",
+          "display": "Right",
+          "uuid": "100189BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "name": "Right",
           "locale": "en",
           "localePreferred": true,
           "conceptNameType": "FULLY_SPECIFIED",
           "links": [
             {
               "rel": "self",
-              "uri": "http://localhost/openmrshttp://localhost/openmrs/ws/rest/v1/concept/91a7f8f4-bcc3-4e7b-b4e9-ac3e93e993ef/name/100188BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "uri": "http://localhost/openmrshttp://localhost/openmrs/ws/rest/v1/concept/1fc07ed1-82d2-40a1-ab8c-a5f3d26d3233/name/100189BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
               "resourceAlias": "name"
             },
             {
               "rel": "full",
-              "uri": "http://localhost/openmrshttp://localhost/openmrs/ws/rest/v1/concept/91a7f8f4-bcc3-4e7b-b4e9-ac3e93e993ef/name/100188BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+              "uri": "http://localhost/openmrshttp://localhost/openmrs/ws/rest/v1/concept/1fc07ed1-82d2-40a1-ab8c-a5f3d26d3233/name/100189BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
               "resourceAlias": "name"
             }
           ],
@@ -927,37 +899,37 @@
         },
         "names": [
           {
-            "display": "Left",
-            "uuid": "100188BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "Left",
+            "display": "Right",
+            "uuid": "100189BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "Right",
             "locale": "en",
             "localePreferred": true,
             "conceptNameType": "FULLY_SPECIFIED",
             "links": [
               {
                 "rel": "self",
-                "uri": "http://localhost/openmrshttp://localhost/openmrs/ws/rest/v1/concept/91a7f8f4-bcc3-4e7b-b4e9-ac3e93e993ef/name/100188BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "uri": "http://localhost/openmrshttp://localhost/openmrs/ws/rest/v1/concept/1fc07ed1-82d2-40a1-ab8c-a5f3d26d3233/name/100189BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                 "resourceAlias": "name"
               },
               {
                 "rel": "full",
-                "uri": "http://localhost/openmrshttp://localhost/openmrs/ws/rest/v1/concept/91a7f8f4-bcc3-4e7b-b4e9-ac3e93e993ef/name/100188BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "uri": "http://localhost/openmrshttp://localhost/openmrs/ws/rest/v1/concept/1fc07ed1-82d2-40a1-ab8c-a5f3d26d3233/name/100189BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                 "resourceAlias": "name"
               }
             ],
             "resourceVersion": "1.9"
           }
         ],
-        "displayString": "Left",
+        "displayString": "Right",
         "resourceVersion": "2.0",
-        "translationKey": "LEFT_93"
+        "translationKey": "RIGHT_93"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
       "formFieldPath": "Orthopaedic Triage.1/32-0/93-0",
-      "groupMembers": [],
-      "interpretation": null
+      "groupMembers": [
+      ]
     },
     {
       "concept": {
@@ -965,23 +937,23 @@
         "name": "Pain Scale"
       },
       "value": {
-        "uuid": "06abfd80-ace0-46ea-ba9c-1db2a11095f2",
+        "uuid": "205ba663-787c-4bb1-b144-3dd03303fb52",
         "name": {
-          "display": "1",
-          "uuid": "100291BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-          "name": "1",
+          "display": "0",
+          "uuid": "100264BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "name": "0",
           "locale": "en",
           "localePreferred": true,
           "conceptNameType": "FULLY_SPECIFIED",
           "links": [
             {
               "rel": "self",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/06abfd80-ace0-46ea-ba9c-1db2a11095f2/name/100291BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/205ba663-787c-4bb1-b144-3dd03303fb52/name/100264BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
               "resourceAlias": "name"
             },
             {
               "rel": "full",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/06abfd80-ace0-46ea-ba9c-1db2a11095f2/name/100291BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/205ba663-787c-4bb1-b144-3dd03303fb52/name/100264BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
               "resourceAlias": "name"
             }
           ],
@@ -989,37 +961,237 @@
         },
         "names": [
           {
-            "display": "1",
-            "uuid": "100291BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "1",
+            "display": "0",
+            "uuid": "100264BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "0",
             "locale": "en",
             "localePreferred": true,
             "conceptNameType": "FULLY_SPECIFIED",
             "links": [
               {
                 "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/06abfd80-ace0-46ea-ba9c-1db2a11095f2/name/100291BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/205ba663-787c-4bb1-b144-3dd03303fb52/name/100264BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                 "resourceAlias": "name"
               },
               {
                 "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/06abfd80-ace0-46ea-ba9c-1db2a11095f2/name/100291BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/205ba663-787c-4bb1-b144-3dd03303fb52/name/100264BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "resourceAlias": "name"
+              }
+            ],
+            "resourceVersion": "1.9"
+          },
+          {
+            "display": "0 - No Pain",
+            "uuid": "100264CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+            "name": "0 - No Pain",
+            "locale": "en",
+            "localePreferred": false,
+            "conceptNameType": "SHORT",
+            "links": [
+              {
+                "rel": "self",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/205ba663-787c-4bb1-b144-3dd03303fb52/name/100264CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+                "resourceAlias": "name"
+              },
+              {
+                "rel": "full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/205ba663-787c-4bb1-b144-3dd03303fb52/name/100264CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC?v=full",
                 "resourceAlias": "name"
               }
             ],
             "resourceVersion": "1.9"
           }
         ],
-        "displayString": "1",
+        "displayString": "0",
         "resourceVersion": "2.0",
-        "translationKey": "1_109"
+        "translationKey": "0_109"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
       "formFieldPath": "Orthopaedic Triage.1/32-0/109-0",
-      "groupMembers": [],
+      "groupMembers": [
+      ],
       "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "1ec6161d-9b73-4e35-813d-eaba1d65776f",
+        "name": "Vitals"
+      },
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Orthopaedic Triage.1/117-0",
+      "groupMembers": [
+        {
+          "concept": {
+            "uuid": "b34f9e88-19cd-4c95-8f16-f34e19a4a40c",
+            "name": "Pulse"
+          },
+          "value": "140",
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "Orthopaedic Triage.1/118-0",
+          "groupMembers": [
+          ],
+          "interpretation": null
+        },
+        {
+          "concept": {
+            "uuid": "9a0cdc2f-5395-4be1-b6b7-f1da898323ae",
+            "name": "Arterial Blood Oxygen Saturation (Pulse Oximeter)"
+          },
+          "value": "93",
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "Orthopaedic Triage.1/119-0",
+          "groupMembers": [
+          ],
+          "interpretation": null
+        },
+        {
+          "concept": {
+            "uuid": "af3915ff-b1db-4a8f-8749-910f84f141f4",
+            "name": "Temperature"
+          },
+          "value": "36",
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "Orthopaedic Triage.1/121-0",
+          "groupMembers": [
+          ],
+          "interpretation": null
+        },
+        {
+          "concept": {
+            "uuid": "101143AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "name": "Blood Pressure"
+          },
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "Orthopaedic Triage.1/125-0",
+          "groupMembers": [
+            {
+              "concept": {
+                "uuid": "101141AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "name": "Systolic Blood Pressure"
+              },
+              "value": "89",
+              "voided": false,
+              "inactive": false,
+              "formNamespace": "Bahmni",
+              "formFieldPath": "Orthopaedic Triage.1/122-0",
+              "groupMembers": [
+              ],
+              "interpretation": null
+            },
+            {
+              "concept": {
+                "uuid": "101142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "name": "Diastolic Blood Pressure"
+              },
+              "value": "45",
+              "voided": false,
+              "inactive": false,
+              "formNamespace": "Bahmni",
+              "formFieldPath": "Orthopaedic Triage.1/123-0",
+              "groupMembers": [
+              ],
+              "interpretation": null
+            },
+            {
+              "concept": {
+                "uuid": "b32648cb-3703-479a-b94f-d79b77b82a83",
+                "name": "Body Position"
+              },
+              "value": {
+                "uuid": "835a8e1b-8d4f-463a-9502-3ae3acf96f8a",
+                "name": {
+                  "display": "Sitting",
+                  "uuid": "100315CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+                  "name": "Sitting",
+                  "locale": "en",
+                  "localePreferred": true,
+                  "conceptNameType": "FULLY_SPECIFIED",
+                  "links": [
+                    {
+                      "rel": "self",
+                      "uri": "http://localhost/openmrs/ws/rest/v1/concept/835a8e1b-8d4f-463a-9502-3ae3acf96f8a/name/100315CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+                      "resourceAlias": "name"
+                    },
+                    {
+                      "rel": "full",
+                      "uri": "http://localhost/openmrs/ws/rest/v1/concept/835a8e1b-8d4f-463a-9502-3ae3acf96f8a/name/100315CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC?v=full",
+                      "resourceAlias": "name"
+                    }
+                  ],
+                  "resourceVersion": "1.9"
+                },
+                "names": [
+                  {
+                    "display": "Sitting",
+                    "uuid": "100315CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+                    "name": "Sitting",
+                    "locale": "en",
+                    "localePreferred": true,
+                    "conceptNameType": "FULLY_SPECIFIED",
+                    "links": [
+                      {
+                        "rel": "self",
+                        "uri": "http://localhost/openmrs/ws/rest/v1/concept/835a8e1b-8d4f-463a-9502-3ae3acf96f8a/name/100315CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+                        "resourceAlias": "name"
+                      },
+                      {
+                        "rel": "full",
+                        "uri": "http://localhost/openmrs/ws/rest/v1/concept/835a8e1b-8d4f-463a-9502-3ae3acf96f8a/name/100315CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC?v=full",
+                        "resourceAlias": "name"
+                      }
+                    ],
+                    "resourceVersion": "1.9"
+                  },
+                  {
+                    "display": "Sitting",
+                    "uuid": "100315BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "name": "Sitting",
+                    "locale": "en",
+                    "localePreferred": false,
+                    "conceptNameType": "SHORT",
+                    "links": [
+                      {
+                        "rel": "self",
+                        "uri": "http://localhost/openmrs/ws/rest/v1/concept/835a8e1b-8d4f-463a-9502-3ae3acf96f8a/name/100315BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                        "resourceAlias": "name"
+                      },
+                      {
+                        "rel": "full",
+                        "uri": "http://localhost/openmrs/ws/rest/v1/concept/835a8e1b-8d4f-463a-9502-3ae3acf96f8a/name/100315BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                        "resourceAlias": "name"
+                      }
+                    ],
+                    "resourceVersion": "1.9"
+                  }
+                ],
+                "displayString": "Sitting",
+                "resourceVersion": "2.0",
+                "translationKey": "SITTING_124"
+              },
+              "voided": false,
+              "inactive": false,
+              "formNamespace": "Bahmni",
+              "formFieldPath": "Orthopaedic Triage.1/124-0",
+              "groupMembers": [
+              ],
+              "interpretation": null
+            }
+          ]
+        }
+      ]
     }
   ],
   "encounterTypeUuid": "#{encounterTypeUuid}"
