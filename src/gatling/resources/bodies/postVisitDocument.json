@@ -9,7 +9,7 @@
   "locationUuid": "#{locationUuid}",
   "documents": [
     {
-      "testUuid": "a8021b0f-3f29-43ed-a2f3-3ca26a768a42",
+      "testUuid": "6f0491f0-f247-4270-8b6c-19969feeccf6",
       "image": "#{imageUrl}",
       "obsDateTime": null
     }
