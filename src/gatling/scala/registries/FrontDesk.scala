@@ -25,7 +25,7 @@ object FrontDesk {
         getRelationshipTypes,
         getEntityMapping("loginlocation_visittype"),
         getPersonAttributeTypes,
-        getRegistrationConcepts.check(jsonPath("$.visitTypes.OPD").find.exists.saveAs("visit_type_id")),
+        getRegistrationConcepts.check(jsonPath("$.visitTypes['OPD New']").find.exists.saveAs("visit_type_id")),
         getByVisitLocation(LOGIN_LOCATION_UUID),
         getGlobalProperty("bahmni.enableAuditLog"),
         postAuditLog
@@ -75,7 +75,7 @@ object FrontDesk {
           )
       )
       .exec(getProviderForUser("#{runTimeUuid}"))
-      .exec(getRegistrationConcepts.check(jsonPath("$.visitTypes.OPD").find.exists.saveAs("visit_type_id")))
+      .exec(getRegistrationConcepts.check(jsonPath("$.visitTypes['OPD New']").find.exists.saveAs("visit_type_id")))
       .exec(
         getPersonaAttributeType
           .resources(
@@ -107,7 +107,7 @@ object FrontDesk {
           activateVisit("#{patient_uuid}"),
           getNutrition,
           getObservation(Seq("Height", "Weight"), Map("patientUuid" -> "#{patient_uuid}")),
-          getVital,
+//          getVital,
           getFeeInformation,
           getPatientProfileAfterRegistration("#{patient_uuid}")
         )

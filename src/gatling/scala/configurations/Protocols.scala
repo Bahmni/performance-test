@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
 object Protocols {
-  private val url = "https://performance.lite.mybahmni.in/" //System.getProperty("base_url")
+  private val url = "https://dev.gdobahmni.click/" //System.getProperty("base_url")
   val default: HttpProtocolBuilder = http
     .baseUrl(url)
     .disableCaching
@@ -18,5 +18,5 @@ object Protocols {
     .acceptLanguageHeader("en-US,en;q=0.8")
     .userAgentHeader(
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
-    )
+    ).proxy(Proxy("localhost",8080))
 }

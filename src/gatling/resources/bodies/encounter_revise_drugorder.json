@@ -13,44 +13,32 @@
     "mdrtbSpecimen": []
   },
   "context": {},
-  "visitType": "OPD",
+  "visitType": "OPD New",
   "bahmniDiagnoses": [],
-  "orders": [
-    {
-      "concept": {
-        "uuid": "#{haeUuid}"
-      }
-    },
-    {
-      "concept": {
-        "uuid": "#{thyUuid}"
-      }
-    }
-  ],
+  "orders": [],
   "drugOrders": [
     {
       "careSetting": "OUTPATIENT",
       "drug": {
-        "name": "Reglan Tablet",
+        "name": "Paracetamol Tablet 650mg 1x10x10",
         "uuid": "#{regUuid}",
-        "form": "Metoclopramide",
+        "form": "Tablet",
         "strength": null
       },
       "drugNonCoded": null,
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
-        "dose": 1,
-        "doseUnits": "Tablet(s)",
+        "doseUnits": "Tablet",
         "route": "Oral",
-        "frequency": "Once a day",
+        "frequency": false,
         "asNeeded": false,
-        "administrationInstructions": "{\"instructions\":\"As directed\"}",
-        "quantity": 30,
-        "quantityUnits": "Tablet(s)",
+        "administrationInstructions": "{\"instructions\":\"As directed\",\"morningDose\":1,\"afternoonDose\":1,\"eveningDose\":1}",
+        "quantity": 21,
+        "quantityUnits": "Tablet",
         "numberOfRefills": 0
       },
-      "duration": 30,
+      "duration": 7,
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
@@ -59,10 +47,10 @@
       "orderReasonText": null,
       "dateStopped": null,
       "concept": {
-        "uuid": "79755AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Metoclopramide",
+        "uuid": "70116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Acetaminophen",
         "dataType": "N/A",
-        "shortName": "Metoclopramide",
+        "shortName": "Acetaminophen",
         "units": null,
         "conceptClass": "Drug",
         "hiNormal": null,
@@ -70,30 +58,31 @@
         "set": false,
         "mappings": [
           {
-            "code":"751",
-            "name":null,
-            "source":"AMPATH"
+            "code": "453",
+            "name": null,
+            "source": "AMPATH"
           },
           {
-            "code":"79755",
-            "name":null,
-            "source":"CIEL"
+            "code": "70116",
+            "name": null,
+            "source": "CIEL"
           },
           {
-            "code":"56549003",
-            "name":null,
-            "source":"SNOMED-CT"
+            "code": "89",
+            "name": null,
+            "source": "AMPATH"
           },
           {
-            "code":"372776000",
-            "name":null,
-            "source":"SNOMED-CT"
+            "code": "161",
+            "name": null,
+            "source": "RxNORM"
           },
           {
-            "code":"6915",
-            "name":null,
-            "source":"RxNORM"
-          }]
+            "code": "90332006",
+            "name": null,
+            "source": "SNOMED-CT"
+          }
+        ]
       },
       "orderGroup": {
         "orderSet": {}
@@ -102,26 +91,25 @@
     {
       "careSetting": "OUTPATIENT",
       "drug": {
-        "name": "Promethazine 25mg",
+        "name": "Benzoyl peroxide Gel 2.50% 1x20g",
         "uuid": "#{promUuid}",
-        "form": "Promethazine",
+        "form": "Ointment",
         "strength": null
       },
       "drugNonCoded": null,
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
-        "dose": 1,
-        "doseUnits": "Tablet(s)",
-        "route": "Oral",
-        "frequency": "Once a day",
+        "doseUnits": "Unit(s)",
+        "route": "Topical",
+        "frequency": false,
         "asNeeded": false,
-        "administrationInstructions": "{\"instructions\":\"As directed\"}",
-        "quantity": 30,
-        "quantityUnits": "Tablet(s)",
+        "administrationInstructions": "{\"instructions\":\"As directed\",\"morningDose\":1,\"afternoonDose\":1,\"eveningDose\":1}",
+        "quantity": 21,
+        "quantityUnits": "Unit(s)",
         "numberOfRefills": 0
       },
-      "duration": 30,
+      "duration": 7,
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
@@ -130,41 +118,32 @@
       "orderReasonText": null,
       "dateStopped": null,
       "concept": {
-        "uuid": "82667AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Promethazine",
+        "uuid": "72063AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Benzoyl peroxide",
         "dataType": "N/A",
-        "shortName": "Promethazine",
+        "shortName": "Benzoyl peroxide",
         "units": null,
         "conceptClass": "Drug",
         "hiNormal": null,
         "lowNormal": null,
         "set": false,
-        "mappings":[
+        "mappings": [
           {
-            "code":"372871004",
-            "name":null,
-            "source":"SNOMED-CT"
+            "code": "72063",
+            "name": null,
+            "source": "CIEL"
           },
           {
-            "code":"82667",
-            "name":null,
-            "source":"CIEL"
+            "code": "1418",
+            "name": null,
+            "source": "RxNORM"
           },
           {
-            "code":"8372007",
-            "name":null,
-            "source":"SNOMED-CT"
-          },
-          {
-            "code":"4059",
-            "name":null,
-            "source":"PIH"
-          },
-          {
-            "code":"8745",
-            "name":null,
-            "source":"RxNORM"
-          }]
+            "code": "354053005",
+            "name": null,
+            "source": "SNOMED-CT"
+          }
+        ]
       },
       "orderGroup": {
         "orderSet": {}
@@ -173,26 +152,25 @@
     {
       "careSetting": "OUTPATIENT",
       "drug": {
-        "name": "Loperamide Plus",
+        "name": "Metformin Tablet 500mg 1x10x10",
         "uuid": "#{lopUuid}",
-        "form": "Loperamide",
+        "form": "Tablet",
         "strength": null
       },
       "drugNonCoded": null,
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
-        "dose": 1,
-        "doseUnits": "Tablet(s)",
+        "doseUnits": "Tablet",
         "route": "Oral",
-        "frequency": "Once a day",
+        "frequency": false,
         "asNeeded": false,
-        "administrationInstructions": "{\"instructions\":\"As directed\"}",
-        "quantity": 30,
-        "quantityUnits": "Tablet(s)",
+        "administrationInstructions": "{\"instructions\":\"As directed\",\"morningDose\":0,\"afternoonDose\":0,\"eveningDose\":1}",
+        "quantity": 5,
+        "quantityUnits": "Tablet",
         "numberOfRefills": 0
       },
-      "duration": 30,
+      "duration": 5,
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
@@ -201,10 +179,10 @@
       "orderReasonText": null,
       "dateStopped": null,
       "concept": {
-        "uuid": "79037AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Loperamide",
+        "uuid": "79651AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Metformin",
         "dataType": "N/A",
-        "shortName": "Loperamide",
+        "shortName": "Metformin",
         "units": null,
         "conceptClass": "Drug",
         "hiNormal": null,
@@ -212,29 +190,34 @@
         "set": false,
         "mappings": [
           {
-            "code": "116726003",
-            "name": null,
-            "source": "SNOMED-CT"
-          },
-          {
-            "code": "430",
-            "name": null,
-            "source": "AMPATH"
-          },
-          {
-            "code": "6468",
-            "name": null,
-            "source": "RxNORM"
-          },
-          {
-            "code": "79037",
+            "code": "79651",
             "name": null,
             "source": "CIEL"
           },
           {
-            "code": "429",
+            "code": "6809",
+            "name": null,
+            "source": "RxNORM"
+          },
+          {
+            "code": "109081006",
+            "name": null,
+            "source": "SNOMED-CT"
+          },
+          {
+            "code": "4052",
+            "name": null,
+            "source": "PIH"
+          },
+          {
+            "code": "2261",
             "name": null,
             "source": "AMPATH"
+          },
+          {
+            "code": "372567009",
+            "name": null,
+            "source": "SNOMED-CT"
           }
         ]
       },
@@ -244,317 +227,6 @@
     }
   ],
   "disposition": null,
-  "observations": [
-    {
-      "concept": {
-        "uuid": "9bb0795c-4ff0-0305-1990-000000000004",
-        "name": "Chief Complaint Data"
-      },
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "History and Examination.1/15-0",
-      "groupMembers": [
-        {
-          "concept": {
-            "uuid": "9bb0795c-4ff0-0305-1990-000000000002",
-            "name": "Chief Complaint Coded"
-          },
-          "value": {
-            "uuid": "133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "name": {
-              "display": "Nausea and vomiting",
-              "uuid": "33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-              "name": "Nausea and vomiting",
-              "locale": "en",
-              "localePreferred": true,
-              "conceptNameType": "FULLY_SPECIFIED",
-              "links": [
-                {
-                  "rel": "self",
-                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                  "resourceAlias": "name"
-                },
-                {
-                  "rel": "full",
-                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                  "resourceAlias": "name"
-                }
-              ],
-              "resourceVersion": "1.9"
-            },
-            "names": [
-              {
-                "display": "Nausea and vomiting",
-                "uuid": "33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                "name": "Nausea and vomiting",
-                "locale": "en",
-                "localePreferred": true,
-                "conceptNameType": "FULLY_SPECIFIED",
-                "links": [
-                  {
-                    "rel": "self",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                    "resourceAlias": "name"
-                  },
-                  {
-                    "rel": "full",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                    "resourceAlias": "name"
-                  }
-                ],
-                "resourceVersion": "1.9"
-              }
-            ],
-            "displayString": "Nausea and vomiting",
-            "resourceVersion": "2.0",
-            "translationKey": "NAUSEA_AND_VOMITING_16"
-          },
-          "voided": false,
-          "inactive": false,
-          "formNamespace": "Bahmni",
-          "formFieldPath": "History and Examination.1/15-0/16-0",
-          "groupMembers": [],
-          "interpretation": null
-        },
-        {
-          "concept": {
-            "uuid": "1731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "name": "Sign/symptom duration"
-          },
-          "value": "1",
-          "voided": false,
-          "inactive": false,
-          "formNamespace": "Bahmni",
-          "formFieldPath": "History and Examination.1/15-0/18-0",
-          "groupMembers": [],
-          "interpretation": null
-        },
-        {
-          "concept": {
-            "uuid": "9bb0795c-4ff0-0305-1990-000000000003",
-            "name": "Chief Complaint Duration"
-          },
-          "value": {
-            "uuid": "1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "name": {
-              "display": "Days",
-              "uuid": "1146BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-              "name": "Days",
-              "locale": "en",
-              "localePreferred": true,
-              "conceptNameType": "FULLY_SPECIFIED",
-              "links": [
-                {
-                  "rel": "self",
-                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/1146BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                  "resourceAlias": "name"
-                },
-                {
-                  "rel": "full",
-                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/1146BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                  "resourceAlias": "name"
-                }
-              ],
-              "resourceVersion": "1.9"
-            },
-            "names": [
-              {
-                "display": "Days",
-                "uuid": "1146BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                "name": "Days",
-                "locale": "en",
-                "localePreferred": true,
-                "conceptNameType": "FULLY_SPECIFIED",
-                "links": [
-                  {
-                    "rel": "self",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/1146BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                    "resourceAlias": "name"
-                  },
-                  {
-                    "rel": "full",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/1146BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                    "resourceAlias": "name"
-                  }
-                ],
-                "resourceVersion": "1.9"
-              }
-            ],
-            "displayString": "Days",
-            "resourceVersion": "2.0",
-            "translationKey": "DAYS_19"
-          },
-          "voided": false,
-          "inactive": false,
-          "formNamespace": "Bahmni",
-          "formFieldPath": "History and Examination.1/15-0/19-0",
-          "groupMembers": [],
-          "interpretation": null
-        }
-      ]
-    },
-    {
-      "concept": {
-        "uuid": "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Pulse"
-      },
-      "value": "72",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/1-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Arterial blood oxygen saturation (pulse oximeter)"
-      },
-      "value": "98",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/2-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Respiratory rate"
-      },
-      "value": "72",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/3-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "9bb0795c-4ff0-0305-1990-000000000020",
-        "name": "Temperature"
-      },
-      "value": "98.6",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/11-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Systolic blood pressure"
-      },
-      "value": "70",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/5-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Diastolic blood pressure"
-      },
-      "value": "130",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/7-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "159633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Body position"
-      },
-      "value": {
-        "uuid": "159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": {
-          "display": "sitting",
-          "uuid": "107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-          "name": "sitting",
-          "locale": "en",
-          "localePreferred": true,
-          "conceptNameType": "FULLY_SPECIFIED",
-          "links": [
-            {
-              "rel": "self",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-              "resourceAlias": "name"
-            },
-            {
-              "rel": "full",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-              "resourceAlias": "name"
-            }
-          ],
-          "resourceVersion": "1.9"
-        },
-        "names": [
-          {
-            "display": "sitting",
-            "uuid": "107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "sitting",
-            "locale": "en",
-            "localePreferred": true,
-            "conceptNameType": "FULLY_SPECIFIED",
-            "links": [
-              {
-                "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                "resourceAlias": "name"
-              },
-              {
-                "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                "resourceAlias": "name"
-              }
-            ],
-            "resourceVersion": "1.9"
-          },
-          {
-            "display": "seated",
-            "uuid": "107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "seated",
-            "locale": "en",
-            "localePreferred": false,
-            "conceptNameType": "SHORT",
-            "links": [
-              {
-                "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                "resourceAlias": "name"
-              },
-              {
-                "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
-                "resourceAlias": "name"
-              }
-            ],
-            "resourceVersion": "1.9"
-          }
-        ],
-        "displayString": "sitting",
-        "resourceVersion": "2.0",
-        "translationKey": "SITTING_8"
-      },
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/8-0",
-      "groupMembers": [],
-      "interpretation": null
-    }
-  ],
+  "observations": [],
   "encounterTypeUuid": "#{encounterTypeUuid}"
 }

@@ -114,7 +114,7 @@ object HttpRequests {
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
       .body(
         StringBody(
-          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ] }""".stripMargin
+          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "29dd3948-2e0c-11ee-a63a-0242ac150007" ], "includeAll": false, "locationUuid": "61a5817e-009f-11ee-be56-0242ac120002", "encounterTypeUuids": [ "270332cb-2e0c-11ee-a63a-0242ac150007" ] }""".stripMargin
         )
       )
       .asJson
@@ -125,7 +125,7 @@ object HttpRequests {
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
       .body(
         StringBody(
-          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "$providerUUID" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "$encounterTypeUUID" ] }""".stripMargin
+          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "$providerUUID" ], "includeAll": false, "locationUuid": "61a5817e-009f-11ee-be56-0242ac120002", "encounterTypeUuids": [ "$encounterTypeUUID" ] }""".stripMargin
         )
       )
       .asJson

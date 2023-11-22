@@ -13,17 +13,29 @@
     "mdrtbSpecimen": []
   },
   "context": {},
-  "visitType": "OPD",
-  "bahmniDiagnoses": [],
+  "visitType": "OPD New",
+  "bahmniDiagnoses": [
+    {
+      "codedAnswer": {
+        "uuid": "116128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      },
+      "order": "PRIMARY",
+      "certainty": "CONFIRMED",
+      "existingObs": null,
+      "diagnosisDateTime": null,
+      "diagnosisStatusConcept": null,
+      "comments": ""
+    }
+  ],
   "orders": [
     {
       "concept": {
-        "uuid": "#{haeUuid}"
+        "uuid": "679AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       }
     },
     {
       "concept": {
-        "uuid": "#{thyUuid}"
+        "uuid": "678AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       }
     }
   ],
@@ -31,24 +43,23 @@
     {
       "careSetting": "OUTPATIENT",
       "drug": {
-        "name": "Reglan Tablet",
-        "form": "Metoclopramide",
+        "name": "Paracetamol Tablet 650mg 1x10x10",
+        "form": "Tablet",
         "uuid": "#{regUuid}"
       },
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
-        "dose": 1,
-        "doseUnits": "Tablet(s)",
+        "doseUnits": "Tablet",
         "route": "Oral",
-        "frequency": "Once a day",
+        "frequency": false,
         "asNeeded": false,
-        "administrationInstructions": "{\"instructions\":\"As directed\"}",
-        "quantity": 30,
-        "quantityUnits": "Tablet(s)",
+        "administrationInstructions": "{\"instructions\":\"As directed\",\"morningDose\":1,\"afternoonDose\":1,\"eveningDose\":1}",
+        "quantity": 21,
+        "quantityUnits": "Tablet",
         "numberOfRefills": 0
       },
-      "duration": 30,
+      "duration": 7,
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
@@ -60,24 +71,23 @@
     {
       "careSetting": "OUTPATIENT",
       "drug": {
-        "name": "Promethazine 25mg",
-        "form": "Promethazine",
+        "name": "Benzoyl peroxide Gel 2.50% 1x20g",
+        "form": "Ointment",
         "uuid": "#{promUuid}"
       },
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
-        "dose": 1,
-        "doseUnits": "Tablet(s)",
-        "route": "Oral",
-        "frequency": "Once a day",
+        "doseUnits": "Unit(s)",
+        "route": "Topical",
+        "frequency": false,
         "asNeeded": false,
-        "administrationInstructions": "{\"instructions\":\"As directed\"}",
-        "quantity": 30,
-        "quantityUnits": "Tablet(s)",
+        "administrationInstructions": "{\"instructions\":\"As directed\",\"morningDose\":1,\"afternoonDose\":1,\"eveningDose\":1}",
+        "quantity": 21,
+        "quantityUnits": "Unit(s)",
         "numberOfRefills": 0
       },
-      "duration": 30,
+      "duration": 7,
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
@@ -89,24 +99,23 @@
     {
       "careSetting": "OUTPATIENT",
       "drug": {
-        "name": "Loperamide Plus",
-        "form": "Loperamide",
+        "name": "Metformin Tablet 500mg 1x10x10",
+        "form": "Tablet",
         "uuid": "#{lopUuid}"
       },
       "orderType": "Drug Order",
       "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
       "dosingInstructions": {
-        "dose": 1,
-        "doseUnits": "Tablet(s)",
+        "doseUnits": "Tablet",
         "route": "Oral",
-        "frequency": "Once a day",
+        "frequency": false,
         "asNeeded": false,
-        "administrationInstructions": "{\"instructions\":\"As directed\"}",
-        "quantity": 30,
-        "quantityUnits": "Tablet(s)",
+        "administrationInstructions": "{\"instructions\":\"As directed\",\"morningDose\":0,\"afternoonDose\":0,\"eveningDose\":1}",
+        "quantity": 5,
+        "quantityUnits": "Tablet",
         "numberOfRefills": 0
       },
-      "duration": 30,
+      "duration": 5,
       "durationUnits": "Days",
       "scheduledDate": null,
       "autoExpireDate": null,
@@ -120,13 +129,13 @@
   "observations": [
     {
       "concept": {
-        "uuid": "9bb0795c-4ff0-0305-1990-000000000004",
-        "name": "Chief Complaint Data"
+        "uuid": "da47a35d-5806-48b7-b467-e29902759491",
+        "name": "Chief Complaint Record"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
-      "formFieldPath": "History and Examination.1/15-0",
+      "formFieldPath": "History and Examination.1/40-0",
       "groupMembers": [
         {
           "concept": {
@@ -134,23 +143,23 @@
             "name": "Chief Complaint Coded"
           },
           "value": {
-            "uuid": "133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "uuid": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "name": {
-              "display": "Nausea and vomiting",
-              "uuid": "33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-              "name": "Nausea and vomiting",
+              "display": "Fever",
+              "uuid": "40007BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "name": "Fever",
               "locale": "en",
               "localePreferred": true,
               "conceptNameType": "FULLY_SPECIFIED",
               "links": [
                 {
                   "rel": "self",
-                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/40007BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                   "resourceAlias": "name"
                 },
                 {
                   "rel": "full",
-                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/40007BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                   "resourceAlias": "name"
                 }
               ],
@@ -158,35 +167,35 @@
             },
             "names": [
               {
-                "display": "Nausea and vomiting",
-                "uuid": "33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-                "name": "Nausea and vomiting",
+                "display": "Fever",
+                "uuid": "40007BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "name": "Fever",
                 "locale": "en",
                 "localePreferred": true,
                 "conceptNameType": "FULLY_SPECIFIED",
                 "links": [
                   {
                     "rel": "self",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/40007BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                     "resourceAlias": "name"
                   },
                   {
                     "rel": "full",
-                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/133473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/33383BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/40007BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                     "resourceAlias": "name"
                   }
                 ],
                 "resourceVersion": "1.9"
               }
             ],
-            "displayString": "Nausea and vomiting",
+            "displayString": "Fever",
             "resourceVersion": "2.0",
-            "translationKey": "NAUSEA_AND_VOMITING_16"
+            "translationKey": "FEVER_41"
           },
           "voided": false,
           "inactive": false,
           "formNamespace": "Bahmni",
-          "formFieldPath": "History and Examination.1/15-0/16-0",
+          "formFieldPath": "History and Examination.1/41-0",
           "groupMembers": [],
           "interpretation": null
         },
@@ -195,11 +204,11 @@
             "uuid": "1731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "name": "Sign/symptom duration"
           },
-          "value": "1",
+          "value": "4",
           "voided": false,
           "inactive": false,
           "formNamespace": "Bahmni",
-          "formFieldPath": "History and Examination.1/15-0/18-0",
+          "formFieldPath": "History and Examination.1/43-0",
           "groupMembers": [],
           "interpretation": null
         },
@@ -256,12 +265,12 @@
             ],
             "displayString": "Days",
             "resourceVersion": "2.0",
-            "translationKey": "DAYS_19"
+            "translationKey": "DAYS_44"
           },
           "voided": false,
           "inactive": false,
           "formNamespace": "Bahmni",
-          "formFieldPath": "History and Examination.1/15-0/19-0",
+          "formFieldPath": "History and Examination.1/44-0",
           "groupMembers": [],
           "interpretation": null
         }
@@ -269,105 +278,40 @@
     },
     {
       "concept": {
-        "uuid": "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Pulse"
+        "uuid": "1390AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "History of present illness"
       },
-      "value": "72",
+      "value": "Malaria",
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/1-0",
+      "formFieldPath": "History and Examination.1/7-0",
       "groupMembers": [],
       "interpretation": null
     },
     {
       "concept": {
-        "uuid": "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Arterial blood oxygen saturation (pulse oximeter)"
-      },
-      "value": "98",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/2-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Respiratory rate"
-      },
-      "value": "72",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/3-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "9bb0795c-4ff0-0305-1990-000000000020",
-        "name": "Temperature"
-      },
-      "value": "98.6",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/11-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Systolic blood pressure"
-      },
-      "value": "70",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/5-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Diastolic blood pressure"
-      },
-      "value": "130",
-      "voided": false,
-      "inactive": false,
-      "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/7-0",
-      "groupMembers": [],
-      "interpretation": null
-    },
-    {
-      "concept": {
-        "uuid": "159633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "name": "Body position"
+        "uuid": "163201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Smoking status"
       },
       "value": {
-        "uuid": "159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "uuid": "163198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "name": {
-          "display": "sitting",
-          "uuid": "107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-          "name": "sitting",
+          "display": "Never smoker",
+          "uuid": "135296BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "name": "Never smoker",
           "locale": "en",
           "localePreferred": true,
           "conceptNameType": "FULLY_SPECIFIED",
           "links": [
             {
               "rel": "self",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/163198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135296BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
               "resourceAlias": "name"
             },
             {
               "rel": "full",
-              "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/163198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135296BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
               "resourceAlias": "name"
             }
           ],
@@ -375,56 +319,56 @@
         },
         "names": [
           {
-            "display": "sitting",
-            "uuid": "107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "sitting",
+            "display": "Never smoked tobacco",
+            "uuid": "135297BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "Never smoked tobacco",
             "locale": "en",
-            "localePreferred": true,
-            "conceptNameType": "FULLY_SPECIFIED",
+            "localePreferred": false,
+            "conceptNameType": null,
             "links": [
               {
                 "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/163198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135297BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                 "resourceAlias": "name"
               },
               {
                 "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107001BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/163198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135297BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                 "resourceAlias": "name"
               }
             ],
             "resourceVersion": "1.9"
           },
           {
-            "display": "seated",
-            "uuid": "107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-            "name": "seated",
+            "display": "Never smoker",
+            "uuid": "135296BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "Never smoker",
             "locale": "en",
-            "localePreferred": false,
-            "conceptNameType": "SHORT",
+            "localePreferred": true,
+            "conceptNameType": "FULLY_SPECIFIED",
             "links": [
               {
                 "rel": "self",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/163198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135296BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
                 "resourceAlias": "name"
               },
               {
                 "rel": "full",
-                "uri": "http://localhost/openmrs/ws/rest/v1/concept/159630AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/163198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135296BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
                 "resourceAlias": "name"
               }
             ],
             "resourceVersion": "1.9"
           }
         ],
-        "displayString": "sitting",
+        "displayString": "Never smoker",
         "resourceVersion": "2.0",
-        "translationKey": "SITTING_8"
+        "translationKey": "NEVER_SMOKER_8"
       },
       "voided": false,
       "inactive": false,
       "formNamespace": "Bahmni",
-      "formFieldPath": "Vitals.1/8-0",
+      "formFieldPath": "History and Examination.1/8-0",
       "groupMembers": [],
       "interpretation": null
     }
