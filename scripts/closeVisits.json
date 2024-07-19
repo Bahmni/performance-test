@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8d41eb54-3902-4339-bad8-b25b6772b94c",
+		"_postman_id": "a869f07b-d810-47a9-8cb9-7261ec429792",
 		"name": "closeVisits",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -141,7 +141,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/openmrs/ws/rest/v1/bahmnicore/sql?location_uuid=833d0c66-e29a-4d31-ac13-ca9050d1bfa9&provider_uuid=04774901-18a2-11ed-bd3f-02cf26abc856&q=emrapi.sqlSearch.activePatients&v=full",
+					"raw": "{{url}}/openmrs/ws/rest/v1/bahmnicore/sql?location_uuid={{location_uuid}}&provider_uuid={{provider_uuid}}&q=emrapi.sqlSearch.activePatients&v=full",
 					"host": [
 						"{{url}}"
 					],
@@ -156,11 +156,11 @@
 					"query": [
 						{
 							"key": "location_uuid",
-							"value": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9"
+							"value": "{{location_uuid}}"
 						},
 						{
 							"key": "provider_uuid",
-							"value": "04774901-18a2-11ed-bd3f-02cf26abc856"
+							"value": "{{provider_uuid}}"
 						},
 						{
 							"key": "q",
