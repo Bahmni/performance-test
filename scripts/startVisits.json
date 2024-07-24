@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3ac2a3c2-dad1-4637-8088-c6ccfc351980",
+		"_postman_id": "174bd526-0b9d-4921-a24e-86659a3ecdfc",
 		"name": "startVisits",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -26,12 +26,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "Admin123",
+							"value": "{{password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "superman",
+							"value": "{{provider_name}}",
 							"type": "string"
 						}
 					]
@@ -45,7 +45,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/openmrs/ws/rest/v1/user?v=custom:(username,uuid,person:(uuid,),privileges:(name,retired),userProperties)&username=superman",
+					"raw": "{{url}}/openmrs/ws/rest/v1/user?v=custom:(username,uuid,person:(uuid,),privileges:(name,retired),userProperties)&username={{provider_name}}",
 					"host": [
 						"{{url}}"
 					],
@@ -63,7 +63,7 @@
 						},
 						{
 							"key": "username",
-							"value": "superman"
+							"value": "{{provider_name}}"
 						}
 					]
 				}
@@ -79,7 +79,10 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});"
+							"    pm.collectionVariables.set(\"provider_uuid\",pm.response.json().currentProvider.uuid)",
+							"});",
+							"",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -121,10 +124,13 @@
 							"",
 							"var res=pm.response.json()",
 							"",
-							"var typeId=res.visitTypes.OPD",
+							"var typeId=res.visitTypes[pm.environment.get(\"visit_type\")]",
 							"pm.collectionVariables.set(\"typeId\",typeId)",
 							"pm.collectionVariables.set(\"ids\",[])",
-							"",
+							"pm.collectionVariables.set(\"PATIENT_DOCUMENT_ENCOUNTER_TYPE_UUID\",res.encounterTypes[\"Patient Document\"])",
+							"pm.collectionVariables.set(\"CONSULTATION_ENCOUNTER_TYPE_UUID\",res.encounterTypes.Consultation)",
+							"pm.collectionVariables.set(\"REGISTRATION_ENCOUNTER_TYPE_UUID\",res.encounterTypes.REG)",
+							"pm.collectionVariables.set(\"RADIOLOGY_ENCOUNTER_TYPE_UUID\",res.encounterTypes.RADIOLOGY)",
 							"})",
 							"",
 							""
@@ -155,6 +161,107 @@
 							"key": "callerContext",
 							"value": "REGISTRATION_CONCEPTS"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLocationUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"set the location uuid's\",()=>{",
+							"",
+							"let responseJson = pm.response.json();",
+							"responseJson.results.forEach(location => {",
+							"    if (location.display === pm.environment.get(\"login_location_name\")) {",
+							"        pm.collectionVariables.set(\"login_location_uuid\", location.uuid);",
+							"    }",
+							"    if (location.display === pm.environment.get(\"visit_location_name\")) {",
+							"        pm.collectionVariables.set(\"visit_location_uuid\", location.uuid);",
+							"    }",
+							"});",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/openmrs/ws/rest/v1/location",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openmrs",
+						"ws",
+						"rest",
+						"v1",
+						"location"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getIdentifierUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"set the identifier uuid's\",()=>{",
+							"    let responseJson = pm.response.json();",
+							"let identifierSourceUuid;",
+							"let identifierTypeUuid;",
+							"",
+							"responseJson.results.forEach(source => {",
+							"    if (source.display.includes(\" - \"+pm.environment.get(\"identifierPrefix\")+\" -\")) {",
+							"        identifierSourceUuid = source.uuid;",
+							"        identifierTypeUuid = source.identifierType.uuid;",
+							"    }",
+							"});",
+							"",
+							"if (identifierSourceUuid) {",
+							"    pm.collectionVariables.set(\"identifierSource_uuid\", identifierSourceUuid);",
+							"    console.log(\"identifierSource_uuid:\", identifierSourceUuid);",
+							"} else {",
+							"    console.log(\"No identifier source found with display containing '- ABC -'\");",
+							"}",
+							"",
+							"if (identifierTypeUuid) {",
+							"    pm.collectionVariables.set(\"identifierType_uuid\", identifierTypeUuid);",
+							"    console.log(\"identifierType_uuid:\", identifierTypeUuid);",
+							"} else {",
+							"    console.log(\"No identifier type found for the source with display containing '- ABC -'\");",
+							"}",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/openmrs/ws/rest/v1/idgen/identifiersource",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openmrs",
+						"ws",
+						"rest",
+						"v1",
+						"idgen",
+						"identifiersource"
 					]
 				}
 			},
@@ -194,6 +301,9 @@
 							"",
 							"}",
 							"})",
+							"",
+							"",
+							"",
 							"",
 							"",
 							""
@@ -287,7 +397,37 @@
 							"",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(201);",
-							"});"
+							"});",
+							"",
+							"// Environment variables",
+							"const url = pm.environment.get(\"url\");",
+							"const provider_name = pm.environment.get(\"provider_name\");",
+							"const password = pm.environment.get(\"password\");",
+							"",
+							"// Collection variables",
+							"const login_location_uuid = pm.collectionVariables.get(\"login_location_uuid\");",
+							"const visit_location_uuid = pm.collectionVariables.get(\"visit_location_uuid\");",
+							"const patient_document_encounter_type_uuid = pm.collectionVariables.get(\"PATIENT_DOCUMENT_ENCOUNTER_TYPE_UUID\");",
+							"const radiology_encounter_type_uuid = pm.collectionVariables.get(\"RADIOLOGY_ENCOUNTER_TYPE_UUID\");",
+							"const registration_encounter_type_uuid = pm.collectionVariables.get(\"REGISTRATION_ENCOUNTER_TYPE_UUID\");",
+							"const consultation_encounter_type_uuid = pm.collectionVariables.get(\"CONSULTATION_ENCOUNTER_TYPE_UUID\");",
+							"const provider_uuid = pm.collectionVariables.get(\"provider_uuid\");",
+							"",
+							"// Construct the command to run the shell script with arguments",
+							"const command = `./updateConstants.sh ${url} ${provider_name} ${password} ${login_location_uuid} ${visit_location_uuid} ${patient_document_encounter_type_uuid} ${radiology_encounter_type_uuid} ${registration_encounter_type_uuid} ${consultation_encounter_type_uuid} ${provider_uuid}`;",
+							"console.log(command);",
+							"// pm.test(\"Run shell script to update constants.scala\", function() {",
+							"//     const exec = require('child_process').exec;",
+							"//     exec(command, (error, stdout, stderr) => {",
+							"//         if (error) {",
+							"//             console.error(`Error: ${error}`);",
+							"//             return;",
+							"//         }",
+							"//         console.log(`stdout: ${stdout}`);",
+							"//         console.error(`stderr: ${stderr}`);",
+							"//     });",
+							"// });",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -298,7 +438,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"patient\": \"{{id}}\",\n    \"visitType\": \"{{typeId}}\",\n    \"location\": \"833d0c66-e29a-4d31-ac13-ca9050d1bfa9\"\n}",
+					"raw": "{\n    \"patient\": \"{{id}}\",\n    \"visitType\": \"{{typeId}}\",\n    \"location\": \"{{visit_location_uuid}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -369,6 +509,34 @@
 		},
 		{
 			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "identifierSourceUuid",
+			"value": ""
+		},
+		{
+			"key": "identifierTypeUuid",
+			"value": ""
+		},
+		{
+			"key": "provider_uuid",
+			"value": ""
+		},
+		{
+			"key": "visit_location_uuid",
+			"value": ""
+		},
+		{
+			"key": "login_location_uuid",
+			"value": ""
+		},
+		{
+			"key": "identifierSource_uuid",
+			"value": ""
+		},
+		{
+			"key": "identifierType_uuid",
 			"value": ""
 		}
 	]

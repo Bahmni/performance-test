@@ -94,14 +94,15 @@ object Doctor {
       getEncounterTypeConsultation.check(
         jsonPath("$..uuid").find.saveAs("encounterTypeUuid")
       ),
-      findEncounter(patientUuid),
+      findEncounter(patientUuid,PROVIDER_UUID,CONSULTATION_ENCOUNTER_TYPE_UUID),
       postUserInfo("#{runTimeUuid}"),
       getDiagnoses(patientUuid),
       getConditionalHistory(patientUuid),
       getDiseaseTemplates("#{runTimeUuid}"),
       postAuditLog,
       getPatientAvatar("#{runTimeUuid}"),
-      getEncoutnerByEncounterTypeUuid("#{runTimeUuid}"),
+      getEncoutnerByEncounterTypeUuid("#{runTimeUuid}", PATIENT_DOCUMENT_ENCOUNTER_TYPE_UUID),
+      getEncoutnerByEncounterTypeUuid("#{runTimeUuid}", RADIOLOGY_ENCOUNTER_TYPE_UUID),
       getPatientContext(patientUuid, "ABHA Address", "phoneNumber"),
       getPatientsInfoWithSqlInpatientInfoTabOfClinic(patientUuid, "bahmni.sqlGet.upComingAppointments"),
       getPatientsInfoWithSqlInpatientInfoTabOfClinic(patientUuid, "bahmni.sqlGet.pastAppointments"),
@@ -145,16 +146,7 @@ object Doctor {
         )
       ),
       getactiveDrugOrder(patientUuid).check(
-        jmesPath("[-1].visit.uuid").ofType[Any].not(None).saveAs("opdVisitId"),
-        jmesPath("[?drugOrder.drug.uuid=='"+REGLAN_DRUG+"'].uuid | [0]").optional.saveAs(
-          "reglanDrugOrderUuid"
-        ),
-        jmesPath("[?drugOrder.drug.uuid=='"+LOPERAMIDE_DRUG+"'].uuid | [0]").optional.saveAs(
-          "lopeDrugOrderUuid"
-        ),
-        jmesPath("[?drugOrder.drug.uuid=='"+PROMETHAZINE_DRUG+"'].uuid | [0]").optional.saveAs(
-          "promDrugOrderUuid"
-        )
+        jmesPath("[-1].visit.uuid").ofType[Any].not(None).saveAs("opdVisitId")
       ),
       getAllObservationTemplates,
       getObs(patientUuid, "visitFormDetails"),
@@ -206,8 +198,8 @@ object Doctor {
       getEntityMappingByLocationEncounter(LOGIN_LOCATION_UUID),
       getEncounterTypeConsultation.check(jsonPath("$..uuid").find.saveAs("encounterTypeUuid"))
     )
-  ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_revise_drugorder.json")) } {
-    exec(postEncounter("bodies/encounter.json"))
+  ).doIfOrElse("#{encounterUuid.exists()}") { exec(postEncounter("bodies/encounter_existing_patient_new_visit.json")) } {
+    exec(postEncounter("bodies/encounter_new_patient_new_visit.json"))
   }
   def setOrders(): ChainBuilder = exec { session =>
     observations = "[]"

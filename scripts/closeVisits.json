@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a869f07b-d810-47a9-8cb9-7261ec429792",
+		"_postman_id": "78b50323-0ae8-4f40-88f2-fdb078b41036",
 		"name": "closeVisits",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,6 +14,7 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
+							"    pm.collectionVariables.set(\"provider_uuid\",pm.response.json().results[0].uuid)",
 							"});"
 						],
 						"type": "text/javascript"
@@ -26,12 +27,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "Admin123",
+							"value": "{{password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "superman",
+							"value": "{{provider_name}}",
 							"type": "string"
 						}
 					]
@@ -45,7 +46,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/openmrs/ws/rest/v1/user?v=custom:(username,uuid,person:(uuid,),privileges:(name,retired),userProperties)&username=superman",
+					"raw": "{{url}}/openmrs/ws/rest/v1/user?v=custom:(username,uuid,person:(uuid,),privileges:(name,retired),userProperties)&username={{provider_name}}",
 					"host": [
 						"{{url}}"
 					],
@@ -63,7 +64,7 @@
 						},
 						{
 							"key": "username",
-							"value": "superman"
+							"value": "{{provider_name}}"
 						}
 					]
 				}
@@ -111,6 +112,49 @@
 			"response": []
 		},
 		{
+			"name": "getLocationUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"set the location uuid's\",()=>{",
+							"",
+							"let responseJson = pm.response.json();",
+							"responseJson.results.forEach(location => {",
+							"    if (location.display === pm.environment.get(\"login_location_name\")) {",
+							"        pm.collectionVariables.set(\"login_location_uuid\", location.uuid);",
+							"    }",
+							"    if (location.display === pm.environment.get(\"visit_location_name\")) {",
+							"        pm.collectionVariables.set(\"visit_location_uuid\", location.uuid);",
+							"    }",
+							"});",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/openmrs/ws/rest/v1/location",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"openmrs",
+						"ws",
+						"rest",
+						"v1",
+						"location"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get all patients",
 			"event": [
 				{
@@ -141,7 +185,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/openmrs/ws/rest/v1/bahmnicore/sql?location_uuid={{location_uuid}}&provider_uuid={{provider_uuid}}&q=emrapi.sqlSearch.activePatients&v=full",
+					"raw": "{{url}}/openmrs/ws/rest/v1/bahmnicore/sql?location_uuid={{login_location_uuid}}&provider_uuid={{provider_uuid}}&q=emrapi.sqlSearch.activePatients&v=full",
 					"host": [
 						"{{url}}"
 					],
@@ -156,7 +200,7 @@
 					"query": [
 						{
 							"key": "location_uuid",
-							"value": "{{location_uuid}}"
+							"value": "{{login_location_uuid}}"
 						},
 						{
 							"key": "provider_uuid",
@@ -188,6 +232,8 @@
 							"let currentid = ids.shift();",
 							"pm.collectionVariables.set(\"id\", currentid);",
 							"pm.collectionVariables.set(\"ids\", ids);",
+							"}else{",
+							"    pm.request.url = \"{{url}}\";",
 							"}"
 						],
 						"type": "text/javascript"
@@ -278,6 +324,20 @@
 		},
 		{
 			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "login_location_uuid",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "provider_uuid",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "visit_location_uuid",
 			"value": ""
 		}
 	]

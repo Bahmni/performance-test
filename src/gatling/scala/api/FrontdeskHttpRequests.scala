@@ -67,12 +67,12 @@ object FrontdeskHttpRequests {
   def startVisitRequest(
       patient_uuid: String,
       opd_visit_type_id: String,
-      login_location_id: String
+      visit_location_id: String
   ): HttpRequestBuilder = {
     http("start visit")
       .post("/openmrs/ws/rest/v1/visit")
       .body(
-        StringBody(s"""{"patient":"$patient_uuid","visitType":"$opd_visit_type_id","location":"$login_location_id"}""")
+        StringBody(s"""{"patient":"$patient_uuid","visitType":"$opd_visit_type_id","location":"$visit_location_id"}""")
       )
       .asJson
   }

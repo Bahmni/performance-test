@@ -59,7 +59,7 @@ def closeVisit():ChainBuilder= {
     getGlobalProperty("bahmni.relationshipTypeMap"),
     getEntityMapping("loginlocation_visittype")
   ))
-    .exec(findEncounter("#{opdPatientId}",PROVIDER_UUID,CLOSE_VISIT_ENCOUNTER_TYPE_UUID)
+    .exec(findEncounter("#{opdPatientId}",PROVIDER_UUID,REGISTRATION_ENCOUNTER_TYPE_UUID)
       .resources(
         getPatientProfileAfterRegistration("#{opdPatientId}"),
         getVisitByAttributes("false","#{opdPatientId}","custom:(uuid,location:(uuid))")

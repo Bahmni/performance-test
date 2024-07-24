@@ -1,5 +1,6 @@
 package api
 
+import api.Constants._
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.request.builder.HttpRequestBuilder
@@ -109,23 +110,13 @@ object HttpRequests {
       .queryParam("patient",patientid)
       .queryParam("v","custom:(uuid,visitType,startDatetime,stopDatetime,location,encounters:(uuid))")
   }
-  def findEncounter(patientUuid: String): HttpRequestBuilder = {
-    http("find encounter")
-      .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
-      .body(
-        StringBody(
-          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "ffa806af-18a1-11ed-bd3f-02cf26abc856" ] }""".stripMargin
-        )
-      )
-      .asJson
-  }
 
   def findEncounter(patientUuid: String, providerUUID: String, encounterTypeUUID: String): HttpRequestBuilder = {
     http("find encounter")
       .post("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/find")
       .body(
         StringBody(
-          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "$providerUUID" ], "includeAll": false, "locationUuid": "833d0c66-e29a-4d31-ac13-ca9050d1bfa9", "encounterTypeUuids": [ "$encounterTypeUUID" ] }""".stripMargin
+          s"""{"patientUuid": "$patientUuid", "providerUuids": [ "$providerUUID" ], "includeAll": false, "locationUuid": "$LOGIN_LOCATION_UUID", "encounterTypeUuids": [ "$encounterTypeUUID" ] }""".stripMargin
         )
       )
       .asJson

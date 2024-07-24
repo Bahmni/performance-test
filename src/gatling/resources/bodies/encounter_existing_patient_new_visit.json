@@ -1,0 +1,97 @@
+{
+  "locationUuid": "#{locationUuid}",
+  "patientUuid": "#{opdPatientId}",
+  "encounterUuid": null,
+  "visitUuid": null,
+  "providers": [
+    {
+      "uuid": "#{providerUuid}"
+    }
+  ],
+  "encounterDateTime": null,
+  "extensions": {
+    "mdrtbSpecimen": []
+  },
+  "context": {},
+  "visitType": "OPD",
+  "bahmniDiagnoses": [
+    {
+      "codedAnswer": {
+        "uuid": "140237AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      },
+      "order": "PRIMARY",
+      "certainty": "CONFIRMED",
+      "existingObs": null,
+      "diagnosisDateTime": null,
+      "diagnosisStatusConcept": null,
+      "comments": ""
+    }
+  ],
+  "orders": [
+    {
+      "concept": {
+        "uuid": "161451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "160918AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "165146AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "161791AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    }
+  ],
+  "drugOrders": [
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Zinc sulphate 20 mg",
+        "form": "Disintegrating tablet",
+        "uuid": "60f6a1a2-2160-49ed-90c1-075cb38fe23f",
+        "drugReferenceMaps": []
+      },
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 3,
+        "doseUnits": "Capsule",
+        "route": "Oral",
+        "frequency": "Thrice a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 27,
+        "quantityUnits": "Capsule",
+        "numberOfRefills": 0
+      },
+      "duration": 3,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "dateStopped": null,
+      "orderGroup": {
+        "orderSet": {}
+      }
+    }
+  ],
+  "disposition": null,
+  "observations": [
+    {
+      "concept": {
+        "uuid": "887951a8-4321-11ef-9840-0242ac120002"
+      },
+      "value": "Followup visit",
+      "observationDateTime": null,
+      "groupMembers": [],
+      "voided": false
+    }
+  ],
+  "encounterTypeUuid": "#{encounterTypeUuid}"
+}

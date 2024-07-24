@@ -1,8 +1,6 @@
 package configurations
 
-import api.Constants.{HAEMOGRAM_ORDER, IMAGES_ENCOUNTER_UUID, LOGIN_LOCATION_UUID, LOPERAMIDE_DRUG, PROMETHAZINE_DRUG, PROVIDER_UUID, REGLAN_DRUG, THYROID_ORDER}
-
-
+import api.Constants._
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import scala.util.Random
@@ -39,18 +37,9 @@ object Feeders {
   var docUploadFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
     Map(
       "visitStartDate" -> getCurrentDateAndTime(),
-      "encounterTypeUuid" -> IMAGES_ENCOUNTER_UUID,
+      "encounterTypeUuid" -> PATIENT_DOCUMENT_ENCOUNTER_TYPE_UUID,
       "providerUuid" -> PROVIDER_UUID,
       "locationUuid" -> LOGIN_LOCATION_UUID
-    )
-  )
-  var observationsFeeder: Iterator[Map[String, Serializable]] = Iterator.continually(
-    Map(
-      "regUuid" -> REGLAN_DRUG,
-      "promUuid" -> PROMETHAZINE_DRUG,
-      "lopUuid" -> LOPERAMIDE_DRUG,
-      "haeUuid" -> HAEMOGRAM_ORDER,
-      "thyUuid"->THYROID_ORDER
     )
   )
 

@@ -1,0 +1,509 @@
+{
+  "locationUuid": "#{locationUuid}",
+  "patientUuid": "#{opdPatientId}",
+  "encounterUuid": null,
+  "visitUuid": null,
+  "providers": [
+    {
+      "uuid": "#{providerUuid}"
+    }
+  ],
+  "encounterDateTime": null,
+  "extensions": {
+    "mdrtbSpecimen": []
+  },
+  "context": {},
+  "visitType": "OPD",
+  "bahmniDiagnoses": [
+    {
+      "codedAnswer": {
+        "uuid": "139534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      },
+      "order": "PRIMARY",
+      "certainty": "CONFIRMED",
+      "existingObs": null,
+      "diagnosisDateTime": null,
+      "diagnosisStatusConcept": null,
+      "comments": ""
+    }
+  ],
+  "orders": [
+    {
+      "concept": {
+        "uuid": "161432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "163702AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "161446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "161510AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "161347AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "165148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "concept": {
+        "uuid": "164741AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    }
+  ],
+  "drugOrders": [
+    {
+      "careSetting": "OUTPATIENT",
+      "drug": {
+        "name": "Paracetamol 650 mg",
+        "form": "Tablet",
+        "uuid": "d7e172be-8a9f-4f55-957d-62fc95f2a6e3",
+        "drugReferenceMaps": []
+      },
+      "orderType": "Drug Order",
+      "dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
+      "dosingInstructions": {
+        "dose": 1,
+        "doseUnits": "Tablet",
+        "route": "Oral",
+        "frequency": "Thrice a day",
+        "asNeeded": false,
+        "administrationInstructions": "{\"instructions\":\"As directed\"}",
+        "quantity": 9,
+        "quantityUnits": "Tablet",
+        "numberOfRefills": 0
+      },
+      "duration": 3,
+      "durationUnits": "Days",
+      "scheduledDate": null,
+      "autoExpireDate": null,
+      "dateStopped": null,
+      "orderGroup": {
+        "orderSet": {}
+      }
+    }
+  ],
+  "disposition": null,
+  "observations": [
+    {
+      "concept": {
+        "uuid": "da47a35d-5806-48b7-b467-e29902759491",
+        "name": "Chief Complaint Record"
+      },
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "History and Examination.1/25-0",
+      "groupMembers": [
+        {
+          "concept": {
+            "uuid": "9bb0795c-4ff0-0305-1990-000000000002",
+            "name": "Chief Complaint Coded"
+          },
+          "value": {
+            "uuid": "136245AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "name": {
+              "display": "Knee pain",
+              "uuid": "36100BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "name": "Knee pain",
+              "locale": "en",
+              "localePreferred": true,
+              "conceptNameType": "FULLY_SPECIFIED",
+              "links": [
+                {
+                  "rel": "self",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/136245AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/36100BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                  "resourceAlias": "name"
+                },
+                {
+                  "rel": "full",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/136245AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/36100BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                  "resourceAlias": "name"
+                }
+              ],
+              "resourceVersion": "1.9"
+            },
+            "names": [
+              {
+                "display": "Knee pain",
+                "uuid": "36100BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "name": "Knee pain",
+                "locale": "en",
+                "localePreferred": true,
+                "conceptNameType": "FULLY_SPECIFIED",
+                "links": [
+                  {
+                    "rel": "self",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/136245AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/36100BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "resourceAlias": "name"
+                  },
+                  {
+                    "rel": "full",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/136245AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/36100BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                    "resourceAlias": "name"
+                  }
+                ],
+                "resourceVersion": "1.9"
+              }
+            ],
+            "displayString": "Knee pain",
+            "resourceVersion": "2.0",
+            "translationKey": "KNEE_PAIN_26"
+          },
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "History and Examination.1/25-0/26-0",
+          "groupMembers": [],
+          "interpretation": null
+        },
+        {
+          "concept": {
+            "uuid": "1731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "name": "Sign/symptom duration"
+          },
+          "value": "2",
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "History and Examination.1/25-0/28-0",
+          "groupMembers": [],
+          "interpretation": null
+        },
+        {
+          "concept": {
+            "uuid": "9bb0795c-4ff0-0305-1990-000000000003",
+            "name": "Chief Complaint Duration"
+          },
+          "value": {
+            "uuid": "1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "name": {
+              "display": "Years",
+              "uuid": "2014BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "name": "Years",
+              "locale": "en",
+              "localePreferred": true,
+              "conceptNameType": "FULLY_SPECIFIED",
+              "links": [
+                {
+                  "rel": "self",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/2014BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                  "resourceAlias": "name"
+                },
+                {
+                  "rel": "full",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/2014BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                  "resourceAlias": "name"
+                }
+              ],
+              "resourceVersion": "1.9"
+            },
+            "names": [
+              {
+                "display": "Years",
+                "uuid": "2014BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "name": "Years",
+                "locale": "en",
+                "localePreferred": true,
+                "conceptNameType": "FULLY_SPECIFIED",
+                "links": [
+                  {
+                    "rel": "self",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/2014BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "resourceAlias": "name"
+                  },
+                  {
+                    "rel": "full",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/2014BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                    "resourceAlias": "name"
+                  }
+                ],
+                "resourceVersion": "1.9"
+              },
+              {
+                "display": "yrs",
+                "uuid": "87016BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "name": "yrs",
+                "locale": "en",
+                "localePreferred": false,
+                "conceptNameType": "SHORT",
+                "links": [
+                  {
+                    "rel": "self",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/87016BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "resourceAlias": "name"
+                  },
+                  {
+                    "rel": "full",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/87016BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                    "resourceAlias": "name"
+                  }
+                ],
+                "resourceVersion": "1.9"
+              }
+            ],
+            "displayString": "Years",
+            "resourceVersion": "2.0",
+            "translationKey": "YEARS_29"
+          },
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "History and Examination.1/25-0/29-0",
+          "groupMembers": [],
+          "interpretation": null
+        }
+      ]
+    },
+    {
+      "concept": {
+        "uuid": "1390AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "History of present illness"
+      },
+      "value": "diabetes",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "History and Examination.1/7-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "163201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Smoking status"
+      },
+      "value": {
+        "uuid": "163195AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": {
+          "display": "Current heavy tobacco smoker",
+          "uuid": "135292BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "name": "Current heavy tobacco smoker",
+          "locale": "en",
+          "localePreferred": true,
+          "conceptNameType": "FULLY_SPECIFIED",
+          "links": [
+            {
+              "rel": "self",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/163195AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135292BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "resourceAlias": "name"
+            },
+            {
+              "rel": "full",
+              "uri": "http://localhost/openmrs/ws/rest/v1/concept/163195AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135292BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+              "resourceAlias": "name"
+            }
+          ],
+          "resourceVersion": "1.9"
+        },
+        "names": [
+          {
+            "display": "Current heavy tobacco smoker",
+            "uuid": "135292BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+            "name": "Current heavy tobacco smoker",
+            "locale": "en",
+            "localePreferred": true,
+            "conceptNameType": "FULLY_SPECIFIED",
+            "links": [
+              {
+                "rel": "self",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/163195AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135292BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "resourceAlias": "name"
+              },
+              {
+                "rel": "full",
+                "uri": "http://localhost/openmrs/ws/rest/v1/concept/163195AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/135292BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                "resourceAlias": "name"
+              }
+            ],
+            "resourceVersion": "1.9"
+          }
+        ],
+        "displayString": "Current heavy tobacco smoker",
+        "resourceVersion": "2.0",
+        "translationKey": "CURRENT_HEAVY_TOBACCO_SMOKER_8"
+      },
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "History and Examination.1/8-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Pulse"
+      },
+      "value": "120",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/14-0",
+      "groupMembers": [],
+      "interpretation": "ABNORMAL"
+    },
+    {
+      "concept": {
+        "uuid": "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Arterial blood oxygen saturation (pulse oximeter)"
+      },
+      "value": "99",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/15-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "name": "Respiratory rate"
+      },
+      "value": "15",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/16-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "9bb0795c-4ff0-0305-1990-000000000020",
+        "name": "Temperature"
+      },
+      "value": "99",
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/17-0",
+      "groupMembers": [],
+      "interpretation": null
+    },
+    {
+      "concept": {
+        "uuid": "631f9e92-b15f-41da-a6ba-4f4cd67f36b7",
+        "name": "Blood Pressure"
+      },
+      "voided": false,
+      "inactive": false,
+      "formNamespace": "Bahmni",
+      "formFieldPath": "Vitals.1/18-0",
+      "groupMembers": [
+        {
+          "concept": {
+            "uuid": "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "name": "Systolic blood pressure"
+          },
+          "value": "150",
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "Vitals.1/19-0",
+          "groupMembers": [],
+          "interpretation": "ABNORMAL"
+        },
+        {
+          "concept": {
+            "uuid": "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "name": "Diastolic blood pressure"
+          },
+          "value": "120",
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "Vitals.1/20-0",
+          "groupMembers": [],
+          "interpretation": "ABNORMAL"
+        },
+        {
+          "concept": {
+            "uuid": "159633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "name": "Body position"
+          },
+          "value": {
+            "uuid": "159632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "name": {
+              "display": "standing",
+              "uuid": "107003BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+              "name": "standing",
+              "locale": "en",
+              "localePreferred": true,
+              "conceptNameType": "FULLY_SPECIFIED",
+              "links": [
+                {
+                  "rel": "self",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/159632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107003BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                  "resourceAlias": "name"
+                },
+                {
+                  "rel": "full",
+                  "uri": "http://localhost/openmrs/ws/rest/v1/concept/159632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107003BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                  "resourceAlias": "name"
+                }
+              ],
+              "resourceVersion": "1.9"
+            },
+            "names": [
+              {
+                "display": "standing",
+                "uuid": "107003BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                "name": "standing",
+                "locale": "en",
+                "localePreferred": true,
+                "conceptNameType": "FULLY_SPECIFIED",
+                "links": [
+                  {
+                    "rel": "self",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/159632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107003BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+                    "resourceAlias": "name"
+                  },
+                  {
+                    "rel": "full",
+                    "uri": "http://localhost/openmrs/ws/rest/v1/concept/159632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/107003BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?v=full",
+                    "resourceAlias": "name"
+                  }
+                ],
+                "resourceVersion": "1.9"
+              }
+            ],
+            "displayString": "standing",
+            "resourceVersion": "2.0",
+            "translationKey": "STANDING_21"
+          },
+          "voided": false,
+          "inactive": false,
+          "formNamespace": "Bahmni",
+          "formFieldPath": "Vitals.1/21-0",
+          "groupMembers": [],
+          "interpretation": null
+        }
+      ]
+    },
+    {
+      "concept": {
+        "uuid": "887951a8-4321-11ef-9840-0242ac120002"
+      },
+      "value": "Testing",
+      "observationDateTime": null,
+      "groupMembers": [],
+      "voided": false
+    }
+  ],
+  "encounterTypeUuid": "#{encounterTypeUuid}"
+}

@@ -1,6 +1,6 @@
 package registries
 
-import api.Constants.{IMAGES_ENCOUNTER_UUID, LOGIN_LOCATION_UUID, LOGIN_USER, PROVIDER_UUID}
+import api.Constants._
 import api.DoctorHttpRequests._
 import api.FrontdeskHttpRequests._
 import api.HttpRequests._
@@ -49,19 +49,19 @@ object FrontDesk {
 
   def startVisitForID: ChainBuilder = {
     exec(
-      startVisitRequest("#{p_uuID}", "#{visit_type_id}", LOGIN_LOCATION_UUID)
+      startVisitRequest("#{p_uuID}", "#{visit_type_id}", VISIT_LOCATION_UUID)
     )
   }
 
   def startVisitForName: ChainBuilder = {
     exec(
-      startVisitRequest("#{pt_uuID}", "#{visit_type_id}", LOGIN_LOCATION_UUID)
+      startVisitRequest("#{pt_uuID}", "#{visit_type_id}", VISIT_LOCATION_UUID)
     )
   }
 
   def startVisitForCreatePatient: ChainBuilder = {
     exec(
-      startVisitRequest("#{patient_uuid}", "#{visit_type_id}", LOGIN_LOCATION_UUID)
+      startVisitRequest("#{patient_uuid}", "#{visit_type_id}", VISIT_LOCATION_UUID)
     )
   }
 
@@ -103,12 +103,9 @@ object FrontDesk {
           jsonPath("$.patient.uuid").saveAs("patient_uuid")
         )
         .resources(
-          findEncounter("#{patient_uuid}"),
+          findEncounter("#{patient_uuid}",PROVIDER_UUID,REGISTRATION_ENCOUNTER_TYPE_UUID),
           activateVisit("#{patient_uuid}"),
-          getNutrition,
-          getObservation(Seq("Height", "Weight"), Map("patientUuid" -> "#{patient_uuid}")),
-          getVital,
-          getFeeInformation,
+          getObservation(Seq("Height (cm)", "Weight (Kg)","Body mass index","BMI Status"), Map("patientUuid" -> "#{patient_uuid}")),
           getPatientProfileAfterRegistration("#{patient_uuid}")
         )
     )
@@ -154,16 +151,18 @@ object FrontDesk {
         )
         .resources(
           getVisitType,
-          findEncounter("#{pt_uuID}", PROVIDER_UUID, IMAGES_ENCOUNTER_UUID),
+          findEncounter("#{pt_uuID}", PROVIDER_UUID, PATIENT_DOCUMENT_ENCOUNTER_TYPE_UUID),
           getPatientDocumentConcept,
           getPatientFull("#{pt_uuID}"),
-          getEncounterByEncounterTypeUuid("#{pt_uuID}", IMAGES_ENCOUNTER_UUID)
+          getEncounterByEncounterTypeUuid("#{pt_uuID}", PATIENT_DOCUMENT_ENCOUNTER_TYPE_UUID)
         )
     )
   }
 
   def uploadPatientDocument = {
-    exec(postUploadDocument("#{pt_uuID}"))
+    exec(postUploadDocument("#{pt_uuID}").check(
+      jsonPath("$.url").saveAs("patientDocumentURL")
+    ))
   }
 
   def verifyPatientDocument = {
@@ -172,8 +171,8 @@ object FrontDesk {
         .resources(
           getGlobalProperty("bahmni.enableAuditLog"),
           postAuditLog("#{pt_uuID}"),
-          getEncounterByEncounterTypeUuid("#{pt_uuID}", IMAGES_ENCOUNTER_UUID),
-          findEncounter("#{pt_uuID}", PROVIDER_UUID, IMAGES_ENCOUNTER_UUID)
+          getEncounterByEncounterTypeUuid("#{pt_uuID}", PATIENT_DOCUMENT_ENCOUNTER_TYPE_UUID),
+          findEncounter("#{pt_uuID}", PROVIDER_UUID, PATIENT_DOCUMENT_ENCOUNTER_TYPE_UUID)
         )
     )
   }

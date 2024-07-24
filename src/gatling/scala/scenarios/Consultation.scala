@@ -46,7 +46,6 @@ object Consultation {
         .exec(waitBeforeNextStep(0, 10))
         .exec(addDrug("Promethazine"))
         .feed(jsonFeeder)
-        .feed(observationsFeeder)
         .exec(waitBeforeNextStep(0, 60))
         .exec(saveEncounter)
         .exec(goToDashboard("#{opdPatientId}"))
